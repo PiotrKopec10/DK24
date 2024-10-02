@@ -33,8 +33,8 @@
             txtBoxLogin = new TextBox();
             txtBoxHaslo = new TextBox();
             lblLogin = new Label();
-            lblHaslo = new Label();
             lblWitaj = new Label();
+            lblHaslo = new Label();
             SuspendLayout();
             // 
             // lblDK
@@ -42,18 +42,19 @@
             lblDK.AutoSize = true;
             lblDK.BackColor = Color.Transparent;
             lblDK.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblDK.Location = new Point(380, 118);
+            lblDK.Location = new Point(75, 89);
             lblDK.Name = "lblDK";
-            lblDK.Size = new Size(480, 36);
+            lblDK.Size = new Size(387, 29);
             lblDK.TabIndex = 1;
             lblDK.Text = "D&&K MANAGEMENT SYSTEM";
             lblDK.Click += label1_Click;
             // 
             // btnZaloguj
             // 
-            btnZaloguj.Location = new Point(571, 492);
+            btnZaloguj.Location = new Point(243, 370);
+            btnZaloguj.Margin = new Padding(3, 2, 3, 2);
             btnZaloguj.Name = "btnZaloguj";
-            btnZaloguj.Size = new Size(154, 61);
+            btnZaloguj.Size = new Size(135, 46);
             btnZaloguj.TabIndex = 2;
             btnZaloguj.Text = "&Zaloguj";
             btnZaloguj.UseVisualStyleBackColor = true;
@@ -61,53 +62,55 @@
             // 
             // txtBoxLogin
             // 
-            txtBoxLogin.Location = new Point(560, 235);
+            txtBoxLogin.Location = new Point(233, 177);
+            txtBoxLogin.Margin = new Padding(3, 2, 3, 2);
             txtBoxLogin.Name = "txtBoxLogin";
-            txtBoxLogin.Size = new Size(165, 27);
+            txtBoxLogin.Size = new Size(145, 23);
             txtBoxLogin.TabIndex = 3;
             // 
             // txtBoxHaslo
             // 
-            txtBoxHaslo.Location = new Point(560, 309);
+            txtBoxHaslo.Location = new Point(233, 233);
+            txtBoxHaslo.Margin = new Padding(3, 2, 3, 2);
             txtBoxHaslo.Name = "txtBoxHaslo";
-            txtBoxHaslo.Size = new Size(165, 27);
+            txtBoxHaslo.Size = new Size(145, 23);
             txtBoxHaslo.TabIndex = 4;
             txtBoxHaslo.TextChanged += textBox2_TextChanged;
             // 
             // lblLogin
             // 
             lblLogin.AutoSize = true;
-            lblLogin.Location = new Point(466, 242);
+            lblLogin.Location = new Point(151, 183);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(49, 20);
+            lblLogin.Size = new Size(40, 15);
             lblLogin.TabIndex = 5;
             lblLogin.Text = "Login:";
-            // 
-            // lblHaslo
-            // 
-            lblHaslo.AutoSize = true;
-            lblHaslo.Location = new Point(466, 312);
-            lblHaslo.Name = "lblHaslo";
-            lblHaslo.Size = new Size(50, 20);
-            lblHaslo.TabIndex = 6;
-            lblHaslo.Text = "Hasło:";
             // 
             // lblWitaj
             // 
             lblWitaj.AutoSize = true;
             lblWitaj.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblWitaj.Location = new Point(560, 40);
+            lblWitaj.Location = new Point(233, 31);
             lblWitaj.Name = "lblWitaj";
-            lblWitaj.Size = new Size(117, 36);
+            lblWitaj.Size = new Size(95, 29);
             lblWitaj.TabIndex = 8;
             lblWitaj.Text = "Witaj!";
             // 
+            // lblHaslo
+            // 
+            lblHaslo.AutoSize = true;
+            lblHaslo.Location = new Point(151, 235);
+            lblHaslo.Name = "lblHaslo";
+            lblHaslo.Size = new Size(40, 15);
+            lblHaslo.TabIndex = 6;
+            lblHaslo.Text = "Hasło:";
+            // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1325, 627);
+            ClientSize = new Size(583, 484);
             Controls.Add(lblWitaj);
             Controls.Add(lblHaslo);
             Controls.Add(lblLogin);
@@ -115,8 +118,10 @@
             Controls.Add(txtBoxLogin);
             Controls.Add(btnZaloguj);
             Controls.Add(lblDK);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginForm";
             Text = "D&K";
+            FormClosing += LoginForm_FormClosing;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -128,7 +133,7 @@
         private TextBox txtBoxLogin;
         private TextBox txtBoxHaslo;
         private Label lblLogin;
-        private Label lblHaslo;
         private Label lblWitaj;
+        private Label lblHaslo;
     }
 }
