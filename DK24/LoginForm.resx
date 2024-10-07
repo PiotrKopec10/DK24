@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblWitaj.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblLogin.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -177,7 +177,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLogin.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="txtBoxLogin.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 178</value>
@@ -202,7 +202,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtBoxLogin.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="imgLogo.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 147</value>
@@ -227,7 +227,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgLogo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>290, 31</value>
@@ -248,12 +248,12 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="imgLogin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAXCAYAAAAP6L+eAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAAqFJREFUSEullTloVFEUhicg4oJauKKiWEQLZWQwIQhiFAwigrgUgp0gxo0kNkFB
+        vAAADrwBlbxySQAAAqFJREFUSEullTloVFEUhicg4oJauKKiWEQLZWQwIQhiFAwigrgUgp0gxo0kNkFB
         cCzSaCdYDLPvezWgWAjW4oaFksROkGChAaO4MDy/f3Kekln0JR74OXfO8p9z7z33je9fUiqVFqfT6d2J
         RGJ/NpvdE41GV5hr4ZJMJv2Q5jKZzFQqlXJYfwQPsB+0kPlLoVDYDsk42qFTkToUcIrFotZTuVxuwEK9
         i+M4XXRVFKk6bUY+n5d+QqGVluJN6LCbrt6r02ZSF+oevc9SvAkJh8FnS24LFWVX5yzFm5DYD6b/RswZ
@@ -289,12 +289,12 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgLogin.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="imgPassword.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAAY1JREFUOE+9lM9KAmEUxYVsFbQJK9rZE5QFuW47LlrZGwzUU0hh68JAQdCZcZwB
+        vAAADrwBlbxySQAAAY1JREFUOE+9lM9KAmEUxYVsFbQJK9rZE5QFuW47LlrZGwzUU0hh68JAQdCZcZwB
         A2Fq12YerX4nLg7mNJpSBy6Xe+655/szn5b+Ha1WqzwajZwwDJ+CIIiVfd9vpGlaNsnvgMEuhh3MQvIV
         UVO2uqO+SVcHO7rD4MF13W2jvqBaPHFv1GpgoEq8TiaTilFzoLdPvEln1HLo3oiOlblQnytoWLkc3FmT
         aFuZC/UxvrayGBxph4Ebz/Oe9TGGw+Hh9xCvPqa30ttoPhA2Eb5gmiB+J3vkBRivfiK95sxiHoiqCJLB
@@ -326,7 +326,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;imgPassword.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="txtBoxPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 242</value>
@@ -350,7 +350,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtBoxPassword.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lblPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -380,7 +380,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPassword.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnZaloguj.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -410,7 +410,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZaloguj.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="lblWyjdz.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblWyjdz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>482, 368</value>
+  </data>
+  <data name="lblWyjdz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 15</value>
+  </data>
+  <data name="lblWyjdz.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="lblWyjdz.Text" xml:space="preserve">
+    <value>Wyjdź</value>
+  </data>
+  <data name="&gt;&gt;lblWyjdz.Name" xml:space="preserve">
+    <value>lblWyjdz</value>
+  </data>
+  <data name="&gt;&gt;lblWyjdz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblWyjdz.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblWyjdz.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -617,6 +644,9 @@
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>D&amp;K</value>

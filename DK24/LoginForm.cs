@@ -41,5 +41,10 @@ namespace DK24
             this.Hide();
             mainForm.ShowDialog();
         }
+
+        private void lblWyjdz_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

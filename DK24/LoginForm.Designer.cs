@@ -39,6 +39,7 @@
             txtBoxPassword = new TextBox();
             lblPassword = new Label();
             btnZaloguj = new Button();
+            lblWyjdz = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
@@ -110,12 +111,24 @@
             btnZaloguj.UseVisualStyleBackColor = true;
             btnZaloguj.Click += btnZaloguj_Click;
             // 
+            // lblWyjdz
+            // 
+            lblWyjdz.ActiveLinkColor = Color.FromArgb(255, 128, 0);
+            resources.ApplyResources(lblWyjdz, "lblWyjdz");
+            lblWyjdz.BackColor = Color.Transparent;
+            lblWyjdz.LinkColor = Color.DarkGray;
+            lblWyjdz.Name = "lblWyjdz";
+            lblWyjdz.TabStop = true;
+            lblWyjdz.VisitedLinkColor = Color.FromArgb(255, 128, 0);
+            lblWyjdz.LinkClicked += lblWyjdz_LinkClicked;
+            // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ControlBox = false;
+            Controls.Add(lblWyjdz);
             Controls.Add(imgPassword);
             Controls.Add(txtBoxPassword);
             Controls.Add(lblPassword);
@@ -149,5 +162,6 @@
         private TextBox txtBoxPassword;
         private Label lblPassword;
         private Button btnZaloguj;
+        private LinkLabel lblWyjdz;
     }
 }
