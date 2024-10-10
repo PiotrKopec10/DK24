@@ -27,6 +27,13 @@ namespace DK24
 
         }
 
+
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void btnZaloguj_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
@@ -35,7 +42,7 @@ namespace DK24
             mainForm.ShowDialog();
         }
 
-        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void lblWyjdz_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
         }

@@ -28,112 +28,140 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblDK = new Label();
-            btnZaloguj = new Button();
-            txtBoxLogin = new TextBox();
-            txtBoxHaslo = new TextBox();
-            lblLogin = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             lblWitaj = new Label();
-            lblHaslo = new Label();
+            lblLogin = new Label();
+            txtBoxLogin = new TextBox();
+            imgLogo = new PictureBox();
+            panel1 = new Panel();
+            imgLogin = new PictureBox();
+            imgPassword = new PictureBox();
+            txtBoxPassword = new TextBox();
+            lblPassword = new Label();
+            btnZaloguj = new Button();
+            lblWyjdz = new LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgLogin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
             SuspendLayout();
-            // 
-            // lblDK
-            // 
-            lblDK.AutoSize = true;
-            lblDK.BackColor = Color.Transparent;
-            lblDK.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblDK.Location = new Point(75, 89);
-            lblDK.Name = "lblDK";
-            lblDK.Size = new Size(387, 29);
-            lblDK.TabIndex = 1;
-            lblDK.Text = "D&&K MANAGEMENT SYSTEM";
-            lblDK.Click += label1_Click;
-            // 
-            // btnZaloguj
-            // 
-            btnZaloguj.Location = new Point(243, 370);
-            btnZaloguj.Margin = new Padding(3, 2, 3, 2);
-            btnZaloguj.Name = "btnZaloguj";
-            btnZaloguj.Size = new Size(135, 46);
-            btnZaloguj.TabIndex = 2;
-            btnZaloguj.Text = "&Zaloguj";
-            btnZaloguj.UseVisualStyleBackColor = true;
-            btnZaloguj.Click += btnZaloguj_Click;
-            // 
-            // txtBoxLogin
-            // 
-            txtBoxLogin.Location = new Point(233, 177);
-            txtBoxLogin.Margin = new Padding(3, 2, 3, 2);
-            txtBoxLogin.Name = "txtBoxLogin";
-            txtBoxLogin.Size = new Size(145, 23);
-            txtBoxLogin.TabIndex = 3;
-            // 
-            // txtBoxHaslo
-            // 
-            txtBoxHaslo.Location = new Point(233, 233);
-            txtBoxHaslo.Margin = new Padding(3, 2, 3, 2);
-            txtBoxHaslo.Name = "txtBoxHaslo";
-            txtBoxHaslo.Size = new Size(145, 23);
-            txtBoxHaslo.TabIndex = 4;
-            txtBoxHaslo.TextChanged += textBox2_TextChanged;
-            // 
-            // lblLogin
-            // 
-            lblLogin.AutoSize = true;
-            lblLogin.Location = new Point(151, 183);
-            lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(40, 15);
-            lblLogin.TabIndex = 5;
-            lblLogin.Text = "Login:";
             // 
             // lblWitaj
             // 
-            lblWitaj.AutoSize = true;
-            lblWitaj.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblWitaj.Location = new Point(233, 31);
+            resources.ApplyResources(lblWitaj, "lblWitaj");
+            lblWitaj.BackColor = Color.Transparent;
+            lblWitaj.ForeColor = Color.FromArgb(255, 128, 0);
             lblWitaj.Name = "lblWitaj";
-            lblWitaj.Size = new Size(95, 29);
-            lblWitaj.TabIndex = 8;
-            lblWitaj.Text = "Witaj!";
             // 
-            // lblHaslo
+            // lblLogin
             // 
-            lblHaslo.AutoSize = true;
-            lblHaslo.Location = new Point(151, 235);
-            lblHaslo.Name = "lblHaslo";
-            lblHaslo.Size = new Size(40, 15);
-            lblHaslo.TabIndex = 6;
-            lblHaslo.Text = "Hasło:";
+            resources.ApplyResources(lblLogin, "lblLogin");
+            lblLogin.BackColor = Color.Transparent;
+            lblLogin.ForeColor = Color.White;
+            lblLogin.Name = "lblLogin";
+            // 
+            // txtBoxLogin
+            // 
+            resources.ApplyResources(txtBoxLogin, "txtBoxLogin");
+            txtBoxLogin.Name = "txtBoxLogin";
+            // 
+            // imgLogo
+            // 
+            imgLogo.BackColor = Color.Transparent;
+            imgLogo.Image = Properties.Resources.dk;
+            resources.ApplyResources(imgLogo, "imgLogo");
+            imgLogo.Name = "imgLogo";
+            imgLogo.TabStop = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(192, 64, 0);
+            resources.ApplyResources(panel1, "panel1");
+            panel1.Name = "panel1";
+            // 
+            // imgLogin
+            // 
+            imgLogin.BackColor = Color.Transparent;
+            resources.ApplyResources(imgLogin, "imgLogin");
+            imgLogin.Name = "imgLogin";
+            imgLogin.TabStop = false;
+            // 
+            // imgPassword
+            // 
+            imgPassword.BackColor = Color.Transparent;
+            resources.ApplyResources(imgPassword, "imgPassword");
+            imgPassword.Name = "imgPassword";
+            imgPassword.TabStop = false;
+            // 
+            // txtBoxPassword
+            // 
+            resources.ApplyResources(txtBoxPassword, "txtBoxPassword");
+            txtBoxPassword.Name = "txtBoxPassword";
+            // 
+            // lblPassword
+            // 
+            resources.ApplyResources(lblPassword, "lblPassword");
+            lblPassword.BackColor = Color.Transparent;
+            lblPassword.ForeColor = Color.White;
+            lblPassword.Name = "lblPassword";
+            // 
+            // btnZaloguj
+            // 
+            resources.ApplyResources(btnZaloguj, "btnZaloguj");
+            btnZaloguj.Name = "btnZaloguj";
+            btnZaloguj.UseVisualStyleBackColor = true;
+            btnZaloguj.Click += btnZaloguj_Click;
+            // 
+            // lblWyjdz
+            // 
+            lblWyjdz.ActiveLinkColor = Color.FromArgb(255, 128, 0);
+            resources.ApplyResources(lblWyjdz, "lblWyjdz");
+            lblWyjdz.BackColor = Color.Transparent;
+            lblWyjdz.LinkColor = Color.DarkGray;
+            lblWyjdz.Name = "lblWyjdz";
+            lblWyjdz.TabStop = true;
+            lblWyjdz.VisitedLinkColor = Color.FromArgb(255, 128, 0);
+            lblWyjdz.LinkClicked += lblWyjdz_LinkClicked;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(583, 484);
-            Controls.Add(lblWitaj);
-            Controls.Add(lblHaslo);
-            Controls.Add(lblLogin);
-            Controls.Add(txtBoxHaslo);
-            Controls.Add(txtBoxLogin);
+            ControlBox = false;
+            Controls.Add(lblWyjdz);
+            Controls.Add(imgPassword);
+            Controls.Add(txtBoxPassword);
+            Controls.Add(lblPassword);
+            Controls.Add(imgLogin);
+            Controls.Add(panel1);
+            Controls.Add(imgLogo);
             Controls.Add(btnZaloguj);
-            Controls.Add(lblDK);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(txtBoxLogin);
+            Controls.Add(lblLogin);
+            Controls.Add(lblWitaj);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "LoginForm";
-            Text = "D&K";
+            ShowIcon = false;
             FormClosing += LoginForm_FormClosing;
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgLogin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgPassword).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label lblDK;
-        private Button btnZaloguj;
-        private TextBox txtBoxLogin;
-        private TextBox txtBoxHaslo;
-        private Label lblLogin;
         private Label lblWitaj;
-        private Label lblHaslo;
+        private Label lblLogin;
+        private TextBox txtBoxLogin;
+        private PictureBox imgLogo;
+        private Panel panel1;
+        private PictureBox imgLogin;
+        private PictureBox imgPassword;
+        private TextBox txtBoxPassword;
+        private Label lblPassword;
+        private Button btnZaloguj;
+        private LinkLabel lblWyjdz;
     }
 }

@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
+            panel1 = new Panel();
+            btnDodajZamowienie = new Button();
+            radioButtonArchiwalne = new RadioButton();
+            radioButtonAktualne = new RadioButton();
+            btnRefresh = new Button();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
             archiwumToolStripMenuItem1 = new ToolStripMenuItem();
@@ -52,35 +58,108 @@
             drukarkiToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
+            pnlDtGridZamowienia.SuspendLayout();
+            panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dtGridViewZamowienia
             // 
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtGridViewZamowienia.Dock = DockStyle.Fill;
-            dtGridViewZamowienia.Location = new Point(0, 24);
+            dtGridViewZamowienia.Location = new Point(0, 0);
             dtGridViewZamowienia.Margin = new Padding(3, 2, 3, 2);
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
+            dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dtGridViewZamowienia.RowHeadersWidth = 51;
-            dtGridViewZamowienia.Size = new Size(1244, 600);
+            dtGridViewZamowienia.Size = new Size(1244, 548);
             dtGridViewZamowienia.TabIndex = 1;
             // 
             // pnlDtGridZamowienia
             // 
-            pnlDtGridZamowienia.Dock = DockStyle.Fill;
-            pnlDtGridZamowienia.Location = new Point(0, 24);
+            pnlDtGridZamowienia.Controls.Add(dtGridViewZamowienia);
+            pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
+            pnlDtGridZamowienia.Location = new Point(0, 78);
             pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
             pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
-            pnlDtGridZamowienia.Size = new Size(1244, 600);
+            pnlDtGridZamowienia.Size = new Size(1244, 473);
             pnlDtGridZamowienia.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            panel1.AutoSize = true;
+            panel1.BackColor = Color.Transparent;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(btnDodajZamowienie);
+            panel1.Controls.Add(radioButtonArchiwalne);
+            panel1.Controls.Add(radioButtonAktualne);
+            panel1.Controls.Add(btnRefresh);
+            panel1.Location = new Point(0, 551);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1244, 75);
+            panel1.TabIndex = 3;
+            // 
+            // btnDodajZamowienie
+            // 
+            btnDodajZamowienie.BackColor = Color.FromArgb(192, 255, 192);
+            btnDodajZamowienie.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            btnDodajZamowienie.Image = (Image)resources.GetObject("btnDodajZamowienie.Image");
+            btnDodajZamowienie.Location = new Point(1108, 6);
+            btnDodajZamowienie.Margin = new Padding(0);
+            btnDodajZamowienie.Name = "btnDodajZamowienie";
+            btnDodajZamowienie.Size = new Size(127, 60);
+            btnDodajZamowienie.TabIndex = 3;
+            btnDodajZamowienie.Text = "DODAJ ZAMÓWIENIE";
+            btnDodajZamowienie.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDodajZamowienie.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonArchiwalne
+            // 
+            radioButtonArchiwalne.AutoSize = true;
+            radioButtonArchiwalne.ForeColor = Color.White;
+            radioButtonArchiwalne.Location = new Point(240, 31);
+            radioButtonArchiwalne.Name = "radioButtonArchiwalne";
+            radioButtonArchiwalne.Size = new Size(100, 19);
+            radioButtonArchiwalne.TabIndex = 2;
+            radioButtonArchiwalne.Text = "ARCHIWALNE";
+            radioButtonArchiwalne.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonAktualne
+            // 
+            radioButtonAktualne.AutoSize = true;
+            radioButtonAktualne.Checked = true;
+            radioButtonAktualne.ForeColor = Color.White;
+            radioButtonAktualne.Location = new Point(142, 31);
+            radioButtonAktualne.Name = "radioButtonAktualne";
+            radioButtonAktualne.Size = new Size(83, 19);
+            radioButtonAktualne.TabIndex = 1;
+            radioButtonAktualne.TabStop = true;
+            radioButtonAktualne.Text = "AKTUALNE";
+            radioButtonAktualne.UseVisualStyleBackColor = true;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.Transparent;
+            btnRefresh.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            btnRefresh.Image = (Image)resources.GetObject("btnRefresh.Image");
+            btnRefresh.Location = new Point(12, 21);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(109, 39);
+            btnRefresh.TabIndex = 0;
+            btnRefresh.Text = "REFRESH";
+            btnRefresh.TextAlign = ContentAlignment.MiddleRight;
+            btnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRefresh.UseVisualStyleBackColor = false;
             // 
             // fakturyToolStripMenuItem
             // 
+            fakturyToolStripMenuItem.BackColor = Color.Transparent;
             fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, archiwumToolStripMenuItem1 });
+            fakturyToolStripMenuItem.ForeColor = Color.Silver;
+            fakturyToolStripMenuItem.Image = (Image)resources.GetObject("fakturyToolStripMenuItem.Image");
             fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
-            fakturyToolStripMenuItem.Size = new Size(58, 20);
+            fakturyToolStripMenuItem.Size = new Size(58, 39);
             fakturyToolStripMenuItem.Text = "Faktury";
+            fakturyToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // dodajToolStripMenuItem
             // 
@@ -100,15 +179,18 @@
             edytujToolStripMenuItem.AutoClose = false;
             edytujToolStripMenuItem.ImageScalingSize = new Size(20, 20);
             edytujToolStripMenuItem.Name = "edytujToolStripMenuItem";
-            edytujToolStripMenuItem.OwnerItem = fakturyToolStripMenuItem;
             edytujToolStripMenuItem.Size = new Size(61, 4);
             // 
             // kontrahenciToolStripMenuItem
             // 
+            kontrahenciToolStripMenuItem.BackColor = Color.Transparent;
             kontrahenciToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajKontrahentaToolStripMenuItem, zobaczKontrahentówToolStripMenuItem, archiwumToolStripMenuItem2 });
+            kontrahenciToolStripMenuItem.ForeColor = Color.Silver;
+            kontrahenciToolStripMenuItem.Image = (Image)resources.GetObject("kontrahenciToolStripMenuItem.Image");
             kontrahenciToolStripMenuItem.Name = "kontrahenciToolStripMenuItem";
-            kontrahenciToolStripMenuItem.Size = new Size(83, 20);
+            kontrahenciToolStripMenuItem.Size = new Size(83, 39);
             kontrahenciToolStripMenuItem.Text = "Kontrahenci";
+            kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // dodajKontrahentaToolStripMenuItem
             // 
@@ -130,10 +212,14 @@
             // 
             // towaryToolStripMenuItem
             // 
+            towaryToolStripMenuItem.BackColor = Color.Transparent;
             towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajTowarToolStripMenuItem, zobaczToolStripMenuItem });
+            towaryToolStripMenuItem.ForeColor = Color.Silver;
+            towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 20);
+            towaryToolStripMenuItem.Size = new Size(98, 39);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
+            towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // dodajTowarToolStripMenuItem
             // 
@@ -149,10 +235,14 @@
             // 
             // wysyłkiToolStripMenuItem
             // 
+            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
             wysyłkiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { stwórzPaczkęToolStripMenuItem, zobaczPaczkiToolStripMenuItem, archiwumToolStripMenuItem });
+            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
+            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
             wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 20);
+            wysyłkiToolStripMenuItem.Size = new Size(59, 39);
             wysyłkiToolStripMenuItem.Text = "Wysyłki";
+            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // stwórzPaczkęToolStripMenuItem
             // 
@@ -174,10 +264,15 @@
             // 
             // zamówieniaToolStripMenuItem
             // 
+            zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
             zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem, zobaczZamówieniaToolStripMenuItem });
+            zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
+            zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
+            zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
             zamówieniaToolStripMenuItem.Name = "zamówieniaToolStripMenuItem";
-            zamówieniaToolStripMenuItem.Size = new Size(84, 20);
+            zamówieniaToolStripMenuItem.Size = new Size(84, 39);
             zamówieniaToolStripMenuItem.Text = "Zamówienia";
+            zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // noweZamToolStripMenuItem
             // 
@@ -199,18 +294,24 @@
             // 
             // drukarkiToolStripMenuItem
             // 
+            drukarkiToolStripMenuItem.BackColor = Color.Transparent;
+            drukarkiToolStripMenuItem.ForeColor = Color.Silver;
+            drukarkiToolStripMenuItem.Image = (Image)resources.GetObject("drukarkiToolStripMenuItem.Image");
             drukarkiToolStripMenuItem.Name = "drukarkiToolStripMenuItem";
-            drukarkiToolStripMenuItem.Size = new Size(63, 20);
+            drukarkiToolStripMenuItem.Size = new Size(63, 39);
             drukarkiToolStripMenuItem.Text = "Drukarki";
+            drukarkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // menuStrip1
             // 
+            menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, drukarkiToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(1244, 24);
+            menuStrip1.Padding = new Padding(250, 35, 0, 2);
+            menuStrip1.RenderMode = ToolStripRenderMode.Professional;
+            menuStrip1.Size = new Size(1244, 76);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -218,17 +319,23 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(255, 128, 0);
             ClientSize = new Size(1244, 624);
-            Controls.Add(dtGridViewZamowienia);
+            Controls.Add(panel1);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "D&K";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
+            pnlDtGridZamowienia.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -259,5 +366,10 @@
         private ToolStripMenuItem zobaczZamówieniaToolStripMenuItem;
         private ToolStripMenuItem drukarkiToolStripMenuItem;
         private MenuStrip menuStrip1;
+        private Panel panel1;
+        private Button btnRefresh;
+        private RadioButton radioButtonArchiwalne;
+        private RadioButton radioButtonAktualne;
+        private Button btnDodajZamowienie;
     }
 }
