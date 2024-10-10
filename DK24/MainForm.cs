@@ -58,6 +58,16 @@ namespace DK24
             Application.Exit();
         }
 
+        private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
 
+        private void archiwumToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

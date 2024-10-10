@@ -31,35 +31,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
-            panel1 = new Panel();
+            pnlPrzyciski = new Panel();
             btnDodajZamowienie = new Button();
             radioButtonArchiwalne = new RadioButton();
             radioButtonAktualne = new RadioButton();
             btnRefresh = new Button();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
-            archiwumToolStripMenuItem1 = new ToolStripMenuItem();
+            zobaczFakturyToolStripMenuItem = new ToolStripMenuItem();
             edytujToolStripMenuItem = new ToolStripDropDownMenu();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
             dodajKontrahentaToolStripMenuItem = new ToolStripMenuItem();
             zobaczKontrahentówToolStripMenuItem = new ToolStripMenuItem();
-            archiwumToolStripMenuItem2 = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
             wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
-            archiwumToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             noweZamToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaArchiwalneToolStripMenuItem = new ToolStripMenuItem();
-            zobaczZamówieniaToolStripMenuItem = new ToolStripMenuItem();
             drukarkiToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
-            panel1.SuspendLayout();
+            pnlPrzyciski.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,19 +81,19 @@
             pnlDtGridZamowienia.Size = new Size(1244, 473);
             pnlDtGridZamowienia.TabIndex = 2;
             // 
-            // panel1
+            // pnlPrzyciski
             // 
-            panel1.AutoSize = true;
-            panel1.BackColor = Color.Transparent;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(btnDodajZamowienie);
-            panel1.Controls.Add(radioButtonArchiwalne);
-            panel1.Controls.Add(radioButtonAktualne);
-            panel1.Controls.Add(btnRefresh);
-            panel1.Location = new Point(0, 551);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1244, 75);
-            panel1.TabIndex = 3;
+            pnlPrzyciski.AutoSize = true;
+            pnlPrzyciski.BackColor = Color.Transparent;
+            pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
+            pnlPrzyciski.Controls.Add(btnDodajZamowienie);
+            pnlPrzyciski.Controls.Add(radioButtonArchiwalne);
+            pnlPrzyciski.Controls.Add(radioButtonAktualne);
+            pnlPrzyciski.Controls.Add(btnRefresh);
+            pnlPrzyciski.Location = new Point(0, 551);
+            pnlPrzyciski.Name = "pnlPrzyciski";
+            pnlPrzyciski.Size = new Size(1244, 75);
+            pnlPrzyciski.TabIndex = 3;
             // 
             // btnDodajZamowienie
             // 
@@ -153,7 +150,7 @@
             // fakturyToolStripMenuItem
             // 
             fakturyToolStripMenuItem.BackColor = Color.Transparent;
-            fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, archiwumToolStripMenuItem1 });
+            fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, zobaczFakturyToolStripMenuItem });
             fakturyToolStripMenuItem.ForeColor = Color.Silver;
             fakturyToolStripMenuItem.Image = (Image)resources.GetObject("fakturyToolStripMenuItem.Image");
             fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
@@ -164,15 +161,16 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(129, 22);
+            dodajToolStripMenuItem.Size = new Size(180, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
-            // archiwumToolStripMenuItem1
+            // zobaczFakturyToolStripMenuItem
             // 
-            archiwumToolStripMenuItem1.Name = "archiwumToolStripMenuItem1";
-            archiwumToolStripMenuItem1.Size = new Size(129, 22);
-            archiwumToolStripMenuItem1.Text = "Archiwum";
+            zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
             // edytujToolStripMenuItem
             // 
@@ -184,7 +182,7 @@
             // kontrahenciToolStripMenuItem
             // 
             kontrahenciToolStripMenuItem.BackColor = Color.Transparent;
-            kontrahenciToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajKontrahentaToolStripMenuItem, zobaczKontrahentówToolStripMenuItem, archiwumToolStripMenuItem2 });
+            kontrahenciToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajKontrahentaToolStripMenuItem, zobaczKontrahentówToolStripMenuItem });
             kontrahenciToolStripMenuItem.ForeColor = Color.Silver;
             kontrahenciToolStripMenuItem.Image = (Image)resources.GetObject("kontrahenciToolStripMenuItem.Image");
             kontrahenciToolStripMenuItem.Name = "kontrahenciToolStripMenuItem";
@@ -203,12 +201,6 @@
             zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
             zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
             zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
-            // 
-            // archiwumToolStripMenuItem2
-            // 
-            archiwumToolStripMenuItem2.Name = "archiwumToolStripMenuItem2";
-            archiwumToolStripMenuItem2.Size = new Size(190, 22);
-            archiwumToolStripMenuItem2.Text = "Archiwum";
             // 
             // towaryToolStripMenuItem
             // 
@@ -236,7 +228,7 @@
             // wysyłkiToolStripMenuItem
             // 
             wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
-            wysyłkiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { stwórzPaczkęToolStripMenuItem, zobaczPaczkiToolStripMenuItem, archiwumToolStripMenuItem });
+            wysyłkiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { stwórzPaczkęToolStripMenuItem, zobaczPaczkiToolStripMenuItem });
             wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
             wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
             wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
@@ -247,25 +239,19 @@
             // stwórzPaczkęToolStripMenuItem
             // 
             stwórzPaczkęToolStripMenuItem.Name = "stwórzPaczkęToolStripMenuItem";
-            stwórzPaczkęToolStripMenuItem.Size = new Size(148, 22);
+            stwórzPaczkęToolStripMenuItem.Size = new Size(180, 22);
             stwórzPaczkęToolStripMenuItem.Text = "Stwórz paczkę";
             // 
             // zobaczPaczkiToolStripMenuItem
             // 
             zobaczPaczkiToolStripMenuItem.Name = "zobaczPaczkiToolStripMenuItem";
-            zobaczPaczkiToolStripMenuItem.Size = new Size(148, 22);
+            zobaczPaczkiToolStripMenuItem.Size = new Size(180, 22);
             zobaczPaczkiToolStripMenuItem.Text = "Zobacz paczki";
-            // 
-            // archiwumToolStripMenuItem
-            // 
-            archiwumToolStripMenuItem.Name = "archiwumToolStripMenuItem";
-            archiwumToolStripMenuItem.Size = new Size(148, 22);
-            archiwumToolStripMenuItem.Text = "Archiwum";
             // 
             // zamówieniaToolStripMenuItem
             // 
             zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
-            zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem, zobaczZamówieniaToolStripMenuItem });
+            zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem });
             zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
             zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
             zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
@@ -277,20 +263,14 @@
             // noweZamToolStripMenuItem
             // 
             noweZamToolStripMenuItem.Name = "noweZamToolStripMenuItem";
-            noweZamToolStripMenuItem.Size = new Size(201, 22);
+            noweZamToolStripMenuItem.Size = new Size(180, 22);
             noweZamToolStripMenuItem.Text = "Nowe Zamówienia";
             // 
             // zamówieniaArchiwalneToolStripMenuItem
             // 
             zamówieniaArchiwalneToolStripMenuItem.Name = "zamówieniaArchiwalneToolStripMenuItem";
-            zamówieniaArchiwalneToolStripMenuItem.Size = new Size(201, 22);
+            zamówieniaArchiwalneToolStripMenuItem.Size = new Size(180, 22);
             zamówieniaArchiwalneToolStripMenuItem.Text = "Zobacz Zamówienia";
-            // 
-            // zobaczZamówieniaToolStripMenuItem
-            // 
-            zobaczZamówieniaToolStripMenuItem.Name = "zobaczZamówieniaToolStripMenuItem";
-            zobaczZamówieniaToolStripMenuItem.Size = new Size(201, 22);
-            zobaczZamówieniaToolStripMenuItem.Text = "Zamówienia Archiwalne";
             // 
             // drukarkiToolStripMenuItem
             // 
@@ -321,7 +301,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 128, 0);
             ClientSize = new Size(1244, 624);
-            Controls.Add(panel1);
+            Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -334,8 +314,8 @@
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnlPrzyciski.ResumeLayout(false);
+            pnlPrzyciski.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -347,29 +327,26 @@
         private Panel pnlDtGridZamowienia;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem dodajToolStripMenuItem;
-        private ToolStripMenuItem archiwumToolStripMenuItem1;
         private ToolStripDropDownMenu edytujToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
         private ToolStripMenuItem dodajKontrahentaToolStripMenuItem;
         private ToolStripMenuItem zobaczKontrahentówToolStripMenuItem;
-        private ToolStripMenuItem archiwumToolStripMenuItem2;
         private ToolStripMenuItem towaryToolStripMenuItem;
         private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
         private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
         private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
-        private ToolStripMenuItem archiwumToolStripMenuItem;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private ToolStripMenuItem noweZamToolStripMenuItem;
         private ToolStripMenuItem zamówieniaArchiwalneToolStripMenuItem;
-        private ToolStripMenuItem zobaczZamówieniaToolStripMenuItem;
         private ToolStripMenuItem drukarkiToolStripMenuItem;
         private MenuStrip menuStrip1;
-        private Panel panel1;
+        private Panel pnlPrzyciski;
         private Button btnRefresh;
         private RadioButton radioButtonArchiwalne;
         private RadioButton radioButtonAktualne;
         private Button btnDodajZamowienie;
+        private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
     }
 }
