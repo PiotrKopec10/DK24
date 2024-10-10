@@ -70,13 +70,13 @@
             pnlDataGrid = new Panel();
             dtGridDokument = new DataGridView();
             pnlPrzyciski = new Panel();
-            btnTowarUslugi = new Button();
-            textBox1 = new TextBox();
-            label11 = new Label();
-            btnDodaj = new Button();
-            btnUsun = new Button();
-            btnZapisz = new Button();
             btnAnuluj = new Button();
+            btnZapisz = new Button();
+            btnUsun = new Button();
+            btnDodaj = new Button();
+            label11 = new Label();
+            textBox1 = new TextBox();
+            btnTowarUslugi = new Button();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -480,39 +480,23 @@
             pnlPrzyciski.Size = new Size(1203, 53);
             pnlPrzyciski.TabIndex = 2;
             // 
-            // btnTowarUslugi
+            // btnAnuluj
             // 
-            btnTowarUslugi.Location = new Point(11, 19);
-            btnTowarUslugi.Name = "btnTowarUslugi";
-            btnTowarUslugi.Size = new Size(91, 23);
-            btnTowarUslugi.TabIndex = 0;
-            btnTowarUslugi.Text = "Towar/Usługi";
-            btnTowarUslugi.UseVisualStyleBackColor = true;
+            btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
+            btnAnuluj.Location = new Point(1128, 14);
+            btnAnuluj.Name = "btnAnuluj";
+            btnAnuluj.Size = new Size(44, 33);
+            btnAnuluj.TabIndex = 6;
+            btnAnuluj.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // btnZapisz
             // 
-            textBox1.Location = new Point(152, 20);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(260, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(447, 23);
-            label11.Name = "label11";
-            label11.Size = new Size(274, 15);
-            label11.TabIndex = 2;
-            label11.Text = "Wpisz kod Towaru/Usługi aby go dodać i kliknij [+]";
-            // 
-            // btnDodaj
-            // 
-            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(749, 14);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(40, 33);
-            btnDodaj.TabIndex = 3;
-            btnDodaj.UseVisualStyleBackColor = true;
+            btnZapisz.Image = (Image)resources.GetObject("btnZapisz.Image");
+            btnZapisz.Location = new Point(1071, 14);
+            btnZapisz.Name = "btnZapisz";
+            btnZapisz.Size = new Size(44, 33);
+            btnZapisz.TabIndex = 5;
+            btnZapisz.UseVisualStyleBackColor = true;
             // 
             // btnUsun
             // 
@@ -523,23 +507,39 @@
             btnUsun.TabIndex = 4;
             btnUsun.UseVisualStyleBackColor = true;
             // 
-            // btnZapisz
+            // btnDodaj
             // 
-            btnZapisz.Image = Properties.Resources.Save_01_16;
-            btnZapisz.Location = new Point(1071, 14);
-            btnZapisz.Name = "btnZapisz";
-            btnZapisz.Size = new Size(44, 33);
-            btnZapisz.TabIndex = 5;
-            btnZapisz.UseVisualStyleBackColor = true;
+            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
+            btnDodaj.Location = new Point(749, 14);
+            btnDodaj.Name = "btnDodaj";
+            btnDodaj.Size = new Size(40, 33);
+            btnDodaj.TabIndex = 3;
+            btnDodaj.UseVisualStyleBackColor = true;
             // 
-            // btnAnuluj
+            // label11
             // 
-            btnAnuluj.Image = Properties.Resources.Cancel_01_16;
-            btnAnuluj.Location = new Point(1128, 14);
-            btnAnuluj.Name = "btnAnuluj";
-            btnAnuluj.Size = new Size(44, 33);
-            btnAnuluj.TabIndex = 6;
-            btnAnuluj.UseVisualStyleBackColor = true;
+            label11.AutoSize = true;
+            label11.Location = new Point(447, 23);
+            label11.Name = "label11";
+            label11.Size = new Size(274, 15);
+            label11.TabIndex = 2;
+            label11.Text = "Wpisz kod Towaru/Usługi aby go dodać i kliknij [+]";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(152, 20);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(260, 23);
+            textBox1.TabIndex = 1;
+            // 
+            // btnTowarUslugi
+            // 
+            btnTowarUslugi.Location = new Point(11, 19);
+            btnTowarUslugi.Name = "btnTowarUslugi";
+            btnTowarUslugi.Size = new Size(91, 23);
+            btnTowarUslugi.TabIndex = 0;
+            btnTowarUslugi.Text = "Towar/Usługi";
+            btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
             // FakturaForm
             // 
