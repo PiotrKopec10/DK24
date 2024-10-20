@@ -1,7 +1,13 @@
+using Microsoft.VisualBasic.ApplicationServices;
+
 namespace DK24
 {
     public partial class LoginForm : Form
     {
+        MainForm mainForm = new MainForm();
+        UserClass DzialaniaNaUserze = new UserClass();
+        UserClass.User AktualnyUser = new UserClass.User();
+
         public LoginForm()
         {
             InitializeComponent();
@@ -36,15 +42,32 @@ namespace DK24
 
         private void btnZaloguj_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            LoginForm loginForm = new LoginForm();
-            this.Hide();
-            mainForm.ShowDialog();
+
+
+            AktualnyUser.worker_login = txtBoxLogin.Text;
+            AktualnyUser.password_hash = txtBoxPassword.Text;
+
+            if (DzialaniaNaUserze.PobierzHasloDlaUsera(AktualnyUser) == true)
+            {
+                this.Hide();
+                mainForm.ShowDialog();
+            }
+            else
+            {
+                stsBarLogin.Text = "Has³o Nieprawid³owe!!!";
+                stsBarLogin.ForeColor = Color.Red;
+            }
+
+
+
+
         }
 
         private void lblWyjdz_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
         }
+
+       
     }
 }

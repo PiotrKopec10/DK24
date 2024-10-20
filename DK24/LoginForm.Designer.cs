@@ -40,9 +40,12 @@
             lblPassword = new Label();
             btnZaloguj = new Button();
             lblWyjdz = new LinkLabel();
+            statusStrip1 = new StatusStrip();
+            stsBarLogin = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblWitaj
@@ -122,12 +125,24 @@
             lblWyjdz.VisitedLinkColor = Color.FromArgb(255, 128, 0);
             lblWyjdz.LinkClicked += lblWyjdz_LinkClicked;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { stsBarLogin });
+            resources.ApplyResources(statusStrip1, "statusStrip1");
+            statusStrip1.Name = "statusStrip1";
+            // 
+            // stsBarLogin
+            // 
+            stsBarLogin.Name = "stsBarLogin";
+            resources.ApplyResources(stsBarLogin, "stsBarLogin");
+            // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ControlBox = false;
+            Controls.Add(statusStrip1);
             Controls.Add(lblWyjdz);
             Controls.Add(imgPassword);
             Controls.Add(txtBoxPassword);
@@ -147,6 +162,8 @@
             ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,5 +180,7 @@
         private Label lblPassword;
         private Button btnZaloguj;
         private LinkLabel lblWyjdz;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel stsBarLogin;
     }
 }
