@@ -1,4 +1,5 @@
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Security.Cryptography;
 
 namespace DK24
 {
@@ -43,9 +44,21 @@ namespace DK24
         private void btnZaloguj_Click(object sender, EventArgs e)
         {
 
+            SHA256 sha256 = SHA256.Create();
 
             AktualnyUser.worker_login = txtBoxLogin.Text;
+
+            var login = txtBoxLogin.Text.Trim();
+            var haslo = txtBoxPassword.Text.Trim();
+
+            var zaszyfrowaneHaslo = 
+
             AktualnyUser.password_hash = txtBoxPassword.Text;
+
+          
+
+
+
 
             if (DzialaniaNaUserze.PobierzHasloDlaUsera(AktualnyUser) == true)
             {

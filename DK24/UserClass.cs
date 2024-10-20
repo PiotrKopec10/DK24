@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DK24
 {
@@ -78,6 +80,28 @@ namespace DK24
 
             return CzyHasloPrawidlowe;
 
+        }
+
+        public static string ZahashujHaslo(string haslo)
+        {
+            SHA256 sha = SHA256.Create();
+
+            // Convert the input string to a byte array and compute the hash
+            byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(haslo));
+
+
+            // Create a new StringBuilder to collect bytes
+            // and create a string
+            StringBuilder sBuilder = new StringBuilder();
+
+
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
 
 
