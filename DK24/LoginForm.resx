@@ -442,34 +442,31 @@
   <data name="&gt;&gt;lblWyjdz.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="stsBarLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
+  <data name="lblZleHaslo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 428</value>
+  <data name="lblZleHaslo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>415, 283</value>
   </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>700, 22</value>
+  <data name="lblZleHaslo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 15</value>
   </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblZleHaslo.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+  <data name="lblZleHaslo.Text" xml:space="preserve">
+    <value>Uzupełnij pola aby się zalogować</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
+  <data name="&gt;&gt;lblZleHaslo.Name" xml:space="preserve">
+    <value>lblZleHaslo</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblZleHaslo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblZleHaslo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblZleHaslo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -683,12 +680,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>D&amp;K</value>
-  </data>
-  <data name="&gt;&gt;stsBarLogin.Name" xml:space="preserve">
-    <value>stsBarLogin</value>
-  </data>
-  <data name="&gt;&gt;stsBarLogin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>LoginForm</value>

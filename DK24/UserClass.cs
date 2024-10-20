@@ -82,21 +82,22 @@ namespace DK24
 
         }
 
-        public static string ZahashujHaslo(string haslo)
+        public string ZahashujHaslo(string haslo)
         {
             SHA256 sha = SHA256.Create();
 
-            // Convert the input string to a byte array and compute the hash
+            // Convert inputa na tablicę bajtów i obliczanie hash
             byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(haslo));
 
-
-            // Create a new StringBuilder to collect bytes
-            // and create a string
+         
+            //Utwórz nowy StringBuilder aby zebrać bajty
+            // utworzenie stringa
             StringBuilder sBuilder = new StringBuilder();
 
 
-            // Loop through each byte of the hashed data
-            // and format each one as a hexadecimal string
+            // Iteracja każdego bajta z danych hashowanych
+            // i format każdego z nich jako ciąg szesnastkowy
+
             for (int i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));
