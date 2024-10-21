@@ -335,7 +335,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtBoxPassword.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
-    <value>*</value>
+    <value>•</value>
   </data>
   <data name="txtBoxPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 23</value>

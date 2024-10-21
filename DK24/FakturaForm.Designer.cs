@@ -92,6 +92,7 @@
             // 
             // pnlGoraDane
             // 
+            pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
             pnlGoraDane.Controls.Add(chckBoxArchiwalny);
             pnlGoraDane.Controls.Add(dtPickerDataSprzed);
             pnlGoraDane.Controls.Add(btnDataSprzed);
@@ -124,14 +125,16 @@
             // chckBoxArchiwalny
             // 
             chckBoxArchiwalny.AutoSize = true;
+            chckBoxArchiwalny.BackColor = Color.Transparent;
             chckBoxArchiwalny.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxArchiwalny.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chckBoxArchiwalny.Location = new Point(614, 205);
+            chckBoxArchiwalny.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chckBoxArchiwalny.ForeColor = Color.FromArgb(255, 128, 0);
+            chckBoxArchiwalny.Location = new Point(614, 207);
             chckBoxArchiwalny.Name = "chckBoxArchiwalny";
-            chckBoxArchiwalny.Size = new Size(115, 25);
+            chckBoxArchiwalny.Size = new Size(123, 22);
             chckBoxArchiwalny.TabIndex = 23;
             chckBoxArchiwalny.Text = "Archiwalny";
-            chckBoxArchiwalny.UseVisualStyleBackColor = true;
+            chckBoxArchiwalny.UseVisualStyleBackColor = false;
             // 
             // dtPickerDataSprzed
             // 
@@ -190,9 +193,12 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(300, 211);
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label10.ForeColor = Color.Transparent;
+            label10.Location = new Point(299, 213);
             label10.Name = "label10";
-            label10.Size = new Size(24, 15);
+            label10.Size = new Size(26, 14);
             label10.TabIndex = 16;
             label10.Text = "dni";
             // 
@@ -205,6 +211,7 @@
             // 
             // cmbBoxPlatnosc
             // 
+            cmbBoxPlatnosc.BackColor = SystemColors.Menu;
             cmbBoxPlatnosc.FormattingEnabled = true;
             cmbBoxPlatnosc.Location = new Point(111, 208);
             cmbBoxPlatnosc.Name = "cmbBoxPlatnosc";
@@ -222,27 +229,36 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(38, 237);
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(38, 239);
             label8.Name = "label8";
-            label8.Size = new Size(34, 15);
+            label8.Size = new Size(40, 14);
             label8.TabIndex = 12;
             label8.Text = "Opis:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(43, 211);
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(43, 212);
             label7.Name = "label7";
-            label7.Size = new Size(55, 15);
+            label7.Size = new Size(65, 14);
             label7.TabIndex = 11;
             label7.Text = "Płatność:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(69, 149);
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(70, 145);
             label6.Name = "label6";
-            label6.Size = new Size(29, 15);
+            label6.Size = new Size(34, 14);
             label6.TabIndex = 10;
             label6.Text = "NIP:";
             // 
@@ -257,6 +273,7 @@
             // 
             // txtBoxMiastoKnt
             // 
+            txtBoxMiastoKnt.BackColor = SystemColors.Menu;
             txtBoxMiastoKnt.Location = new Point(190, 170);
             txtBoxMiastoKnt.Name = "txtBoxMiastoKnt";
             txtBoxMiastoKnt.Size = new Size(216, 23);
@@ -264,6 +281,7 @@
             // 
             // txtBoxKodPoczKnt
             // 
+            txtBoxKodPoczKnt.BackColor = SystemColors.Menu;
             txtBoxKodPoczKnt.Location = new Point(111, 170);
             txtBoxKodPoczKnt.Name = "txtBoxKodPoczKnt";
             txtBoxKodPoczKnt.Size = new Size(73, 23);
@@ -271,6 +289,7 @@
             // 
             // txtBoxAdresKnt
             // 
+            txtBoxAdresKnt.BackColor = SystemColors.Menu;
             txtBoxAdresKnt.Location = new Point(440, 141);
             txtBoxAdresKnt.Name = "txtBoxAdresKnt";
             txtBoxAdresKnt.Size = new Size(266, 23);
@@ -278,6 +297,7 @@
             // 
             // txtBoxNipKnt
             // 
+            txtBoxNipKnt.BackColor = SystemColors.Menu;
             txtBoxNipKnt.Location = new Point(152, 141);
             txtBoxNipKnt.Name = "txtBoxNipKnt";
             txtBoxNipKnt.Size = new Size(254, 23);
@@ -285,6 +305,7 @@
             // 
             // txtBoxPrefixNipKnt
             // 
+            txtBoxPrefixNipKnt.BackColor = SystemColors.Menu;
             txtBoxPrefixNipKnt.Location = new Point(111, 141);
             txtBoxPrefixNipKnt.Name = "txtBoxPrefixNipKnt";
             txtBoxPrefixNipKnt.Size = new Size(35, 23);
@@ -292,6 +313,7 @@
             // 
             // txtBoxNazwaKnt
             // 
+            txtBoxNazwaKnt.BackColor = SystemColors.Menu;
             txtBoxNazwaKnt.Location = new Point(440, 102);
             txtBoxNazwaKnt.Name = "txtBoxNazwaKnt";
             txtBoxNazwaKnt.Size = new Size(266, 23);
@@ -299,6 +321,7 @@
             // 
             // txtBoxAkronimKnt
             // 
+            txtBoxAkronimKnt.BackColor = SystemColors.Menu;
             txtBoxAkronimKnt.Location = new Point(111, 102);
             txtBoxAkronimKnt.Name = "txtBoxAkronimKnt";
             txtBoxAkronimKnt.Size = new Size(295, 23);
@@ -306,13 +329,16 @@
             // 
             // grpBoxWartDok
             // 
+            grpBoxWartDok.BackColor = Color.Transparent;
             grpBoxWartDok.Controls.Add(label9);
             grpBoxWartDok.Controls.Add(lblCenaBrutto);
             grpBoxWartDok.Controls.Add(lblCenaNetto);
             grpBoxWartDok.Controls.Add(label5);
+            grpBoxWartDok.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            grpBoxWartDok.ForeColor = Color.FromArgb(255, 128, 0);
             grpBoxWartDok.Location = new Point(813, 10);
             grpBoxWartDok.Name = "grpBoxWartDok";
-            grpBoxWartDok.Size = new Size(368, 199);
+            grpBoxWartDok.Size = new Size(370, 199);
             grpBoxWartDok.TabIndex = 1;
             grpBoxWartDok.TabStop = false;
             grpBoxWartDok.Text = "Wartość Dokumentu:";
@@ -359,6 +385,7 @@
             // 
             // grpBoxNaglowek
             // 
+            grpBoxNaglowek.BackColor = Color.Transparent;
             grpBoxNaglowek.Controls.Add(label4);
             grpBoxNaglowek.Controls.Add(label3);
             grpBoxNaglowek.Controls.Add(label2);
@@ -368,9 +395,11 @@
             grpBoxNaglowek.Controls.Add(numBoxNrDok);
             grpBoxNaglowek.Controls.Add(cmbBoxTypDokumentu);
             grpBoxNaglowek.Controls.Add(label1);
-            grpBoxNaglowek.Location = new Point(3, 3);
+            grpBoxNaglowek.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            grpBoxNaglowek.ForeColor = Color.FromArgb(255, 128, 0);
+            grpBoxNaglowek.Location = new Point(11, 5);
             grpBoxNaglowek.Name = "grpBoxNaglowek";
-            grpBoxNaglowek.Size = new Size(734, 83);
+            grpBoxNaglowek.Size = new Size(726, 83);
             grpBoxNaglowek.TabIndex = 0;
             grpBoxNaglowek.TabStop = false;
             grpBoxNaglowek.Text = "Nagłówek";
@@ -379,7 +408,8 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.Location = new Point(480, 32);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(484, 28);
             label4.Name = "label4";
             label4.Size = new Size(20, 25);
             label4.TabIndex = 8;
@@ -389,7 +419,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.Location = new Point(402, 32);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(403, 28);
             label3.Name = "label3";
             label3.Size = new Size(20, 25);
             label3.TabIndex = 7;
@@ -398,38 +429,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(273, 37);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(260, 36);
             label2.Name = "label2";
-            label2.Size = new Size(76, 15);
+            label2.Size = new Size(86, 14);
             label2.TabIndex = 6;
             label2.Text = "Seria(D/M/R)";
             // 
             // numBoxMiesiac
             // 
-            numBoxMiesiac.Location = new Point(424, 35);
+            numBoxMiesiac.Location = new Point(425, 32);
             numBoxMiesiac.Name = "numBoxMiesiac";
-            numBoxMiesiac.Size = new Size(56, 23);
+            numBoxMiesiac.Size = new Size(56, 22);
             numBoxMiesiac.TabIndex = 5;
             // 
             // numBoxDzien
             // 
-            numBoxDzien.Location = new Point(355, 35);
+            numBoxDzien.Location = new Point(352, 32);
             numBoxDzien.Name = "numBoxDzien";
-            numBoxDzien.Size = new Size(48, 23);
+            numBoxDzien.Size = new Size(48, 22);
             numBoxDzien.TabIndex = 4;
             // 
             // numBoxRok
             // 
-            numBoxRok.Location = new Point(503, 35);
+            numBoxRok.Location = new Point(504, 32);
             numBoxRok.Name = "numBoxRok";
-            numBoxRok.Size = new Size(82, 23);
+            numBoxRok.Size = new Size(82, 22);
             numBoxRok.TabIndex = 3;
             // 
             // numBoxNrDok
             // 
             numBoxNrDok.Location = new Point(152, 32);
             numBoxNrDok.Name = "numBoxNrDok";
-            numBoxNrDok.Size = new Size(53, 23);
+            numBoxNrDok.Size = new Size(53, 22);
             numBoxNrDok.TabIndex = 2;
             // 
             // cmbBoxTypDokumentu
@@ -437,15 +469,16 @@
             cmbBoxTypDokumentu.FormattingEnabled = true;
             cmbBoxTypDokumentu.Location = new Point(66, 32);
             cmbBoxTypDokumentu.Name = "cmbBoxTypDokumentu";
-            cmbBoxTypDokumentu.Size = new Size(68, 23);
+            cmbBoxTypDokumentu.Size = new Size(68, 22);
             cmbBoxTypDokumentu.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(13, 35);
             label1.Name = "label1";
-            label1.Size = new Size(47, 15);
+            label1.Size = new Size(53, 14);
             label1.TabIndex = 0;
             label1.Text = "Numer:";
             // 
@@ -468,6 +501,7 @@
             // 
             // pnlPrzyciski
             // 
+            pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
             pnlPrzyciski.Controls.Add(btnAnuluj);
             pnlPrzyciski.Controls.Add(btnZapisz);
             pnlPrzyciski.Controls.Add(btnUsun);
@@ -519,6 +553,9 @@
             // label11
             // 
             label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label11.ForeColor = Color.Silver;
             label11.Location = new Point(447, 23);
             label11.Name = "label11";
             label11.Size = new Size(274, 15);
@@ -534,7 +571,7 @@
             // 
             // btnTowarUslugi
             // 
-            btnTowarUslugi.Location = new Point(11, 19);
+            btnTowarUslugi.Location = new Point(14, 19);
             btnTowarUslugi.Name = "btnTowarUslugi";
             btnTowarUslugi.Size = new Size(91, 23);
             btnTowarUslugi.TabIndex = 0;
