@@ -74,5 +74,12 @@ namespace DK24
         {
 
         }
+
+        private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
+        }
     }
 }

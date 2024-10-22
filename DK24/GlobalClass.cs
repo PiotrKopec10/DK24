@@ -1,4 +1,6 @@
-﻿namespace DK24
+﻿using System.Text.RegularExpressions;
+
+namespace DK24
 {
     internal class GlobalClass
     {
@@ -13,5 +15,15 @@
 
 
         }
+
+        public string WyczyscTekst(string TekstDoWyczyszczenia)
+        {
+            TekstDoWyczyszczenia = TekstDoWyczyszczenia.Trim();
+            return Regex.Replace(TekstDoWyczyszczenia, @"[,;:/|=+*^%$#\\]", string.Empty);
+
+        }
+
+
+
     }
 }

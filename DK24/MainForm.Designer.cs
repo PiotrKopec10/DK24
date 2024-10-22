@@ -197,6 +197,7 @@
             dodajKontrahentaToolStripMenuItem.Name = "dodajKontrahentaToolStripMenuItem";
             dodajKontrahentaToolStripMenuItem.Size = new Size(190, 22);
             dodajKontrahentaToolStripMenuItem.Text = "Dodaj Kontrahenta";
+            dodajKontrahentaToolStripMenuItem.Click += dodajKontrahentaToolStripMenuItem_Click;
             // 
             // zobaczKontrahentówToolStripMenuItem
             // 
