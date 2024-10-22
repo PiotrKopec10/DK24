@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaFakturForm));
-            toolBarListaFaktur = new ToolStrip();
-            toolBarBtnLstKnt = new ToolStripButton();
-            toolBarBtnLstTwr = new ToolStripButton();
-            toolBarBtnDrukuj = new ToolStripButton();
             pnlDtGrid = new Panel();
             dataGridView1 = new DataGridView();
             pnlPrzyciski = new Panel();
@@ -64,49 +60,12 @@
             dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
             drukarkiToolStripMenuItem = new ToolStripMenuItem();
-            toolBarListaFaktur.SuspendLayout();
             pnlDtGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlPrzyciski.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // toolBarListaFaktur
-            // 
-            toolBarListaFaktur.Items.AddRange(new ToolStripItem[] { toolBarBtnLstKnt, toolBarBtnLstTwr, toolBarBtnDrukuj });
-            toolBarListaFaktur.Location = new Point(0, 0);
-            toolBarListaFaktur.Name = "toolBarListaFaktur";
-            toolBarListaFaktur.Size = new Size(1244, 25);
-            toolBarListaFaktur.TabIndex = 0;
-            toolBarListaFaktur.Text = "toolStrip1";
-            // 
-            // toolBarBtnLstKnt
-            // 
-            toolBarBtnLstKnt.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolBarBtnLstKnt.Image = (Image)resources.GetObject("toolBarBtnLstKnt.Image");
-            toolBarBtnLstKnt.ImageTransparentColor = Color.Magenta;
-            toolBarBtnLstKnt.Name = "toolBarBtnLstKnt";
-            toolBarBtnLstKnt.Size = new Size(23, 22);
-            toolBarBtnLstKnt.Text = "Lista Kontrahentów";
-            // 
-            // toolBarBtnLstTwr
-            // 
-            toolBarBtnLstTwr.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolBarBtnLstTwr.Image = (Image)resources.GetObject("toolBarBtnLstTwr.Image");
-            toolBarBtnLstTwr.ImageTransparentColor = Color.Magenta;
-            toolBarBtnLstTwr.Name = "toolBarBtnLstTwr";
-            toolBarBtnLstTwr.Size = new Size(23, 22);
-            toolBarBtnLstTwr.Text = "Lista Towarów i Usług";
-            // 
-            // toolBarBtnDrukuj
-            // 
-            toolBarBtnDrukuj.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolBarBtnDrukuj.Image = (Image)resources.GetObject("toolBarBtnDrukuj.Image");
-            toolBarBtnDrukuj.ImageTransparentColor = Color.Magenta;
-            toolBarBtnDrukuj.Name = "toolBarBtnDrukuj";
-            toolBarBtnDrukuj.Size = new Size(23, 22);
-            toolBarBtnDrukuj.Text = "Drukuj Fakture";
             // 
             // pnlDtGrid
             // 
@@ -120,9 +79,9 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 75);
+            dataGridView1.Location = new Point(0, 48);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1244, 467);
+            dataGridView1.Size = new Size(1244, 495);
             dataGridView1.TabIndex = 0;
             // 
             // pnlPrzyciski
@@ -173,12 +132,13 @@
             // 
             // btnDodaj
             // 
+            btnDodaj.BackColor = Color.Transparent;
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
             btnDodaj.Location = new Point(1002, 13);
             btnDodaj.Name = "btnDodaj";
             btnDodaj.Size = new Size(44, 33);
             btnDodaj.TabIndex = 7;
-            btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.UseVisualStyleBackColor = false;
             // 
             // txtBoxFilter
             // 
@@ -263,7 +223,7 @@
             menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, drukarkiToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 25);
+            menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(250, 35, 0, 2);
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -405,11 +365,8 @@
             Controls.Add(menuStrip1);
             Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDtGrid);
-            Controls.Add(toolBarListaFaktur);
             Name = "ListaFakturForm";
             Text = "Lista Faktur";
-            toolBarListaFaktur.ResumeLayout(false);
-            toolBarListaFaktur.PerformLayout();
             pnlDtGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             pnlPrzyciski.ResumeLayout(false);
@@ -422,11 +379,6 @@
         }
 
         #endregion
-
-        private ToolStrip toolBarListaFaktur;
-        private ToolStripButton toolBarBtnLstKnt;
-        private ToolStripButton toolBarBtnLstTwr;
-        private ToolStripButton toolBarBtnDrukuj;
         private Panel pnlDtGrid;
         private DataGridView dataGridView1;
         private Panel pnlPrzyciski;

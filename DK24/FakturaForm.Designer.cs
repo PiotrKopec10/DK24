@@ -1,6 +1,6 @@
 ﻿namespace DK24
 {
-    partial class FakturaForm
+    partial class DokumentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FakturaForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokumentForm));
             pnlGoraDane = new Panel();
             chckBoxArchiwalny = new CheckBox();
             dtPickerDataSprzed = new DateTimePicker();
@@ -77,6 +77,7 @@
             label11 = new Label();
             textBox1 = new TextBox();
             btnTowarUslugi = new Button();
+            chckBoxCzyFaktura = new CheckBox();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -93,6 +94,7 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(chckBoxCzyFaktura);
             pnlGoraDane.Controls.Add(chckBoxArchiwalny);
             pnlGoraDane.Controls.Add(dtPickerDataSprzed);
             pnlGoraDane.Controls.Add(btnDataSprzed);
@@ -129,7 +131,7 @@
             chckBoxArchiwalny.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxArchiwalny.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             chckBoxArchiwalny.ForeColor = Color.FromArgb(255, 128, 0);
-            chckBoxArchiwalny.Location = new Point(614, 207);
+            chckBoxArchiwalny.Location = new Point(776, 137);
             chckBoxArchiwalny.Name = "chckBoxArchiwalny";
             chckBoxArchiwalny.Size = new Size(123, 22);
             chckBoxArchiwalny.TabIndex = 23;
@@ -336,9 +338,9 @@
             grpBoxWartDok.Controls.Add(label5);
             grpBoxWartDok.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             grpBoxWartDok.ForeColor = Color.FromArgb(255, 128, 0);
-            grpBoxWartDok.Location = new Point(813, 10);
+            grpBoxWartDok.Location = new Point(951, 10);
             grpBoxWartDok.Name = "grpBoxWartDok";
-            grpBoxWartDok.Size = new Size(370, 199);
+            grpBoxWartDok.Size = new Size(242, 164);
             grpBoxWartDok.TabIndex = 1;
             grpBoxWartDok.TabStop = false;
             grpBoxWartDok.Text = "Wartość Dokumentu:";
@@ -578,7 +580,21 @@
             btnTowarUslugi.Text = "Towar/Usługi";
             btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
-            // FakturaForm
+            // chckBoxCzyFaktura
+            // 
+            chckBoxCzyFaktura.AutoSize = true;
+            chckBoxCzyFaktura.BackColor = Color.Transparent;
+            chckBoxCzyFaktura.CheckAlign = ContentAlignment.MiddleRight;
+            chckBoxCzyFaktura.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chckBoxCzyFaktura.ForeColor = Color.FromArgb(255, 128, 0);
+            chckBoxCzyFaktura.Location = new Point(804, 80);
+            chckBoxCzyFaktura.Name = "chckBoxCzyFaktura";
+            chckBoxCzyFaktura.Size = new Size(95, 22);
+            chckBoxCzyFaktura.TabIndex = 24;
+            chckBoxCzyFaktura.Text = "Faktura";
+            chckBoxCzyFaktura.UseVisualStyleBackColor = false;
+            // 
+            // DokumentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -586,8 +602,8 @@
             Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDataGrid);
             Controls.Add(pnlGoraDane);
-            Name = "FakturaForm";
-            Text = "FakturaForm";
+            Name = "DokumentForm";
+            Text = "Dokument";
             pnlGoraDane.ResumeLayout(false);
             pnlGoraDane.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).EndInit();
@@ -657,5 +673,6 @@
         private Button btnTowarUslugi;
         private Button btnAnuluj;
         private Button btnZapisz;
+        private CheckBox chckBoxCzyFaktura;
     }
 }

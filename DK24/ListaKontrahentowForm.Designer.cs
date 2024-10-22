@@ -77,9 +77,9 @@
             // dtGridLstKnt
             // 
             dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtGridLstKnt.Location = new Point(0, 78);
+            dtGridLstKnt.Location = new Point(0, 72);
             dtGridLstKnt.Name = "dtGridLstKnt";
-            dtGridLstKnt.Size = new Size(1244, 497);
+            dtGridLstKnt.Size = new Size(1244, 503);
             dtGridLstKnt.TabIndex = 0;
             // 
             // pnlPrzyciski
@@ -254,13 +254,13 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Size = new Size(154, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             // 
             // kontrahenciToolStripMenuItem
@@ -300,13 +300,13 @@
             // stwórzPaczkęToolStripMenuItem
             // 
             stwórzPaczkęToolStripMenuItem.Name = "stwórzPaczkęToolStripMenuItem";
-            stwórzPaczkęToolStripMenuItem.Size = new Size(180, 22);
+            stwórzPaczkęToolStripMenuItem.Size = new Size(148, 22);
             stwórzPaczkęToolStripMenuItem.Text = "Stwórz paczkę";
             // 
             // zobaczPaczkiToolStripMenuItem
             // 
             zobaczPaczkiToolStripMenuItem.Name = "zobaczPaczkiToolStripMenuItem";
-            zobaczPaczkiToolStripMenuItem.Size = new Size(180, 22);
+            zobaczPaczkiToolStripMenuItem.Size = new Size(148, 22);
             zobaczPaczkiToolStripMenuItem.Text = "Zobacz paczki";
             // 
             // towaryToolStripMenuItem

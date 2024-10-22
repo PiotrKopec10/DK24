@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace DK24
 {
-    public partial class DokumentForm : Form
+    public partial class KontrahentForm : Form
     {
-        public DokumentForm()
+        public KontrahentForm()
         {
             InitializeComponent();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

@@ -79,11 +79,14 @@ namespace DK24
 
         }
 
+
         private void txtBoxPassword_Enter(object sender, EventArgs e)
         {
             
             lblZleHaslo.Text = "";
 
         }
+
+
     }
 }

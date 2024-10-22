@@ -69,5 +69,10 @@ namespace DK24
         {
 
         }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
