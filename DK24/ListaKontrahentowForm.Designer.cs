@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaKontrahentowForm));
             pnlDataGrid = new Panel();
-            dtGridLstKnt = new DataGridView();
             pnlPrzyciski = new Panel();
             btnZaznacz = new Button();
             btnCofnij = new Button();
@@ -42,45 +41,34 @@
             label2 = new Label();
             txtBoxWyszukaj = new TextBox();
             label1 = new Label();
+            dtGridLstKnt = new DataGridView();
             menuStrip1 = new MenuStrip();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
-            noweZamToolStripMenuItem = new ToolStripMenuItem();
-            zamówieniaArchiwalneToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
             zobaczFakturyToolStripMenuItem = new ToolStripMenuItem();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
-            dodajKontrahentaToolStripMenuItem = new ToolStripMenuItem();
-            zobaczKontrahentówToolStripMenuItem = new ToolStripMenuItem();
             wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
-            drukarkiToolStripMenuItem = new ToolStripMenuItem();
             pnlDataGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).BeginInit();
             pnlPrzyciski.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlDataGrid
             // 
             pnlDataGrid.BackColor = Color.FromArgb(255, 128, 0);
+            pnlDataGrid.Controls.Add(pnlPrzyciski);
             pnlDataGrid.Controls.Add(dtGridLstKnt);
-            pnlDataGrid.Location = new Point(0, 0);
+            pnlDataGrid.Location = new Point(0, 76);
             pnlDataGrid.Name = "pnlDataGrid";
-            pnlDataGrid.Size = new Size(1244, 573);
+            pnlDataGrid.Size = new Size(1244, 566);
             pnlDataGrid.TabIndex = 0;
-            // 
-            // dtGridLstKnt
-            // 
-            dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtGridLstKnt.Location = new Point(0, 72);
-            dtGridLstKnt.Name = "dtGridLstKnt";
-            dtGridLstKnt.Size = new Size(1244, 503);
-            dtGridLstKnt.TabIndex = 0;
             // 
             // pnlPrzyciski
             // 
@@ -95,15 +83,15 @@
             pnlPrzyciski.Controls.Add(label2);
             pnlPrzyciski.Controls.Add(txtBoxWyszukaj);
             pnlPrzyciski.Controls.Add(label1);
-            pnlPrzyciski.Location = new Point(0, 572);
+            pnlPrzyciski.Location = new Point(0, 504);
             pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1244, 51);
+            pnlPrzyciski.Size = new Size(1244, 62);
             pnlPrzyciski.TabIndex = 1;
             // 
             // btnZaznacz
             // 
             btnZaznacz.Image = (Image)resources.GetObject("btnZaznacz.Image");
-            btnZaznacz.Location = new Point(939, 9);
+            btnZaznacz.Location = new Point(935, 13);
             btnZaznacz.Name = "btnZaznacz";
             btnZaznacz.Size = new Size(44, 33);
             btnZaznacz.TabIndex = 15;
@@ -112,7 +100,7 @@
             // btnCofnij
             // 
             btnCofnij.Image = (Image)resources.GetObject("btnCofnij.Image");
-            btnCofnij.Location = new Point(1188, 9);
+            btnCofnij.Location = new Point(1184, 13);
             btnCofnij.Name = "btnCofnij";
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 14;
@@ -121,7 +109,7 @@
             // btnUsun
             // 
             btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(1128, 9);
+            btnUsun.Location = new Point(1124, 13);
             btnUsun.Name = "btnUsun";
             btnUsun.Size = new Size(44, 33);
             btnUsun.TabIndex = 13;
@@ -130,7 +118,7 @@
             // btnEdytuj
             // 
             btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
-            btnEdytuj.Location = new Point(1065, 9);
+            btnEdytuj.Location = new Point(1061, 13);
             btnEdytuj.Name = "btnEdytuj";
             btnEdytuj.Size = new Size(44, 33);
             btnEdytuj.TabIndex = 12;
@@ -139,11 +127,12 @@
             // btnDodaj
             // 
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(1002, 9);
+            btnDodaj.Location = new Point(998, 13);
             btnDodaj.Name = "btnDodaj";
             btnDodaj.Size = new Size(44, 33);
             btnDodaj.TabIndex = 11;
             btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // chckBoxNazwa
             // 
@@ -152,7 +141,7 @@
             chckBoxNazwa.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxNazwa.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxNazwa.ForeColor = Color.White;
-            chckBoxNazwa.Location = new Point(645, 20);
+            chckBoxNazwa.Location = new Point(641, 24);
             chckBoxNazwa.Name = "chckBoxNazwa";
             chckBoxNazwa.Size = new Size(74, 18);
             chckBoxNazwa.TabIndex = 4;
@@ -166,7 +155,7 @@
             chckBoxAkronim.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxAkronim.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxAkronim.ForeColor = Color.White;
-            chckBoxAkronim.Location = new Point(549, 20);
+            chckBoxAkronim.Location = new Point(545, 24);
             chckBoxAkronim.Name = "chckBoxAkronim";
             chckBoxAkronim.Size = new Size(81, 18);
             chckBoxAkronim.TabIndex = 3;
@@ -178,7 +167,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.ForeColor = Color.Silver;
-            label2.Location = new Point(380, 20);
+            label2.Location = new Point(376, 24);
             label2.Name = "label2";
             label2.Size = new Size(121, 15);
             label2.TabIndex = 2;
@@ -186,7 +175,7 @@
             // 
             // txtBoxWyszukaj
             // 
-            txtBoxWyszukaj.Location = new Point(124, 15);
+            txtBoxWyszukaj.Location = new Point(120, 19);
             txtBoxWyszukaj.Name = "txtBoxWyszukaj";
             txtBoxWyszukaj.Size = new Size(252, 23);
             txtBoxWyszukaj.TabIndex = 1;
@@ -197,17 +186,26 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.FromArgb(255, 128, 0);
-            label1.Location = new Point(23, 17);
+            label1.Location = new Point(19, 21);
             label1.Name = "label1";
             label1.Size = new Size(94, 18);
             label1.TabIndex = 0;
             label1.Text = "Wyszukaj:";
             // 
+            // dtGridLstKnt
+            // 
+            dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtGridLstKnt.Dock = DockStyle.Fill;
+            dtGridLstKnt.Location = new Point(0, 0);
+            dtGridLstKnt.Name = "dtGridLstKnt";
+            dtGridLstKnt.Size = new Size(1244, 566);
+            dtGridLstKnt.TabIndex = 0;
+            // 
             // menuStrip1
             // 
             menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, drukarkiToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(250, 35, 0, 2);
@@ -219,7 +217,6 @@
             // zamówieniaToolStripMenuItem
             // 
             zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
-            zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem });
             zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
             zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
             zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
@@ -227,18 +224,7 @@
             zamówieniaToolStripMenuItem.Size = new Size(84, 39);
             zamówieniaToolStripMenuItem.Text = "Zamówienia";
             zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // noweZamToolStripMenuItem
-            // 
-            noweZamToolStripMenuItem.Name = "noweZamToolStripMenuItem";
-            noweZamToolStripMenuItem.Size = new Size(180, 22);
-            noweZamToolStripMenuItem.Text = "Nowe Zamówienia";
-            // 
-            // zamówieniaArchiwalneToolStripMenuItem
-            // 
-            zamówieniaArchiwalneToolStripMenuItem.Name = "zamówieniaArchiwalneToolStripMenuItem";
-            zamówieniaArchiwalneToolStripMenuItem.Size = new Size(180, 22);
-            zamówieniaArchiwalneToolStripMenuItem.Text = "Zobacz Zamówienia";
+            zamówieniaToolStripMenuItem.Click += zamówieniaToolStripMenuItem_Click;
             // 
             // fakturyToolStripMenuItem
             // 
@@ -254,37 +240,27 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
+            dodajToolStripMenuItem.Size = new Size(180, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
+            dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
             // kontrahenciToolStripMenuItem
             // 
             kontrahenciToolStripMenuItem.BackColor = Color.Transparent;
-            kontrahenciToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajKontrahentaToolStripMenuItem, zobaczKontrahentówToolStripMenuItem });
-            kontrahenciToolStripMenuItem.ForeColor = Color.Silver;
+            kontrahenciToolStripMenuItem.Enabled = false;
+            kontrahenciToolStripMenuItem.ForeColor = Color.FromArgb(255, 128, 0);
             kontrahenciToolStripMenuItem.Image = (Image)resources.GetObject("kontrahenciToolStripMenuItem.Image");
             kontrahenciToolStripMenuItem.Name = "kontrahenciToolStripMenuItem";
             kontrahenciToolStripMenuItem.Size = new Size(83, 39);
             kontrahenciToolStripMenuItem.Text = "Kontrahenci";
             kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // dodajKontrahentaToolStripMenuItem
-            // 
-            dodajKontrahentaToolStripMenuItem.Name = "dodajKontrahentaToolStripMenuItem";
-            dodajKontrahentaToolStripMenuItem.Size = new Size(190, 22);
-            dodajKontrahentaToolStripMenuItem.Text = "Dodaj Kontrahenta";
-            // 
-            // zobaczKontrahentówToolStripMenuItem
-            // 
-            zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
-            zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
-            zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
             // 
             // wysyłkiToolStripMenuItem
             // 
@@ -332,30 +308,23 @@
             zobaczToolStripMenuItem.Size = new Size(190, 22);
             zobaczToolStripMenuItem.Text = "Zobacz Towary/Usługi";
             // 
-            // drukarkiToolStripMenuItem
-            // 
-            drukarkiToolStripMenuItem.BackColor = Color.Transparent;
-            drukarkiToolStripMenuItem.ForeColor = Color.Silver;
-            drukarkiToolStripMenuItem.Image = (Image)resources.GetObject("drukarkiToolStripMenuItem.Image");
-            drukarkiToolStripMenuItem.Name = "drukarkiToolStripMenuItem";
-            drukarkiToolStripMenuItem.Size = new Size(63, 39);
-            drukarkiToolStripMenuItem.Text = "Drukarki";
-            drukarkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
             // ListaKontrahentowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 624);
+            ClientSize = new Size(1244, 641);
             Controls.Add(menuStrip1);
-            Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDataGrid);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1260, 680);
+            MinimumSize = new Size(1260, 680);
             Name = "ListaKontrahentowForm";
-            Text = "Lista Kontrahentów";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "D&K - Lista Kontrahentów";
             pnlDataGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).EndInit();
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -379,20 +348,15 @@
         private Button btnDodaj;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
-        private ToolStripMenuItem noweZamToolStripMenuItem;
-        private ToolStripMenuItem zamówieniaArchiwalneToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem dodajToolStripMenuItem;
         private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
-        private ToolStripMenuItem dodajKontrahentaToolStripMenuItem;
-        private ToolStripMenuItem zobaczKontrahentówToolStripMenuItem;
         private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
         private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
         private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
-        private ToolStripMenuItem drukarkiToolStripMenuItem;
     }
 }

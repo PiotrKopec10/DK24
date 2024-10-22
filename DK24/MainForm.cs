@@ -48,7 +48,7 @@ namespace DK24
 
         private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListaFakturForm fakturaForm = new ListaFakturForm();
+            DokumentForm fakturaForm = new DokumentForm();
             this.Hide();
             fakturaForm.ShowDialog();
         }
@@ -65,21 +65,24 @@ namespace DK24
             listaFakturForm.ShowDialog();
         }
 
-        private void archiwumToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDodaj_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KontrahentForm kontrahentForm = new KontrahentForm();
             this.Hide();
             kontrahentForm.ShowDialog();
+        }
+
+        private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
+        }
+
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -44,7 +44,7 @@ namespace DK24
             AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
 
 
-            if(DzialaniaNaAdresie.PobierzAdresId(AktualnyAdres) == -1)
+            if (DzialaniaNaAdresie.PobierzAdresId(AktualnyAdres) == -1)
             {
                 DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
@@ -68,29 +68,20 @@ namespace DK24
 
                 DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
             }
-            else 
+            else
             {
 
                 MessageBox.Show("Podany Adres jest juz przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            
+
             }
-            
-                
 
+        }
 
-            
-            
-
-
-            
-
-           
-
-
-
-
-
-
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
         }
     }
 }

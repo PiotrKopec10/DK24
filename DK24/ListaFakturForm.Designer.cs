@@ -45,11 +45,7 @@
             label1 = new Label();
             menuStrip1 = new MenuStrip();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
-            noweZamToolStripMenuItem = new ToolStripMenuItem();
-            zamówieniaArchiwalneToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
-            dodajToolStripMenuItem = new ToolStripMenuItem();
-            zobaczFakturyToolStripMenuItem = new ToolStripMenuItem();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
             dodajKontrahentaToolStripMenuItem = new ToolStripMenuItem();
             zobaczKontrahentówToolStripMenuItem = new ToolStripMenuItem();
@@ -59,7 +55,6 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
-            drukarkiToolStripMenuItem = new ToolStripMenuItem();
             pnlDtGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlPrzyciski.SuspendLayout();
@@ -71,17 +66,17 @@
             // 
             pnlDtGrid.BackColor = Color.FromArgb(255, 128, 0);
             pnlDtGrid.Controls.Add(dataGridView1);
-            pnlDtGrid.Location = new Point(0, 28);
+            pnlDtGrid.Location = new Point(0, 75);
             pnlDtGrid.Name = "pnlDtGrid";
-            pnlDtGrid.Size = new Size(1244, 543);
+            pnlDtGrid.Size = new Size(1244, 505);
             pnlDtGrid.TabIndex = 1;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 48);
+            dataGridView1.Location = new Point(0, 1);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1244, 495);
+            dataGridView1.Size = new Size(1244, 505);
             dataGridView1.TabIndex = 0;
             // 
             // pnlPrzyciski
@@ -98,15 +93,15 @@
             pnlPrzyciski.Controls.Add(chckBoxRok);
             pnlPrzyciski.Controls.Add(chckBoxMiesiac);
             pnlPrzyciski.Controls.Add(label1);
-            pnlPrzyciski.Location = new Point(0, 568);
+            pnlPrzyciski.Location = new Point(0, 579);
             pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1244, 55);
+            pnlPrzyciski.Size = new Size(1244, 62);
             pnlPrzyciski.TabIndex = 2;
             // 
             // btnCofnij
             // 
             btnCofnij.Image = (Image)resources.GetObject("btnCofnij.Image");
-            btnCofnij.Location = new Point(1188, 13);
+            btnCofnij.Location = new Point(1188, 16);
             btnCofnij.Name = "btnCofnij";
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 10;
@@ -115,7 +110,7 @@
             // btnUsun
             // 
             btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(1128, 13);
+            btnUsun.Location = new Point(1128, 16);
             btnUsun.Name = "btnUsun";
             btnUsun.Size = new Size(44, 33);
             btnUsun.TabIndex = 9;
@@ -124,7 +119,7 @@
             // btnEdytuj
             // 
             btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
-            btnEdytuj.Location = new Point(1065, 13);
+            btnEdytuj.Location = new Point(1065, 16);
             btnEdytuj.Name = "btnEdytuj";
             btnEdytuj.Size = new Size(44, 33);
             btnEdytuj.TabIndex = 8;
@@ -134,15 +129,16 @@
             // 
             btnDodaj.BackColor = Color.Transparent;
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(1002, 13);
+            btnDodaj.Location = new Point(1002, 16);
             btnDodaj.Name = "btnDodaj";
             btnDodaj.Size = new Size(44, 33);
             btnDodaj.TabIndex = 7;
             btnDodaj.UseVisualStyleBackColor = false;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // txtBoxFilter
             // 
-            txtBoxFilter.Location = new Point(599, 18);
+            txtBoxFilter.Location = new Point(599, 21);
             txtBoxFilter.Name = "txtBoxFilter";
             txtBoxFilter.Size = new Size(273, 23);
             txtBoxFilter.TabIndex = 6;
@@ -153,7 +149,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Verdana", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(542, 20);
+            label2.Location = new Point(542, 23);
             label2.Name = "label2";
             label2.Size = new Size(56, 18);
             label2.TabIndex = 5;
@@ -161,7 +157,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(388, 18);
+            numericUpDown1.Location = new Point(388, 21);
             numericUpDown1.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 1980, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
@@ -173,7 +169,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(183, 17);
+            comboBox1.Location = new Point(183, 20);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(130, 23);
             comboBox1.TabIndex = 3;
@@ -185,7 +181,7 @@
             chckBoxRok.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxRok.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxRok.ForeColor = Color.White;
-            chckBoxRok.Location = new Point(330, 19);
+            chckBoxRok.Location = new Point(330, 22);
             chckBoxRok.Name = "chckBoxRok";
             chckBoxRok.Size = new Size(49, 20);
             chckBoxRok.TabIndex = 2;
@@ -199,7 +195,7 @@
             chckBoxMiesiac.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxMiesiac.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxMiesiac.ForeColor = Color.White;
-            chckBoxMiesiac.Location = new Point(105, 19);
+            chckBoxMiesiac.Location = new Point(105, 22);
             chckBoxMiesiac.Name = "chckBoxMiesiac";
             chckBoxMiesiac.Size = new Size(74, 20);
             chckBoxMiesiac.TabIndex = 1;
@@ -212,7 +208,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.FromArgb(255, 128, 0);
-            label1.Location = new Point(17, 18);
+            label1.Location = new Point(19, 21);
             label1.Name = "label1";
             label1.Size = new Size(78, 18);
             label1.TabIndex = 0;
@@ -222,7 +218,7 @@
             // 
             menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, drukarkiToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(250, 35, 0, 2);
@@ -234,7 +230,6 @@
             // zamówieniaToolStripMenuItem
             // 
             zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
-            zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem });
             zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
             zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
             zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
@@ -242,41 +237,18 @@
             zamówieniaToolStripMenuItem.Size = new Size(84, 39);
             zamówieniaToolStripMenuItem.Text = "Zamówienia";
             zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // noweZamToolStripMenuItem
-            // 
-            noweZamToolStripMenuItem.Name = "noweZamToolStripMenuItem";
-            noweZamToolStripMenuItem.Size = new Size(180, 22);
-            noweZamToolStripMenuItem.Text = "Nowe Zamówienia";
-            // 
-            // zamówieniaArchiwalneToolStripMenuItem
-            // 
-            zamówieniaArchiwalneToolStripMenuItem.Name = "zamówieniaArchiwalneToolStripMenuItem";
-            zamówieniaArchiwalneToolStripMenuItem.Size = new Size(180, 22);
-            zamówieniaArchiwalneToolStripMenuItem.Text = "Zobacz Zamówienia";
+            zamówieniaToolStripMenuItem.Click += zamówieniaToolStripMenuItem_Click;
             // 
             // fakturyToolStripMenuItem
             // 
             fakturyToolStripMenuItem.BackColor = Color.Transparent;
-            fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, zobaczFakturyToolStripMenuItem });
-            fakturyToolStripMenuItem.ForeColor = Color.Silver;
+            fakturyToolStripMenuItem.Enabled = false;
+            fakturyToolStripMenuItem.ForeColor = Color.FromArgb(255, 128, 0);
             fakturyToolStripMenuItem.Image = (Image)resources.GetObject("fakturyToolStripMenuItem.Image");
             fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
             fakturyToolStripMenuItem.Size = new Size(58, 39);
             fakturyToolStripMenuItem.Text = "Faktury";
             fakturyToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // dodajToolStripMenuItem
-            // 
-            dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
-            dodajToolStripMenuItem.Text = "Dodaj";
-            // 
-            // zobaczFakturyToolStripMenuItem
-            // 
-            zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
-            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             // 
             // kontrahenciToolStripMenuItem
             // 
@@ -294,12 +266,14 @@
             dodajKontrahentaToolStripMenuItem.Name = "dodajKontrahentaToolStripMenuItem";
             dodajKontrahentaToolStripMenuItem.Size = new Size(190, 22);
             dodajKontrahentaToolStripMenuItem.Text = "Dodaj Kontrahenta";
+            dodajKontrahentaToolStripMenuItem.Click += dodajKontrahentaToolStripMenuItem_Click;
             // 
             // zobaczKontrahentówToolStripMenuItem
             // 
             zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
             zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
             zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
+            zobaczKontrahentówToolStripMenuItem.Click += zobaczKontrahentówToolStripMenuItem_Click;
             // 
             // wysyłkiToolStripMenuItem
             // 
@@ -347,26 +321,20 @@
             zobaczToolStripMenuItem.Size = new Size(190, 22);
             zobaczToolStripMenuItem.Text = "Zobacz Towary/Usługi";
             // 
-            // drukarkiToolStripMenuItem
-            // 
-            drukarkiToolStripMenuItem.BackColor = Color.Transparent;
-            drukarkiToolStripMenuItem.ForeColor = Color.Silver;
-            drukarkiToolStripMenuItem.Image = (Image)resources.GetObject("drukarkiToolStripMenuItem.Image");
-            drukarkiToolStripMenuItem.Name = "drukarkiToolStripMenuItem";
-            drukarkiToolStripMenuItem.Size = new Size(63, 39);
-            drukarkiToolStripMenuItem.Text = "Drukarki";
-            drukarkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
             // ListaFakturForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 624);
+            ClientSize = new Size(1244, 641);
             Controls.Add(menuStrip1);
             Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDtGrid);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1260, 680);
+            MinimumSize = new Size(1260, 680);
             Name = "ListaFakturForm";
-            Text = "Lista Faktur";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "D&K - Lista Faktur";
             pnlDtGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             pnlPrzyciski.ResumeLayout(false);
@@ -395,11 +363,7 @@
         private Button btnCofnij;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
-        private ToolStripMenuItem noweZamToolStripMenuItem;
-        private ToolStripMenuItem zamówieniaArchiwalneToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
-        private ToolStripMenuItem dodajToolStripMenuItem;
-        private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
         private ToolStripMenuItem dodajKontrahentaToolStripMenuItem;
         private ToolStripMenuItem zobaczKontrahentówToolStripMenuItem;
@@ -409,6 +373,5 @@
         private ToolStripMenuItem towaryToolStripMenuItem;
         private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
-        private ToolStripMenuItem drukarkiToolStripMenuItem;
     }
 }

@@ -90,11 +90,12 @@
             pnlDane.Controls.Add(grpBoxAdres);
             pnlDane.Location = new Point(0, 0);
             pnlDane.Name = "pnlDane";
-            pnlDane.Size = new Size(1244, 572);
+            pnlDane.Size = new Size(1244, 587);
             pnlDane.TabIndex = 0;
             // 
             // grpBoxDane
             // 
+            grpBoxDane.BackColor = Color.Transparent;
             grpBoxDane.Controls.Add(cmbBoxZnizka);
             grpBoxDane.Controls.Add(rchTxtBoxOpis);
             grpBoxDane.Controls.Add(chckBoxArchiwalny);
@@ -125,7 +126,7 @@
             grpBoxDane.Size = new Size(755, 527);
             grpBoxDane.TabIndex = 1;
             grpBoxDane.TabStop = false;
-            grpBoxDane.Text = "Dane:";
+            grpBoxDane.Text = "Dane";
             // 
             // cmbBoxZnizka
             // 
@@ -342,6 +343,7 @@
             // 
             // grpBoxAdres
             // 
+            grpBoxAdres.BackColor = Color.Transparent;
             grpBoxAdres.Controls.Add(cmbBoxKraj);
             grpBoxAdres.Controls.Add(txtBoxPowiat);
             grpBoxAdres.Controls.Add(txtBoxGmina);
@@ -516,26 +518,28 @@
             // 
             // pnlDol
             // 
+            pnlDol.BackgroundImage = (Image)resources.GetObject("pnlDol.BackgroundImage");
             pnlDol.Controls.Add(btnAnuluj);
             pnlDol.Controls.Add(btnZapisz);
-            pnlDol.Location = new Point(0, 571);
+            pnlDol.Location = new Point(0, 579);
             pnlDol.Name = "pnlDol";
-            pnlDol.Size = new Size(1241, 51);
+            pnlDol.Size = new Size(1244, 62);
             pnlDol.TabIndex = 1;
             // 
             // btnAnuluj
             // 
             btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
-            btnAnuluj.Location = new Point(1181, 8);
+            btnAnuluj.Location = new Point(1184, 15);
             btnAnuluj.Name = "btnAnuluj";
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 8;
             btnAnuluj.UseVisualStyleBackColor = true;
+            btnAnuluj.Click += btnAnuluj_Click;
             // 
             // btnZapisz
             // 
             btnZapisz.Image = (Image)resources.GetObject("btnZapisz.Image");
-            btnZapisz.Location = new Point(1124, 8);
+            btnZapisz.Location = new Point(1127, 15);
             btnZapisz.Name = "btnZapisz";
             btnZapisz.Size = new Size(44, 33);
             btnZapisz.TabIndex = 7;
@@ -546,10 +550,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 624);
+            ClientSize = new Size(1244, 641);
             Controls.Add(pnlDol);
             Controls.Add(pnlDane);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1260, 680);
+            MinimumSize = new Size(1260, 680);
             Name = "KontrahentForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Kontrahent";
             pnlDane.ResumeLayout(false);
             grpBoxDane.ResumeLayout(false);

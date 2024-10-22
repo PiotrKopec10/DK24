@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokumentForm));
             pnlGoraDane = new Panel();
+            chckBoxCzyFaktura = new CheckBox();
             chckBoxArchiwalny = new CheckBox();
             dtPickerDataSprzed = new DateTimePicker();
             btnDataSprzed = new Button();
@@ -77,7 +78,6 @@
             label11 = new Label();
             textBox1 = new TextBox();
             btnTowarUslugi = new Button();
-            chckBoxCzyFaktura = new CheckBox();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -119,10 +119,24 @@
             pnlGoraDane.Controls.Add(txtBoxAkronimKnt);
             pnlGoraDane.Controls.Add(grpBoxWartDok);
             pnlGoraDane.Controls.Add(grpBoxNaglowek);
-            pnlGoraDane.Location = new Point(1, 2);
+            pnlGoraDane.Location = new Point(0, 0);
             pnlGoraDane.Name = "pnlGoraDane";
-            pnlGoraDane.Size = new Size(1203, 340);
+            pnlGoraDane.Size = new Size(1244, 345);
             pnlGoraDane.TabIndex = 0;
+            // 
+            // chckBoxCzyFaktura
+            // 
+            chckBoxCzyFaktura.AutoSize = true;
+            chckBoxCzyFaktura.BackColor = Color.Transparent;
+            chckBoxCzyFaktura.CheckAlign = ContentAlignment.MiddleRight;
+            chckBoxCzyFaktura.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chckBoxCzyFaktura.ForeColor = Color.FromArgb(255, 128, 0);
+            chckBoxCzyFaktura.Location = new Point(804, 80);
+            chckBoxCzyFaktura.Name = "chckBoxCzyFaktura";
+            chckBoxCzyFaktura.Size = new Size(95, 22);
+            chckBoxCzyFaktura.TabIndex = 24;
+            chckBoxCzyFaktura.Text = "Faktura";
+            chckBoxCzyFaktura.UseVisualStyleBackColor = false;
             // 
             // chckBoxArchiwalny
             // 
@@ -224,7 +238,7 @@
             // 
             richTxtBoxOpis.Location = new Point(78, 237);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(659, 96);
+            richTxtBoxOpis.Size = new Size(659, 94);
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
@@ -487,9 +501,9 @@
             // pnlDataGrid
             // 
             pnlDataGrid.Controls.Add(dtGridDokument);
-            pnlDataGrid.Location = new Point(1, 339);
+            pnlDataGrid.Location = new Point(0, 345);
             pnlDataGrid.Name = "pnlDataGrid";
-            pnlDataGrid.Size = new Size(1203, 252);
+            pnlDataGrid.Size = new Size(1244, 234);
             pnlDataGrid.TabIndex = 1;
             // 
             // dtGridDokument
@@ -498,7 +512,7 @@
             dtGridDokument.Dock = DockStyle.Fill;
             dtGridDokument.Location = new Point(0, 0);
             dtGridDokument.Name = "dtGridDokument";
-            dtGridDokument.Size = new Size(1203, 252);
+            dtGridDokument.Size = new Size(1244, 234);
             dtGridDokument.TabIndex = 0;
             // 
             // pnlPrzyciski
@@ -511,9 +525,9 @@
             pnlPrzyciski.Controls.Add(label11);
             pnlPrzyciski.Controls.Add(textBox1);
             pnlPrzyciski.Controls.Add(btnTowarUslugi);
-            pnlPrzyciski.Location = new Point(1, 587);
+            pnlPrzyciski.Location = new Point(1, 579);
             pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1203, 53);
+            pnlPrzyciski.Size = new Size(1244, 62);
             pnlPrzyciski.TabIndex = 2;
             // 
             // btnAnuluj
@@ -524,6 +538,7 @@
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 6;
             btnAnuluj.UseVisualStyleBackColor = true;
+            btnAnuluj.Click += btnAnuluj_Click;
             // 
             // btnZapisz
             // 
@@ -580,29 +595,19 @@
             btnTowarUslugi.Text = "Towar/Usługi";
             btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
-            // chckBoxCzyFaktura
-            // 
-            chckBoxCzyFaktura.AutoSize = true;
-            chckBoxCzyFaktura.BackColor = Color.Transparent;
-            chckBoxCzyFaktura.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxCzyFaktura.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chckBoxCzyFaktura.ForeColor = Color.FromArgb(255, 128, 0);
-            chckBoxCzyFaktura.Location = new Point(804, 80);
-            chckBoxCzyFaktura.Name = "chckBoxCzyFaktura";
-            chckBoxCzyFaktura.Size = new Size(95, 22);
-            chckBoxCzyFaktura.TabIndex = 24;
-            chckBoxCzyFaktura.Text = "Faktura";
-            chckBoxCzyFaktura.UseVisualStyleBackColor = false;
-            // 
             // DokumentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1206, 641);
+            ClientSize = new Size(1244, 641);
             Controls.Add(pnlPrzyciski);
             Controls.Add(pnlDataGrid);
             Controls.Add(pnlGoraDane);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1260, 680);
+            MinimumSize = new Size(1260, 680);
             Name = "DokumentForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Dokument";
             pnlGoraDane.ResumeLayout(false);
             pnlGoraDane.PerformLayout();

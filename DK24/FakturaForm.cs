@@ -21,5 +21,12 @@ namespace DK24
         {
 
         }
+
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
     }
 }

@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
-            pnlPrzyciski = new Panel();
-            btnDodaj = new Button();
+            panel1 = new Panel();
             radioButtonArchiwalne = new RadioButton();
             radioButtonAktualne = new RadioButton();
+            btnDodaj = new Button();
             btnRefresh = new Button();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
@@ -50,99 +50,97 @@
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
-            noweZamToolStripMenuItem = new ToolStripMenuItem();
-            zamówieniaArchiwalneToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
-            pnlPrzyciski.SuspendLayout();
+            panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dtGridViewZamowienia
             // 
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtGridViewZamowienia.Dock = DockStyle.Fill;
             dtGridViewZamowienia.Location = new Point(0, 0);
             dtGridViewZamowienia.Margin = new Padding(3, 2, 3, 2);
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dtGridViewZamowienia.RowHeadersWidth = 51;
-            dtGridViewZamowienia.Size = new Size(1244, 548);
+            dtGridViewZamowienia.Size = new Size(1244, 505);
             dtGridViewZamowienia.TabIndex = 1;
             // 
             // pnlDtGridZamowienia
             // 
+            pnlDtGridZamowienia.Controls.Add(panel1);
             pnlDtGridZamowienia.Controls.Add(dtGridViewZamowienia);
             pnlDtGridZamowienia.Dock = DockStyle.Fill;
             pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
             pnlDtGridZamowienia.Location = new Point(0, 76);
             pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
             pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
-            pnlDtGridZamowienia.Size = new Size(1244, 548);
+            pnlDtGridZamowienia.Size = new Size(1244, 565);
             pnlDtGridZamowienia.TabIndex = 2;
             // 
-            // pnlPrzyciski
+            // panel1
             // 
-            pnlPrzyciski.AutoSize = true;
-            pnlPrzyciski.BackColor = Color.Transparent;
-            pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
-            pnlPrzyciski.Controls.Add(btnDodaj);
-            pnlPrzyciski.Controls.Add(radioButtonArchiwalne);
-            pnlPrzyciski.Controls.Add(radioButtonAktualne);
-            pnlPrzyciski.Controls.Add(btnRefresh);
-            pnlPrzyciski.Location = new Point(0, 551);
-            pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1244, 75);
-            pnlPrzyciski.TabIndex = 3;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(radioButtonArchiwalne);
+            panel1.Controls.Add(radioButtonAktualne);
+            panel1.Controls.Add(btnDodaj);
+            panel1.Controls.Add(btnRefresh);
+            panel1.Location = new Point(0, 503);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1244, 62);
+            panel1.TabIndex = 3;
+            // 
+            // radioButtonArchiwalne
+            // 
+            radioButtonArchiwalne.AutoSize = true;
+            radioButtonArchiwalne.BackColor = Color.Transparent;
+            radioButtonArchiwalne.ForeColor = Color.White;
+            radioButtonArchiwalne.Location = new Point(231, 23);
+            radioButtonArchiwalne.Name = "radioButtonArchiwalne";
+            radioButtonArchiwalne.Size = new Size(100, 19);
+            radioButtonArchiwalne.TabIndex = 2;
+            radioButtonArchiwalne.Text = "ARCHIWALNE";
+            radioButtonArchiwalne.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonAktualne
+            // 
+            radioButtonAktualne.AutoSize = true;
+            radioButtonAktualne.BackColor = Color.Transparent;
+            radioButtonAktualne.Checked = true;
+            radioButtonAktualne.ForeColor = Color.White;
+            radioButtonAktualne.Location = new Point(133, 23);
+            radioButtonAktualne.Name = "radioButtonAktualne";
+            radioButtonAktualne.Size = new Size(83, 19);
+            radioButtonAktualne.TabIndex = 1;
+            radioButtonAktualne.TabStop = true;
+            radioButtonAktualne.Text = "AKTUALNE";
+            radioButtonAktualne.UseVisualStyleBackColor = false;
             // 
             // btnDodaj
             // 
             btnDodaj.BackColor = Color.FromArgb(192, 255, 192);
-            btnDodaj.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            btnDodaj.Font = new Font("Verdana", 8F);
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
             btnDodaj.ImageAlign = ContentAlignment.TopCenter;
-            btnDodaj.Location = new Point(1105, 11);
+            btnDodaj.Location = new Point(1133, 5);
             btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(127, 51);
+            btnDodaj.Size = new Size(105, 51);
             btnDodaj.TabIndex = 12;
             btnDodaj.Text = "DODAJ ZAMÓWIENIE";
             btnDodaj.TextAlign = ContentAlignment.BottomCenter;
             btnDodaj.UseVisualStyleBackColor = false;
             btnDodaj.Click += btnDodaj_Click;
             // 
-            // radioButtonArchiwalne
-            // 
-            radioButtonArchiwalne.AutoSize = true;
-            radioButtonArchiwalne.ForeColor = Color.White;
-            radioButtonArchiwalne.Location = new Point(240, 31);
-            radioButtonArchiwalne.Name = "radioButtonArchiwalne";
-            radioButtonArchiwalne.Size = new Size(100, 19);
-            radioButtonArchiwalne.TabIndex = 2;
-            radioButtonArchiwalne.Text = "ARCHIWALNE";
-            radioButtonArchiwalne.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonAktualne
-            // 
-            radioButtonAktualne.AutoSize = true;
-            radioButtonAktualne.Checked = true;
-            radioButtonAktualne.ForeColor = Color.White;
-            radioButtonAktualne.Location = new Point(142, 31);
-            radioButtonAktualne.Name = "radioButtonAktualne";
-            radioButtonAktualne.Size = new Size(83, 19);
-            radioButtonAktualne.TabIndex = 1;
-            radioButtonAktualne.TabStop = true;
-            radioButtonAktualne.Text = "AKTUALNE";
-            radioButtonAktualne.UseVisualStyleBackColor = true;
-            // 
             // btnRefresh
             // 
             btnRefresh.BackColor = Color.Transparent;
             btnRefresh.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             btnRefresh.Image = (Image)resources.GetObject("btnRefresh.Image");
-            btnRefresh.Location = new Point(12, 21);
+            btnRefresh.Location = new Point(10, 14);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(109, 39);
+            btnRefresh.Size = new Size(105, 36);
             btnRefresh.TabIndex = 0;
             btnRefresh.Text = "REFRESH";
             btnRefresh.TextAlign = ContentAlignment.MiddleRight;
@@ -163,14 +161,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
+            dodajToolStripMenuItem.Size = new Size(180, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
@@ -204,6 +202,7 @@
             zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
             zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
             zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
+            zobaczKontrahentówToolStripMenuItem.Click += zobaczKontrahentówToolStripMenuItem_Click;
             // 
             // towaryToolStripMenuItem
             // 
@@ -254,26 +253,14 @@
             // zamówieniaToolStripMenuItem
             // 
             zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
-            zamówieniaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { noweZamToolStripMenuItem, zamówieniaArchiwalneToolStripMenuItem });
-            zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
+            zamówieniaToolStripMenuItem.Enabled = false;
+            zamówieniaToolStripMenuItem.ForeColor = Color.FromArgb(255, 128, 0);
             zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
             zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
             zamówieniaToolStripMenuItem.Name = "zamówieniaToolStripMenuItem";
             zamówieniaToolStripMenuItem.Size = new Size(84, 39);
             zamówieniaToolStripMenuItem.Text = "Zamówienia";
             zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // noweZamToolStripMenuItem
-            // 
-            noweZamToolStripMenuItem.Name = "noweZamToolStripMenuItem";
-            noweZamToolStripMenuItem.Size = new Size(180, 22);
-            noweZamToolStripMenuItem.Text = "Nowe Zamówienia";
-            // 
-            // zamówieniaArchiwalneToolStripMenuItem
-            // 
-            zamówieniaArchiwalneToolStripMenuItem.Name = "zamówieniaArchiwalneToolStripMenuItem";
-            zamówieniaArchiwalneToolStripMenuItem.Size = new Size(180, 22);
-            zamówieniaArchiwalneToolStripMenuItem.Text = "Zobacz Zamówienia";
             // 
             // menuStrip1
             // 
@@ -293,22 +280,23 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 128, 0);
-            ClientSize = new Size(1244, 624);
-            Controls.Add(pnlPrzyciski);
+            ClientSize = new Size(1244, 641);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(1260, 680);
+            MinimumSize = new Size(1260, 680);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "D&K";
+            Text = "D&K - Zamówienia";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
-            pnlPrzyciski.ResumeLayout(false);
-            pnlPrzyciski.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -331,14 +319,12 @@
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
         private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
-        private ToolStripMenuItem noweZamToolStripMenuItem;
-        private ToolStripMenuItem zamówieniaArchiwalneToolStripMenuItem;
         private MenuStrip menuStrip1;
-        private Panel pnlPrzyciski;
         private Button btnRefresh;
         private RadioButton radioButtonArchiwalne;
         private RadioButton radioButtonAktualne;
         private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
         private Button btnDodaj;
+        private Panel panel1;
     }
 }
