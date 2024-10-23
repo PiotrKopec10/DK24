@@ -20,6 +20,12 @@ namespace DK24
 
         }
 
+        public void cmbBoxAutouzupelnianie(ComboBox comboBox)
+        {
+            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
         public void BlokujZnakiSpecjalneIspacje(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))

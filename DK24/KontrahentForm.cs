@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ComboBox = System.Windows.Forms.ComboBox;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace DK24
@@ -40,6 +41,7 @@ namespace DK24
             txtBoxNrTel.MaxLength = 9;  // najdluzszy 14
             txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
             cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
+            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxPrefixNrTel);
 
             // Obsługa Banku
             txtBoxBank.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -48,6 +50,7 @@ namespace DK24
             // Obsługa Nr Bankowego
             txtBoxNrRachunku.MaxLength = 30;
             txtBoxNrRachunku.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
+            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxIBAN);
 
             // Ulica
             txtBoxUlica.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -59,6 +62,7 @@ namespace DK24
 
             // Kraj
             cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
+            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxKraj);
 
             // Kod pocztowy
             txtBoxKodPocz.KeyPress += new KeyPressEventHandler(txtBoxKodPocz_KeyPress);
@@ -80,6 +84,10 @@ namespace DK24
             txtBoxGmina.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
             txtBoxGmina.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
 
+            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxZnizka);
+
+            cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
+            cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
         }
 
 
@@ -138,6 +146,7 @@ namespace DK24
             toolTip.InitialDelay = 0;
             toolTip.ShowAlways = true;
 
+
             bool isValid = true;
             List<string> pustePola = new List<string>();
 
@@ -165,28 +174,19 @@ namespace DK24
                 txtBoxNazwa.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxNIP.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxNIP.Text) && string.IsNullOrWhiteSpace(txtBoxRegon.Text))
             {
                 txtBoxNIP.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxNIP, "Pole NIP nie może być puste!");
-                pustePola.Add("NIP");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxNIP.BackColor = SystemColors.Window;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtBoxRegon.Text))
-            {
                 txtBoxRegon.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxRegon, "Pole Regon nie może być puste!");
-                pustePola.Add("Regon");
+                toolTip.SetToolTip(txtBoxNIP, "Pole NIP lub Regon musi być wypełnione!");
+                toolTip.SetToolTip(txtBoxRegon, "Pole Regon lub NIP musi być wypełnione!");
+                pustePola.Add("NIP lub Regon");
                 isValid = false;
             }
             else
             {
-                txtBoxRegon.BackColor = SystemColors.Window;
+                txtBoxNIP.BackColor = string.IsNullOrWhiteSpace(txtBoxNIP.Text) ? SystemColors.Window : txtBoxNIP.BackColor;
+                txtBoxRegon.BackColor = string.IsNullOrWhiteSpace(txtBoxRegon.Text) ? SystemColors.Window : txtBoxRegon.BackColor;
             }
 
             if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text))
@@ -301,7 +301,7 @@ namespace DK24
             if (string.IsNullOrWhiteSpace(cmbBoxPrefixNrTel.Text))
             {
                 cmbBoxPrefixNrTel.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAkronim, "Pole Numer Kierunkowy nie może być puste!");
+                toolTip.SetToolTip(cmbBoxPrefixNrTel, "Pole Numer Kierunkowy nie może być puste!");
                 pustePola.Add("Numer Kierunkowy");
                 isValid = false;
             }
@@ -313,7 +313,7 @@ namespace DK24
             if (string.IsNullOrWhiteSpace(cmbBoxZnizka.Text))
             {
                 cmbBoxZnizka.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAkronim, "Pole Zniżka nie może być puste!");
+                toolTip.SetToolTip(cmbBoxZnizka, "Pole Zniżka nie może być puste!");
                 pustePola.Add("Zniżka");
                 isValid = false;
             }
@@ -325,7 +325,7 @@ namespace DK24
             if (string.IsNullOrWhiteSpace(cmbBoxIBAN.Text))
             {
                 cmbBoxIBAN.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAkronim, "Pole Nr Rachunku nie może być puste!");
+                toolTip.SetToolTip(cmbBoxIBAN, "Pole Nr Rachunku nie może być puste!");
                 pustePola.Add("IBAN");
                 isValid = false;
             }
@@ -337,7 +337,7 @@ namespace DK24
             if (string.IsNullOrWhiteSpace(cmbBoxKraj.Text))
             {
                 cmbBoxKraj.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAkronim, "Pole Kraj nie może być puste!");
+                toolTip.SetToolTip(cmbBoxKraj, "Pole Kraj nie może być puste!");
                 pustePola.Add("Kraj");
                 isValid = false;
             }
@@ -368,7 +368,6 @@ namespace DK24
                     Control pustePoleControl = null;
 
                     if (pustePole == "Akronim") pustePoleControl = txtBoxAkronim;
-                    else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwa;
                     else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwa;
                     else if (pustePole == "NIP") pustePoleControl = txtBoxNIP;
                     else if (pustePole == "Regon") pustePoleControl = txtBoxRegon;
