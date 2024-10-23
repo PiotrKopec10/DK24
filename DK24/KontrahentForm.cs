@@ -185,8 +185,8 @@ namespace DK24
             }
             else
             {
-                txtBoxNIP.BackColor = string.IsNullOrWhiteSpace(txtBoxNIP.Text) ? SystemColors.Window : txtBoxNIP.BackColor;
-                txtBoxRegon.BackColor = string.IsNullOrWhiteSpace(txtBoxRegon.Text) ? SystemColors.Window : txtBoxRegon.BackColor;
+                txtBoxNIP.BackColor= SystemColors.Window;
+                txtBoxRegon.BackColor= SystemColors.Window;
             }
 
             if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text))
