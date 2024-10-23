@@ -410,6 +410,7 @@
             txtBoxKodPocz.Name = "txtBoxKodPocz";
             txtBoxKodPocz.Size = new Size(180, 23);
             txtBoxKodPocz.TabIndex = 13;
+            txtBoxKodPocz.TextChanged += txtBoxKodPocz_TextChanged;
             // 
             // txtBoxMiasto
             // 
@@ -519,7 +520,6 @@
             label1.Size = new Size(36, 15);
             label1.TabIndex = 0;
             label1.Text = "Ulica:";
-            label1.Click += label1_Click;
             // 
             // pnlDol
             // 

@@ -20,6 +20,65 @@ namespace DK24
 
         }
 
+        public void BlokujZnakiSpecjalneIspacje(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
+
+        public void TylkoLitery(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void ZmienPierwszaLitereNaWielka(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (!string.IsNullOrEmpty(textBox.Text))
+            {
+                string formattedText = char.ToUpper(textBox.Text[0]) + textBox.Text.Substring(1).ToLower();
+                textBox.Text = formattedText;
+
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+        }
+
+        public void TylkoCyfry(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+
+        public bool WalidujEmail(TextBox emailTextBox, ToolTip toolTip)
+        {
+            string email = emailTextBox.Text;
+
+            int atCount = email.Count(c => c == '@');
+
+            if (atCount != 1)
+            {
+                emailTextBox.BackColor = Color.Pink;
+                toolTip.Show("Brakuje '@' w podanym mailu", emailTextBox, 20, 21, 4000);
+                return false;
+            }
+            else
+            {
+                emailTextBox.BackColor = SystemColors.Window;
+            }
+
+            return true;
+        }
+
 
         public List<(string Kraj, string NumerKierunkowy, string Skrot)> SpisPanstwNrKierunkowych()
         {

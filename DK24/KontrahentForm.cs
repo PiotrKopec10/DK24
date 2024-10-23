@@ -27,14 +27,61 @@ namespace DK24
         {
             InitializeComponent();
 
-            cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
+
+            // Obsługa NIP
+            txtBoxNIP.MaxLength = 10; 
+            txtBoxNIP.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry); 
+
+            // Obsługa REGON
+            txtBoxRegon.MaxLength = 9;
+            txtBoxRegon.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
+
+            // Obsługa Nr Telefonu
+            txtBoxNrTel.MaxLength = 9;  // najdluzszy 14
+            txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
             cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
+
+            // Obsługa Banku
+            txtBoxBank.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxBank.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Obsługa Nr Bankowego
+            txtBoxNrRachunku.MaxLength = 30;
+            txtBoxNrRachunku.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
+
+            // Ulica
+            txtBoxUlica.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxUlica.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Nr Domu i Lokalu
+            txtBoxNrDomu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
+            txtBoxNrLokalu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
+
+            // Kraj
+            cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
+
+            // Kod pocztowy
+            txtBoxKodPocz.KeyPress += new KeyPressEventHandler(txtBoxKodPocz_KeyPress);
+            txtBoxKodPocz.TextChanged += new EventHandler(txtBoxKodPocz_TextChanged);
+
+            // Miasto           
+            txtBoxMiasto.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxMiasto.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Wojewodztwo
+            txtBoxWoj.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxWoj.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Powiat
+            txtBoxPowiat.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxPowiat.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Gmina
+            txtBoxGmina.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
+            txtBoxGmina.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //private void btnZapisz_Click(object sender, EventArgs e)
         //{
@@ -106,7 +153,6 @@ namespace DK24
                 txtBoxAkronim.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxNazwa
             if (string.IsNullOrWhiteSpace(txtBoxNazwa.Text))
             {
                 txtBoxNazwa.BackColor = Color.Pink;
@@ -119,7 +165,6 @@ namespace DK24
                 txtBoxNazwa.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxNIP
             if (string.IsNullOrWhiteSpace(txtBoxNIP.Text))
             {
                 txtBoxNIP.BackColor = Color.Pink;
@@ -132,7 +177,6 @@ namespace DK24
                 txtBoxNIP.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxRegon
             if (string.IsNullOrWhiteSpace(txtBoxRegon.Text))
             {
                 txtBoxRegon.BackColor = Color.Pink;
@@ -145,7 +189,6 @@ namespace DK24
                 txtBoxRegon.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxNrTel
             if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text))
             {
                 txtBoxNrTel.BackColor = Color.Pink;
@@ -158,7 +201,6 @@ namespace DK24
                 txtBoxNrTel.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxEmail
             if (string.IsNullOrWhiteSpace(txtBoxEmail.Text))
             {
                 txtBoxEmail.BackColor = Color.Pink;
@@ -171,7 +213,6 @@ namespace DK24
                 txtBoxEmail.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxUrl
             if (string.IsNullOrWhiteSpace(txtBoxUrl.Text))
             {
                 txtBoxUrl.BackColor = Color.Pink;
@@ -184,7 +225,6 @@ namespace DK24
                 txtBoxUrl.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxBank
             if (string.IsNullOrWhiteSpace(txtBoxBank.Text))
             {
                 txtBoxBank.BackColor = Color.Pink;
@@ -197,7 +237,6 @@ namespace DK24
                 txtBoxBank.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxNrRachunku
             if (string.IsNullOrWhiteSpace(txtBoxNrRachunku.Text))
             {
                 txtBoxNrRachunku.BackColor = Color.Pink;
@@ -210,7 +249,6 @@ namespace DK24
                 txtBoxNrRachunku.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxUlica
             if (string.IsNullOrWhiteSpace(txtBoxUlica.Text))
             {
                 txtBoxUlica.BackColor = Color.Pink;
@@ -223,7 +261,6 @@ namespace DK24
                 txtBoxUlica.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxNrDomu
             if (string.IsNullOrWhiteSpace(txtBoxNrDomu.Text))
             {
                 txtBoxNrDomu.BackColor = Color.Pink;
@@ -236,7 +273,6 @@ namespace DK24
                 txtBoxNrDomu.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxKodPocz
             if (string.IsNullOrWhiteSpace(txtBoxKodPocz.Text))
             {
                 txtBoxKodPocz.BackColor = Color.Pink;
@@ -249,7 +285,6 @@ namespace DK24
                 txtBoxKodPocz.BackColor = SystemColors.Window;
             }
 
-            // Walidacja dla txtBoxMiasto
             if (string.IsNullOrWhiteSpace(txtBoxMiasto.Text))
             {
                 txtBoxMiasto.BackColor = Color.Pink;
@@ -313,9 +348,18 @@ namespace DK24
 
             if (!isValid)
             {
+
                 if (pustePola.Count > 1)
                 {
-                    MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (!GlobalneDzialania.WalidujEmail(txtBoxEmail, toolTip))
+                    {
+                        MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        pustePola.Add("Email");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else if (pustePola.Count == 1)
                 {
@@ -369,6 +413,7 @@ namespace DK24
                 DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
                 AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzAdresId(AktualnyAdres);
+                AktualnyKontrahent.acronym = txtBoxAkronim.Text;
                 AktualnyKontrahent.name = txtBoxNazwa.Text;
                 AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
                 AktualnyKontrahent.discount_percentage = Convert.ToDecimal(cmbBoxZnizka.SelectedItem);
@@ -408,6 +453,32 @@ namespace DK24
         private void cmbBoxPrefixNrTel_SelectedIndexChanged(object sender, EventArgs e)
         {
             GlobalneDzialania.PowiązKrajINumer(cmbBoxKraj, cmbBoxPrefixNrTel);
+        }
+
+        private void txtBoxKodPocz_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxKodPocz_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = txtBoxKodPocz.Text.Replace("-", "");
+            if (currentText.Length > 2)
+            {
+                currentText = currentText.Insert(2, "-");
+            }
+
+            if (currentText.Length > 6)
+            {
+                currentText = currentText.Substring(0, 6);
+            }
+
+            txtBoxKodPocz.Text = currentText;
+
+            txtBoxKodPocz.SelectionStart = txtBoxKodPocz.Text.Length;
         }
     }
 }
