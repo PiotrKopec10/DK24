@@ -32,9 +32,7 @@
             pnlGoraDane = new Panel();
             chckBoxCzyFaktura = new CheckBox();
             chckBoxArchiwalny = new CheckBox();
-            dtPickerDataSprzed = new DateTimePicker();
             btnDataSprzed = new Button();
-            dtPickerDataWys = new DateTimePicker();
             btnDataWys = new Button();
             dtPickerDo = new DateTimePicker();
             btnDo = new Button();
@@ -78,6 +76,8 @@
             label11 = new Label();
             textBox1 = new TextBox();
             btnTowarUslugi = new Button();
+            dtPickDataWystaw = new DateTimePicker();
+            dtPickSprzed = new DateTimePicker();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -94,11 +94,11 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(dtPickSprzed);
+            pnlGoraDane.Controls.Add(dtPickDataWystaw);
             pnlGoraDane.Controls.Add(chckBoxCzyFaktura);
             pnlGoraDane.Controls.Add(chckBoxArchiwalny);
-            pnlGoraDane.Controls.Add(dtPickerDataSprzed);
             pnlGoraDane.Controls.Add(btnDataSprzed);
-            pnlGoraDane.Controls.Add(dtPickerDataWys);
             pnlGoraDane.Controls.Add(btnDataWys);
             pnlGoraDane.Controls.Add(dtPickerDo);
             pnlGoraDane.Controls.Add(btnDo);
@@ -152,15 +152,6 @@
             chckBoxArchiwalny.Text = "Archiwalny";
             chckBoxArchiwalny.UseVisualStyleBackColor = false;
             // 
-            // dtPickerDataSprzed
-            // 
-            dtPickerDataSprzed.Format = DateTimePickerFormat.Short;
-            dtPickerDataSprzed.Location = new Point(947, 279);
-            dtPickerDataSprzed.Name = "dtPickerDataSprzed";
-            dtPickerDataSprzed.ShowUpDown = true;
-            dtPickerDataSprzed.Size = new Size(108, 23);
-            dtPickerDataSprzed.TabIndex = 22;
-            // 
             // btnDataSprzed
             // 
             btnDataSprzed.Location = new Point(813, 279);
@@ -169,15 +160,6 @@
             btnDataSprzed.TabIndex = 21;
             btnDataSprzed.Text = "Data Sprzedaży:";
             btnDataSprzed.UseVisualStyleBackColor = true;
-            // 
-            // dtPickerDataWys
-            // 
-            dtPickerDataWys.Format = DateTimePickerFormat.Short;
-            dtPickerDataWys.Location = new Point(947, 227);
-            dtPickerDataWys.Name = "dtPickerDataWys";
-            dtPickerDataWys.ShowUpDown = true;
-            dtPickerDataWys.Size = new Size(108, 23);
-            dtPickerDataWys.TabIndex = 20;
             // 
             // btnDataWys
             // 
@@ -363,7 +345,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 238);
-            label9.Location = new Point(23, 130);
+            label9.Location = new Point(23, 114);
             label9.Name = "label9";
             label9.Size = new Size(60, 21);
             label9.TabIndex = 4;
@@ -373,7 +355,7 @@
             // 
             lblCenaBrutto.AutoSize = true;
             lblCenaBrutto.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblCenaBrutto.Location = new Point(120, 131);
+            lblCenaBrutto.Location = new Point(120, 115);
             lblCenaBrutto.Name = "lblCenaBrutto";
             lblCenaBrutto.Size = new Size(37, 20);
             lblCenaBrutto.TabIndex = 3;
@@ -383,7 +365,7 @@
             // 
             lblCenaNetto.AutoSize = true;
             lblCenaNetto.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lblCenaNetto.Location = new Point(120, 49);
+            lblCenaNetto.Location = new Point(120, 45);
             lblCenaNetto.Name = "lblCenaNetto";
             lblCenaNetto.Size = new Size(37, 20);
             lblCenaNetto.TabIndex = 2;
@@ -393,7 +375,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 238);
-            label5.Location = new Point(23, 50);
+            label5.Location = new Point(23, 46);
             label5.Name = "label5";
             label5.Size = new Size(55, 21);
             label5.TabIndex = 0;
@@ -595,6 +577,20 @@
             btnTowarUslugi.Text = "Towar/Usługi";
             btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
+            // dtPickDataWystaw
+            // 
+            dtPickDataWystaw.Location = new Point(951, 227);
+            dtPickDataWystaw.Name = "dtPickDataWystaw";
+            dtPickDataWystaw.Size = new Size(232, 23);
+            dtPickDataWystaw.TabIndex = 25;
+            // 
+            // dtPickSprzed
+            // 
+            dtPickSprzed.Location = new Point(951, 279);
+            dtPickSprzed.Name = "dtPickSprzed";
+            dtPickSprzed.Size = new Size(232, 23);
+            dtPickSprzed.TabIndex = 26;
+            // 
             // DokumentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -679,5 +675,7 @@
         private Button btnAnuluj;
         private Button btnZapisz;
         private CheckBox chckBoxCzyFaktura;
+        private DateTimePicker dtPickDataWystaw;
+        private DateTimePicker dtPickSprzed;
     }
 }

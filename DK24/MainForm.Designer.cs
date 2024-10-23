@@ -51,6 +51,7 @@
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -83,6 +84,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButtonArchiwalne);
             panel1.Controls.Add(radioButtonAktualne);
             panel1.Controls.Add(btnDodaj);
@@ -161,14 +163,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Size = new Size(154, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
@@ -275,6 +277,20 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(1006, 11);
+            button1.Name = "button1";
+            button1.Size = new Size(120, 40);
+            button1.TabIndex = 13;
+            button1.Text = "SZCZEGÓŁY";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -326,5 +342,6 @@
         private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
         private Button btnDodaj;
         private Panel panel1;
+        private Button button1;
     }
 }

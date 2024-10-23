@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KontrahentForm));
             pnlDane = new Panel();
             grpBoxDane = new GroupBox();
@@ -55,7 +56,7 @@
             label13 = new Label();
             label12 = new Label();
             label11 = new Label();
-            label10 = new Label();
+            lblAkronim = new Label();
             grpBoxAdres = new GroupBox();
             cmbBoxKraj = new ComboBox();
             txtBoxPowiat = new TextBox();
@@ -78,6 +79,7 @@
             pnlDol = new Panel();
             btnAnuluj = new Button();
             btnZapisz = new Button();
+            toolTip1 = new ToolTip(components);
             pnlDane.SuspendLayout();
             grpBoxDane.SuspendLayout();
             grpBoxAdres.SuspendLayout();
@@ -120,7 +122,7 @@
             grpBoxDane.Controls.Add(label13);
             grpBoxDane.Controls.Add(label12);
             grpBoxDane.Controls.Add(label11);
-            grpBoxDane.Controls.Add(label10);
+            grpBoxDane.Controls.Add(lblAkronim);
             grpBoxDane.Location = new Point(12, 12);
             grpBoxDane.Name = "grpBoxDane";
             grpBoxDane.Size = new Size(755, 527);
@@ -196,6 +198,7 @@
             cmbBoxPrefixNrTel.Name = "cmbBoxPrefixNrTel";
             cmbBoxPrefixNrTel.Size = new Size(64, 23);
             cmbBoxPrefixNrTel.TabIndex = 20;
+            cmbBoxPrefixNrTel.SelectedIndexChanged += cmbBoxPrefixNrTel_SelectedIndexChanged;
             // 
             // txtBoxNrRachunku
             // 
@@ -213,14 +216,14 @@
             // 
             // txtBoxUrl
             // 
-            txtBoxUrl.Location = new Point(132, 322);
+            txtBoxUrl.Location = new Point(132, 327);
             txtBoxUrl.Name = "txtBoxUrl";
             txtBoxUrl.Size = new Size(309, 23);
             txtBoxUrl.TabIndex = 17;
             // 
             // txtBoxEmail
             // 
-            txtBoxEmail.Location = new Point(132, 282);
+            txtBoxEmail.Location = new Point(132, 287);
             txtBoxEmail.Name = "txtBoxEmail";
             txtBoxEmail.Size = new Size(309, 23);
             txtBoxEmail.TabIndex = 16;
@@ -255,6 +258,7 @@
             // 
             // txtBoxAkronim
             // 
+            txtBoxAkronim.BackColor = SystemColors.Window;
             txtBoxAkronim.Location = new Point(132, 64);
             txtBoxAkronim.Name = "txtBoxAkronim";
             txtBoxAkronim.Size = new Size(309, 23);
@@ -281,7 +285,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(36, 285);
+            label17.Location = new Point(36, 290);
             label17.Name = "label17";
             label17.Size = new Size(44, 15);
             label17.TabIndex = 7;
@@ -290,7 +294,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(36, 330);
+            label16.Location = new Point(36, 331);
             label16.Name = "label16";
             label16.Size = new Size(31, 15);
             label16.TabIndex = 6;
@@ -312,7 +316,7 @@
             label13.Name = "label13";
             label13.Size = new Size(79, 15);
             label13.TabIndex = 3;
-            label13.Text = "Nr.Rachunku:";
+            label13.Text = "Nr Rachunku:";
             // 
             // label12
             // 
@@ -332,14 +336,14 @@
             label11.TabIndex = 1;
             label11.Text = "Nazwa:";
             // 
-            // label10
+            // lblAkronim
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(36, 67);
-            label10.Name = "label10";
-            label10.Size = new Size(56, 15);
-            label10.TabIndex = 0;
-            label10.Text = "Akronim:";
+            lblAkronim.AutoSize = true;
+            lblAkronim.Location = new Point(36, 67);
+            lblAkronim.Name = "lblAkronim";
+            lblAkronim.Size = new Size(56, 15);
+            lblAkronim.TabIndex = 0;
+            lblAkronim.Text = "Akronim:";
             // 
             // grpBoxAdres
             // 
@@ -372,11 +376,12 @@
             // cmbBoxKraj
             // 
             cmbBoxKraj.FormattingEnabled = true;
-            cmbBoxKraj.Items.AddRange(new object[] { "SKIBIDI POLAND", "KIRKIDI OSOWA" });
+            cmbBoxKraj.Items.AddRange(new object[] { "SKIBIDI POLAND", "KIRKIDI OSOWA", "Polska", "GB" });
             cmbBoxKraj.Location = new Point(86, 189);
             cmbBoxKraj.Name = "cmbBoxKraj";
             cmbBoxKraj.Size = new Size(212, 23);
             cmbBoxKraj.TabIndex = 17;
+            cmbBoxKraj.SelectedIndexChanged += cmbBoxKraj_SelectedIndexChanged;
             // 
             // txtBoxPowiat
             // 
@@ -495,7 +500,7 @@
             label3.Name = "label3";
             label3.Size = new Size(61, 15);
             label3.TabIndex = 2;
-            label3.Text = "Nr.Lokalu:";
+            label3.Text = "Nr Lokalu:";
             // 
             // label2
             // 
@@ -504,7 +509,7 @@
             label2.Name = "label2";
             label2.Size = new Size(59, 15);
             label2.TabIndex = 1;
-            label2.Text = "Nr.Domu:";
+            label2.Text = "Nr Domu:";
             // 
             // label1
             // 
@@ -600,7 +605,7 @@
         private Label label13;
         private Label label12;
         private Label label11;
-        private Label label10;
+        private Label lblAkronim;
         private TextBox txtBoxNrRachunku;
         private TextBox txtBoxBank;
         private TextBox txtBoxUrl;
@@ -619,5 +624,6 @@
         private CheckBox chckBoxArchiwalny;
         private Button btnAnuluj;
         private Button btnZapisz;
+        private ToolTip toolTip1;
     }
 }
