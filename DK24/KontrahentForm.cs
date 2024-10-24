@@ -39,7 +39,7 @@ namespace DK24
             txtBoxRegon.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
 
             // Obsługa Nr Telefonu
-            txtBoxNrTel.MaxLength = 9;  // najdluzszy 14
+            txtBoxNrTel.MaxLength = 14;  
             txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
            
            
