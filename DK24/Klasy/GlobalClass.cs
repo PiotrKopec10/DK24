@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace DK24
+namespace DK24.Klasy
 {
     internal class GlobalClass
     {
@@ -30,7 +30,7 @@ namespace DK24
         {
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; 
+                e.Handled = true;
             }
         }
 

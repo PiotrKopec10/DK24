@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DK24
+namespace DK24.Klasy
 {
     internal class AddressClass
     {
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
-        public class Address 
+        public class Address
         {
             public int address_id = 0;
             public string country = "";
@@ -22,17 +22,17 @@ namespace DK24
             public string street = "";
             public string house_number = "";
             public string apartment_number = "";
-        
-        
+
+
         }
 
-        public void DodajAdres(Address DodawanyAdres) 
+        public void DodajAdres(Address DodawanyAdres)
         {
 
             MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
 
 
-            try 
+            try
             {
                 polaczenie.Open();
 
@@ -40,7 +40,7 @@ namespace DK24
                                   (`address_id`, `country`, `voivodeship`, `powiat`, `gmina`, `city`, `postal_code`, `street`, `house_number`, `apartment_number`)
                                   VALUES (@address_id, @country, @voivodeship, @powiat, @gmina, @city, @postal_code, @street, @house_number, @apartment_number);";
 
-                using (MySqlCommand sqlDodajAdres = new MySqlCommand(DodajAdres,polaczenie)) 
+                using (MySqlCommand sqlDodajAdres = new MySqlCommand(DodajAdres, polaczenie))
                 {
 
                     sqlDodajAdres.Parameters.AddWithValue("@address_id", DodawanyAdres.address_id);
@@ -61,7 +61,7 @@ namespace DK24
                 }
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
                 MessageBox.Show("Błąd Dodawania Adresu: " + ex.Message, "Błąd");
@@ -70,7 +70,7 @@ namespace DK24
 
             polaczenie.Close();
 
-            
+
 
         }
 
@@ -86,7 +86,7 @@ namespace DK24
                 {
                     polaczenie.Open();
 
-                   
+
                     string PobierzAdresId = @"SELECT `address_id` 
                                       FROM `serwer197774_drukarnia`.`addresses`
                                       WHERE `country` = @country
@@ -101,7 +101,7 @@ namespace DK24
 
                     using (MySqlCommand sqlPobierzAdresId = new MySqlCommand(PobierzAdresId, polaczenie))
                     {
-                        
+
                         sqlPobierzAdresId.Parameters.AddWithValue("@country", PobieranyAdres.country);
                         sqlPobierzAdresId.Parameters.AddWithValue("@voivodeship", PobieranyAdres.voivodeship);
                         sqlPobierzAdresId.Parameters.AddWithValue("@powiat", PobieranyAdres.powiat);
@@ -112,14 +112,14 @@ namespace DK24
                         sqlPobierzAdresId.Parameters.AddWithValue("@house_number", PobieranyAdres.house_number);
                         sqlPobierzAdresId.Parameters.AddWithValue("@apartment_number", PobieranyAdres.apartment_number);
 
-                        
+
                         using (MySqlDataReader reader = sqlPobierzAdresId.ExecuteReader())
                         {
                             if (reader.Read())
                             {
                                 idAdresu = reader.GetInt32("address_id");
                             }
-                            
+
                         }
                     }
                 }

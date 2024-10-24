@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DK24
+namespace DK24.Klasy
 {
     internal class KontrahentClass
     {
 
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
-        public class Kontrahent 
+        public class Kontrahent
         {
             public int company_details_id = 0;
             public int user_id = 0;
@@ -32,13 +32,13 @@ namespace DK24
             public DateTime created_at;
             public DateTime modified_at;
             public string company_description = "";
-        
-        
-        
+
+
+
         }
 
-        
-        public void DodajKontrahenta(Kontrahent DodawanyKontrahent) 
+
+        public void DodajKontrahenta(Kontrahent DodawanyKontrahent)
         {
 
             MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
@@ -66,7 +66,7 @@ namespace DK24
                     sqlDodajKontrahenta.Parameters.AddWithValue("@name", DodawanyKontrahent.name);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@acronym", DodawanyKontrahent.acronym);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@address_id", DodawanyKontrahent.address_id);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@bank_iban_prefix", DodawanyKontrahent.bank_iban_prefix); 
+                    sqlDodajKontrahenta.Parameters.AddWithValue("@bank_iban_prefix", DodawanyKontrahent.bank_iban_prefix);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@bank_name", DodawanyKontrahent.bank_name);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@bank_account_number", DodawanyKontrahent.bank_account_number);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@nip", DodawanyKontrahent.nip);
@@ -75,13 +75,13 @@ namespace DK24
                     sqlDodajKontrahenta.Parameters.AddWithValue("@phone_number", DodawanyKontrahent.phone_number);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@email", DodawanyKontrahent.email);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@discount_percentage", DodawanyKontrahent.discount_percentage);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@is_archived", DodawanyKontrahent.is_archived); 
+                    sqlDodajKontrahenta.Parameters.AddWithValue("@is_archived", DodawanyKontrahent.is_archived);
                     sqlDodajKontrahenta.Parameters.AddWithValue("@company_description", DodawanyKontrahent.company_description);
-                    
 
 
 
-                
+
+
 
 
                     sqlDodajKontrahenta.ExecuteNonQuery();

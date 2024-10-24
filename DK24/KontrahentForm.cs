@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DK24.Klasy;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ComboBox = System.Windows.Forms.ComboBox;
 using ToolTip = System.Windows.Forms.ToolTip;
@@ -30,8 +31,8 @@ namespace DK24
 
 
             // Obsługa NIP
-            txtBoxNIP.MaxLength = 10; 
-            txtBoxNIP.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry); 
+            txtBoxNIP.MaxLength = 10;
+            txtBoxNIP.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
 
             // Obsługa REGON
             txtBoxRegon.MaxLength = 9;
@@ -185,8 +186,8 @@ namespace DK24
             }
             else
             {
-                txtBoxNIP.BackColor= SystemColors.Window;
-                txtBoxRegon.BackColor= SystemColors.Window;
+                txtBoxNIP.BackColor = SystemColors.Window;
+                txtBoxRegon.BackColor = SystemColors.Window;
             }
 
             if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text))
@@ -478,6 +479,101 @@ namespace DK24
             txtBoxKodPocz.Text = currentText;
 
             txtBoxKodPocz.SelectionStart = txtBoxKodPocz.Text.Length;
+        }
+
+        private void KontrahentForm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxAkronim_Enter(object sender, EventArgs e)
+        {
+            txtBoxAkronim.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNazwa_Enter(object sender, EventArgs e)
+        {
+            txtBoxNazwa.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNIP_Enter(object sender, EventArgs e)
+        {
+            txtBoxNIP.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxRegon_Enter(object sender, EventArgs e)
+        {
+            txtBoxRegon.BackColor = SystemColors.Window;
+        }
+
+        private void cmbBoxPrefixNrTel_Enter(object sender, EventArgs e)
+        {
+            cmbBoxPrefixNrTel.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNrTel_Enter(object sender, EventArgs e)
+        {
+            txtBoxNrTel.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxEmail_Enter(object sender, EventArgs e)
+        {
+            txtBoxEmail.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxUrl_Enter(object sender, EventArgs e)
+        {
+            txtBoxUrl.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxBank_Enter(object sender, EventArgs e)
+        {
+            txtBoxBank.BackColor = SystemColors.Window;
+        }
+
+        private void cmbBoxIBAN_Enter(object sender, EventArgs e)
+        {
+            cmbBoxIBAN.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNrRachunku_Enter(object sender, EventArgs e)
+        {
+            txtBoxNrRachunku.BackColor = SystemColors.Window;
+        }
+
+        private void cmbBoxZnizka_Enter(object sender, EventArgs e)
+        {
+            cmbBoxZnizka.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxUlica_Enter(object sender, EventArgs e)
+        {
+            txtBoxUlica.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNrDomu_Enter(object sender, EventArgs e)
+        {
+            txtBoxNrDomu.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNrLokalu_Enter(object sender, EventArgs e)
+        {
+            txtBoxNrLokalu.BackColor = SystemColors.Window;
+        }
+
+        private void cmbBoxKraj_Enter(object sender, EventArgs e)
+        {
+            cmbBoxKraj.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxKodPocz_Enter(object sender, EventArgs e)
+        {
+            txtBoxKodPocz.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxMiasto_Enter(object sender, EventArgs e)
+        {
+            txtBoxMiasto.BackColor = SystemColors.Window;
         }
     }
 }

@@ -102,15 +102,17 @@
             // 
             // btnCofnij
             // 
+            btnCofnij.BackColor = Color.Transparent;
             btnCofnij.Image = (Image)resources.GetObject("btnCofnij.Image");
             btnCofnij.Location = new Point(1188, 16);
             btnCofnij.Name = "btnCofnij";
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 10;
-            btnCofnij.UseVisualStyleBackColor = true;
+            btnCofnij.UseVisualStyleBackColor = false;
             // 
             // btnUsun
             // 
+            btnUsun.FlatStyle = FlatStyle.Flat;
             btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
             btnUsun.Location = new Point(1128, 16);
             btnUsun.Name = "btnUsun";
@@ -120,6 +122,7 @@
             // 
             // btnEdytuj
             // 
+            btnEdytuj.FlatStyle = FlatStyle.Flat;
             btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
             btnEdytuj.Location = new Point(1065, 16);
             btnEdytuj.Name = "btnEdytuj";

@@ -2,11 +2,11 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DK24
+namespace DK24.Klasy
 {
     internal class UserClass
     {
-        
+
 
         string Polaczenie = GlobalClass.GlobalnaZmienna.DBPolaczenie;
 
@@ -33,32 +33,32 @@ namespace DK24
         {
             bool CzyHasloPrawidlowe = false;
 
-            
+
 
 
             MySqlConnection polaczenie = new MySqlConnection(Polaczenie);
 
-            try 
+            try
             {
                 polaczenie.Open();
 
                 string pobierzHaslo = "SELECT password_hash FROM users WHERE worker_login = @workerLogin";
 
-                using (MySqlCommand sqlPobierzHaslo = new MySqlCommand(pobierzHaslo, polaczenie)) 
+                using (MySqlCommand sqlPobierzHaslo = new MySqlCommand(pobierzHaslo, polaczenie))
                 {
 
-                    sqlPobierzHaslo.Parameters.AddWithValue("@workerLogin",AktualnyUser.worker_login);
+                    sqlPobierzHaslo.Parameters.AddWithValue("@workerLogin", AktualnyUser.worker_login);
 
                     object rezultat = sqlPobierzHaslo.ExecuteScalar();
 
 
-                    if(rezultat != null)
+                    if (rezultat != null)
                     {
                         string pobraneHaslo = rezultat.ToString();
 
 
 
-                        if(AktualnyUser.password_hash == pobraneHaslo) 
+                        if (AktualnyUser.password_hash == pobraneHaslo)
                         {
                             CzyHasloPrawidlowe = true;
                         }
@@ -68,7 +68,7 @@ namespace DK24
                 }
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Błąd Połączenia do bazy danych!!!", "Błąd");
             }
@@ -89,7 +89,7 @@ namespace DK24
             // Convert inputa na tablicę bajtów i obliczanie hash
             byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(haslo));
 
-         
+
             //Utwórz nowy StringBuilder aby zebrać bajty
             // utworzenie stringa
             StringBuilder sBuilder = new StringBuilder();

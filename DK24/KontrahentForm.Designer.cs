@@ -138,6 +138,7 @@
             cmbBoxZnizka.Name = "cmbBoxZnizka";
             cmbBoxZnizka.Size = new Size(98, 23);
             cmbBoxZnizka.TabIndex = 26;
+            cmbBoxZnizka.Enter += cmbBoxZnizka_Enter;
             // 
             // rchTxtBoxOpis
             // 
@@ -189,6 +190,7 @@
             cmbBoxIBAN.Name = "cmbBoxIBAN";
             cmbBoxIBAN.Size = new Size(63, 23);
             cmbBoxIBAN.TabIndex = 21;
+            cmbBoxIBAN.Enter += cmbBoxIBAN_Enter;
             // 
             // cmbBoxPrefixNrTel
             // 
@@ -199,6 +201,7 @@
             cmbBoxPrefixNrTel.Size = new Size(64, 23);
             cmbBoxPrefixNrTel.TabIndex = 20;
             cmbBoxPrefixNrTel.SelectedIndexChanged += cmbBoxPrefixNrTel_SelectedIndexChanged;
+            cmbBoxPrefixNrTel.Enter += cmbBoxPrefixNrTel_Enter;
             // 
             // txtBoxNrRachunku
             // 
@@ -206,6 +209,7 @@
             txtBoxNrRachunku.Name = "txtBoxNrRachunku";
             txtBoxNrRachunku.Size = new Size(240, 23);
             txtBoxNrRachunku.TabIndex = 19;
+            txtBoxNrRachunku.Enter += txtBoxNrRachunku_Enter;
             // 
             // txtBoxBank
             // 
@@ -213,6 +217,7 @@
             txtBoxBank.Name = "txtBoxBank";
             txtBoxBank.Size = new Size(309, 23);
             txtBoxBank.TabIndex = 18;
+            txtBoxBank.Enter += txtBoxBank_Enter;
             // 
             // txtBoxUrl
             // 
@@ -220,6 +225,7 @@
             txtBoxUrl.Name = "txtBoxUrl";
             txtBoxUrl.Size = new Size(309, 23);
             txtBoxUrl.TabIndex = 17;
+            txtBoxUrl.Enter += txtBoxUrl_Enter;
             // 
             // txtBoxEmail
             // 
@@ -227,6 +233,7 @@
             txtBoxEmail.Name = "txtBoxEmail";
             txtBoxEmail.Size = new Size(309, 23);
             txtBoxEmail.TabIndex = 16;
+            txtBoxEmail.Enter += txtBoxEmail_Enter;
             // 
             // txtBoxNrTel
             // 
@@ -234,6 +241,7 @@
             txtBoxNrTel.Name = "txtBoxNrTel";
             txtBoxNrTel.Size = new Size(229, 23);
             txtBoxNrTel.TabIndex = 15;
+            txtBoxNrTel.Enter += txtBoxNrTel_Enter;
             // 
             // txtBoxRegon
             // 
@@ -241,6 +249,7 @@
             txtBoxRegon.Name = "txtBoxRegon";
             txtBoxRegon.Size = new Size(309, 23);
             txtBoxRegon.TabIndex = 13;
+            txtBoxRegon.Enter += txtBoxRegon_Enter;
             // 
             // txtBoxNIP
             // 
@@ -248,6 +257,7 @@
             txtBoxNIP.Name = "txtBoxNIP";
             txtBoxNIP.Size = new Size(309, 23);
             txtBoxNIP.TabIndex = 12;
+            txtBoxNIP.Enter += txtBoxNIP_Enter;
             // 
             // txtBoxNazwa
             // 
@@ -255,6 +265,7 @@
             txtBoxNazwa.Name = "txtBoxNazwa";
             txtBoxNazwa.Size = new Size(309, 23);
             txtBoxNazwa.TabIndex = 11;
+            txtBoxNazwa.Enter += txtBoxNazwa_Enter;
             // 
             // txtBoxAkronim
             // 
@@ -263,6 +274,7 @@
             txtBoxAkronim.Name = "txtBoxAkronim";
             txtBoxAkronim.Size = new Size(309, 23);
             txtBoxAkronim.TabIndex = 10;
+            txtBoxAkronim.Enter += txtBoxAkronim_Enter;
             // 
             // label19
             // 
@@ -382,6 +394,7 @@
             cmbBoxKraj.Size = new Size(212, 23);
             cmbBoxKraj.TabIndex = 17;
             cmbBoxKraj.SelectedIndexChanged += cmbBoxKraj_SelectedIndexChanged;
+            cmbBoxKraj.Enter += cmbBoxKraj_Enter;
             // 
             // txtBoxPowiat
             // 
@@ -403,6 +416,7 @@
             txtBoxNrLokalu.Name = "txtBoxNrLokalu";
             txtBoxNrLokalu.Size = new Size(110, 23);
             txtBoxNrLokalu.TabIndex = 14;
+            txtBoxNrLokalu.Enter += txtBoxNrLokalu_Enter;
             // 
             // txtBoxKodPocz
             // 
@@ -411,6 +425,7 @@
             txtBoxKodPocz.Size = new Size(180, 23);
             txtBoxKodPocz.TabIndex = 13;
             txtBoxKodPocz.TextChanged += txtBoxKodPocz_TextChanged;
+            txtBoxKodPocz.Enter += txtBoxKodPocz_Enter;
             // 
             // txtBoxMiasto
             // 
@@ -418,6 +433,7 @@
             txtBoxMiasto.Name = "txtBoxMiasto";
             txtBoxMiasto.Size = new Size(212, 23);
             txtBoxMiasto.TabIndex = 12;
+            txtBoxMiasto.Enter += txtBoxMiasto_Enter;
             // 
             // txtBoxWoj
             // 
@@ -432,6 +448,7 @@
             txtBoxNrDomu.Name = "txtBoxNrDomu";
             txtBoxNrDomu.Size = new Size(122, 23);
             txtBoxNrDomu.TabIndex = 10;
+            txtBoxNrDomu.Enter += txtBoxNrDomu_Enter;
             // 
             // txtBoxUlica
             // 
@@ -439,6 +456,7 @@
             txtBoxUlica.Name = "txtBoxUlica";
             txtBoxUlica.Size = new Size(214, 23);
             txtBoxUlica.TabIndex = 9;
+            txtBoxUlica.Enter += txtBoxUlica_Enter;
             // 
             // label9
             // 
