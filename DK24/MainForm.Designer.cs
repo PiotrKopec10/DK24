@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
@@ -37,6 +41,7 @@
             radioButtonAktualne = new RadioButton();
             btnDodaj = new Button();
             btnRefresh = new Button();
+            lblZalogowanoJako = new Label();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
             zobaczFakturyToolStripMenuItem = new ToolStripMenuItem();
@@ -52,48 +57,91 @@
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
-            lblZalogowanoJako = new Label();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            linkLabel1 = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dtGridViewZamowienia
             // 
+            dtGridViewZamowienia.AllowUserToAddRows = false;
+            dtGridViewZamowienia.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
+            dtGridViewZamowienia.Dock = DockStyle.Fill;
+            dtGridViewZamowienia.EnableHeadersVisualStyles = false;
+            dtGridViewZamowienia.GridColor = Color.Gray;
             dtGridViewZamowienia.Location = new Point(0, 0);
             dtGridViewZamowienia.Margin = new Padding(3, 2, 3, 2);
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
+            dtGridViewZamowienia.ReadOnly = true;
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dtGridViewZamowienia.RowHeadersWidth = 51;
-            dtGridViewZamowienia.Size = new Size(1244, 505);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dtGridViewZamowienia.RowHeadersVisible = false;
+            dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridViewZamowienia.Size = new Size(1238, 533);
             dtGridViewZamowienia.TabIndex = 1;
             // 
             // pnlDtGridZamowienia
             // 
-            pnlDtGridZamowienia.Controls.Add(panel1);
+            pnlDtGridZamowienia.BackColor = Color.White;
             pnlDtGridZamowienia.Controls.Add(dtGridViewZamowienia);
-            pnlDtGridZamowienia.Dock = DockStyle.Fill;
             pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
-            pnlDtGridZamowienia.Location = new Point(0, 76);
+            pnlDtGridZamowienia.Location = new Point(11, 81);
             pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
             pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
-            pnlDtGridZamowienia.Size = new Size(1244, 565);
+            pnlDtGridZamowienia.Size = new Size(1238, 533);
             pnlDtGridZamowienia.TabIndex = 2;
             // 
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(lblZalogowanoJako);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButtonArchiwalne);
             panel1.Controls.Add(radioButtonAktualne);
             panel1.Controls.Add(btnDodaj);
             panel1.Controls.Add(btnRefresh);
-            panel1.Location = new Point(0, 503);
+            panel1.Location = new Point(0, 615);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1244, 62);
+            panel1.Size = new Size(1260, 65);
             panel1.TabIndex = 3;
             // 
             // button1
@@ -101,7 +149,7 @@
             button1.BackColor = Color.Transparent;
             button1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(1006, 11);
+            button1.Location = new Point(1000, 10);
             button1.Name = "button1";
             button1.Size = new Size(120, 40);
             button1.TabIndex = 13;
@@ -115,7 +163,7 @@
             radioButtonArchiwalne.AutoSize = true;
             radioButtonArchiwalne.BackColor = Color.Transparent;
             radioButtonArchiwalne.ForeColor = Color.White;
-            radioButtonArchiwalne.Location = new Point(231, 23);
+            radioButtonArchiwalne.Location = new Point(241, 23);
             radioButtonArchiwalne.Name = "radioButtonArchiwalne";
             radioButtonArchiwalne.Size = new Size(100, 19);
             radioButtonArchiwalne.TabIndex = 2;
@@ -128,7 +176,7 @@
             radioButtonAktualne.BackColor = Color.Transparent;
             radioButtonAktualne.Checked = true;
             radioButtonAktualne.ForeColor = Color.White;
-            radioButtonAktualne.Location = new Point(133, 23);
+            radioButtonAktualne.Location = new Point(143, 23);
             radioButtonAktualne.Name = "radioButtonAktualne";
             radioButtonAktualne.Size = new Size(83, 19);
             radioButtonAktualne.TabIndex = 1;
@@ -142,7 +190,7 @@
             btnDodaj.Font = new Font("Verdana", 8F);
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
             btnDodaj.ImageAlign = ContentAlignment.TopCenter;
-            btnDodaj.Location = new Point(1133, 5);
+            btnDodaj.Location = new Point(1135, 5);
             btnDodaj.Name = "btnDodaj";
             btnDodaj.Size = new Size(105, 51);
             btnDodaj.TabIndex = 12;
@@ -156,7 +204,7 @@
             btnRefresh.BackColor = Color.Transparent;
             btnRefresh.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             btnRefresh.Image = (Image)resources.GetObject("btnRefresh.Image");
-            btnRefresh.Location = new Point(10, 14);
+            btnRefresh.Location = new Point(20, 12);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(105, 36);
             btnRefresh.TabIndex = 0;
@@ -165,6 +213,18 @@
             btnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRefresh.UseVisualStyleBackColor = false;
             // 
+            // lblZalogowanoJako
+            // 
+            lblZalogowanoJako.AutoSize = true;
+            lblZalogowanoJako.BackColor = Color.Transparent;
+            lblZalogowanoJako.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            lblZalogowanoJako.ForeColor = Color.FromArgb(255, 128, 0);
+            lblZalogowanoJako.Location = new Point(-1, 45);
+            lblZalogowanoJako.Name = "lblZalogowanoJako";
+            lblZalogowanoJako.Size = new Size(110, 13);
+            lblZalogowanoJako.TabIndex = 14;
+            lblZalogowanoJako.Text = "Zalogowano jako:";
+            // 
             // fakturyToolStripMenuItem
             // 
             fakturyToolStripMenuItem.BackColor = Color.Transparent;
@@ -172,7 +232,7 @@
             fakturyToolStripMenuItem.ForeColor = Color.Silver;
             fakturyToolStripMenuItem.Image = (Image)resources.GetObject("fakturyToolStripMenuItem.Image");
             fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
-            fakturyToolStripMenuItem.Size = new Size(58, 39);
+            fakturyToolStripMenuItem.Size = new Size(58, 40);
             fakturyToolStripMenuItem.Text = "Faktury";
             fakturyToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
@@ -204,7 +264,7 @@
             kontrahenciToolStripMenuItem.ForeColor = Color.Silver;
             kontrahenciToolStripMenuItem.Image = (Image)resources.GetObject("kontrahenciToolStripMenuItem.Image");
             kontrahenciToolStripMenuItem.Name = "kontrahenciToolStripMenuItem";
-            kontrahenciToolStripMenuItem.Size = new Size(83, 39);
+            kontrahenciToolStripMenuItem.Size = new Size(83, 40);
             kontrahenciToolStripMenuItem.Text = "Kontrahenci";
             kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
@@ -229,7 +289,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 39);
+            towaryToolStripMenuItem.Size = new Size(98, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
@@ -252,7 +312,7 @@
             wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
             wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
             wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 39);
+            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
             wysyłkiToolStripMenuItem.Text = "Wysyłki";
             wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
@@ -276,40 +336,94 @@
             zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
             zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
             zamówieniaToolStripMenuItem.Name = "zamówieniaToolStripMenuItem";
-            zamówieniaToolStripMenuItem.Size = new Size(84, 39);
+            zamówieniaToolStripMenuItem.Size = new Size(84, 40);
             zamówieniaToolStripMenuItem.Text = "Zamówienia";
             zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // menuStrip1
             // 
+            menuStrip1.AutoSize = false;
             menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
+            menuStrip1.BackgroundImageLayout = ImageLayout.None;
+            menuStrip1.Dock = DockStyle.None;
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(250, 35, 0, 2);
+            menuStrip1.Padding = new Padding(250, 35, 0, 5);
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip1.Size = new Size(1244, 76);
+            menuStrip1.Size = new Size(1000, 80);
+            menuStrip1.Stretch = false;
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // lblZalogowanoJako
+            // panel2
             // 
-            lblZalogowanoJako.AutoSize = true;
-            lblZalogowanoJako.Location = new Point(494, 25);
-            lblZalogowanoJako.Name = "lblZalogowanoJako";
-            lblZalogowanoJako.Size = new Size(101, 15);
-            lblZalogowanoJako.TabIndex = 14;
-            lblZalogowanoJako.Text = "Zalogowano jako:";
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 80);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 535);
+            panel2.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.Controls.Add(linkLabel1);
+            panel3.Controls.Add(pictureBox1);
+            panel3.Controls.Add(lblZalogowanoJako);
+            panel3.Location = new Point(1000, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(260, 80);
+            panel3.TabIndex = 2;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Silver;
+            linkLabel1.AutoSize = true;
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            linkLabel1.LinkColor = Color.FromArgb(255, 192, 128);
+            linkLabel1.Location = new Point(183, 61);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(73, 13);
+            linkLabel1.TabIndex = 2;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Wyloguj się";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(111, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(35, 35);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // panel4
+            // 
+            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.Location = new Point(1250, 80);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(10, 535);
+            panel4.TabIndex = 5;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 128, 0);
-            ClientSize = new Size(1244, 641);
+            BackColor = Color.Gray;
+            ClientSize = new Size(1260, 680);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
@@ -326,8 +440,10 @@
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -355,5 +471,10 @@
         private Panel panel1;
         private Button button1;
         private Label lblZalogowanoJako;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private PictureBox pictureBox1;
+        private LinkLabel linkLabel1;
     }
 }

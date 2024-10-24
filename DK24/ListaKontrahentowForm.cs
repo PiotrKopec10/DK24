@@ -24,8 +24,8 @@ namespace DK24
         public ListaKontrahentowForm()
         {
             InitializeComponent();
-           
-           
+
+
         }
 
         private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,6 +171,11 @@ namespace DK24
             KontrahentForm kontrahentForm = new KontrahentForm();
             kontrahentForm.ShowDialog();
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

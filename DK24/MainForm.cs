@@ -48,7 +48,7 @@ namespace DK24
 
 
 
-            lblZalogowanoJako.Text ="Zalogowano jako: "+ GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
 
 
         }
@@ -90,6 +90,11 @@ namespace DK24
         private void btnDodaj_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
