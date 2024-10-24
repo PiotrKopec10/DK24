@@ -29,7 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DokumentForm));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlGoraDane = new Panel();
+            dtPickSprzed = new DateTimePicker();
+            dtPickDataWystaw = new DateTimePicker();
             chckBoxCzyFaktura = new CheckBox();
             chckBoxArchiwalny = new CheckBox();
             btnDataSprzed = new Button();
@@ -66,8 +72,6 @@
             numBoxNrDok = new NumericUpDown();
             cmbBoxTypDokumentu = new ComboBox();
             label1 = new Label();
-            pnlDataGrid = new Panel();
-            dtGridDokument = new DataGridView();
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
             btnZapisz = new Button();
@@ -76,8 +80,12 @@
             label11 = new Label();
             textBox1 = new TextBox();
             btnTowarUslugi = new Button();
-            dtPickDataWystaw = new DateTimePicker();
-            dtPickSprzed = new DateTimePicker();
+            panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            pnlDtGridZamowienia = new Panel();
+            dtGridViewZamowienia = new DataGridView();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -86,9 +94,11 @@
             ((System.ComponentModel.ISupportInitialize)numBoxDzien).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numBoxRok).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numBoxNrDok).BeginInit();
-            pnlDataGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtGridDokument).BeginInit();
             pnlPrzyciski.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlDtGridZamowienia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             SuspendLayout();
             // 
             // pnlGoraDane
@@ -119,10 +129,24 @@
             pnlGoraDane.Controls.Add(txtBoxAkronimKnt);
             pnlGoraDane.Controls.Add(grpBoxWartDok);
             pnlGoraDane.Controls.Add(grpBoxNaglowek);
-            pnlGoraDane.Location = new Point(0, 0);
+            pnlGoraDane.Location = new Point(0, 50);
             pnlGoraDane.Name = "pnlGoraDane";
-            pnlGoraDane.Size = new Size(1244, 345);
+            pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 0;
+            // 
+            // dtPickSprzed
+            // 
+            dtPickSprzed.Location = new Point(951, 279);
+            dtPickSprzed.Name = "dtPickSprzed";
+            dtPickSprzed.Size = new Size(232, 23);
+            dtPickSprzed.TabIndex = 26;
+            // 
+            // dtPickDataWystaw
+            // 
+            dtPickDataWystaw.Location = new Point(951, 227);
+            dtPickDataWystaw.Name = "dtPickDataWystaw";
+            dtPickDataWystaw.Size = new Size(232, 23);
+            dtPickDataWystaw.TabIndex = 25;
             // 
             // chckBoxCzyFaktura
             // 
@@ -480,23 +504,6 @@
             label1.TabIndex = 0;
             label1.Text = "Numer:";
             // 
-            // pnlDataGrid
-            // 
-            pnlDataGrid.Controls.Add(dtGridDokument);
-            pnlDataGrid.Location = new Point(0, 345);
-            pnlDataGrid.Name = "pnlDataGrid";
-            pnlDataGrid.Size = new Size(1244, 234);
-            pnlDataGrid.TabIndex = 1;
-            // 
-            // dtGridDokument
-            // 
-            dtGridDokument.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtGridDokument.Dock = DockStyle.Fill;
-            dtGridDokument.Location = new Point(0, 0);
-            dtGridDokument.Name = "dtGridDokument";
-            dtGridDokument.Size = new Size(1244, 234);
-            dtGridDokument.TabIndex = 0;
-            // 
             // pnlPrzyciski
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
@@ -507,15 +514,15 @@
             pnlPrzyciski.Controls.Add(label11);
             pnlPrzyciski.Controls.Add(textBox1);
             pnlPrzyciski.Controls.Add(btnTowarUslugi);
-            pnlPrzyciski.Location = new Point(1, 579);
+            pnlPrzyciski.Location = new Point(0, 615);
             pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1244, 62);
+            pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 2;
             // 
             // btnAnuluj
             // 
             btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
-            btnAnuluj.Location = new Point(1128, 14);
+            btnAnuluj.Location = new Point(1191, 15);
             btnAnuluj.Name = "btnAnuluj";
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 6;
@@ -525,7 +532,7 @@
             // btnZapisz
             // 
             btnZapisz.Image = (Image)resources.GetObject("btnZapisz.Image");
-            btnZapisz.Location = new Point(1071, 14);
+            btnZapisz.Location = new Point(1134, 15);
             btnZapisz.Name = "btnZapisz";
             btnZapisz.Size = new Size(44, 33);
             btnZapisz.TabIndex = 5;
@@ -534,7 +541,7 @@
             // btnUsun
             // 
             btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(813, 14);
+            btnUsun.Location = new Point(813, 15);
             btnUsun.Name = "btnUsun";
             btnUsun.Size = new Size(44, 33);
             btnUsun.TabIndex = 4;
@@ -543,7 +550,7 @@
             // btnDodaj
             // 
             btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(749, 14);
+            btnDodaj.Location = new Point(749, 15);
             btnDodaj.Name = "btnDodaj";
             btnDodaj.Size = new Size(40, 33);
             btnDodaj.TabIndex = 3;
@@ -555,7 +562,7 @@
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label11.ForeColor = Color.Silver;
-            label11.Location = new Point(447, 23);
+            label11.Location = new Point(447, 27);
             label11.Name = "label11";
             label11.Size = new Size(274, 15);
             label11.TabIndex = 2;
@@ -563,42 +570,130 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(152, 20);
+            textBox1.Location = new Point(152, 24);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(260, 23);
             textBox1.TabIndex = 1;
             // 
             // btnTowarUslugi
             // 
-            btnTowarUslugi.Location = new Point(14, 19);
+            btnTowarUslugi.Location = new Point(14, 23);
             btnTowarUslugi.Name = "btnTowarUslugi";
             btnTowarUslugi.Size = new Size(91, 23);
             btnTowarUslugi.TabIndex = 0;
             btnTowarUslugi.Text = "Towar/Usługi";
             btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
-            // dtPickDataWystaw
+            // panel1
             // 
-            dtPickDataWystaw.Location = new Point(951, 227);
-            dtPickDataWystaw.Name = "dtPickDataWystaw";
-            dtPickDataWystaw.Size = new Size(232, 23);
-            dtPickDataWystaw.TabIndex = 25;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1260, 50);
+            panel1.TabIndex = 3;
             // 
-            // dtPickSprzed
+            // pictureBox1
             // 
-            dtPickSprzed.Location = new Point(951, 279);
-            dtPickSprzed.Name = "dtPickSprzed";
-            dtPickSprzed.Size = new Size(232, 23);
-            dtPickSprzed.TabIndex = 26;
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, -14);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(132, 82);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 410);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 205);
+            panel2.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.Location = new Point(1250, 410);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(10, 205);
+            panel3.TabIndex = 5;
+            // 
+            // pnlDtGridZamowienia
+            // 
+            pnlDtGridZamowienia.BackColor = Color.White;
+            pnlDtGridZamowienia.Controls.Add(dtGridViewZamowienia);
+            pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
+            pnlDtGridZamowienia.Location = new Point(11, 411);
+            pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
+            pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
+            pnlDtGridZamowienia.Size = new Size(1238, 203);
+            pnlDtGridZamowienia.TabIndex = 6;
+            // 
+            // dtGridViewZamowienia
+            // 
+            dtGridViewZamowienia.AllowUserToAddRows = false;
+            dtGridViewZamowienia.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
+            dtGridViewZamowienia.Dock = DockStyle.Fill;
+            dtGridViewZamowienia.EnableHeadersVisualStyles = false;
+            dtGridViewZamowienia.GridColor = Color.Gray;
+            dtGridViewZamowienia.Location = new Point(0, 0);
+            dtGridViewZamowienia.Margin = new Padding(3, 2, 3, 2);
+            dtGridViewZamowienia.Name = "dtGridViewZamowienia";
+            dtGridViewZamowienia.ReadOnly = true;
+            dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dtGridViewZamowienia.RowHeadersVisible = false;
+            dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridViewZamowienia.Size = new Size(1238, 203);
+            dtGridViewZamowienia.TabIndex = 1;
             // 
             // DokumentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(1244, 641);
+            Controls.Add(pnlDtGridZamowienia);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(pnlPrzyciski);
-            Controls.Add(pnlDataGrid);
             Controls.Add(pnlGoraDane);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(1260, 680);
             MinimumSize = new Size(1260, 680);
@@ -616,17 +711,18 @@
             ((System.ComponentModel.ISupportInitialize)numBoxDzien).EndInit();
             ((System.ComponentModel.ISupportInitialize)numBoxRok).EndInit();
             ((System.ComponentModel.ISupportInitialize)numBoxNrDok).EndInit();
-            pnlDataGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtGridDokument).EndInit();
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlDtGridZamowienia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel pnlGoraDane;
-        private Panel pnlDataGrid;
         private Panel pnlPrzyciski;
         private GroupBox grpBoxWartDok;
         private GroupBox grpBoxNaglowek;
@@ -666,7 +762,6 @@
         private Button btnDataWys;
         private DateTimePicker dtPickerDo;
         private CheckBox chckBoxArchiwalny;
-        private DataGridView dtGridDokument;
         private Button btnUsun;
         private Button btnDodaj;
         private Label label11;
@@ -677,5 +772,11 @@
         private CheckBox chckBoxCzyFaktura;
         private DateTimePicker dtPickDataWystaw;
         private DateTimePicker dtPickSprzed;
+        private Panel panel1;
+        private PictureBox pictureBox1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel pnlDtGridZamowienia;
+        private DataGridView dtGridViewZamowienia;
     }
 }

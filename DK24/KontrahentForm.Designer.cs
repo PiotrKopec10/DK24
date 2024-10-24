@@ -578,6 +578,7 @@
             ClientSize = new Size(1244, 641);
             Controls.Add(pnlDol);
             Controls.Add(pnlDane);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(1260, 680);
             MinimumSize = new Size(1260, 680);
