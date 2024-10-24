@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DK24.Klasy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,18 +18,24 @@ namespace DK24
             InitializeComponent();
         }
 
-        private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MainForm zamowieniaForm = new MainForm();
-            this.Hide();
-            zamowieniaForm.ShowDialog();
-        }
-
         private void btnDodaj_Click(object sender, EventArgs e)
         {
             DokumentForm dodajDokument = new DokumentForm();
             this.Hide();
             dodajDokument.ShowDialog();
+        }
+
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
         }
 
         private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,6 +50,11 @@ namespace DK24
             ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
             this.Hide();
             listaKontrahentowForm.ShowDialog();
+        }
+
+        private void ListaFakturForm_Load(object sender, EventArgs e)
+        {
+            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
     }
 }

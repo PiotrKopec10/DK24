@@ -219,7 +219,7 @@
             lblZalogowanoJako.BackColor = Color.Transparent;
             lblZalogowanoJako.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             lblZalogowanoJako.ForeColor = Color.FromArgb(255, 128, 0);
-            lblZalogowanoJako.Location = new Point(-1, 45);
+            lblZalogowanoJako.Location = new Point(0, 43);
             lblZalogowanoJako.Name = "lblZalogowanoJako";
             lblZalogowanoJako.Size = new Size(110, 13);
             lblZalogowanoJako.TabIndex = 14;
@@ -239,14 +239,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
+            dodajToolStripMenuItem.Size = new Size(180, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
@@ -384,7 +384,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             linkLabel1.LinkColor = Color.FromArgb(255, 192, 128);
-            linkLabel1.Location = new Point(183, 61);
+            linkLabel1.Location = new Point(89, 61);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(73, 13);
             linkLabel1.TabIndex = 2;

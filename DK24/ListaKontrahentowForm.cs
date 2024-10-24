@@ -62,6 +62,7 @@ namespace DK24
         private void ListaKontrahentowForm_Load(object sender, EventArgs e)
         {
             WyswietlListeKontrahentow();
+            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
 
 
@@ -177,5 +178,27 @@ namespace DK24
         {
             Application.Exit();
         }
+
+        private void zamówieniaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void dodajToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DokumentForm fakturaForm = new DokumentForm();
+            this.Hide();
+            fakturaForm.ShowDialog();
+        }
+
+        private void zobaczFakturyToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
+
     }
 }
