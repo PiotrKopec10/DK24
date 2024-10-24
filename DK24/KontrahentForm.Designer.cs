@@ -80,19 +80,29 @@
             btnAnuluj = new Button();
             btnZapisz = new Button();
             toolTip1 = new ToolTip(components);
+            panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            panel2 = new Panel();
+            panel3 = new Panel();
             pnlDane.SuspendLayout();
             grpBoxDane.SuspendLayout();
             grpBoxAdres.SuspendLayout();
             pnlDol.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnlDane
             // 
+            pnlDane.BackColor = SystemColors.ControlDark;
+            pnlDane.Controls.Add(panel3);
+            pnlDane.Controls.Add(panel2);
+            pnlDane.Controls.Add(panel1);
             pnlDane.Controls.Add(grpBoxDane);
             pnlDane.Controls.Add(grpBoxAdres);
             pnlDane.Location = new Point(0, 0);
             pnlDane.Name = "pnlDane";
-            pnlDane.Size = new Size(1244, 587);
+            pnlDane.Size = new Size(1260, 624);
             pnlDane.TabIndex = 0;
             // 
             // grpBoxDane
@@ -123,9 +133,9 @@
             grpBoxDane.Controls.Add(label12);
             grpBoxDane.Controls.Add(label11);
             grpBoxDane.Controls.Add(lblAkronim);
-            grpBoxDane.Location = new Point(12, 12);
+            grpBoxDane.Location = new Point(26, 74);
             grpBoxDane.Name = "grpBoxDane";
-            grpBoxDane.Size = new Size(755, 527);
+            grpBoxDane.Size = new Size(776, 477);
             grpBoxDane.TabIndex = 1;
             grpBoxDane.TabStop = false;
             grpBoxDane.Text = "Dane";
@@ -380,9 +390,9 @@
             grpBoxAdres.Controls.Add(label3);
             grpBoxAdres.Controls.Add(label2);
             grpBoxAdres.Controls.Add(label1);
-            grpBoxAdres.Location = new Point(831, 12);
+            grpBoxAdres.Location = new Point(808, 74);
             grpBoxAdres.Name = "grpBoxAdres";
-            grpBoxAdres.Size = new Size(401, 527);
+            grpBoxAdres.Size = new Size(420, 477);
             grpBoxAdres.TabIndex = 0;
             grpBoxAdres.TabStop = false;
             grpBoxAdres.Text = "Adres:";
@@ -546,9 +556,9 @@
             pnlDol.BackgroundImage = (Image)resources.GetObject("pnlDol.BackgroundImage");
             pnlDol.Controls.Add(btnAnuluj);
             pnlDol.Controls.Add(btnZapisz);
-            pnlDol.Location = new Point(0, 579);
+            pnlDol.Location = new Point(0, 615);
             pnlDol.Name = "pnlDol";
-            pnlDol.Size = new Size(1244, 62);
+            pnlDol.Size = new Size(1260, 65);
             pnlDol.TabIndex = 1;
             // 
             // btnAnuluj
@@ -571,11 +581,47 @@
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
             // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1260, 50);
+            panel1.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, -14);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(132, 82);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 50);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 565);
+            panel2.TabIndex = 27;
+            // 
+            // panel3
+            // 
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.Location = new Point(1250, 50);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(10, 565);
+            panel3.TabIndex = 28;
+            // 
             // KontrahentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 641);
+            ClientSize = new Size(1260, 680);
             Controls.Add(pnlDol);
             Controls.Add(pnlDane);
             FormBorderStyle = FormBorderStyle.None;
@@ -592,6 +638,8 @@
             grpBoxAdres.ResumeLayout(false);
             grpBoxAdres.PerformLayout();
             pnlDol.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -647,5 +695,9 @@
         private Button btnAnuluj;
         private Button btnZapisz;
         private ToolTip toolTip1;
+        private Panel panel1;
+        private Panel panel2;
+        private PictureBox pictureBox1;
+        private Panel panel3;
     }
 }
