@@ -41,8 +41,8 @@ namespace DK24
             // Obsługa Nr Telefonu
             txtBoxNrTel.MaxLength = 9;  // najdluzszy 14
             txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
-            cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
-            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxPrefixNrTel);
+           
+           
 
             // Obsługa Banku
             txtBoxBank.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -51,7 +51,7 @@ namespace DK24
             // Obsługa Nr Bankowego
             txtBoxNrRachunku.MaxLength = 30;
             txtBoxNrRachunku.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
-            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxIBAN);
+           
 
             // Ulica
             txtBoxUlica.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -61,9 +61,8 @@ namespace DK24
             txtBoxNrDomu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
             txtBoxNrLokalu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
 
-            // Kraj
-            cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
-            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxKraj);
+          
+         
 
             // Kod pocztowy
             txtBoxKodPocz.KeyPress += new KeyPressEventHandler(txtBoxKodPocz_KeyPress);
@@ -85,8 +84,7 @@ namespace DK24
             txtBoxGmina.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
             txtBoxGmina.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
 
-            GlobalneDzialania.cmbBoxAutouzupelnianie(cmbBoxZnizka);
-
+            
             cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
             cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
         }
@@ -447,12 +445,12 @@ namespace DK24
 
         private void cmbBoxKraj_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GlobalneDzialania.PowiązKrajINumer(cmbBoxKraj, cmbBoxPrefixNrTel);
+            
         }
 
         private void cmbBoxPrefixNrTel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GlobalneDzialania.PowiązKrajINumer(cmbBoxKraj, cmbBoxPrefixNrTel);
+           
         }
 
         private void txtBoxKodPocz_KeyPress(object sender, KeyPressEventArgs e)

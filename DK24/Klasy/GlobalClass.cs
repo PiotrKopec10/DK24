@@ -20,11 +20,7 @@ namespace DK24.Klasy
 
         }
 
-        public void cmbBoxAutouzupelnianie(ComboBox comboBox)
-        {
-            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
-        }
+      
 
         public void BlokujZnakiSpecjalneIspacje(object sender, KeyPressEventArgs e)
         {
@@ -117,24 +113,7 @@ namespace DK24.Klasy
         ("Wielka Brytania", "+44", "GB"), ("Włochy", "+39", "IT")
     };
         }
-        public void PowiązKrajINumer(ComboBox cmbKraj, ComboBox cmbPrefixNrTel)
-        {
-            var spisPanstwNrKierunkowych = SpisPanstwNrKierunkowych();
-
-            var kraj = spisPanstwNrKierunkowych.FirstOrDefault(x => x.Kraj == cmbKraj.Text || x.Skrot == cmbKraj.Text);
-            if (kraj != default)
-            {
-                cmbPrefixNrTel.Text = kraj.NumerKierunkowy;
-            }
-            else
-            {
-                var numer = spisPanstwNrKierunkowych.FirstOrDefault(x => x.NumerKierunkowy == cmbPrefixNrTel.Text);
-                if (numer != default)
-                {
-                    cmbKraj.Text = numer.Kraj;
-                }
-            }
-        }
+        
 
     }
 }

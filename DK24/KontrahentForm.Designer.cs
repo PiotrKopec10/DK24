@@ -132,6 +132,7 @@
             // 
             // cmbBoxZnizka
             // 
+            cmbBoxZnizka.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxZnizka.FormattingEnabled = true;
             cmbBoxZnizka.Items.AddRange(new object[] { "0", "10" });
             cmbBoxZnizka.Location = new Point(546, 147);
@@ -184,6 +185,7 @@
             // 
             // cmbBoxIBAN
             // 
+            cmbBoxIBAN.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxIBAN.FormattingEnabled = true;
             cmbBoxIBAN.Items.AddRange(new object[] { "PL", "DE", "CZ", "US", "SK", "BI ", "DI" });
             cmbBoxIBAN.Location = new Point(132, 414);
@@ -194,13 +196,13 @@
             // 
             // cmbBoxPrefixNrTel
             // 
+            cmbBoxPrefixNrTel.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxPrefixNrTel.FormattingEnabled = true;
             cmbBoxPrefixNrTel.Items.AddRange(new object[] { "+48", "+22" });
             cmbBoxPrefixNrTel.Location = new Point(132, 244);
             cmbBoxPrefixNrTel.Name = "cmbBoxPrefixNrTel";
             cmbBoxPrefixNrTel.Size = new Size(64, 23);
             cmbBoxPrefixNrTel.TabIndex = 20;
-            cmbBoxPrefixNrTel.SelectedIndexChanged += cmbBoxPrefixNrTel_SelectedIndexChanged;
             cmbBoxPrefixNrTel.Enter += cmbBoxPrefixNrTel_Enter;
             // 
             // txtBoxNrRachunku
@@ -387,13 +389,13 @@
             // 
             // cmbBoxKraj
             // 
+            cmbBoxKraj.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxKraj.FormattingEnabled = true;
             cmbBoxKraj.Items.AddRange(new object[] { "SKIBIDI POLAND", "KIRKIDI OSOWA", "Polska", "GB" });
             cmbBoxKraj.Location = new Point(86, 189);
             cmbBoxKraj.Name = "cmbBoxKraj";
             cmbBoxKraj.Size = new Size(212, 23);
             cmbBoxKraj.TabIndex = 17;
-            cmbBoxKraj.SelectedIndexChanged += cmbBoxKraj_SelectedIndexChanged;
             cmbBoxKraj.Enter += cmbBoxKraj_Enter;
             // 
             // txtBoxPowiat
