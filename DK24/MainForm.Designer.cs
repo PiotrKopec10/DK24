@@ -32,6 +32,7 @@
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
             panel1 = new Panel();
+            button1 = new Button();
             radioButtonArchiwalne = new RadioButton();
             radioButtonAktualne = new RadioButton();
             btnDodaj = new Button();
@@ -51,7 +52,7 @@
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
-            button1 = new Button();
+            lblZalogowanoJako = new Label();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -84,6 +85,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(lblZalogowanoJako);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButtonArchiwalne);
             panel1.Controls.Add(radioButtonAktualne);
@@ -93,6 +95,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1244, 62);
             panel1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(1006, 11);
+            button1.Name = "button1";
+            button1.Size = new Size(120, 40);
+            button1.TabIndex = 13;
+            button1.Text = "SZCZEGÓŁY";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = false;
             // 
             // radioButtonArchiwalne
             // 
@@ -277,19 +293,14 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // button1
+            // lblZalogowanoJako
             // 
-            button1.BackColor = Color.Transparent;
-            button1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(1006, 11);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 40);
-            button1.TabIndex = 13;
-            button1.Text = "SZCZEGÓŁY";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = false;
+            lblZalogowanoJako.AutoSize = true;
+            lblZalogowanoJako.Location = new Point(494, 25);
+            lblZalogowanoJako.Name = "lblZalogowanoJako";
+            lblZalogowanoJako.Size = new Size(101, 15);
+            lblZalogowanoJako.TabIndex = 14;
+            lblZalogowanoJako.Text = "Zalogowano jako:";
             // 
             // MainForm
             // 
@@ -343,5 +354,6 @@
         private Button btnDodaj;
         private Panel panel1;
         private Button button1;
+        private Label lblZalogowanoJako;
     }
 }

@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DK24.Klasy;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using ComboBox = System.Windows.Forms.ComboBox;
+﻿using DK24.Klasy;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace DK24
@@ -23,6 +12,9 @@ namespace DK24
 
         KontrahentClass DzialanieNaKontrahencie = new KontrahentClass();
         KontrahentClass.Kontrahent AktualnyKontrahent = new KontrahentClass.Kontrahent();
+
+
+        private KontrahentClass.Kontrahent pobieranyKontrahent;
 
 
         public KontrahentForm()
@@ -39,10 +31,10 @@ namespace DK24
             txtBoxRegon.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
 
             // Obsługa Nr Telefonu
-            txtBoxNrTel.MaxLength = 14;  
+            txtBoxNrTel.MaxLength = 14;
             txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
-           
-           
+
+
 
             // Obsługa Banku
             txtBoxBank.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -51,7 +43,7 @@ namespace DK24
             // Obsługa Nr Bankowego
             txtBoxNrRachunku.MaxLength = 30;
             txtBoxNrRachunku.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
-           
+
 
             // Ulica
             txtBoxUlica.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
@@ -61,8 +53,6 @@ namespace DK24
             txtBoxNrDomu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
             txtBoxNrLokalu.KeyPress += new KeyPressEventHandler(GlobalneDzialania.BlokujZnakiSpecjalneIspacje);
 
-          
-         
 
             // Kod pocztowy
             txtBoxKodPocz.KeyPress += new KeyPressEventHandler(txtBoxKodPocz_KeyPress);
@@ -84,7 +74,7 @@ namespace DK24
             txtBoxGmina.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
             txtBoxGmina.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
 
-            
+
             cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
             cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
         }
@@ -366,24 +356,74 @@ namespace DK24
                     string pustePole = pustePola[0];
                     Control pustePoleControl = null;
 
-                    if (pustePole == "Akronim") pustePoleControl = txtBoxAkronim;
-                    else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwa;
-                    else if (pustePole == "NIP") pustePoleControl = txtBoxNIP;
-                    else if (pustePole == "Regon") pustePoleControl = txtBoxRegon;
-                    else if (pustePole == "Numer Telefonu") pustePoleControl = txtBoxNrTel;
-                    else if (pustePole == "Email") pustePoleControl = txtBoxEmail;
-                    else if (pustePole == "URL") pustePoleControl = txtBoxUrl;
-                    else if (pustePole == "Bank") pustePoleControl = txtBoxBank;
-                    else if (pustePole == "Nr Rachunku") pustePoleControl = txtBoxNrRachunku;
-                    else if (pustePole == "Ulica") pustePoleControl = txtBoxUlica;
-                    else if (pustePole == "Nr Domu") pustePoleControl = txtBoxNrDomu;
-                    else if (pustePole == "Kod Pocztowy") pustePoleControl = txtBoxKodPocz;
-                    else if (pustePole == "Miasto") pustePoleControl = txtBoxMiasto;
-                    else if (pustePole == "Numer Kierunkowy") pustePoleControl = cmbBoxPrefixNrTel;
-                    else if (pustePole == "Zniżka") pustePoleControl = cmbBoxZnizka;
-                    else if (pustePole == "IBAN") pustePoleControl = cmbBoxIBAN;
-                    else if (pustePole == "Kraj") pustePoleControl = cmbBoxKraj;
-
+                    if (pustePole == "Akronim")
+                    {
+                        pustePoleControl = txtBoxAkronim;
+                    }
+                    else if (pustePole == "Nazwa")
+                    {
+                        pustePoleControl = txtBoxNazwa;
+                    }
+                    else if (pustePole == "NIP")
+                    {
+                        pustePoleControl = txtBoxNIP;
+                    }
+                    else if (pustePole == "Regon")
+                    {
+                        pustePoleControl = txtBoxRegon;
+                    }
+                    else if (pustePole == "Numer Telefonu")
+                    {
+                        pustePoleControl = txtBoxNrTel;
+                    }
+                    else if (pustePole == "Email")
+                    {
+                        pustePoleControl = txtBoxEmail;
+                    }
+                    else if (pustePole == "URL")
+                    {
+                        pustePoleControl = txtBoxUrl;
+                    }
+                    else if (pustePole == "Bank")
+                    {
+                        pustePoleControl = txtBoxBank;
+                    }
+                    else if (pustePole == "Nr Rachunku")
+                    {
+                        pustePoleControl = txtBoxNrRachunku;
+                    }
+                    else if (pustePole == "Ulica")
+                    {
+                        pustePoleControl = txtBoxUlica;
+                    }
+                    else if (pustePole == "Nr Domu")
+                    {
+                        pustePoleControl = txtBoxNrDomu;
+                    }
+                    else if (pustePole == "Kod Pocztowy")
+                    {
+                        pustePoleControl = txtBoxKodPocz;
+                    }
+                    else if (pustePole == "Miasto")
+                    {
+                        pustePoleControl = txtBoxMiasto;
+                    }
+                    else if (pustePole == "Numer Kierunkowy")
+                    {
+                        pustePoleControl = cmbBoxPrefixNrTel;
+                    }
+                    else if (pustePole == "Zniżka")
+                    {
+                        pustePoleControl = cmbBoxZnizka;
+                    }
+                    else if (pustePole == "IBAN")
+                    {
+                        pustePoleControl = cmbBoxIBAN;
+                    }
+                    else if (pustePole == "Kraj")
+                    {
+                        pustePoleControl = cmbBoxKraj;
+                    }
 
                     MessageBox.Show($"Pole {pustePole} nie może być puste!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -396,42 +436,69 @@ namespace DK24
             }
 
 
-            AktualnyAdres.street = GlobalneDzialania.WyczyscTekst(txtBoxUlica.Text);
-            AktualnyAdres.house_number = GlobalneDzialania.WyczyscTekst(txtBoxNrDomu.Text);
-            AktualnyAdres.apartment_number = GlobalneDzialania.WyczyscTekst(txtBoxNrLokalu.Text);
-            AktualnyAdres.country = cmbBoxKraj.SelectedItem.ToString();
-            AktualnyAdres.postal_code = txtBoxKodPocz.Text;
-            AktualnyAdres.city = GlobalneDzialania.WyczyscTekst(txtBoxMiasto.Text);
-            AktualnyAdres.voivodeship = GlobalneDzialania.WyczyscTekst(txtBoxWoj.Text);
-            AktualnyAdres.powiat = GlobalneDzialania.WyczyscTekst(txtBoxPowiat.Text);
-            AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
+            
 
-            if (DzialaniaNaAdresie.PobierzAdresId(AktualnyAdres) == -1)
+
+            //musimy sprawdzic forme czy my dodajemy czy edytujemy bo nie mozemy edytowac po aktualnym adresie jezeli zmieni sie np tylko nazwa firmy to nam nie doda
+
+            if (GlobalClass.StanFormyKontrahenta.StanFormy == 3)
             {
-                DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
-                AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzAdresId(AktualnyAdres);
-                AktualnyKontrahent.acronym = txtBoxAkronim.Text;
-                AktualnyKontrahent.name = txtBoxNazwa.Text;
-                AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
-                AktualnyKontrahent.discount_percentage = Convert.ToDecimal(cmbBoxZnizka.SelectedItem);
-                AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
-                AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
-                AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString();
-                AktualnyKontrahent.email = txtBoxEmail.Text;
-                AktualnyKontrahent.url = txtBoxUrl.Text;
-                AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
-                AktualnyKontrahent.bank_name = txtBoxBank.Text;
-                AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
-                AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
-                AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
 
-                DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
-            }
-            else
+                AktualnyAdres.street = GlobalneDzialania.WyczyscTekst(txtBoxUlica.Text);
+                AktualnyAdres.house_number = GlobalneDzialania.WyczyscTekst(txtBoxNrDomu.Text);
+                AktualnyAdres.apartment_number = GlobalneDzialania.WyczyscTekst(txtBoxNrLokalu.Text);
+                AktualnyAdres.country = cmbBoxKraj.SelectedItem.ToString();
+                AktualnyAdres.postal_code = txtBoxKodPocz.Text;
+                AktualnyAdres.city = GlobalneDzialania.WyczyscTekst(txtBoxMiasto.Text);
+                AktualnyAdres.voivodeship = GlobalneDzialania.WyczyscTekst(txtBoxWoj.Text);
+                AktualnyAdres.powiat = GlobalneDzialania.WyczyscTekst(txtBoxPowiat.Text);
+                AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
+
+
+
+                if (DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres) == -1)
+                {
+                    DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
+
+                    AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
+                    AktualnyKontrahent.acronym = txtBoxAkronim.Text;
+                    AktualnyKontrahent.name = txtBoxNazwa.Text;
+                    AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
+                    AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
+                    AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
+                    AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
+                    AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString();
+                    AktualnyKontrahent.email = txtBoxEmail.Text;
+                    AktualnyKontrahent.url = txtBoxUrl.Text;
+                    AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
+                    AktualnyKontrahent.bank_name = txtBoxBank.Text;
+                    AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
+                    AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
+                    AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
+
+                    DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+                }
+                else
+                {
+                    MessageBox.Show("Podany Adres jest już przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }else if(GlobalClass.StanFormyKontrahenta.StanFormy == 2) 
             {
-                MessageBox.Show("Podany Adres jest już przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                //tutaj dajemy co robimy po edycji- czyli walidujemy wszystkie pola
+
+
+              
+
+
+                //musimy zweryfikowac czy zmienil sie adres czy dane kontrahenta i w zaleznosci od tego dobrac funkcje
+
             }
+
+
+
         }
 
 
@@ -445,12 +512,12 @@ namespace DK24
 
         private void cmbBoxKraj_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cmbBoxPrefixNrTel_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void txtBoxKodPocz_KeyPress(object sender, KeyPressEventArgs e)
@@ -573,5 +640,100 @@ namespace DK24
         {
             txtBoxMiasto.BackColor = SystemColors.Window;
         }
+
+        private void KontrahentForm_Load(object sender, EventArgs e)
+        {
+
+            if (GlobalClass.StanFormyKontrahenta.StanFormy == 1)
+            {
+                btnZapisz.Visible = false;
+                AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
+                AktualnyAdres.address_id = AktualnyKontrahent.address_id;
+                AktualnyAdres = DzialaniaNaAdresie.PobierzAdresWgId(AktualnyAdres.address_id);
+                WstawPolaDoEdycji();
+
+            }
+            else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
+            {
+                btnZapisz.Visible = true;
+                AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
+                AktualnyAdres.address_id = AktualnyKontrahent.address_id;
+                AktualnyAdres = DzialaniaNaAdresie.PobierzAdresWgId(AktualnyAdres.address_id);
+                WstawPolaDoEdycji();
+
+                //TU TRZEBA DAC UPDATE I NAPISAC FUNKCJE UPDATE W KONTRAHENTCLASS UPDATEKONTRAHENTA gdzie bedzie wszystkie pola bral i updateowal w bazie
+                // musi byc tez jakis messagebox czy na pewno chcesz edytowac kontrahenta
+
+
+
+
+            }
+            else if (GlobalClass.StanFormyKontrahenta.StanFormy == 3)
+            {
+
+                btnZapisz.Visible = true;
+
+            }
+
+
+
+
+
+        }
+
+
+
+        void WstawPolaDoEdycji()
+        {
+
+
+            txtBoxAkronim.Text = AktualnyKontrahent.acronym;
+            txtBoxNazwa.Text = AktualnyKontrahent.name;
+            txtBoxNIP.Text = AktualnyKontrahent.nip;
+            txtBoxRegon.Text = AktualnyKontrahent.regon;
+            txtBoxNrTel.Text = AktualnyKontrahent.phone_number;
+            txtBoxEmail.Text = AktualnyKontrahent.email;
+            txtBoxUrl.Text = AktualnyKontrahent.url;
+            txtBoxBank.Text = AktualnyKontrahent.bank_name;
+            txtBoxNrRachunku.Text = AktualnyKontrahent.bank_account_number;
+
+            cmbBoxZnizka.Text = AktualnyKontrahent.discount_percentage.ToString();
+            cmbBoxPrefixNrTel.Text = AktualnyKontrahent.phone_prefix;
+
+            cmbBoxIBAN.Text = AktualnyKontrahent.bank_iban_prefix;
+
+
+            rchTxtBoxOpis.Text = AktualnyKontrahent.company_description;
+
+
+
+
+            if (AktualnyKontrahent.is_archived == 1)
+            {
+                chckBoxArchiwalny.Checked = true;
+            }
+
+
+
+
+            txtBoxUlica.Text = AktualnyAdres.street;
+            txtBoxNrDomu.Text = AktualnyAdres.house_number;
+            txtBoxNrLokalu.Text = AktualnyAdres.apartment_number;
+            txtBoxKodPocz.Text = AktualnyAdres.postal_code;
+            txtBoxMiasto.Text = AktualnyAdres.city;
+            txtBoxWoj.Text = AktualnyAdres.voivodeship;
+            txtBoxPowiat.Text = AktualnyAdres.powiat;
+            txtBoxGmina.Text = AktualnyAdres.gmina;
+
+            cmbBoxKraj.Text = AktualnyAdres.country;
+
+
+
+
+        }
+
+
+
+
     }
 }

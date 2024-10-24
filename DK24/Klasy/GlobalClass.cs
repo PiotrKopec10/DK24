@@ -11,7 +11,37 @@ namespace DK24.Klasy
                 "DATABASE=serwer197774_drukarnia;" +
                 "UID=serwer197774_drukarnia;" +
                 "PASSWORD=Zu41Xut!C1;";
+
+            
         }
+
+        public static class KtoZalogowany
+        {
+
+            public static string ZalogowanyUzytkownik { get; set;}
+
+        }
+
+
+        public static class KontrahentSesja
+        {
+            public static KontrahentClass.Kontrahent AktualnyKontrahent { get; set; }
+
+        }
+
+
+
+
+
+        public static class StanFormyKontrahenta
+        {
+
+
+            //Jezeli 1 to podglad, jezeli 2 to edycja, 3 dodaj
+            public static int StanFormy { get; set; }
+
+        }
+
 
         public string WyczyscTekst(string TekstDoWyczyszczenia)
         {

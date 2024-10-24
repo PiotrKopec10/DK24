@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaKontrahentowForm));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlDataGrid = new Panel();
             pnlPrzyciski = new Panel();
             btnZaznacz = new Button();
@@ -96,6 +97,7 @@
             btnZaznacz.Size = new Size(44, 33);
             btnZaznacz.TabIndex = 15;
             btnZaznacz.UseVisualStyleBackColor = true;
+            btnZaznacz.Click += btnZaznacz_Click;
             // 
             // btnCofnij
             // 
@@ -123,6 +125,7 @@
             btnEdytuj.Size = new Size(44, 33);
             btnEdytuj.TabIndex = 12;
             btnEdytuj.UseVisualStyleBackColor = true;
+            btnEdytuj.Click += btnEdytuj_Click;
             // 
             // btnDodaj
             // 
@@ -194,12 +197,29 @@
             // 
             // dtGridLstKnt
             // 
+            dtGridLstKnt.AllowUserToAddRows = false;
+            dtGridLstKnt.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridLstKnt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtGridLstKnt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtGridLstKnt.BackgroundColor = Color.FromArgb(222, 222, 222);
             dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtGridLstKnt.Dock = DockStyle.Fill;
             dtGridLstKnt.Location = new Point(0, 0);
             dtGridLstKnt.Name = "dtGridLstKnt";
+            dtGridLstKnt.ReadOnly = true;
+            dtGridLstKnt.RowHeadersVisible = false;
+            dtGridLstKnt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridLstKnt.ShowCellErrors = false;
+            dtGridLstKnt.ShowCellToolTips = false;
+            dtGridLstKnt.ShowEditingIcon = false;
+            dtGridLstKnt.ShowRowErrors = false;
             dtGridLstKnt.Size = new Size(1244, 566);
             dtGridLstKnt.TabIndex = 0;
+            dtGridLstKnt.RowEnter += dtGridLstKnt_RowEnter;
             // 
             // menuStrip1
             // 
@@ -210,7 +230,7 @@
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(250, 35, 0, 2);
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip1.Size = new Size(1244, 76);
+            menuStrip1.Size = new Size(1240, 76);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -240,14 +260,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Size = new Size(154, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
@@ -312,15 +332,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 641);
+            ClientSize = new Size(1240, 637);
             Controls.Add(menuStrip1);
             Controls.Add(pnlDataGrid);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(1260, 680);
             MinimumSize = new Size(1260, 680);
             Name = "ListaKontrahentowForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "D&K - Lista Kontrahentów";
+            Load += ListaKontrahentowForm_Load;
             pnlDataGrid.ResumeLayout(false);
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();

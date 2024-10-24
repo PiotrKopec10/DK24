@@ -147,7 +147,7 @@
             rchTxtBoxOpis.Name = "rchTxtBoxOpis";
             rchTxtBoxOpis.Size = new Size(253, 173);
             rchTxtBoxOpis.TabIndex = 25;
-            rchTxtBoxOpis.Text = "Opis:";
+            rchTxtBoxOpis.Text = "";
             // 
             // chckBoxArchiwalny
             // 
@@ -584,6 +584,7 @@
             Name = "KontrahentForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Kontrahent";
+            Load += KontrahentForm_Load;
             pnlDane.ResumeLayout(false);
             grpBoxDane.ResumeLayout(false);
             grpBoxDane.PerformLayout();

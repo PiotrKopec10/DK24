@@ -45,10 +45,11 @@ namespace DK24
 
             //if (DzialaniaNaUserze.PobierzHasloDlaUsera(AktualnyUser) == true)
             //{
+            //    GlobalClass.KtoZalogowany.ZalogowanyUzytkownik = txtBoxLogin.Text;
             //    this.Hide();
             //    mainForm.ShowDialog();
             //}
-            //else if(txtBoxLogin.Text.Length==0 || txtBoxPassword.Text.Length == 0)
+            //else if (txtBoxLogin.Text.Length == 0 || txtBoxPassword.Text.Length == 0)
             //{
             //    lblZleHaslo.Location = new Point(415, 283);
             //    lblZleHaslo.Text = "Uzupe³nij pola aby siê zalogowaæ";

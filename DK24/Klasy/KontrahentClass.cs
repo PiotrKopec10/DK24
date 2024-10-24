@@ -1,16 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DK24.Klasy
 {
-    internal class KontrahentClass
+    public class KontrahentClass
     {
 
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
+
+
         public class Kontrahent
         {
             public int company_details_id = 0;
@@ -27,7 +24,7 @@ namespace DK24.Klasy
             public string phone_number = "";
             public string email = "";
             public string url = "";
-            public decimal discount_percentage = 0;
+            public int discount_percentage = 0;
             public int is_archived = 0;
             public DateTime created_at;
             public DateTime modified_at;
@@ -105,6 +102,62 @@ namespace DK24.Klasy
 
 
 
+        public Kontrahent PobierzKontrahentaWgId(int idPobranegoKontrahenta)
+        {
+
+            Kontrahent pobranyKontrahent = new Kontrahent();
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+            try
+            {
+                polaczenie.Open();
+
+                string query = "SELECT * FROM serwer197774_drukarnia.company_details WHERE company_details_id = @idPobranegoKontrahenta;";
+                MySqlCommand PobierzKontrahenta = new MySqlCommand(query, polaczenie);
+                PobierzKontrahenta.Parameters.AddWithValue("@idPobranegoKontrahenta", idPobranegoKontrahenta);
+
+                MySqlDataReader odczytKontrahentaWgId = PobierzKontrahenta.ExecuteReader();
+                if (odczytKontrahentaWgId.Read())
+                {
+                    if (odczytKontrahentaWgId.HasRows)
+                    {
+                        pobranyKontrahent.company_details_id = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("company_details_id")) ? odczytKontrahentaWgId.GetInt32("company_details_id") : 0;
+                        pobranyKontrahent.user_id = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("user_id")) ? odczytKontrahentaWgId.GetInt32("user_id") : 0;
+                        pobranyKontrahent.address_id = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("address_id")) ? odczytKontrahentaWgId.GetInt32("address_id") : 0;
+                        pobranyKontrahent.name = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("name")) ? odczytKontrahentaWgId.GetString("name") : string.Empty;
+                        pobranyKontrahent.acronym = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("acronym")) ? odczytKontrahentaWgId.GetString("acronym") : string.Empty;
+                        pobranyKontrahent.bank_iban_prefix = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("bank_iban_prefix")) ? odczytKontrahentaWgId.GetString("bank_iban_prefix") : string.Empty;
+                        pobranyKontrahent.bank_name = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("bank_name")) ? odczytKontrahentaWgId.GetString("bank_name") : string.Empty;
+                        pobranyKontrahent.bank_account_number = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("bank_account_number")) ? odczytKontrahentaWgId.GetString("bank_account_number") : string.Empty;
+                        pobranyKontrahent.nip = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("nip")) ? odczytKontrahentaWgId.GetString("nip") : string.Empty;
+                        pobranyKontrahent.regon = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("regon")) ? odczytKontrahentaWgId.GetString("regon") : string.Empty;
+                        pobranyKontrahent.phone_prefix = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("phone_prefix")) ? odczytKontrahentaWgId.GetString("phone_prefix") : string.Empty;
+                        pobranyKontrahent.phone_number = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("phone_number")) ? odczytKontrahentaWgId.GetString("phone_number") : string.Empty;
+                        pobranyKontrahent.email = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("email")) ? odczytKontrahentaWgId.GetString("email") : string.Empty;
+                        pobranyKontrahent.url = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("url")) ? odczytKontrahentaWgId.GetString("url") : string.Empty;
+                        pobranyKontrahent.discount_percentage = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("discount_percentage")) ? odczytKontrahentaWgId.GetInt32("discount_percentage") : 0;
+                        pobranyKontrahent.is_archived = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("is_archived")) ? odczytKontrahentaWgId.GetInt32("is_archived") : 0;
+                        pobranyKontrahent.created_at = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("created_at")) ? odczytKontrahentaWgId.GetDateTime("created_at") : DateTime.MinValue;
+                        pobranyKontrahent.modified_at = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("modified_at")) ? odczytKontrahentaWgId.GetDateTime("modified_at") : DateTime.MinValue;
+                        pobranyKontrahent.company_description = !odczytKontrahentaWgId.IsDBNull(odczytKontrahentaWgId.GetOrdinal("company_description")) ? odczytKontrahentaWgId.GetString("company_description") : string.Empty;
+                    }
+                }
+
+                odczytKontrahentaWgId.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Błąd Pobierania Kontrahenta!!! " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+
+            return pobranyKontrahent;
+        }
+
 
     }
+
 }

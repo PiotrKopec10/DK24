@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DK24.Klasy.KontrahentClass;
 
 namespace DK24.Klasy
 {
@@ -76,7 +77,7 @@ namespace DK24.Klasy
 
 
 
-        public int PobierzAdresId(Address PobieranyAdres)
+        public int PobierzIdAdresu(Address PobieranyAdres)
         {
             int idAdresu = -1;
 
@@ -136,6 +137,59 @@ namespace DK24.Klasy
 
             }
         }
+
+
+
+        public Address PobierzAdresWgId(int idPobranegoAdresu)
+        {
+            Address pobranyAdres = new Address();
+
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+            try
+            {
+                polaczenie.Open();
+
+               
+                string query = "SELECT * FROM serwer197774_drukarnia.addresses WHERE address_id = @idPobranegoAdresu;";
+                MySqlCommand PobierzAdres = new MySqlCommand(query, polaczenie);
+                PobierzAdres.Parameters.AddWithValue("@idPobranegoAdresu", idPobranegoAdresu);
+
+                MySqlDataReader odczytAdresuWgId = PobierzAdres.ExecuteReader();
+
+                if (odczytAdresuWgId.Read())
+                {
+                    if (odczytAdresuWgId.HasRows)
+                    {
+                        pobranyAdres.address_id = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("address_id")) ? odczytAdresuWgId.GetInt32("address_id") : 0;
+                        pobranyAdres.street = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("street")) ? odczytAdresuWgId.GetString("street") : string.Empty;
+                        pobranyAdres.house_number = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("house_number")) ? odczytAdresuWgId.GetString("house_number") : string.Empty;
+                        pobranyAdres.apartment_number = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("apartment_number")) ? odczytAdresuWgId.GetString("apartment_number") : string.Empty;
+                        pobranyAdres.postal_code = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("postal_code")) ? odczytAdresuWgId.GetString("postal_code") : string.Empty;
+                        pobranyAdres.city = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("city")) ? odczytAdresuWgId.GetString("city") : string.Empty;
+                        pobranyAdres.voivodeship = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("voivodeship")) ? odczytAdresuWgId.GetString("voivodeship") : string.Empty;
+                        pobranyAdres.powiat = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("powiat")) ? odczytAdresuWgId.GetString("powiat") : string.Empty;
+                        pobranyAdres.gmina = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("gmina")) ? odczytAdresuWgId.GetString("gmina") : string.Empty;
+                        pobranyAdres.country = !odczytAdresuWgId.IsDBNull(odczytAdresuWgId.GetOrdinal("country")) ? odczytAdresuWgId.GetString("country") : string.Empty;
+                    }
+                }
+
+                odczytAdresuWgId.Close();
+
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Błąd Pobierania Adresu!!! " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+
+            return pobranyAdres;
+        }
+
 
 
     }
