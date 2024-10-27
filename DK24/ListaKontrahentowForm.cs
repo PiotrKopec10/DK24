@@ -141,12 +141,7 @@ namespace DK24
 
         }
 
-        private void dtGridLstKnt_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
 
-
-
-        }
 
         private void btnZaznacz_Click(object sender, EventArgs e)
         {
@@ -200,5 +195,22 @@ namespace DK24
             listaFakturForm.ShowDialog();
         }
 
+        private void btnUsun_Click(object sender, EventArgs e)
+        {
+            PobierzKontrahenta();
+
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć kontrahenta?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                dzialaniaNaKontrahencie.UsunKontrahenta(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
+                WyswietlListeKontrahentow();
+            }
+            else
+            {            
+                MessageBox.Show("Operacja anulowana.");
+            }
+
+        }
     }
 }

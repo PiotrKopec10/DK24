@@ -119,6 +119,7 @@
             btnUsun.Size = new Size(44, 33);
             btnUsun.TabIndex = 13;
             btnUsun.UseVisualStyleBackColor = true;
+            btnUsun.Click += btnUsun_Click;
             // 
             // btnEdytuj
             // 

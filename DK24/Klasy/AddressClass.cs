@@ -1,10 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DK24.Klasy.KontrahentClass;
 
 namespace DK24.Klasy
 {
@@ -37,28 +31,36 @@ namespace DK24.Klasy
             {
                 polaczenie.Open();
 
-                string DodajAdres = @"INSERT INTO `serwer197774_drukarnia`.`addresses`
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+
+
+                    string DodajAdres = @"INSERT INTO `serwer197774_drukarnia`.`addresses`
                                   (`address_id`, `country`, `voivodeship`, `powiat`, `gmina`, `city`, `postal_code`, `street`, `house_number`, `apartment_number`)
                                   VALUES (@address_id, @country, @voivodeship, @powiat, @gmina, @city, @postal_code, @street, @house_number, @apartment_number);";
 
-                using (MySqlCommand sqlDodajAdres = new MySqlCommand(DodajAdres, polaczenie))
-                {
+                    using (MySqlCommand sqlDodajAdres = new MySqlCommand(DodajAdres, polaczenie))
+                    {
 
-                    sqlDodajAdres.Parameters.AddWithValue("@address_id", DodawanyAdres.address_id);
-                    sqlDodajAdres.Parameters.AddWithValue("@country", DodawanyAdres.country);
-                    sqlDodajAdres.Parameters.AddWithValue("@voivodeship", DodawanyAdres.voivodeship);
-                    sqlDodajAdres.Parameters.AddWithValue("@powiat", DodawanyAdres.powiat);
-                    sqlDodajAdres.Parameters.AddWithValue("@gmina", DodawanyAdres.gmina);
-                    sqlDodajAdres.Parameters.AddWithValue("@city", DodawanyAdres.city);
-                    sqlDodajAdres.Parameters.AddWithValue("@postal_code", DodawanyAdres.postal_code);
-                    sqlDodajAdres.Parameters.AddWithValue("@street", DodawanyAdres.street);
-                    sqlDodajAdres.Parameters.AddWithValue("@house_number", DodawanyAdres.house_number);
-                    sqlDodajAdres.Parameters.AddWithValue("@apartment_number", DodawanyAdres.apartment_number);
-
-
-                    sqlDodajAdres.ExecuteNonQuery();
+                        sqlDodajAdres.Parameters.AddWithValue("@address_id", DodawanyAdres.address_id);
+                        sqlDodajAdres.Parameters.AddWithValue("@country", DodawanyAdres.country);
+                        sqlDodajAdres.Parameters.AddWithValue("@voivodeship", DodawanyAdres.voivodeship);
+                        sqlDodajAdres.Parameters.AddWithValue("@powiat", DodawanyAdres.powiat);
+                        sqlDodajAdres.Parameters.AddWithValue("@gmina", DodawanyAdres.gmina);
+                        sqlDodajAdres.Parameters.AddWithValue("@city", DodawanyAdres.city);
+                        sqlDodajAdres.Parameters.AddWithValue("@postal_code", DodawanyAdres.postal_code);
+                        sqlDodajAdres.Parameters.AddWithValue("@street", DodawanyAdres.street);
+                        sqlDodajAdres.Parameters.AddWithValue("@house_number", DodawanyAdres.house_number);
+                        sqlDodajAdres.Parameters.AddWithValue("@apartment_number", DodawanyAdres.apartment_number);
 
 
+                        sqlDodajAdres.ExecuteNonQuery();
+
+
+                    }
+
+                    transakcja.Commit();
                 }
 
             }
@@ -150,7 +152,8 @@ namespace DK24.Klasy
             {
                 polaczenie.Open();
 
-               
+
+
                 string query = "SELECT * FROM serwer197774_drukarnia.addresses WHERE address_id = @idPobranegoAdresu;";
                 MySqlCommand PobierzAdres = new MySqlCommand(query, polaczenie);
                 PobierzAdres.Parameters.AddWithValue("@idPobranegoAdresu", idPobranegoAdresu);
@@ -189,6 +192,64 @@ namespace DK24.Klasy
 
             return pobranyAdres;
         }
+
+
+
+
+
+
+        public void EdytujAdres(Address EdytowanyAdres)
+        {
+            MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
+
+            try
+            {
+                polaczenie.Open();
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+                    string EdytujAdres = @"UPDATE `serwer197774_drukarnia`.`addresses`
+                                   SET `country` = @country, 
+                                       `voivodeship` = @voivodeship, 
+                                       `powiat` = @powiat, 
+                                       `gmina` = @gmina, 
+                                       `city` = @city, 
+                                       `postal_code` = @postal_code, 
+                                       `street` = @street, 
+                                       `house_number` = @house_number, 
+                                       `apartment_number` = @apartment_number
+                                   WHERE `address_id` = @address_id;";
+
+                    using (MySqlCommand sqlEdytujAdres = new MySqlCommand(EdytujAdres, polaczenie, transakcja))
+                    {
+                        sqlEdytujAdres.Parameters.AddWithValue("@address_id", EdytowanyAdres.address_id);
+                        sqlEdytujAdres.Parameters.AddWithValue("@country", EdytowanyAdres.country);
+                        sqlEdytujAdres.Parameters.AddWithValue("@voivodeship", EdytowanyAdres.voivodeship);
+                        sqlEdytujAdres.Parameters.AddWithValue("@powiat", EdytowanyAdres.powiat);
+                        sqlEdytujAdres.Parameters.AddWithValue("@gmina", EdytowanyAdres.gmina);
+                        sqlEdytujAdres.Parameters.AddWithValue("@city", EdytowanyAdres.city);
+                        sqlEdytujAdres.Parameters.AddWithValue("@postal_code", EdytowanyAdres.postal_code);
+                        sqlEdytujAdres.Parameters.AddWithValue("@street", EdytowanyAdres.street);
+                        sqlEdytujAdres.Parameters.AddWithValue("@house_number", EdytowanyAdres.house_number);
+                        sqlEdytujAdres.Parameters.AddWithValue("@apartment_number", EdytowanyAdres.apartment_number);
+
+                        sqlEdytujAdres.ExecuteNonQuery();
+                    }
+
+                    transakcja.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd Edytowania Adresu: " + ex.Message, "Błąd");
+            }
+            
+
+
+                polaczenie.Close();
+            
+        }
+
 
 
 

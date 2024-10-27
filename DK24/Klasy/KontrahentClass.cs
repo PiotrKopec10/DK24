@@ -45,49 +45,52 @@ namespace DK24.Klasy
             {
                 polaczenie.Open();
 
-                string DodajKontrahenta = @"INSERT INTO `serwer197774_drukarnia`.`company_details`
-                         (`user_id`, `address_id`, `name`, `acronym`, `bank_iban_prefix`, `bank_name`, `bank_account_number`, 
-                          `nip`, `regon`, `phone_prefix`, `phone_number`, `email`, `discount_percentage`, `is_archived`, `created_at`, `modified_at`, 
-                          `company_description`)
-                         VALUES (@user_id, @address_id, @name, @acronym, @bank_iban_prefix, @bank_name, @bank_account_number, 
-                                 @nip, @regon, @phone_prefix, @phone_number, @email, @discount_percentage, @is_archived, current_timestamp(), 
-                                 '0000-00-00 00:00:00', @company_description);";
 
 
-
-                using (MySqlCommand sqlDodajKontrahenta = new MySqlCommand(DodajKontrahenta, polaczenie))
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
                 {
 
-
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@user_id", DodawanyKontrahent.user_id);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@name", DodawanyKontrahent.name);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@acronym", DodawanyKontrahent.acronym);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@address_id", DodawanyKontrahent.address_id);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@bank_iban_prefix", DodawanyKontrahent.bank_iban_prefix);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@bank_name", DodawanyKontrahent.bank_name);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@bank_account_number", DodawanyKontrahent.bank_account_number);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@nip", DodawanyKontrahent.nip);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@regon", DodawanyKontrahent.regon);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@phone_prefix", DodawanyKontrahent.phone_prefix);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@phone_number", DodawanyKontrahent.phone_number);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@email", DodawanyKontrahent.email);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@discount_percentage", DodawanyKontrahent.discount_percentage);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@is_archived", DodawanyKontrahent.is_archived);
-                    sqlDodajKontrahenta.Parameters.AddWithValue("@company_description", DodawanyKontrahent.company_description);
+                    string DodajKontrahenta = @"INSERT INTO `serwer197774_drukarnia`.`company_details`
+                         (`user_id`, `address_id`, `name`, `acronym`, `bank_iban_prefix`, `bank_name`, `bank_account_number`, 
+                          `nip`, `regon`, `phone_prefix`, `phone_number`, `email`,`url` ,`discount_percentage`, `is_archived`, `created_at`, `modified_at`, 
+                          `company_description`)
+                         VALUES (@user_id, @address_id, @name, @acronym, @bank_iban_prefix, @bank_name, @bank_account_number, 
+                                 @nip, @regon, @phone_prefix, @phone_number, @email, @url ,@discount_percentage, @is_archived, current_timestamp(), 
+                                 current_timestamp(), @company_description);";
 
 
 
+                    using (MySqlCommand sqlDodajKontrahenta = new MySqlCommand(DodajKontrahenta, polaczenie))
+                    {
 
 
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@user_id", DodawanyKontrahent.user_id);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@name", DodawanyKontrahent.name);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@acronym", DodawanyKontrahent.acronym);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@address_id", DodawanyKontrahent.address_id);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@bank_iban_prefix", DodawanyKontrahent.bank_iban_prefix);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@bank_name", DodawanyKontrahent.bank_name);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@bank_account_number", DodawanyKontrahent.bank_account_number);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@nip", DodawanyKontrahent.nip);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@regon", DodawanyKontrahent.regon);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@phone_prefix", DodawanyKontrahent.phone_prefix);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@phone_number", DodawanyKontrahent.phone_number);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@email", DodawanyKontrahent.email);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@url",DodawanyKontrahent.url);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@discount_percentage", DodawanyKontrahent.discount_percentage);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@is_archived", DodawanyKontrahent.is_archived);
+                        sqlDodajKontrahenta.Parameters.AddWithValue("@company_description", DodawanyKontrahent.company_description);
 
+                        sqlDodajKontrahenta.ExecuteNonQuery();
 
-                    sqlDodajKontrahenta.ExecuteNonQuery();
+                    }
 
+                    transakcja.Commit();
 
+                    MessageBox.Show("Pomyślnie dodano Kontrahenta!", "Poprawnie Dodano!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                 }
-
             }
             catch (Exception ex)
             {
@@ -156,6 +159,130 @@ namespace DK24.Klasy
 
             return pobranyKontrahent;
         }
+
+
+        public void EdytujKontrahenta(Kontrahent EdytowanyKontrahent) 
+        {
+
+            MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
+
+
+            try
+            {
+                polaczenie.Open();
+
+
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+
+                    string EdytujKontrahenta = @"UPDATE `serwer197774_drukarnia`.`company_details`
+                             SET `user_id` = @user_id, 
+                                 `address_id` = @address_id, 
+                                 `name` = @name, 
+                                 `acronym` = @acronym, 
+                                 `bank_iban_prefix` = @bank_iban_prefix, 
+                                 `bank_name` = @bank_name, 
+                                 `bank_account_number` = @bank_account_number, 
+                                 `nip` = @nip, 
+                                 `regon` = @regon, 
+                                 `phone_prefix` = @phone_prefix, 
+                                 `phone_number` = @phone_number, 
+                                 `email` = @email, 
+                                 `url` = @url, 
+                                 `discount_percentage` = @discount_percentage, 
+                                 `is_archived` = @is_archived, 
+                                 `modified_at` = current_timestamp(), 
+                                 `company_description` = @company_description
+                             WHERE `company_details_id` = @company_details_id;";
+
+
+
+                    using (MySqlCommand sqlEdytujKontrahenta = new MySqlCommand(EdytujKontrahenta, polaczenie, transakcja))
+                    {
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@user_id", EdytowanyKontrahent.user_id);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@name", EdytowanyKontrahent.name);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@acronym", EdytowanyKontrahent.acronym);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@address_id", EdytowanyKontrahent.address_id);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@bank_iban_prefix", EdytowanyKontrahent.bank_iban_prefix);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@bank_name", EdytowanyKontrahent.bank_name);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@bank_account_number", EdytowanyKontrahent.bank_account_number);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@nip", EdytowanyKontrahent.nip);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@regon", EdytowanyKontrahent.regon);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@phone_prefix", EdytowanyKontrahent.phone_prefix);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@phone_number", EdytowanyKontrahent.phone_number);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@email", EdytowanyKontrahent.email);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@url", EdytowanyKontrahent.url);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@discount_percentage", EdytowanyKontrahent.discount_percentage);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@is_archived", EdytowanyKontrahent.is_archived);
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@company_description", EdytowanyKontrahent.company_description);
+
+                      
+                        sqlEdytujKontrahenta.Parameters.AddWithValue("@company_details_id", EdytowanyKontrahent.company_details_id);
+
+                        sqlEdytujKontrahenta.ExecuteNonQuery();
+                    }
+
+
+                    transakcja.Commit();
+
+
+                    MessageBox.Show("Pomyślnie Edytowano Kontrahenta!", "Poprawnie Edytowano!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Błąd Dodawania Kontrahenta: " + ex.Message, "Błąd");
+
+            }
+
+            polaczenie.Close();
+
+
+
+
+        }
+
+
+        public void UsunKontrahenta(int IdUsuwanegoKontrahenta)
+        {
+            MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
+
+
+            try
+            {
+                polaczenie.Open();
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+                    string UsunKontrahenta = "DELETE FROM `serwer197774_drukarnia`.`company_details` WHERE `company_details_id` = @IdUsuwanegoKontrahenta;";
+
+                    using (MySqlCommand sqlUsunKontrahenta = new MySqlCommand(UsunKontrahenta, polaczenie, transakcja))
+                    {
+                        sqlUsunKontrahenta.Parameters.AddWithValue("@IdUsuwanegoKontrahenta", IdUsuwanegoKontrahenta);
+
+
+                        sqlUsunKontrahenta.ExecuteNonQuery();
+                    }
+
+                 
+                    transakcja.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd Usuwania Kontrahenta: " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+        }
+
+
+
 
 
     }
