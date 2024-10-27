@@ -80,7 +80,7 @@
             label11 = new Label();
             textBox1 = new TextBox();
             btnTowarUslugi = new Button();
-            panel1 = new Panel();
+            panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -95,7 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)numBoxRok).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numBoxNrDok).BeginInit();
             pnlPrzyciski.SuspendLayout();
-            panel1.SuspendLayout();
+            panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
@@ -584,18 +584,19 @@
             btnTowarUslugi.Text = "Towar/Usługi";
             btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelGorny
             // 
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1260, 50);
-            panel1.TabIndex = 3;
+            panelGorny.BackgroundImage = (Image)resources.GetObject("panelGorny.BackgroundImage");
+            panelGorny.Controls.Add(pictureBox1);
+            panelGorny.Location = new Point(0, 0);
+            panelGorny.Name = "panelGorny";
+            panelGorny.Size = new Size(1260, 50);
+            panelGorny.TabIndex = 3;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Enabled = false;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(10, -14);
             pictureBox1.Name = "pictureBox1";
@@ -686,11 +687,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(1244, 641);
+            ClientSize = new Size(1260, 680);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(panelGorny);
             Controls.Add(pnlPrzyciski);
             Controls.Add(pnlGoraDane);
             FormBorderStyle = FormBorderStyle.None;
@@ -713,7 +714,7 @@
             ((System.ComponentModel.ISupportInitialize)numBoxNrDok).EndInit();
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();
-            panel1.ResumeLayout(false);
+            panelGorny.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
@@ -772,7 +773,7 @@
         private CheckBox chckBoxCzyFaktura;
         private DateTimePicker dtPickDataWystaw;
         private DateTimePicker dtPickSprzed;
-        private Panel panel1;
+        private Panel panelGorny;
         private PictureBox pictureBox1;
         private Panel panel2;
         private Panel panel3;

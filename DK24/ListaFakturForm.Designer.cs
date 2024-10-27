@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaFakturForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnCofnij = new Button();
             btnUsun = new Button();
@@ -46,12 +46,12 @@
             chckBoxMiesiac = new CheckBox();
             label1 = new Label();
             lblZalogowanoJako = new Label();
-            panel3 = new Panel();
+            panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
             panel2 = new Panel();
-            menuStrip1 = new MenuStrip();
+            menuStrip = new MenuStrip();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             dodajToolStripMenuItem = new ToolStripMenuItem();
@@ -69,9 +69,9 @@
             dtGridLstFakt = new DataGridView();
             pnlPrzyciski.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            panel3.SuspendLayout();
+            panelZalogowania.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            menuStrip1.SuspendLayout();
+            menuStrip.SuspendLayout();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridLstFakt).BeginInit();
             SuspendLayout();
@@ -226,16 +226,16 @@
             lblZalogowanoJako.TabIndex = 14;
             lblZalogowanoJako.Text = "Zalogowano jako:";
             // 
-            // panel3
+            // panelZalogowania
             // 
-            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.Controls.Add(linkLabel1);
-            panel3.Controls.Add(pictureBox1);
-            panel3.Controls.Add(lblZalogowanoJako);
-            panel3.Location = new Point(1000, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(260, 80);
-            panel3.TabIndex = 10;
+            panelZalogowania.BackgroundImage = (Image)resources.GetObject("panelZalogowania.BackgroundImage");
+            panelZalogowania.Controls.Add(linkLabel1);
+            panelZalogowania.Controls.Add(pictureBox1);
+            panelZalogowania.Controls.Add(lblZalogowanoJako);
+            panelZalogowania.Location = new Point(1000, 0);
+            panelZalogowania.Name = "panelZalogowania";
+            panelZalogowania.Size = new Size(260, 80);
+            panelZalogowania.TabIndex = 10;
             // 
             // linkLabel1
             // 
@@ -279,23 +279,23 @@
             panel2.Size = new Size(10, 535);
             panel2.TabIndex = 11;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            menuStrip1.AutoSize = false;
-            menuStrip1.BackgroundImage = (Image)resources.GetObject("menuStrip1.BackgroundImage");
-            menuStrip1.BackgroundImageLayout = ImageLayout.None;
-            menuStrip1.Dock = DockStyle.None;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
-            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(250, 35, 0, 5);
-            menuStrip1.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip1.Size = new Size(1000, 80);
-            menuStrip1.Stretch = false;
-            menuStrip1.TabIndex = 9;
-            menuStrip1.Text = "menuStrip1";
+            menuStrip.AutoSize = false;
+            menuStrip.BackgroundImage = (Image)resources.GetObject("menuStrip.BackgroundImage");
+            menuStrip.BackgroundImageLayout = ImageLayout.None;
+            menuStrip.Dock = DockStyle.None;
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(250, 35, 0, 5);
+            menuStrip.RenderMode = ToolStripRenderMode.Professional;
+            menuStrip.Size = new Size(1000, 80);
+            menuStrip.Stretch = false;
+            menuStrip.TabIndex = 9;
+            menuStrip.Text = "menuStrip1";
             // 
             // zamówieniaToolStripMenuItem
             // 
@@ -420,30 +420,30 @@
             dtGridLstFakt.AccessibleRole = AccessibleRole.Caret;
             dtGridLstFakt.AllowUserToAddRows = false;
             dtGridLstFakt.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.NullValue = "Brak Danych";
-            dtGridLstFakt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.NullValue = "Brak Danych";
+            dtGridLstFakt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dtGridLstFakt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstFakt.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtGridLstFakt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtGridLstFakt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dtGridLstFakt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.NullValue = "Brak Danych";
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtGridLstFakt.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.NullValue = "Brak Danych";
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dtGridLstFakt.DefaultCellStyle = dataGridViewCellStyle7;
             dtGridLstFakt.Dock = DockStyle.Fill;
             dtGridLstFakt.GridColor = Color.Gray;
             dtGridLstFakt.Location = new Point(0, 0);
@@ -451,14 +451,14 @@
             dtGridLstFakt.Name = "dtGridLstFakt";
             dtGridLstFakt.ReadOnly = true;
             dtGridLstFakt.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtGridLstFakt.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtGridLstFakt.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtGridLstFakt.RowHeadersVisible = false;
             dtGridLstFakt.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstFakt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -476,10 +476,10 @@
             BackColor = Color.Gray;
             ClientSize = new Size(1260, 680);
             Controls.Add(pnlDtGridZamowienia);
-            Controls.Add(panel3);
+            Controls.Add(panelZalogowania);
             Controls.Add(panel4);
             Controls.Add(panel2);
-            Controls.Add(menuStrip1);
+            Controls.Add(menuStrip);
             Controls.Add(pnlPrzyciski);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -492,11 +492,11 @@
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            panelZalogowania.ResumeLayout(false);
+            panelZalogowania.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridLstFakt).EndInit();
             ResumeLayout(false);
@@ -516,12 +516,12 @@
         private Button btnEdytuj;
         private Button btnCofnij;
         private Label lblZalogowanoJako;
-        private Panel panel3;
+        private Panel panelZalogowania;
         private LinkLabel linkLabel1;
         private PictureBox pictureBox1;
         private Panel panel4;
         private Panel panel2;
-        private MenuStrip menuStrip1;
+        private MenuStrip menuStrip;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem dodajToolStripMenuItem;

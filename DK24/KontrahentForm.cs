@@ -1,4 +1,5 @@
 ﻿using DK24.Klasy;
+using System.Windows.Forms;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace DK24
@@ -20,6 +21,8 @@ namespace DK24
         public KontrahentForm()
         {
             InitializeComponent();
+
+            GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
 
 
             // Obsługa NIP

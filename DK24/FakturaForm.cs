@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DK24.Klasy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace DK24
         public DokumentForm()
         {
             InitializeComponent();
+
+            GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

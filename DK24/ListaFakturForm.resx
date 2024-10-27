@@ -235,7 +235,7 @@
         k2ZaW5msVFYDpcgcclj5nOmenuWeheY3mQW9l/Uwec8AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="panel3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="panelZalogowania.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQQAAABQCAIAAABwApwIAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
         tgAAMrYBjHpqdwAABJJJREFUeF7t3UuOG0cYBGFfy5Yfo/tfygV2YGQRlMmK7EdxkN+qteCm/kjMUr/9
@@ -531,10 +531,10 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAgD81vi0AATU+JOIAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="menuStrip1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuStrip.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAA+gAAABQCAIAAAAFsMg2AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
         tgAAMrYBjHpqdwAAisxJREFUeF7t/fd/XNd5732v6YPeewfYeydFdVGNBDAVHQRISnKVHZcTl+TYJ44T

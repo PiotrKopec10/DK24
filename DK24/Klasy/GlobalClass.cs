@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace DK24.Klasy
 {
@@ -143,7 +144,25 @@ namespace DK24.Klasy
         ("Wielka Brytania", "+44", "GB"), ("Włochy", "+39", "IT")
     };
         }
-        
 
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTCAPTION = 0x2;
+
+        public static void przesuwanieFormsa(Control control, IntPtr handle)
+        {
+            control.MouseDown += (sender, e) =>
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+                }
+            };
+        }
     }
 }

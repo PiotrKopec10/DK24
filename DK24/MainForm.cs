@@ -14,11 +14,15 @@ namespace DK24
     public partial class MainForm : Form
     {
 
+
         public MainForm()
         {
             InitializeComponent();
 
+            GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
+            GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
         }
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {

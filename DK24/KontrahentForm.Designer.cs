@@ -31,6 +31,10 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KontrahentForm));
             pnlDane = new Panel();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            panelGorny = new Panel();
+            pictureBox1 = new PictureBox();
             grpBoxDane = new GroupBox();
             cmbBoxZnizka = new ComboBox();
             rchTxtBoxOpis = new RichTextBox();
@@ -80,16 +84,12 @@
             btnAnuluj = new Button();
             btnZapisz = new Button();
             toolTip1 = new ToolTip(components);
-            panel1 = new Panel();
-            pictureBox1 = new PictureBox();
-            panel2 = new Panel();
-            panel3 = new Panel();
             pnlDane.SuspendLayout();
+            panelGorny.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             grpBoxDane.SuspendLayout();
             grpBoxAdres.SuspendLayout();
             pnlDol.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnlDane
@@ -97,13 +97,50 @@
             pnlDane.BackColor = SystemColors.ControlDark;
             pnlDane.Controls.Add(panel3);
             pnlDane.Controls.Add(panel2);
-            pnlDane.Controls.Add(panel1);
+            pnlDane.Controls.Add(panelGorny);
             pnlDane.Controls.Add(grpBoxDane);
             pnlDane.Controls.Add(grpBoxAdres);
             pnlDane.Location = new Point(0, 0);
             pnlDane.Name = "pnlDane";
             pnlDane.Size = new Size(1260, 624);
             pnlDane.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.Location = new Point(1250, 50);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(10, 565);
+            panel3.TabIndex = 28;
+            // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 50);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 565);
+            panel2.TabIndex = 27;
+            // 
+            // panelGorny
+            // 
+            panelGorny.BackgroundImage = (Image)resources.GetObject("panelGorny.BackgroundImage");
+            panelGorny.Controls.Add(pictureBox1);
+            panelGorny.Location = new Point(0, 0);
+            panelGorny.Name = "panelGorny";
+            panelGorny.Size = new Size(1260, 50);
+            panelGorny.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Enabled = false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, -14);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(132, 82);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
             // 
             // grpBoxDane
             // 
@@ -581,42 +618,6 @@
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
             // 
-            // panel1
-            // 
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1260, 50);
-            panel1.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(10, -14);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(132, 82);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
-            panel2.Location = new Point(0, 50);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(10, 565);
-            panel2.TabIndex = 27;
-            // 
-            // panel3
-            // 
-            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.Location = new Point(1250, 50);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(10, 565);
-            panel3.TabIndex = 28;
-            // 
             // KontrahentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -633,13 +634,13 @@
             Text = "Kontrahent";
             Load += KontrahentForm_Load;
             pnlDane.ResumeLayout(false);
+            panelGorny.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             grpBoxDane.ResumeLayout(false);
             grpBoxDane.PerformLayout();
             grpBoxAdres.ResumeLayout(false);
             grpBoxAdres.PerformLayout();
             pnlDol.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -695,7 +696,7 @@
         private Button btnAnuluj;
         private Button btnZapisz;
         private ToolTip toolTip1;
-        private Panel panel1;
+        private Panel panelGorny;
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel3;

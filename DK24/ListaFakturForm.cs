@@ -16,6 +16,9 @@ namespace DK24
         public ListaFakturForm()
         {
             InitializeComponent();
+
+            GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
+            GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)

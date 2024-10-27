@@ -25,7 +25,8 @@ namespace DK24
         {
             InitializeComponent();
 
-
+            GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
+            GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
         }
 
         private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
