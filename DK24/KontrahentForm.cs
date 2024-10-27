@@ -163,22 +163,33 @@ namespace DK24
                 txtBoxNazwa.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxNIP.Text) && string.IsNullOrWhiteSpace(txtBoxRegon.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxNIP.Text) || txtBoxNIP.Text.Length != 10)
             {
                 txtBoxNIP.BackColor = Color.Pink;
-                txtBoxRegon.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxNIP, "Pole NIP lub Regon musi być wypełnione!");
-                toolTip.SetToolTip(txtBoxRegon, "Pole Regon lub NIP musi być wypełnione!");
-                pustePola.Add("NIP lub Regon");
+                toolTip.SetToolTip(txtBoxNIP, "Pole NIP musi być wypełnione i mieć równo 10 znaków!");
+                toolTip.Show("Nieprawidłowy Nr NIP", txtBoxNIP, 3000);
+                pustePola.Add("NIP");
                 isValid = false;
             }
             else
             {
-                txtBoxNIP.BackColor = SystemColors.Window;
+                txtBoxNIP.BackColor = SystemColors.Window; 
+            }
+
+            if (txtBoxRegon.Text.Length > 0 && txtBoxRegon.Text.Length < 9)
+            {
+                txtBoxRegon.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxRegon, "Regon musi mieć co najmniej 9 znaków!");
+                toolTip.Show("Nieprawidłowy Nr Regon", txtBoxRegon, 3000);
+                isValid = false;
+            }
+            else
+            {
                 txtBoxRegon.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text))
+
+            if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text) || txtBoxNrTel.Text.Length < 9)
             {
                 txtBoxNrTel.BackColor = Color.Pink;
                 toolTip.SetToolTip(txtBoxNrTel, "Pole Numer Telefonu nie może być puste!");
@@ -190,10 +201,11 @@ namespace DK24
                 txtBoxNrTel.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxEmail.Text) || !txtBoxEmail.Text.Contains("@"))
             {
                 txtBoxEmail.BackColor = Color.Pink;
                 toolTip.SetToolTip(txtBoxEmail, "Pole Email nie może być puste!");
+                toolTip.Show("Nieprawidłowy Adres E-mail", txtBoxEmail, 3000);
                 pustePola.Add("Email");
                 isValid = false;
             }
@@ -262,7 +274,7 @@ namespace DK24
                 txtBoxNrDomu.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxKodPocz.Text))
+            if (string.IsNullOrWhiteSpace(txtBoxKodPocz.Text) || txtBoxKodPocz.Text.Length != 6)
             {
                 txtBoxKodPocz.BackColor = Color.Pink;
                 toolTip.SetToolTip(txtBoxKodPocz, "Pole Kod Pocztowy nie może być puste!");
@@ -367,10 +379,6 @@ namespace DK24
                     else if (pustePole == "NIP")
                     {
                         pustePoleControl = txtBoxNIP;
-                    }
-                    else if (pustePole == "Regon")
-                    {
-                        pustePoleControl = txtBoxRegon;
                     }
                     else if (pustePole == "Numer Telefonu")
                     {
