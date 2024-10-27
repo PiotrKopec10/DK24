@@ -31,7 +31,6 @@ namespace DK24
             GlobalClass.zapamietajPozycjeFormsa(this);
         }
 
-
         private void OpenDialog(Form dialogForm)
         {
             GlobalClass.zapiszNowaPozycjeFormsa(this);
@@ -45,6 +44,7 @@ namespace DK24
         {
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 3;
+
             OpenDialog(new KontrahentForm());
         }
 
@@ -138,9 +138,7 @@ namespace DK24
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 1;
 
-            KontrahentForm kontrahentForm = new KontrahentForm();
-            this.Hide();
-            kontrahentForm.ShowDialog();
+            OpenDialog(new KontrahentForm());
 
 
 
@@ -152,9 +150,8 @@ namespace DK24
             PobierzKontrahenta();
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 2;
-            this.Hide();
-            KontrahentForm kontrahentForm = new KontrahentForm();
-            kontrahentForm.ShowDialog();
+
+            OpenDialog(new KontrahentForm());
 
         }
 

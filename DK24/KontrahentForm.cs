@@ -1,5 +1,6 @@
 ﻿using DK24.Klasy;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace DK24
@@ -23,6 +24,7 @@ namespace DK24
             InitializeComponent();
 
             GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
+
 
 
             // Obsługa NIP
@@ -80,12 +82,11 @@ namespace DK24
 
             cmbBoxKraj.SelectedIndexChanged += new EventHandler(cmbBoxKraj_SelectedIndexChanged);
             cmbBoxPrefixNrTel.SelectedIndexChanged += new EventHandler(cmbBoxPrefixNrTel_SelectedIndexChanged);
+
         }
 
 
-   
-
-        private void btnZapisz_Click(object sender, EventArgs e)
+            private void btnZapisz_Click(object sender, EventArgs e)
         {
             ToolTip toolTip = new ToolTip();
             toolTip.IsBalloon = true;
@@ -169,18 +170,6 @@ namespace DK24
             else
             {
                 txtBoxEmail.BackColor = SystemColors.Window;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtBoxUrl.Text))
-            {
-                txtBoxUrl.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxUrl, "Pole URL nie może być puste!");
-                pustePola.Add("URL");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxUrl.BackColor = SystemColors.Window;
             }
 
             if (string.IsNullOrWhiteSpace(txtBoxBank.Text))
@@ -345,10 +334,6 @@ namespace DK24
                     {
                         pustePoleControl = txtBoxEmail;
                     }
-                    else if (pustePole == "URL")
-                    {
-                        pustePoleControl = txtBoxUrl;
-                    }
                     else if (pustePole == "Bank")
                     {
                         pustePoleControl = txtBoxBank;
@@ -449,9 +434,10 @@ namespace DK24
                     MessageBox.Show("Podany Adres jest już przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-
+                GlobalClass.zapiszNowaPozycjeFormsa(this);
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
                 this.Close();
+                GlobalClass.zapamietajPozycjeFormsa(this);
                 listaKontrahentowForm.ShowDialog();
 
 
@@ -520,6 +506,7 @@ namespace DK24
 
         private void btnAnuluj_Click(object sender, EventArgs e)
         {
+
             ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
             this.Hide();
             listaKontrahentowForm.ShowDialog();
@@ -666,6 +653,30 @@ namespace DK24
                 AktualnyAdres.address_id = AktualnyKontrahent.address_id;
                 AktualnyAdres = DzialaniaNaAdresie.PobierzAdresWgId(AktualnyAdres.address_id);
                 WstawPolaDoEdycji();
+
+                txtBoxAkronim.Enabled = false;
+                txtBoxNazwa.Enabled = false;
+                txtBoxNIP.Enabled = false;
+                txtBoxRegon.Enabled = false;
+                cmbBoxPrefixNrTel.Enabled = false;
+                txtBoxNrTel.Enabled = false;
+                txtBoxEmail.Enabled = false;
+                txtBoxUrl.Enabled = false;
+                txtBoxBank.Enabled = false;
+                cmbBoxIBAN.Enabled = false;
+                txtBoxNrRachunku.Enabled = false;
+                cmbBoxZnizka.Enabled = false;
+                chckBoxArchiwalny.Enabled = false;
+                rchTxtBoxOpis.Enabled = false;
+                txtBoxUlica.Enabled = false;
+                txtBoxNrDomu.Enabled = false;
+                txtBoxNrLokalu.Enabled = false;
+                cmbBoxKraj.Enabled = false;
+                txtBoxKodPocz.Enabled = false;
+                txtBoxMiasto.Enabled = false;
+                txtBoxWoj.Enabled = false;
+                txtBoxPowiat.Enabled = false;
+                txtBoxGmina.Enabled = false;
 
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
