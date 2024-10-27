@@ -28,34 +28,18 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
-            GlobalClass.SetFormLocation(this);
+            GlobalClass.zapamietajPozycjeFormsa(this);
         }
 
 
         private void OpenDialog(Form dialogForm)
         {
-            GlobalClass.SaveFormLocation(this);
+            GlobalClass.zapiszNowaPozycjeFormsa(this);
             this.Hide();
-            GlobalClass.SetFormLocation(dialogForm);
+            GlobalClass.zapamietajPozycjeFormsa(this);
             dialogForm.ShowDialog();
             this.Show();
         }
-
-        private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenDialog(new MainForm());
-        }
-
-        private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenDialog(new DokumentForm());
-        }
-
-        private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenDialog(new ListaFakturForm());
-        }
-
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
@@ -181,23 +165,17 @@ namespace DK24
 
         private void zamówieniaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            this.Hide();
-            mainForm.ShowDialog();
+            OpenDialog(new MainForm());
         }
 
         private void dodajToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DokumentForm fakturaForm = new DokumentForm();
-            this.Hide();
-            fakturaForm.ShowDialog();
+            OpenDialog(new DokumentForm());
         }
 
         private void zobaczFakturyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            ListaFakturForm listaFakturForm = new ListaFakturForm();
-            this.Hide();
-            listaFakturForm.ShowDialog();
+            OpenDialog(new ListaFakturForm());
         }
 
         private void btnUsun_Click(object sender, EventArgs e)

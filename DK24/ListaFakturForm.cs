@@ -20,14 +20,14 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
-            GlobalClass.SetFormLocation(this);
+            GlobalClass.zapamietajPozycjeFormsa(this);
         }
 
         private void OpenDialog(Form dialogForm)
         {
-            GlobalClass.SaveFormLocation(this);
+            GlobalClass.zapiszNowaPozycjeFormsa(this);
             this.Hide();
-            GlobalClass.SetFormLocation(dialogForm);
+            GlobalClass.zapamietajPozycjeFormsa(this);
             dialogForm.ShowDialog();
             this.Show();
         }
