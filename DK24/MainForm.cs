@@ -21,6 +21,8 @@ namespace DK24
 
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
+
+            GlobalClass.SetFormLocation(this);
         }
 
 
@@ -57,39 +59,39 @@ namespace DK24
 
         }
 
+        private void OpenDialog(Form dialogForm)
+        {
+            GlobalClass.SaveFormLocation(this);
+            this.Hide();
+            GlobalClass.SetFormLocation(dialogForm);
+            dialogForm.ShowDialog();
+            this.Show();
+        }
+
         private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DokumentForm fakturaForm = new DokumentForm();
-            this.Hide();
-            fakturaForm.ShowDialog();
+            OpenDialog(new DokumentForm());
+        }
+
+        private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenDialog(new ListaFakturForm());
+        }
+
+        private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenDialog(new KontrahentForm());
+        }
+
+        private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenDialog(new ListaKontrahentowForm());
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-
-        private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaFakturForm listaFakturForm = new ListaFakturForm();
-            this.Hide();
-            listaFakturForm.ShowDialog();
-        }
-
-        private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KontrahentForm kontrahentForm = new KontrahentForm();
-            this.Hide();
-            kontrahentForm.ShowDialog();
-        }
-
-        private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
-            this.Hide();
-            listaKontrahentowForm.ShowDialog();
-        }
-
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {

@@ -18,6 +18,17 @@ namespace DK24
             InitializeComponent();
 
             GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
+
+            GlobalClass.SetFormLocation(this);
+        }
+
+        private void OpenDialog(Form dialogForm)
+        {
+            GlobalClass.SaveFormLocation(this);
+            this.Hide();
+            GlobalClass.SetFormLocation(dialogForm);
+            dialogForm.ShowDialog();
+            this.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -27,9 +38,7 @@ namespace DK24
 
         private void btnAnuluj_Click(object sender, EventArgs e)
         {
-            ListaFakturForm listaFakturForm = new ListaFakturForm();
-            this.Hide();
-            listaFakturForm.ShowDialog();
+            OpenDialog(new ListaFakturForm());
         }
     }
 }

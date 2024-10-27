@@ -145,6 +145,46 @@ namespace DK24.Klasy
     };
         }
 
+        //[DllImport("user32.dll")]
+        //private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        //[DllImport("user32.dll")]
+        //private static extern bool ReleaseCapture();
+
+        //private const int WM_NCLBUTTONDOWN = 0xA1;
+        //private const int HTCAPTION = 0x2;
+
+        //public static void przesuwanieFormsa(Control control, IntPtr handle)
+        //{
+        //    control.MouseDown += (sender, e) =>
+        //    {
+        //        if (e.Button == MouseButtons.Left)
+        //        {
+        //            ReleaseCapture();
+        //            SendMessage(handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+        //        }
+        //    };
+        //}
+
+
+        private static Point lastFormLocation = new Point(-1, -1); // Przechowywanie pozycji formularza
+
+        // Metoda do ustawiania pozycji formularza na zapamiętaną pozycję
+        public static void SetFormLocation(Form form)
+        {
+            if (lastFormLocation.X != -1 && lastFormLocation.Y != -1)
+            {
+                form.StartPosition = FormStartPosition.Manual;
+                form.Location = lastFormLocation;
+            }
+        }
+
+        // Metoda do zapamiętywania pozycji formularza przy jego zamykaniu
+        public static void SaveFormLocation(Form form)
+        {
+            lastFormLocation = form.Location;
+        }
+
+        // Przeciąganie formularza
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -164,5 +204,7 @@ namespace DK24.Klasy
                 }
             };
         }
+
+
     }
 }
