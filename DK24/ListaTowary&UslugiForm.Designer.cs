@@ -1,0 +1,454 @@
+﻿namespace DK24
+{
+    partial class ListaTowary_UslugiForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaTowary_UslugiForm));
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            panelZalogowania = new Panel();
+            linkLabel1 = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            lblZalogowanoJako = new Label();
+            menuStrip = new MenuStrip();
+            zamówieniaToolStripMenuItem = new ToolStripMenuItem();
+            fakturyToolStripMenuItem = new ToolStripMenuItem();
+            dodajToolStripMenuItem = new ToolStripMenuItem();
+            zobaczFakturyToolStripMenuItem = new ToolStripMenuItem();
+            kontrahenciToolStripMenuItem = new ToolStripMenuItem();
+            dodajKontrahentaToolStripMenuItem = new ToolStripMenuItem();
+            zobaczKontrahentówToolStripMenuItem = new ToolStripMenuItem();
+            wysyłkiToolStripMenuItem = new ToolStripMenuItem();
+            stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
+            zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
+            towaryToolStripMenuItem = new ToolStripMenuItem();
+            dodajTowarToolStripMenuItem = new ToolStripMenuItem();
+            zobaczToolStripMenuItem = new ToolStripMenuItem();
+            panel2 = new Panel();
+            pnlPrzyciski = new Panel();
+            btnCofnij = new Button();
+            label1 = new Label();
+            panel4 = new Panel();
+            pnlDtGridZamowienia = new Panel();
+            dtGridLsTowary = new DataGridView();
+            radioButtonUslugi = new RadioButton();
+            radioButtonWszystko = new RadioButton();
+            radioButtonTowary = new RadioButton();
+            panelZalogowania.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            menuStrip.SuspendLayout();
+            pnlPrzyciski.SuspendLayout();
+            pnlDtGridZamowienia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGridLsTowary).BeginInit();
+            SuspendLayout();
+            // 
+            // panelZalogowania
+            // 
+            panelZalogowania.BackgroundImage = (Image)resources.GetObject("panelZalogowania.BackgroundImage");
+            panelZalogowania.Controls.Add(linkLabel1);
+            panelZalogowania.Controls.Add(pictureBox1);
+            panelZalogowania.Controls.Add(lblZalogowanoJako);
+            panelZalogowania.Location = new Point(1000, 0);
+            panelZalogowania.Name = "panelZalogowania";
+            panelZalogowania.Size = new Size(260, 80);
+            panelZalogowania.TabIndex = 8;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Silver;
+            linkLabel1.AutoSize = true;
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            linkLabel1.LinkColor = Color.FromArgb(255, 192, 128);
+            linkLabel1.Location = new Point(89, 61);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(73, 13);
+            linkLabel1.TabIndex = 2;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Wyloguj się";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(111, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(35, 35);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // lblZalogowanoJako
+            // 
+            lblZalogowanoJako.AutoSize = true;
+            lblZalogowanoJako.BackColor = Color.Transparent;
+            lblZalogowanoJako.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            lblZalogowanoJako.ForeColor = Color.FromArgb(255, 128, 0);
+            lblZalogowanoJako.Location = new Point(0, 43);
+            lblZalogowanoJako.Name = "lblZalogowanoJako";
+            lblZalogowanoJako.Size = new Size(110, 13);
+            lblZalogowanoJako.TabIndex = 14;
+            lblZalogowanoJako.Text = "Zalogowano jako:";
+            // 
+            // menuStrip
+            // 
+            menuStrip.AutoSize = false;
+            menuStrip.BackgroundImage = (Image)resources.GetObject("menuStrip.BackgroundImage");
+            menuStrip.BackgroundImageLayout = ImageLayout.None;
+            menuStrip.Dock = DockStyle.None;
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(250, 35, 0, 5);
+            menuStrip.RenderMode = ToolStripRenderMode.Professional;
+            menuStrip.Size = new Size(1000, 80);
+            menuStrip.Stretch = false;
+            menuStrip.TabIndex = 7;
+            menuStrip.Text = "menuStrip1";
+            // 
+            // zamówieniaToolStripMenuItem
+            // 
+            zamówieniaToolStripMenuItem.BackColor = Color.Transparent;
+            zamówieniaToolStripMenuItem.ForeColor = Color.Silver;
+            zamówieniaToolStripMenuItem.Image = (Image)resources.GetObject("zamówieniaToolStripMenuItem.Image");
+            zamówieniaToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
+            zamówieniaToolStripMenuItem.Name = "zamówieniaToolStripMenuItem";
+            zamówieniaToolStripMenuItem.Size = new Size(84, 40);
+            zamówieniaToolStripMenuItem.Text = "Zamówienia";
+            zamówieniaToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // fakturyToolStripMenuItem
+            // 
+            fakturyToolStripMenuItem.BackColor = Color.Transparent;
+            fakturyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajToolStripMenuItem, zobaczFakturyToolStripMenuItem });
+            fakturyToolStripMenuItem.ForeColor = Color.Silver;
+            fakturyToolStripMenuItem.Image = (Image)resources.GetObject("fakturyToolStripMenuItem.Image");
+            fakturyToolStripMenuItem.Name = "fakturyToolStripMenuItem";
+            fakturyToolStripMenuItem.Size = new Size(58, 40);
+            fakturyToolStripMenuItem.Text = "Faktury";
+            fakturyToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // dodajToolStripMenuItem
+            // 
+            dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
+            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Text = "Dodaj";
+            // 
+            // zobaczFakturyToolStripMenuItem
+            // 
+            zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            // 
+            // kontrahenciToolStripMenuItem
+            // 
+            kontrahenciToolStripMenuItem.BackColor = Color.Transparent;
+            kontrahenciToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajKontrahentaToolStripMenuItem, zobaczKontrahentówToolStripMenuItem });
+            kontrahenciToolStripMenuItem.ForeColor = Color.Silver;
+            kontrahenciToolStripMenuItem.Image = (Image)resources.GetObject("kontrahenciToolStripMenuItem.Image");
+            kontrahenciToolStripMenuItem.Name = "kontrahenciToolStripMenuItem";
+            kontrahenciToolStripMenuItem.Size = new Size(83, 40);
+            kontrahenciToolStripMenuItem.Text = "Kontrahenci";
+            kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // dodajKontrahentaToolStripMenuItem
+            // 
+            dodajKontrahentaToolStripMenuItem.Name = "dodajKontrahentaToolStripMenuItem";
+            dodajKontrahentaToolStripMenuItem.Size = new Size(190, 22);
+            dodajKontrahentaToolStripMenuItem.Text = "Dodaj Kontrahenta";
+            // 
+            // zobaczKontrahentówToolStripMenuItem
+            // 
+            zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
+            zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
+            zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
+            // 
+            // wysyłkiToolStripMenuItem
+            // 
+            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
+            wysyłkiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { stwórzPaczkęToolStripMenuItem, zobaczPaczkiToolStripMenuItem });
+            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
+            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
+            wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
+            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
+            wysyłkiToolStripMenuItem.Text = "Wysyłki";
+            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // stwórzPaczkęToolStripMenuItem
+            // 
+            stwórzPaczkęToolStripMenuItem.Name = "stwórzPaczkęToolStripMenuItem";
+            stwórzPaczkęToolStripMenuItem.Size = new Size(148, 22);
+            stwórzPaczkęToolStripMenuItem.Text = "Stwórz paczkę";
+            // 
+            // zobaczPaczkiToolStripMenuItem
+            // 
+            zobaczPaczkiToolStripMenuItem.Name = "zobaczPaczkiToolStripMenuItem";
+            zobaczPaczkiToolStripMenuItem.Size = new Size(148, 22);
+            zobaczPaczkiToolStripMenuItem.Text = "Zobacz paczki";
+            // 
+            // towaryToolStripMenuItem
+            // 
+            towaryToolStripMenuItem.BackColor = Color.Transparent;
+            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajTowarToolStripMenuItem, zobaczToolStripMenuItem });
+            towaryToolStripMenuItem.Enabled = false;
+            towaryToolStripMenuItem.ForeColor = Color.Silver;
+            towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
+            towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
+            towaryToolStripMenuItem.Size = new Size(98, 40);
+            towaryToolStripMenuItem.Text = "Towary i Usługi";
+            towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // dodajTowarToolStripMenuItem
+            // 
+            dodajTowarToolStripMenuItem.Name = "dodajTowarToolStripMenuItem";
+            dodajTowarToolStripMenuItem.Size = new Size(190, 22);
+            dodajTowarToolStripMenuItem.Text = "Dodaj Towar/Usługę";
+            // 
+            // zobaczToolStripMenuItem
+            // 
+            zobaczToolStripMenuItem.Name = "zobaczToolStripMenuItem";
+            zobaczToolStripMenuItem.Size = new Size(190, 22);
+            zobaczToolStripMenuItem.Text = "Zobacz Towary/Usługi";
+            // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 80);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 535);
+            panel2.TabIndex = 9;
+            // 
+            // pnlPrzyciski
+            // 
+            pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
+            pnlPrzyciski.Controls.Add(radioButtonTowary);
+            pnlPrzyciski.Controls.Add(radioButtonUslugi);
+            pnlPrzyciski.Controls.Add(radioButtonWszystko);
+            pnlPrzyciski.Controls.Add(btnCofnij);
+            pnlPrzyciski.Controls.Add(label1);
+            pnlPrzyciski.Location = new Point(0, 615);
+            pnlPrzyciski.Name = "pnlPrzyciski";
+            pnlPrzyciski.Size = new Size(1260, 65);
+            pnlPrzyciski.TabIndex = 10;
+            // 
+            // btnCofnij
+            // 
+            btnCofnij.Image = (Image)resources.GetObject("btnCofnij.Image");
+            btnCofnij.Location = new Point(1190, 16);
+            btnCofnij.Name = "btnCofnij";
+            btnCofnij.Size = new Size(44, 33);
+            btnCofnij.TabIndex = 14;
+            btnCofnij.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.FromArgb(255, 128, 0);
+            label1.Location = new Point(25, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 18);
+            label1.TabIndex = 0;
+            label1.Text = "Sortuj po:";
+            // 
+            // panel4
+            // 
+            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.Location = new Point(1250, 80);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(10, 535);
+            panel4.TabIndex = 11;
+            // 
+            // pnlDtGridZamowienia
+            // 
+            pnlDtGridZamowienia.BackColor = Color.White;
+            pnlDtGridZamowienia.Controls.Add(dtGridLsTowary);
+            pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
+            pnlDtGridZamowienia.Location = new Point(11, 81);
+            pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
+            pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
+            pnlDtGridZamowienia.Size = new Size(1238, 533);
+            pnlDtGridZamowienia.TabIndex = 12;
+            // 
+            // dtGridLsTowary
+            // 
+            dtGridLsTowary.AccessibleRole = AccessibleRole.Caret;
+            dtGridLsTowary.AllowUserToAddRows = false;
+            dtGridLsTowary.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle9.BackColor = Color.LightGray;
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.NullValue = "Brak Danych";
+            dtGridLsTowary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dtGridLsTowary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtGridLsTowary.BackgroundColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dtGridLsTowary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dtGridLsTowary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle11.ForeColor = Color.Black;
+            dataGridViewCellStyle11.NullValue = "Brak Danych";
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dtGridLsTowary.DefaultCellStyle = dataGridViewCellStyle11;
+            dtGridLsTowary.Dock = DockStyle.Fill;
+            dtGridLsTowary.GridColor = Color.Gray;
+            dtGridLsTowary.Location = new Point(0, 0);
+            dtGridLsTowary.Margin = new Padding(3, 2, 3, 2);
+            dtGridLsTowary.Name = "dtGridLsTowary";
+            dtGridLsTowary.ReadOnly = true;
+            dtGridLsTowary.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dtGridLsTowary.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dtGridLsTowary.RowHeadersVisible = false;
+            dtGridLsTowary.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dtGridLsTowary.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridLsTowary.ShowCellErrors = false;
+            dtGridLsTowary.ShowCellToolTips = false;
+            dtGridLsTowary.ShowEditingIcon = false;
+            dtGridLsTowary.ShowRowErrors = false;
+            dtGridLsTowary.Size = new Size(1238, 533);
+            dtGridLsTowary.TabIndex = 0;
+            // 
+            // radioButtonUslugi
+            // 
+            radioButtonUslugi.AutoSize = true;
+            radioButtonUslugi.BackColor = Color.Transparent;
+            radioButtonUslugi.ForeColor = Color.White;
+            radioButtonUslugi.Location = new Point(311, 25);
+            radioButtonUslugi.Name = "radioButtonUslugi";
+            radioButtonUslugi.Size = new Size(64, 19);
+            radioButtonUslugi.TabIndex = 16;
+            radioButtonUslugi.Text = "USŁUGI";
+            radioButtonUslugi.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonWszystko
+            // 
+            radioButtonWszystko.AutoSize = true;
+            radioButtonWszystko.BackColor = Color.Transparent;
+            radioButtonWszystko.Checked = true;
+            radioButtonWszystko.ForeColor = Color.White;
+            radioButtonWszystko.Location = new Point(132, 25);
+            radioButtonWszystko.Name = "radioButtonWszystko";
+            radioButtonWszystko.Size = new Size(83, 19);
+            radioButtonWszystko.TabIndex = 15;
+            radioButtonWszystko.TabStop = true;
+            radioButtonWszystko.Text = "WSZYSTKO";
+            radioButtonWszystko.UseVisualStyleBackColor = false;
+            radioButtonWszystko.CheckedChanged += radioButtonTowary_CheckedChanged;
+            // 
+            // radioButtonTowary
+            // 
+            radioButtonTowary.AutoSize = true;
+            radioButtonTowary.BackColor = Color.Transparent;
+            radioButtonTowary.ForeColor = Color.White;
+            radioButtonTowary.Location = new Point(225, 25);
+            radioButtonTowary.Name = "radioButtonTowary";
+            radioButtonTowary.Size = new Size(72, 19);
+            radioButtonTowary.TabIndex = 17;
+            radioButtonTowary.Text = "TOWARY";
+            radioButtonTowary.UseVisualStyleBackColor = false;
+            // 
+            // ListaTowary_UslugiForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1260, 680);
+            Controls.Add(pnlDtGridZamowienia);
+            Controls.Add(panel4);
+            Controls.Add(pnlPrzyciski);
+            Controls.Add(panel2);
+            Controls.Add(panelZalogowania);
+            Controls.Add(menuStrip);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "ListaTowary_UslugiForm";
+            Text = "ListaTowary_UslugiForm";
+            Load += ListaTowary_UslugiForm_Load;
+            panelZalogowania.ResumeLayout(false);
+            panelZalogowania.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
+            pnlPrzyciski.ResumeLayout(false);
+            pnlPrzyciski.PerformLayout();
+            pnlDtGridZamowienia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtGridLsTowary).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panelZalogowania;
+        private LinkLabel linkLabel1;
+        private PictureBox pictureBox1;
+        private Label lblZalogowanoJako;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem zamówieniaToolStripMenuItem;
+        private ToolStripMenuItem fakturyToolStripMenuItem;
+        private ToolStripMenuItem dodajToolStripMenuItem;
+        private ToolStripMenuItem zobaczFakturyToolStripMenuItem;
+        private ToolStripMenuItem kontrahenciToolStripMenuItem;
+        private ToolStripMenuItem dodajKontrahentaToolStripMenuItem;
+        private ToolStripMenuItem zobaczKontrahentówToolStripMenuItem;
+        private ToolStripMenuItem wysyłkiToolStripMenuItem;
+        private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
+        private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
+        private ToolStripMenuItem towaryToolStripMenuItem;
+        private ToolStripMenuItem dodajTowarToolStripMenuItem;
+        private ToolStripMenuItem zobaczToolStripMenuItem;
+        private Panel panel2;
+        private Panel pnlPrzyciski;
+        private Button btnCofnij;
+        private Label label1;
+        private Panel panel4;
+        private Panel pnlDtGridZamowienia;
+        private DataGridView dtGridLsTowary;
+        private RadioButton radioButtonTowary;
+        private RadioButton radioButtonUslugi;
+        private RadioButton radioButtonWszystko;
+    }
+}
