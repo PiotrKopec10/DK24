@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SzczegolyZamowieniaForm));
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
             btnZapisz = new Button();
@@ -44,15 +44,19 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            checkBox2 = new CheckBox();
+            checkBox1 = new CheckBox();
+            label13 = new Label();
+            label12 = new Label();
+            label6 = new Label();
             dtPickSprzed = new DateTimePicker();
             dtPickDataWystaw = new DateTimePicker();
             btnDataSprzed = new Button();
             btnDataWys = new Button();
-            cmbBoxPlatnosc = new ComboBox();
             richTxtBoxOpis = new RichTextBox();
+            cmbBoxPlatnosc = new ComboBox();
             label8 = new Label();
             label7 = new Label();
-            this.txtBoxAdresKlienta = new TextBox();
             txtBoxNazwaKlienta = new TextBox();
             grpBoxWartDok = new GroupBox();
             label9 = new Label();
@@ -73,11 +77,7 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            label6 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            checkBox1 = new CheckBox();
-            checkBox2 = new CheckBox();
+            txtBoxAdres = new TextBox();
             pnlPrzyciski.SuspendLayout();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -195,6 +195,7 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(txtBoxAdres);
             pnlGoraDane.Controls.Add(checkBox2);
             pnlGoraDane.Controls.Add(checkBox1);
             pnlGoraDane.Controls.Add(label13);
@@ -208,7 +209,6 @@
             pnlGoraDane.Controls.Add(cmbBoxPlatnosc);
             pnlGoraDane.Controls.Add(label8);
             pnlGoraDane.Controls.Add(label7);
-            pnlGoraDane.Controls.Add(this.txtBoxAdresKlienta);
             pnlGoraDane.Controls.Add(txtBoxNazwaKlienta);
             pnlGoraDane.Controls.Add(grpBoxWartDok);
             pnlGoraDane.Controls.Add(grpBoxNaglowek);
@@ -216,6 +216,68 @@
             pnlGoraDane.Name = "pnlGoraDane";
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
+            // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.BackColor = Color.Transparent;
+            checkBox2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBox2.ForeColor = Color.White;
+            checkBox2.Location = new Point(538, 137);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(138, 18);
+            checkBox2.TabIndex = 31;
+            checkBox2.Text = "Wysyłka na adres";
+            checkBox2.UseVisualStyleBackColor = false;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.BackColor = Color.Transparent;
+            checkBox1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBox1.ForeColor = Color.White;
+            checkBox1.Location = new Point(538, 107);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(125, 18);
+            checkBox1.TabIndex = 30;
+            checkBox1.Text = "Odbiór osobisty";
+            checkBox1.UseVisualStyleBackColor = false;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label13.ForeColor = Color.White;
+            label13.Location = new Point(414, 105);
+            label13.Name = "label13";
+            label13.Size = new Size(118, 14);
+            label13.TabIndex = 29;
+            label13.Text = "Metoda Dostawy:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label12.ForeColor = Color.White;
+            label12.Location = new Point(38, 145);
+            label12.Name = "label12";
+            label12.Size = new Size(48, 14);
+            label12.TabIndex = 28;
+            label12.Text = "Adres:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(38, 105);
+            label6.Name = "label6";
+            label6.Size = new Size(47, 14);
+            label6.TabIndex = 27;
+            label6.Text = "Klient:";
             // 
             // dtPickSprzed
             // 
@@ -249,6 +311,14 @@
             btnDataWys.Text = "Data Wystawienia:";
             btnDataWys.UseVisualStyleBackColor = true;
             // 
+            // richTxtBoxOpis
+            // 
+            richTxtBoxOpis.Location = new Point(766, 33);
+            richTxtBoxOpis.Name = "richTxtBoxOpis";
+            richTxtBoxOpis.Size = new Size(482, 314);
+            richTxtBoxOpis.TabIndex = 13;
+            richTxtBoxOpis.Text = "";
+            // 
             // cmbBoxPlatnosc
             // 
             cmbBoxPlatnosc.BackColor = SystemColors.Menu;
@@ -257,14 +327,6 @@
             cmbBoxPlatnosc.Name = "cmbBoxPlatnosc";
             cmbBoxPlatnosc.Size = new Size(189, 23);
             cmbBoxPlatnosc.TabIndex = 14;
-            // 
-            // richTxtBoxOpis
-            // 
-            richTxtBoxOpis.Location = new Point(766, 33);
-            richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(482, 314);
-            richTxtBoxOpis.TabIndex = 13;
-            richTxtBoxOpis.Text = "";
             // 
             // label8
             // 
@@ -289,14 +351,6 @@
             label7.Size = new Size(132, 14);
             label7.TabIndex = 11;
             label7.Text = "Status zamówienia:";
-            // 
-            // txtBoxAdresKlienta
-            // 
-            this.txtBoxAdresKlienta.BackColor = SystemColors.Menu;
-            this.txtBoxAdresKlienta.Location = new Point(91, 142);
-            this.txtBoxAdresKlienta.Name = "txtBoxAdresKlienta";
-            this.txtBoxAdresKlienta.Size = new Size(295, 23);
-            this.txtBoxAdresKlienta.TabIndex = 3;
             // 
             // txtBoxNazwaKlienta
             // 
@@ -492,30 +546,30 @@
             // 
             dtGridViewZamowienia.AllowUserToAddRows = false;
             dtGridViewZamowienia.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = Color.LightGray;
-            dataGridViewCellStyle13.ForeColor = Color.Black;
-            dataGridViewCellStyle13.NullValue = "Brak Danych";
-            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle14.ForeColor = Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = SystemColors.Control;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle15.ForeColor = Color.Black;
-            dataGridViewCellStyle15.NullValue = "Brak Danych";
-            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
             dtGridViewZamowienia.Dock = DockStyle.Fill;
             dtGridViewZamowienia.EnableHeadersVisualStyles = false;
             dtGridViewZamowienia.GridColor = Color.Gray;
@@ -524,81 +578,27 @@
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
             dtGridViewZamowienia.ReadOnly = true;
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtGridViewZamowienia.Size = new Size(1238, 203);
             dtGridViewZamowienia.TabIndex = 1;
             // 
-            // label6
+            // txtBoxAdres
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(38, 105);
-            label6.Name = "label6";
-            label6.Size = new Size(47, 14);
-            label6.TabIndex = 27;
-            label6.Text = "Klient:";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.BackColor = Color.Transparent;
-            label12.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(38, 145);
-            label12.Name = "label12";
-            label12.Size = new Size(48, 14);
-            label12.TabIndex = 28;
-            label12.Text = "Adres:";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.BackColor = Color.Transparent;
-            label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label13.ForeColor = Color.White;
-            label13.Location = new Point(414, 105);
-            label13.Name = "label13";
-            label13.Size = new Size(118, 14);
-            label13.TabIndex = 29;
-            label13.Text = "Metoda Dostawy:";
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = Color.Transparent;
-            checkBox1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBox1.ForeColor = Color.White;
-            checkBox1.Location = new Point(538, 107);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(125, 18);
-            checkBox1.TabIndex = 30;
-            checkBox1.Text = "Odbiór osobisty";
-            checkBox1.UseVisualStyleBackColor = false;
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.BackColor = Color.Transparent;
-            checkBox2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBox2.ForeColor = Color.White;
-            checkBox2.Location = new Point(538, 137);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(138, 18);
-            checkBox2.TabIndex = 31;
-            checkBox2.Text = "Wysyłka na adres";
-            checkBox2.UseVisualStyleBackColor = false;
+            txtBoxAdres.BackColor = SystemColors.Menu;
+            txtBoxAdres.Location = new Point(91, 137);
+            txtBoxAdres.Name = "txtBoxAdres";
+            txtBoxAdres.Size = new Size(295, 23);
+            txtBoxAdres.TabIndex = 32;
             // 
             // SzczegolyZamowieniaForm
             // 
@@ -687,5 +687,6 @@
         private CheckBox checkBox2;
         private CheckBox checkBox1;
         private Label label13;
+        private TextBox txtBoxAdres;
     }
 }
