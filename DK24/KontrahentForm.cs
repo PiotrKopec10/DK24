@@ -434,10 +434,8 @@ namespace DK24
                     MessageBox.Show("Podany Adres jest już przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                GlobalClass.zapiszNowaPozycjeFormsa(this);
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
                 this.Close();
-                GlobalClass.zapamietajPozycjeFormsa(this);
                 listaKontrahentowForm.ShowDialog();
 
 

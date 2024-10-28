@@ -146,23 +146,7 @@ namespace DK24.Klasy
         }
 
 
-        private static Point ostatniaLokalizcajFormularza = new Point(-1, -1);
-
-        public static void zapamietajPozycjeFormsa(Form form)
-        {
-            if (ostatniaLokalizcajFormularza.X != -1 && ostatniaLokalizcajFormularza.Y != -1)
-            {
-                form.StartPosition = FormStartPosition.Manual;
-                form.Location = ostatniaLokalizcajFormularza;
-            }
-        }
-
-        public static void zapiszNowaPozycjeFormsa(Form form)
-        {
-            ostatniaLokalizcajFormularza = form.Location;
-        }
-
-        // Przesuwanie Formsa
+        // Przemieszczanie karty
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -182,7 +166,6 @@ namespace DK24.Klasy
                 }
             };
         }
-
 
     }
 }

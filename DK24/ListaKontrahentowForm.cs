@@ -28,16 +28,6 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
-            GlobalClass.zapamietajPozycjeFormsa(this);
-        }
-
-        private void OpenDialog(Form dialogForm)
-        {
-            GlobalClass.zapiszNowaPozycjeFormsa(this);
-            this.Hide();
-            GlobalClass.zapamietajPozycjeFormsa(this);
-            dialogForm.ShowDialog();
-            this.Show();
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)
@@ -45,7 +35,9 @@ namespace DK24
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 3;
 
-            OpenDialog(new KontrahentForm());
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
         }
 
         private void ListaKontrahentowForm_Load(object sender, EventArgs e)
@@ -138,7 +130,9 @@ namespace DK24
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 1;
 
-            OpenDialog(new KontrahentForm());
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
 
 
 
@@ -151,7 +145,9 @@ namespace DK24
 
             GlobalClass.StanFormyKontrahenta.StanFormy = 2;
 
-            OpenDialog(new KontrahentForm());
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
 
         }
 
@@ -162,17 +158,23 @@ namespace DK24
 
         private void zamówieniaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            OpenDialog(new MainForm());
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
         }
 
         private void dodajToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            OpenDialog(new DokumentForm());
+            DokumentForm dokumentForm = new DokumentForm();
+            this.Hide();
+            dokumentForm.ShowDialog();
         }
 
         private void zobaczFakturyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            OpenDialog(new ListaFakturForm());
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
         }
 
         private void btnUsun_Click(object sender, EventArgs e)

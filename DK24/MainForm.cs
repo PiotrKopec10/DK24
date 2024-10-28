@@ -22,7 +22,6 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
-            GlobalClass.zapamietajPozycjeFormsa(this);
         }
 
 
@@ -59,38 +58,33 @@ namespace DK24
 
         }
 
-        private void OpenDialog(Form dialogForm)
-        {
-            GlobalClass.zapiszNowaPozycjeFormsa(this);
-            this.Hide();
-            GlobalClass.zapamietajPozycjeFormsa(dialogForm);
-            dialogForm.ShowDialog();
-            this.Show();
-        }
 
         private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new DokumentForm());
+            DokumentForm dokumentForm = new DokumentForm();
+            this.Hide();
+            dokumentForm.ShowDialog();
         }
 
         private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new ListaFakturForm());
-            //ListaFakturForm listaFakturForm = new ListaFakturForm();
-            //this.Hide();
-            //listaFakturForm.ShowDialog();
-
-
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
         }
 
         private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new KontrahentForm());
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
         }
 
         private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new ListaKontrahentowForm());
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

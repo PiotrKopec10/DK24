@@ -20,21 +20,14 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
-            GlobalClass.zapamietajPozycjeFormsa(this);
         }
 
-        private void OpenDialog(Form dialogForm)
-        {
-            GlobalClass.zapiszNowaPozycjeFormsa(this);
-            this.Hide();
-            GlobalClass.zapamietajPozycjeFormsa(this);
-            dialogForm.ShowDialog();
-            this.Show();
-        }
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            OpenDialog(new DokumentForm());
+            DokumentForm dokumentForm = new DokumentForm();
+            this.Hide();
+            dokumentForm.ShowDialog();
         }
 
 
@@ -45,17 +38,23 @@ namespace DK24
 
         private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new MainForm());
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
         }
 
         private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new KontrahentForm());
+            KontrahentForm kontrahentForm = new KontrahentForm();
+            this.Hide();
+            kontrahentForm.ShowDialog();
         }
 
         private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDialog(new ListaKontrahentowForm());
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
         }
 
         private void ListaFakturForm_Load(object sender, EventArgs e)
