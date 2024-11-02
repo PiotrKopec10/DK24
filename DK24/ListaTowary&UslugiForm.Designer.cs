@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaTowary_UslugiForm));
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
@@ -49,18 +49,17 @@
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
-            dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
             pnlPrzyciski = new Panel();
+            radioButtonTowary = new RadioButton();
+            radioButtonUslugi = new RadioButton();
+            radioButtonWszystko = new RadioButton();
             btnCofnij = new Button();
             label1 = new Label();
             panel4 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridLsTowary = new DataGridView();
-            radioButtonUslugi = new RadioButton();
-            radioButtonWszystko = new RadioButton();
-            radioButtonTowary = new RadioButton();
             panelZalogowania.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip.SuspendLayout();
@@ -160,14 +159,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(180, 22);
-            dodajToolStripMenuItem.Text = "Dodaj";
+            dodajToolStripMenuItem.Size = new Size(147, 22);
+            dodajToolStripMenuItem.Text = "Dodaj Fakturę";
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
-            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            zobaczFakturyToolStripMenuItem.Size = new Size(147, 22);
+            zobaczFakturyToolStripMenuItem.Text = "Lista Faktur";
             // 
             // kontrahenciToolStripMenuItem
             // 
@@ -218,7 +217,7 @@
             // towaryToolStripMenuItem
             // 
             towaryToolStripMenuItem.BackColor = Color.Transparent;
-            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajTowarToolStripMenuItem, zobaczToolStripMenuItem });
+            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zobaczToolStripMenuItem });
             towaryToolStripMenuItem.Enabled = false;
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
@@ -226,12 +225,6 @@
             towaryToolStripMenuItem.Size = new Size(98, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // dodajTowarToolStripMenuItem
-            // 
-            dodajTowarToolStripMenuItem.Name = "dodajTowarToolStripMenuItem";
-            dodajTowarToolStripMenuItem.Size = new Size(190, 22);
-            dodajTowarToolStripMenuItem.Text = "Dodaj Towar/Usługę";
             // 
             // zobaczToolStripMenuItem
             // 
@@ -260,6 +253,45 @@
             pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 10;
             // 
+            // radioButtonTowary
+            // 
+            radioButtonTowary.AutoSize = true;
+            radioButtonTowary.BackColor = Color.Transparent;
+            radioButtonTowary.ForeColor = Color.White;
+            radioButtonTowary.Location = new Point(225, 25);
+            radioButtonTowary.Name = "radioButtonTowary";
+            radioButtonTowary.Size = new Size(72, 19);
+            radioButtonTowary.TabIndex = 17;
+            radioButtonTowary.Text = "TOWARY";
+            radioButtonTowary.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonUslugi
+            // 
+            radioButtonUslugi.AutoSize = true;
+            radioButtonUslugi.BackColor = Color.Transparent;
+            radioButtonUslugi.ForeColor = Color.White;
+            radioButtonUslugi.Location = new Point(311, 25);
+            radioButtonUslugi.Name = "radioButtonUslugi";
+            radioButtonUslugi.Size = new Size(64, 19);
+            radioButtonUslugi.TabIndex = 16;
+            radioButtonUslugi.Text = "USŁUGI";
+            radioButtonUslugi.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonWszystko
+            // 
+            radioButtonWszystko.AutoSize = true;
+            radioButtonWszystko.BackColor = Color.Transparent;
+            radioButtonWszystko.Checked = true;
+            radioButtonWszystko.ForeColor = Color.White;
+            radioButtonWszystko.Location = new Point(132, 25);
+            radioButtonWszystko.Name = "radioButtonWszystko";
+            radioButtonWszystko.Size = new Size(83, 19);
+            radioButtonWszystko.TabIndex = 15;
+            radioButtonWszystko.TabStop = true;
+            radioButtonWszystko.Text = "WSZYSTKO";
+            radioButtonWszystko.UseVisualStyleBackColor = false;
+            radioButtonWszystko.CheckedChanged += radioButtonTowary_CheckedChanged;
+            // 
             // btnCofnij
             // 
             btnCofnij.Image = (Image)resources.GetObject("btnCofnij.Image");
@@ -268,6 +300,7 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 14;
             btnCofnij.UseVisualStyleBackColor = true;
+            btnCofnij.Click += btnCofnij_Click;
             // 
             // label1
             // 
@@ -305,30 +338,30 @@
             dtGridLsTowary.AccessibleRole = AccessibleRole.Caret;
             dtGridLsTowary.AllowUserToAddRows = false;
             dtGridLsTowary.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = Color.LightGray;
-            dataGridViewCellStyle9.ForeColor = Color.Black;
-            dataGridViewCellStyle9.NullValue = "Brak Danych";
-            dtGridLsTowary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridLsTowary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtGridLsTowary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLsTowary.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            dtGridLsTowary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridLsTowary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridLsTowary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle11.ForeColor = Color.Black;
-            dataGridViewCellStyle11.NullValue = "Brak Danych";
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            dtGridLsTowary.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridLsTowary.DefaultCellStyle = dataGridViewCellStyle3;
             dtGridLsTowary.Dock = DockStyle.Fill;
             dtGridLsTowary.GridColor = Color.Gray;
             dtGridLsTowary.Location = new Point(0, 0);
@@ -336,14 +369,14 @@
             dtGridLsTowary.Name = "dtGridLsTowary";
             dtGridLsTowary.ReadOnly = true;
             dtGridLsTowary.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dtGridLsTowary.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridLsTowary.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtGridLsTowary.RowHeadersVisible = false;
             dtGridLsTowary.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLsTowary.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -353,45 +386,6 @@
             dtGridLsTowary.ShowRowErrors = false;
             dtGridLsTowary.Size = new Size(1238, 533);
             dtGridLsTowary.TabIndex = 0;
-            // 
-            // radioButtonUslugi
-            // 
-            radioButtonUslugi.AutoSize = true;
-            radioButtonUslugi.BackColor = Color.Transparent;
-            radioButtonUslugi.ForeColor = Color.White;
-            radioButtonUslugi.Location = new Point(311, 25);
-            radioButtonUslugi.Name = "radioButtonUslugi";
-            radioButtonUslugi.Size = new Size(64, 19);
-            radioButtonUslugi.TabIndex = 16;
-            radioButtonUslugi.Text = "USŁUGI";
-            radioButtonUslugi.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonWszystko
-            // 
-            radioButtonWszystko.AutoSize = true;
-            radioButtonWszystko.BackColor = Color.Transparent;
-            radioButtonWszystko.Checked = true;
-            radioButtonWszystko.ForeColor = Color.White;
-            radioButtonWszystko.Location = new Point(132, 25);
-            radioButtonWszystko.Name = "radioButtonWszystko";
-            radioButtonWszystko.Size = new Size(83, 19);
-            radioButtonWszystko.TabIndex = 15;
-            radioButtonWszystko.TabStop = true;
-            radioButtonWszystko.Text = "WSZYSTKO";
-            radioButtonWszystko.UseVisualStyleBackColor = false;
-            radioButtonWszystko.CheckedChanged += radioButtonTowary_CheckedChanged;
-            // 
-            // radioButtonTowary
-            // 
-            radioButtonTowary.AutoSize = true;
-            radioButtonTowary.BackColor = Color.Transparent;
-            radioButtonTowary.ForeColor = Color.White;
-            radioButtonTowary.Location = new Point(225, 25);
-            radioButtonTowary.Name = "radioButtonTowary";
-            radioButtonTowary.Size = new Size(72, 19);
-            radioButtonTowary.TabIndex = 17;
-            radioButtonTowary.Text = "TOWARY";
-            radioButtonTowary.UseVisualStyleBackColor = false;
             // 
             // ListaTowary_UslugiForm
             // 
@@ -406,6 +400,7 @@
             Controls.Add(menuStrip);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ListaTowary_UslugiForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ListaTowary_UslugiForm";
             Load += ListaTowary_UslugiForm_Load;
             panelZalogowania.ResumeLayout(false);
@@ -438,7 +433,6 @@
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
         private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
-        private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
         private Panel panel2;
         private Panel pnlPrzyciski;

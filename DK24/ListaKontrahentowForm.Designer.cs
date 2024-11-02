@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaKontrahentowForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnZaznacz = new Button();
             btnCofnij = new Button();
@@ -56,7 +56,6 @@
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
             zobaczPaczkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
-            dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
@@ -243,15 +242,15 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
-            dodajToolStripMenuItem.Text = "Dodaj";
+            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Text = "Dodaj Fakturę";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click_1;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
-            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Text = "Lista Faktur";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click_1;
             // 
             // kontrahenciToolStripMenuItem
@@ -304,7 +303,7 @@
             // towaryToolStripMenuItem
             // 
             towaryToolStripMenuItem.BackColor = Color.Transparent;
-            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajTowarToolStripMenuItem, zobaczToolStripMenuItem });
+            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zobaczToolStripMenuItem });
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
@@ -312,17 +311,12 @@
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
-            // dodajTowarToolStripMenuItem
-            // 
-            dodajTowarToolStripMenuItem.Name = "dodajTowarToolStripMenuItem";
-            dodajTowarToolStripMenuItem.Size = new Size(190, 22);
-            dodajTowarToolStripMenuItem.Text = "Dodaj Towar/Usługę";
-            // 
             // zobaczToolStripMenuItem
             // 
             zobaczToolStripMenuItem.Name = "zobaczToolStripMenuItem";
-            zobaczToolStripMenuItem.Size = new Size(190, 22);
-            zobaczToolStripMenuItem.Text = "Zobacz Towary/Usługi";
+            zobaczToolStripMenuItem.Size = new Size(189, 22);
+            zobaczToolStripMenuItem.Text = "Lista Towarów / Usług";
+            zobaczToolStripMenuItem.Click += zobaczToolStripMenuItem_Click;
             // 
             // panelZalogowania
             // 
@@ -405,30 +399,30 @@
             dtGridLstKnt.AccessibleRole = AccessibleRole.Caret;
             dtGridLstKnt.AllowUserToAddRows = false;
             dtGridLstKnt.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.NullValue = "Brak Danych";
-            dtGridLstKnt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = Color.LightGray;
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.NullValue = "Brak Danych";
+            dtGridLstKnt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             dtGridLstKnt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstKnt.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtGridLstKnt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dtGridLstKnt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.NullValue = "Brak Danych";
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtGridLstKnt.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle11.ForeColor = Color.Black;
+            dataGridViewCellStyle11.NullValue = "Brak Danych";
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dtGridLstKnt.DefaultCellStyle = dataGridViewCellStyle11;
             dtGridLstKnt.Dock = DockStyle.Fill;
             dtGridLstKnt.GridColor = Color.Gray;
             dtGridLstKnt.Location = new Point(0, 0);
@@ -436,14 +430,14 @@
             dtGridLstKnt.Name = "dtGridLstKnt";
             dtGridLstKnt.ReadOnly = true;
             dtGridLstKnt.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtGridLstKnt.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dtGridLstKnt.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dtGridLstKnt.RowHeadersVisible = false;
             dtGridLstKnt.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstKnt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -510,7 +504,6 @@
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;
         private ToolStripMenuItem zobaczPaczkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
-        private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
         private Panel panelZalogowania;
         private LinkLabel linkLabel1;

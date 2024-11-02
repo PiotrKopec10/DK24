@@ -21,5 +21,12 @@ namespace DK24
         {
 
         }
+
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
     }
 }

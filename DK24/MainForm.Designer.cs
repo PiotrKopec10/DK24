@@ -50,7 +50,6 @@
             dodajKontrahentaToolStripMenuItem = new ToolStripMenuItem();
             zobaczKontrahentówToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
-            dodajTowarToolStripMenuItem = new ToolStripMenuItem();
             zobaczToolStripMenuItem = new ToolStripMenuItem();
             wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             stwórzPaczkęToolStripMenuItem = new ToolStripMenuItem();
@@ -157,6 +156,7 @@
             button1.TextAlign = ContentAlignment.MiddleRight;
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // radioButtonArchiwalne
             // 
@@ -239,15 +239,15 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
-            dodajToolStripMenuItem.Text = "Dodaj";
+            dodajToolStripMenuItem.Size = new Size(180, 22);
+            dodajToolStripMenuItem.Text = "Dodaj Fakturę";
             dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
-            zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
+            zobaczFakturyToolStripMenuItem.Text = "Lista Faktur";
             zobaczFakturyToolStripMenuItem.Click += zobaczFakturyToolStripMenuItem_Click;
             // 
             // edytujToolStripMenuItem
@@ -271,21 +271,21 @@
             // dodajKontrahentaToolStripMenuItem
             // 
             dodajKontrahentaToolStripMenuItem.Name = "dodajKontrahentaToolStripMenuItem";
-            dodajKontrahentaToolStripMenuItem.Size = new Size(190, 22);
+            dodajKontrahentaToolStripMenuItem.Size = new Size(180, 22);
             dodajKontrahentaToolStripMenuItem.Text = "Dodaj Kontrahenta";
             dodajKontrahentaToolStripMenuItem.Click += dodajKontrahentaToolStripMenuItem_Click;
             // 
             // zobaczKontrahentówToolStripMenuItem
             // 
             zobaczKontrahentówToolStripMenuItem.Name = "zobaczKontrahentówToolStripMenuItem";
-            zobaczKontrahentówToolStripMenuItem.Size = new Size(190, 22);
-            zobaczKontrahentówToolStripMenuItem.Text = "Zobacz Kontrahentów";
+            zobaczKontrahentówToolStripMenuItem.Size = new Size(180, 22);
+            zobaczKontrahentówToolStripMenuItem.Text = "Lista Kontrahentów";
             zobaczKontrahentówToolStripMenuItem.Click += zobaczKontrahentówToolStripMenuItem_Click;
             // 
             // towaryToolStripMenuItem
             // 
             towaryToolStripMenuItem.BackColor = Color.Transparent;
-            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dodajTowarToolStripMenuItem, zobaczToolStripMenuItem });
+            towaryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zobaczToolStripMenuItem });
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
@@ -293,17 +293,12 @@
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
-            // dodajTowarToolStripMenuItem
-            // 
-            dodajTowarToolStripMenuItem.Name = "dodajTowarToolStripMenuItem";
-            dodajTowarToolStripMenuItem.Size = new Size(190, 22);
-            dodajTowarToolStripMenuItem.Text = "Dodaj Towar/Usługę";
-            // 
             // zobaczToolStripMenuItem
             // 
             zobaczToolStripMenuItem.Name = "zobaczToolStripMenuItem";
-            zobaczToolStripMenuItem.Size = new Size(190, 22);
-            zobaczToolStripMenuItem.Text = "Zobacz Towary/Usługi";
+            zobaczToolStripMenuItem.Size = new Size(187, 22);
+            zobaczToolStripMenuItem.Text = "Lista Towarów i Usług";
+            zobaczToolStripMenuItem.Click += zobaczToolStripMenuItem_Click;
             // 
             // wysyłkiToolStripMenuItem
             // 
@@ -319,13 +314,13 @@
             // stwórzPaczkęToolStripMenuItem
             // 
             stwórzPaczkęToolStripMenuItem.Name = "stwórzPaczkęToolStripMenuItem";
-            stwórzPaczkęToolStripMenuItem.Size = new Size(148, 22);
+            stwórzPaczkęToolStripMenuItem.Size = new Size(180, 22);
             stwórzPaczkęToolStripMenuItem.Text = "Stwórz paczkę";
             // 
             // zobaczPaczkiToolStripMenuItem
             // 
             zobaczPaczkiToolStripMenuItem.Name = "zobaczPaczkiToolStripMenuItem";
-            zobaczPaczkiToolStripMenuItem.Size = new Size(148, 22);
+            zobaczPaczkiToolStripMenuItem.Size = new Size(180, 22);
             zobaczPaczkiToolStripMenuItem.Text = "Zobacz paczki";
             // 
             // zamówieniaToolStripMenuItem
@@ -456,7 +451,6 @@
         private ToolStripMenuItem dodajKontrahentaToolStripMenuItem;
         private ToolStripMenuItem zobaczKontrahentówToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
-        private ToolStripMenuItem dodajTowarToolStripMenuItem;
         private ToolStripMenuItem zobaczToolStripMenuItem;
         private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem stwórzPaczkęToolStripMenuItem;

@@ -101,5 +101,19 @@ namespace DK24
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
+            this.Hide();
+            szczegolyZamowieniaForm.ShowDialog();
+        }
+
+        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
+            this.Hide();
+            listaTowary_Uslugi.ShowDialog();
+        }
     }
 }

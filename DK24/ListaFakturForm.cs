@@ -61,5 +61,12 @@ namespace DK24
         {
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
+
+        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
+            this.Hide();
+            listaTowary_Uslugi.ShowDialog();
+        }
     }
 }

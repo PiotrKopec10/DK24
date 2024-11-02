@@ -44,6 +44,7 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            txtBoxAdres = new TextBox();
             checkBox2 = new CheckBox();
             checkBox1 = new CheckBox();
             label13 = new Label();
@@ -77,7 +78,6 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            txtBoxAdres = new TextBox();
             pnlPrzyciski.SuspendLayout();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -115,6 +115,7 @@
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 6;
             btnAnuluj.UseVisualStyleBackColor = true;
+            btnAnuluj.Click += btnAnuluj_Click;
             // 
             // btnZapisz
             // 
@@ -217,6 +218,14 @@
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
             // 
+            // txtBoxAdres
+            // 
+            txtBoxAdres.BackColor = SystemColors.Menu;
+            txtBoxAdres.Location = new Point(91, 137);
+            txtBoxAdres.Name = "txtBoxAdres";
+            txtBoxAdres.Size = new Size(295, 23);
+            txtBoxAdres.TabIndex = 32;
+            // 
             // checkBox2
             // 
             checkBox2.AutoSize = true;
@@ -281,21 +290,21 @@
             // 
             // dtPickSprzed
             // 
-            dtPickSprzed.Location = new Point(440, 307);
+            dtPickSprzed.Location = new Point(176, 311);
             dtPickSprzed.Name = "dtPickSprzed";
             dtPickSprzed.Size = new Size(232, 23);
             dtPickSprzed.TabIndex = 26;
             // 
             // dtPickDataWystaw
             // 
-            dtPickDataWystaw.Location = new Point(440, 255);
+            dtPickDataWystaw.Location = new Point(176, 259);
             dtPickDataWystaw.Name = "dtPickDataWystaw";
             dtPickDataWystaw.Size = new Size(232, 23);
             dtPickDataWystaw.TabIndex = 25;
             // 
             // btnDataSprzed
             // 
-            btnDataSprzed.Location = new Point(302, 307);
+            btnDataSprzed.Location = new Point(38, 311);
             btnDataSprzed.Name = "btnDataSprzed";
             btnDataSprzed.Size = new Size(117, 23);
             btnDataSprzed.TabIndex = 21;
@@ -304,7 +313,7 @@
             // 
             // btnDataWys
             // 
-            btnDataWys.Location = new Point(302, 255);
+            btnDataWys.Location = new Point(38, 259);
             btnDataWys.Name = "btnDataWys";
             btnDataWys.Size = new Size(117, 23);
             btnDataWys.TabIndex = 19;
@@ -313,9 +322,9 @@
             // 
             // richTxtBoxOpis
             // 
-            richTxtBoxOpis.Location = new Point(766, 33);
+            richTxtBoxOpis.Location = new Point(749, 198);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(482, 314);
+            richTxtBoxOpis.Size = new Size(482, 146);
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
@@ -323,7 +332,7 @@
             // 
             cmbBoxPlatnosc.BackColor = SystemColors.Menu;
             cmbBoxPlatnosc.FormattingEnabled = true;
-            cmbBoxPlatnosc.Location = new Point(302, 211);
+            cmbBoxPlatnosc.Location = new Point(38, 215);
             cmbBoxPlatnosc.Name = "cmbBoxPlatnosc";
             cmbBoxPlatnosc.Size = new Size(189, 23);
             cmbBoxPlatnosc.TabIndex = 14;
@@ -334,7 +343,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(766, 11);
+            label8.Location = new Point(749, 180);
             label8.Name = "label8";
             label8.Size = new Size(40, 14);
             label8.TabIndex = 12;
@@ -346,7 +355,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(302, 194);
+            label7.Location = new Point(38, 198);
             label7.Name = "label7";
             label7.Size = new Size(132, 14);
             label7.TabIndex = 11;
@@ -369,7 +378,7 @@
             grpBoxWartDok.Controls.Add(label5);
             grpBoxWartDok.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             grpBoxWartDok.ForeColor = Color.FromArgb(255, 128, 0);
-            grpBoxWartDok.Location = new Point(38, 183);
+            grpBoxWartDok.Location = new Point(993, 5);
             grpBoxWartDok.Name = "grpBoxWartDok";
             grpBoxWartDok.Size = new Size(242, 164);
             grpBoxWartDok.TabIndex = 1;
@@ -592,14 +601,6 @@
             dtGridViewZamowienia.Size = new Size(1238, 203);
             dtGridViewZamowienia.TabIndex = 1;
             // 
-            // txtBoxAdres
-            // 
-            txtBoxAdres.BackColor = SystemColors.Menu;
-            txtBoxAdres.Location = new Point(91, 137);
-            txtBoxAdres.Name = "txtBoxAdres";
-            txtBoxAdres.Size = new Size(295, 23);
-            txtBoxAdres.TabIndex = 32;
-            // 
             // SzczegolyZamowieniaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -613,6 +614,7 @@
             Controls.Add(pnlGoraDane);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SzczegolyZamowieniaForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SzczegolyZamowieniaForm";
             Load += SzczegolyZamowieniaForm_Load;
             pnlPrzyciski.ResumeLayout(false);

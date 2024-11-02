@@ -26,5 +26,12 @@ namespace DK24
         {
 
         }
+
+        private void btnCofnij_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
     }
 }
