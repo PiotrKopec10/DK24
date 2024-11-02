@@ -84,6 +84,7 @@
             btnAnuluj = new Button();
             btnZapisz = new Button();
             toolTip1 = new ToolTip(components);
+            btnPobierzPoNip = new Button();
             pnlDane.SuspendLayout();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -145,6 +146,7 @@
             // grpBoxDane
             // 
             grpBoxDane.BackColor = Color.Transparent;
+            grpBoxDane.Controls.Add(btnPobierzPoNip);
             grpBoxDane.Controls.Add(cmbBoxZnizka);
             grpBoxDane.Controls.Add(rchTxtBoxOpis);
             grpBoxDane.Controls.Add(chckBoxArchiwalny);
@@ -182,7 +184,7 @@
             cmbBoxZnizka.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxZnizka.FormattingEnabled = true;
             cmbBoxZnizka.Items.AddRange(new object[] { "0", "10" });
-            cmbBoxZnizka.Location = new Point(546, 147);
+            cmbBoxZnizka.Location = new Point(580, 108);
             cmbBoxZnizka.Name = "cmbBoxZnizka";
             cmbBoxZnizka.Size = new Size(98, 23);
             cmbBoxZnizka.TabIndex = 26;
@@ -190,7 +192,7 @@
             // 
             // rchTxtBoxOpis
             // 
-            rchTxtBoxOpis.Location = new Point(485, 265);
+            rchTxtBoxOpis.Location = new Point(485, 237);
             rchTxtBoxOpis.Name = "rchTxtBoxOpis";
             rchTxtBoxOpis.Size = new Size(253, 173);
             rchTxtBoxOpis.TabIndex = 25;
@@ -202,7 +204,7 @@
             chckBoxArchiwalny.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxArchiwalny.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxArchiwalny.ImageAlign = ContentAlignment.MiddleLeft;
-            chckBoxArchiwalny.Location = new Point(485, 201);
+            chckBoxArchiwalny.Location = new Point(516, 201);
             chckBoxArchiwalny.Name = "chckBoxArchiwalny";
             chckBoxArchiwalny.Size = new Size(100, 24);
             chckBoxArchiwalny.TabIndex = 24;
@@ -214,7 +216,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label21.Location = new Point(485, 147);
+            label21.Location = new Point(519, 108);
             label21.Name = "label21";
             label21.Size = new Size(55, 20);
             label21.TabIndex = 23;
@@ -618,6 +620,16 @@
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
             // 
+            // btnPobierzPoNip
+            // 
+            btnPobierzPoNip.Location = new Point(516, 152);
+            btnPobierzPoNip.Name = "btnPobierzPoNip";
+            btnPobierzPoNip.Size = new Size(180, 23);
+            btnPobierzPoNip.TabIndex = 27;
+            btnPobierzPoNip.Text = "Pobierz Kontrahenta po NIP";
+            btnPobierzPoNip.UseVisualStyleBackColor = true;
+            btnPobierzPoNip.Click += btnPobierzPoNip_Click;
+            // 
             // KontrahentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -700,5 +712,6 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel3;
+        private Button btnPobierzPoNip;
     }
 }

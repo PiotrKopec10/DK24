@@ -1,7 +1,10 @@
 ﻿using DK24.Klasy;
+using System.ServiceModel.Channels;
+using System.ServiceModel;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ToolTip = System.Windows.Forms.ToolTip;
+using System.Xml;
 
 namespace DK24
 {
@@ -86,7 +89,7 @@ namespace DK24
         }
 
 
-            private void btnZapisz_Click(object sender, EventArgs e)
+        private void btnZapisz_Click(object sender, EventArgs e)
         {
             ToolTip toolTip = new ToolTip();
             toolTip.IsBalloon = true;
@@ -131,7 +134,7 @@ namespace DK24
             }
             else
             {
-                txtBoxNIP.BackColor = SystemColors.Window; 
+                txtBoxNIP.BackColor = SystemColors.Window;
             }
 
             if (txtBoxRegon.Text.Length > 0 && txtBoxRegon.Text.Length < 9)
@@ -386,7 +389,7 @@ namespace DK24
             }
 
 
-            
+
 
 
             //musimy sprawdzic forme czy my dodajemy czy edytujemy bo nie mozemy edytowac po aktualnym adresie jezeli zmieni sie np tylko nazwa firmy to nam nie doda
@@ -440,10 +443,10 @@ namespace DK24
 
 
             }
-            else if(GlobalClass.StanFormyKontrahenta.StanFormy == 2) 
+            else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
             {
 
-             
+
 
 
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -461,10 +464,10 @@ namespace DK24
                 AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
 
 
-                DzialaniaNaAdresie.EdytujAdres(AktualnyAdres);   
+                DzialaniaNaAdresie.EdytujAdres(AktualnyAdres);
 
-                    
-                
+
+
 
 
                 AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
@@ -647,6 +650,7 @@ namespace DK24
             if (GlobalClass.StanFormyKontrahenta.StanFormy == 1)
             {
                 btnZapisz.Visible = false;
+                btnPobierzPoNip.Visible = false;
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
                 AktualnyAdres.address_id = AktualnyKontrahent.address_id;
                 AktualnyAdres = DzialaniaNaAdresie.PobierzAdresWgId(AktualnyAdres.address_id);
@@ -675,17 +679,19 @@ namespace DK24
                 txtBoxWoj.Enabled = false;
                 txtBoxPowiat.Enabled = false;
                 txtBoxGmina.Enabled = false;
+               
 
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
             {
                 btnZapisz.Visible = true;
+                btnPobierzPoNip.Visible = true;
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
                 AktualnyAdres.address_id = AktualnyKontrahent.address_id;
                 AktualnyAdres = DzialaniaNaAdresie.PobierzAdresWgId(AktualnyAdres.address_id);
                 WstawPolaDoEdycji();
 
-             
+
 
 
 
@@ -695,6 +701,7 @@ namespace DK24
             {
 
                 btnZapisz.Visible = true;
+                btnPobierzPoNip.Visible = true;
 
             }
 
@@ -755,8 +762,102 @@ namespace DK24
 
         }
 
+        private void btnPobierzPoNip_Click(object sender, EventArgs e)
+        {
 
 
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz szukać po NIP-ie kontrahenta?","Potwierdzenie",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {            
+                SzukajPoNIP(txtBoxNIP.Text);
+            }
+
+
+
+
+        }
+
+
+        public async void SzukajPoNIP(string nip)
+        {
+            try
+            {
+                var binding = new WSHttpBinding();
+                binding.MessageEncoding = WSMessageEncoding.Mtom;
+                binding.Security.Mode = SecurityMode.Transport;
+
+                var endpointAddress = new EndpointAddress("https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc");
+                var client = new GUSAPI.UslugaBIRzewnPublClient(binding, endpointAddress);
+
+                // Logowanie i pobranie SID (sesji)
+                var loginResponse = await client.ZalogujAsync("abcde12345abcde12345");
+                string sid = loginResponse.ZalogujResult;
+
+                // Dodanie SID do nagłówków
+                using (var scope = new OperationContextScope(client.InnerChannel))
+                {
+                    var httpRequestProperty = new HttpRequestMessageProperty();
+                    httpRequestProperty.Headers["sid"] = sid;
+                    OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+
+                    // Przygotowanie parametrów wyszukiwania po NIP
+                    var parametry = new GUSAPI.ParametryWyszukiwania { Nip = nip };
+
+                    // Wykonanie zapytania
+                    var wynikResponse = await client.DaneSzukajPodmiotyAsync(parametry);
+                    string wynik = wynikResponse.DaneSzukajPodmiotyResult;
+
+                    // Przetwarzanie wyniku XML
+                    WypelnijDaneZXml(wynik);
+                }
+
+                // Wylogowanie
+                using (var scope = new OperationContextScope(client.InnerChannel))
+                {
+                    var httpRequestProperty = new HttpRequestMessageProperty();
+                    httpRequestProperty.Headers["sid"] = sid;
+                    OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+
+                    await client.WylogujAsync(sid);
+                }
+
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+               // txtBoxNipKnt.Text = $"Błąd: {ex.Message}";
+            }
+        }
+
+
+        public void WypelnijDaneZXml(string xmlContent)
+        {
+            
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlContent);
+
+
+            XmlNode daneNode = doc.SelectSingleNode("/root/dane");
+
+            if (daneNode != null)
+            {
+
+                txtBoxRegon.Text = daneNode.SelectSingleNode("Regon")?.InnerText ?? "";
+                txtBoxNIP.Text = daneNode.SelectSingleNode("Nip")?.InnerText ?? "";
+                txtBoxNazwa.Text = daneNode.SelectSingleNode("Nazwa")?.InnerText ?? "";
+                txtBoxWoj.Text = daneNode.SelectSingleNode("Wojewodztwo")?.InnerText ?? "";
+                txtBoxPowiat.Text = daneNode.SelectSingleNode("Powiat")?.InnerText ?? "";
+                txtBoxGmina.Text = daneNode.SelectSingleNode("Gmina")?.InnerText ?? "";
+                txtBoxMiasto.Text = daneNode.SelectSingleNode("Miejscowosc")?.InnerText ?? "";
+                txtBoxKodPocz.Text = daneNode.SelectSingleNode("KodPocztowy")?.InnerText ?? "";
+                txtBoxUlica.Text = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
+                txtBoxNrDomu.Text = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
+                txtBoxNrLokalu.Text = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
+                
+
+            }
+        }
 
     }
 }

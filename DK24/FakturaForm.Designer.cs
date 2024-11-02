@@ -34,6 +34,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlGoraDane = new Panel();
+            btnPobierzPoNip = new Button();
             dtPickSprzed = new DateTimePicker();
             dtPickDataWystaw = new DateTimePicker();
             chckBoxCzyFaktura = new CheckBox();
@@ -43,18 +44,17 @@
             dtPickerDo = new DateTimePicker();
             btnDo = new Button();
             label10 = new Label();
+            label6 = new Label();
+            txtBoxNipKnt = new TextBox();
             numBoxIloscDni = new NumericUpDown();
             cmbBoxPlatnosc = new ComboBox();
             richTxtBoxOpis = new RichTextBox();
             label8 = new Label();
             label7 = new Label();
-            label6 = new Label();
             btnKontrahent = new Button();
             txtBoxMiastoKnt = new TextBox();
             txtBoxKodPoczKnt = new TextBox();
             txtBoxAdresKnt = new TextBox();
-            txtBoxNipKnt = new TextBox();
-            txtBoxPrefixNipKnt = new TextBox();
             txtBoxNazwaKnt = new TextBox();
             txtBoxAkronimKnt = new TextBox();
             grpBoxWartDok = new GroupBox();
@@ -104,6 +104,7 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(btnPobierzPoNip);
             pnlGoraDane.Controls.Add(dtPickSprzed);
             pnlGoraDane.Controls.Add(dtPickDataWystaw);
             pnlGoraDane.Controls.Add(chckBoxCzyFaktura);
@@ -113,18 +114,17 @@
             pnlGoraDane.Controls.Add(dtPickerDo);
             pnlGoraDane.Controls.Add(btnDo);
             pnlGoraDane.Controls.Add(label10);
+            pnlGoraDane.Controls.Add(label6);
+            pnlGoraDane.Controls.Add(txtBoxNipKnt);
             pnlGoraDane.Controls.Add(numBoxIloscDni);
             pnlGoraDane.Controls.Add(cmbBoxPlatnosc);
             pnlGoraDane.Controls.Add(richTxtBoxOpis);
             pnlGoraDane.Controls.Add(label8);
             pnlGoraDane.Controls.Add(label7);
-            pnlGoraDane.Controls.Add(label6);
             pnlGoraDane.Controls.Add(btnKontrahent);
             pnlGoraDane.Controls.Add(txtBoxMiastoKnt);
             pnlGoraDane.Controls.Add(txtBoxKodPoczKnt);
             pnlGoraDane.Controls.Add(txtBoxAdresKnt);
-            pnlGoraDane.Controls.Add(txtBoxNipKnt);
-            pnlGoraDane.Controls.Add(txtBoxPrefixNipKnt);
             pnlGoraDane.Controls.Add(txtBoxNazwaKnt);
             pnlGoraDane.Controls.Add(txtBoxAkronimKnt);
             pnlGoraDane.Controls.Add(grpBoxWartDok);
@@ -133,6 +133,16 @@
             pnlGoraDane.Name = "pnlGoraDane";
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 0;
+            // 
+            // btnPobierzPoNip
+            // 
+            btnPobierzPoNip.Location = new Point(383, 103);
+            btnPobierzPoNip.Name = "btnPobierzPoNip";
+            btnPobierzPoNip.Size = new Size(158, 23);
+            btnPobierzPoNip.TabIndex = 27;
+            btnPobierzPoNip.Text = "Pobierz dane używając NIP";
+            btnPobierzPoNip.UseVisualStyleBackColor = true;
+            btnPobierzPoNip.Click += btnPobierzPoNip_Click;
             // 
             // dtPickSprzed
             // 
@@ -224,6 +234,26 @@
             label10.TabIndex = 16;
             label10.Text = "dni";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(71, 107);
+            label6.Name = "label6";
+            label6.Size = new Size(34, 14);
+            label6.TabIndex = 10;
+            label6.Text = "NIP:";
+            // 
+            // txtBoxNipKnt
+            // 
+            txtBoxNipKnt.BackColor = SystemColors.Menu;
+            txtBoxNipKnt.Location = new Point(111, 103);
+            txtBoxNipKnt.Name = "txtBoxNipKnt";
+            txtBoxNipKnt.Size = new Size(266, 23);
+            txtBoxNipKnt.TabIndex = 5;
+            // 
             // numBoxIloscDni
             // 
             numBoxIloscDni.Location = new Point(249, 208);
@@ -272,31 +302,20 @@
             label7.TabIndex = 11;
             label7.Text = "Płatność:";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(70, 145);
-            label6.Name = "label6";
-            label6.Size = new Size(34, 14);
-            label6.TabIndex = 10;
-            label6.Text = "NIP:";
-            // 
             // btnKontrahent
             // 
-            btnKontrahent.Location = new Point(16, 101);
+            btnKontrahent.Location = new Point(547, 103);
             btnKontrahent.Name = "btnKontrahent";
-            btnKontrahent.Size = new Size(86, 23);
+            btnKontrahent.Size = new Size(146, 23);
             btnKontrahent.TabIndex = 9;
-            btnKontrahent.Text = "&Kontrahent";
+            btnKontrahent.Text = "Pobierz dane zapisanych";
             btnKontrahent.UseVisualStyleBackColor = true;
+            btnKontrahent.Click += btnKontrahent_Click;
             // 
             // txtBoxMiastoKnt
             // 
             txtBoxMiastoKnt.BackColor = SystemColors.Menu;
-            txtBoxMiastoKnt.Location = new Point(190, 170);
+            txtBoxMiastoKnt.Location = new Point(477, 176);
             txtBoxMiastoKnt.Name = "txtBoxMiastoKnt";
             txtBoxMiastoKnt.Size = new Size(216, 23);
             txtBoxMiastoKnt.TabIndex = 8;
@@ -304,7 +323,7 @@
             // txtBoxKodPoczKnt
             // 
             txtBoxKodPoczKnt.BackColor = SystemColors.Menu;
-            txtBoxKodPoczKnt.Location = new Point(111, 170);
+            txtBoxKodPoczKnt.Location = new Point(396, 176);
             txtBoxKodPoczKnt.Name = "txtBoxKodPoczKnt";
             txtBoxKodPoczKnt.Size = new Size(73, 23);
             txtBoxKodPoczKnt.TabIndex = 7;
@@ -312,31 +331,15 @@
             // txtBoxAdresKnt
             // 
             txtBoxAdresKnt.BackColor = SystemColors.Menu;
-            txtBoxAdresKnt.Location = new Point(440, 141);
+            txtBoxAdresKnt.Location = new Point(111, 176);
             txtBoxAdresKnt.Name = "txtBoxAdresKnt";
             txtBoxAdresKnt.Size = new Size(266, 23);
             txtBoxAdresKnt.TabIndex = 6;
             // 
-            // txtBoxNipKnt
-            // 
-            txtBoxNipKnt.BackColor = SystemColors.Menu;
-            txtBoxNipKnt.Location = new Point(152, 141);
-            txtBoxNipKnt.Name = "txtBoxNipKnt";
-            txtBoxNipKnt.Size = new Size(254, 23);
-            txtBoxNipKnt.TabIndex = 5;
-            // 
-            // txtBoxPrefixNipKnt
-            // 
-            txtBoxPrefixNipKnt.BackColor = SystemColors.Menu;
-            txtBoxPrefixNipKnt.Location = new Point(111, 141);
-            txtBoxPrefixNipKnt.Name = "txtBoxPrefixNipKnt";
-            txtBoxPrefixNipKnt.Size = new Size(35, 23);
-            txtBoxPrefixNipKnt.TabIndex = 4;
-            // 
             // txtBoxNazwaKnt
             // 
             txtBoxNazwaKnt.BackColor = SystemColors.Menu;
-            txtBoxNazwaKnt.Location = new Point(440, 102);
+            txtBoxNazwaKnt.Location = new Point(427, 138);
             txtBoxNazwaKnt.Name = "txtBoxNazwaKnt";
             txtBoxNazwaKnt.Size = new Size(266, 23);
             txtBoxNazwaKnt.TabIndex = 3;
@@ -344,7 +347,7 @@
             // txtBoxAkronimKnt
             // 
             txtBoxAkronimKnt.BackColor = SystemColors.Menu;
-            txtBoxAkronimKnt.Location = new Point(111, 102);
+            txtBoxAkronimKnt.Location = new Point(111, 138);
             txtBoxAkronimKnt.Name = "txtBoxAkronimKnt";
             txtBoxAkronimKnt.Size = new Size(295, 23);
             txtBoxAkronimKnt.TabIndex = 2;
@@ -748,7 +751,6 @@
         private TextBox txtBoxKodPoczKnt;
         private TextBox txtBoxAdresKnt;
         private TextBox txtBoxNipKnt;
-        private TextBox txtBoxPrefixNipKnt;
         private TextBox txtBoxNazwaKnt;
         private TextBox txtBoxAkronimKnt;
         private Button btnDo;
@@ -779,5 +781,6 @@
         private Panel panel3;
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridViewZamowienia;
+        private Button btnPobierzPoNip;
     }
 }
