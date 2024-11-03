@@ -840,23 +840,54 @@ namespace DK24
 
             XmlNode daneNode = doc.SelectSingleNode("/root/dane");
 
+            
+
             if (daneNode != null)
             {
+                
+                string czyBlad = daneNode.SelectSingleNode("ErrorCode")?.InnerText ??"";
 
-                txtBoxRegon.Text = daneNode.SelectSingleNode("Regon")?.InnerText ?? "";
-                txtBoxNIP.Text = daneNode.SelectSingleNode("Nip")?.InnerText ?? "";
-                txtBoxNazwa.Text = daneNode.SelectSingleNode("Nazwa")?.InnerText ?? "";
-                txtBoxWoj.Text = daneNode.SelectSingleNode("Wojewodztwo")?.InnerText ?? "";
-                txtBoxPowiat.Text = daneNode.SelectSingleNode("Powiat")?.InnerText ?? "";
-                txtBoxGmina.Text = daneNode.SelectSingleNode("Gmina")?.InnerText ?? "";
-                txtBoxMiasto.Text = daneNode.SelectSingleNode("Miejscowosc")?.InnerText ?? "";
-                txtBoxKodPocz.Text = daneNode.SelectSingleNode("KodPocztowy")?.InnerText ?? "";
-                txtBoxUlica.Text = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
-                txtBoxNrDomu.Text = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
-                txtBoxNrLokalu.Text = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
+                if (czyBlad == "4") 
+                {
+                   
+
+                    txtBoxRegon.Text = "";
+                    txtBoxNazwa.Text = "";
+                    txtBoxWoj.Text = "";
+                    txtBoxPowiat.Text = "";
+                    txtBoxGmina.Text = "";
+                    txtBoxMiasto.Text = "";
+                    txtBoxKodPocz.Text = "";
+                    txtBoxUlica.Text = "";
+                    txtBoxNrDomu.Text = "";
+                    txtBoxNrLokalu.Text = "";
+
+                    MessageBox.Show("Błąd nie znaleziono w bazie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+                else
+                {
+
+                    txtBoxRegon.Text = daneNode.SelectSingleNode("Regon")?.InnerText ?? "";
+                    txtBoxNIP.Text = daneNode.SelectSingleNode("Nip")?.InnerText ?? "";
+                    txtBoxNazwa.Text = daneNode.SelectSingleNode("Nazwa")?.InnerText ?? "";
+                    txtBoxWoj.Text = daneNode.SelectSingleNode("Wojewodztwo")?.InnerText ?? "";
+                    txtBoxPowiat.Text = daneNode.SelectSingleNode("Powiat")?.InnerText ?? "";
+                    txtBoxGmina.Text = daneNode.SelectSingleNode("Gmina")?.InnerText ?? "";
+                    txtBoxMiasto.Text = daneNode.SelectSingleNode("Miejscowosc")?.InnerText ?? "";
+                    txtBoxKodPocz.Text = daneNode.SelectSingleNode("KodPocztowy")?.InnerText ?? "";
+                    txtBoxUlica.Text = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
+                    txtBoxNrDomu.Text = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
+                    txtBoxNrLokalu.Text = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
+
+                }
+
+
                 
 
+
             }
+            
         }
 
     }

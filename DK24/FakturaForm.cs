@@ -115,23 +115,44 @@ namespace DK24
             XmlNode daneNode = doc.SelectSingleNode("/root/dane");
 
             if (daneNode != null)
-            {                           
-                txtBoxNipKnt.Text = daneNode.SelectSingleNode("Nip")?.InnerText ?? "";
-                txtBoxNazwaKnt.Text = daneNode.SelectSingleNode("Nazwa")?.InnerText ?? "";            
-                txtBoxMiastoKnt.Text = daneNode.SelectSingleNode("Miejscowosc")?.InnerText ?? "";
-                txtBoxKodPoczKnt.Text = daneNode.SelectSingleNode("KodPocztowy")?.InnerText ?? "";
+            {
 
-                string ulica = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
-                string nrNieruchomosci = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
-                string nrLokalu = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
 
-                string adres = $"{ulica} {nrNieruchomosci}".Trim();
-                if (!string.IsNullOrEmpty(nrLokalu))
+                string czyBlad = daneNode.SelectSingleNode("ErrorCode")?.InnerText ?? "";
+
+                if (czyBlad == "4")
                 {
-                    adres += $"/{nrLokalu}";
-                }
+                    
 
-                txtBoxAdresKnt.Text = adres;
+                    txtBoxNazwaKnt.Text = "";
+                    txtBoxMiastoKnt.Text = "";
+                    txtBoxKodPoczKnt.Text = "";
+
+                    txtBoxAdresKnt.Text = "";
+
+                    MessageBox.Show("Błąd nie znaleziono w bazie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+
+                    txtBoxNipKnt.Text = daneNode.SelectSingleNode("Nip")?.InnerText ?? "";
+                    txtBoxNazwaKnt.Text = daneNode.SelectSingleNode("Nazwa")?.InnerText ?? "";
+                    txtBoxMiastoKnt.Text = daneNode.SelectSingleNode("Miejscowosc")?.InnerText ?? "";
+                    txtBoxKodPoczKnt.Text = daneNode.SelectSingleNode("KodPocztowy")?.InnerText ?? "";
+
+                    string ulica = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
+                    string nrNieruchomosci = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
+                    string nrLokalu = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
+
+                    string adres = $"{ulica} {nrNieruchomosci}".Trim();
+                    if (!string.IsNullOrEmpty(nrLokalu))
+                    {
+                        adres += $"/{nrLokalu}";
+                    }
+
+                    txtBoxAdresKnt.Text = adres;
+
+                }           
 
             }
         }
