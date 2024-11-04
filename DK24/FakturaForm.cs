@@ -38,7 +38,8 @@ namespace DK24
 
         private void btnKontrahent_Click(object sender, EventArgs e)
         {
-
+            WybierzKontrahentaForm wybierzKontrahentaForm = new WybierzKontrahentaForm();
+            wybierzKontrahentaForm.ShowDialog();
         }
 
 

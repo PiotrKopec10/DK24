@@ -37,7 +37,6 @@
             btnPobierzPoNip = new Button();
             dtPickSprzed = new DateTimePicker();
             dtPickDataWystaw = new DateTimePicker();
-            chckBoxCzyFaktura = new CheckBox();
             chckBoxArchiwalny = new CheckBox();
             btnDataSprzed = new Button();
             btnDataWys = new Button();
@@ -86,6 +85,11 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
             pnlGoraDane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numBoxIloscDni).BeginInit();
             grpBoxWartDok.SuspendLayout();
@@ -104,23 +108,26 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(label16);
+            pnlGoraDane.Controls.Add(dtPickerDo);
+            pnlGoraDane.Controls.Add(label15);
+            pnlGoraDane.Controls.Add(label7);
+            pnlGoraDane.Controls.Add(cmbBoxPlatnosc);
+            pnlGoraDane.Controls.Add(label14);
+            pnlGoraDane.Controls.Add(numBoxIloscDni);
+            pnlGoraDane.Controls.Add(label13);
+            pnlGoraDane.Controls.Add(label10);
+            pnlGoraDane.Controls.Add(label12);
+            pnlGoraDane.Controls.Add(btnDo);
             pnlGoraDane.Controls.Add(btnPobierzPoNip);
             pnlGoraDane.Controls.Add(dtPickSprzed);
             pnlGoraDane.Controls.Add(dtPickDataWystaw);
-            pnlGoraDane.Controls.Add(chckBoxCzyFaktura);
-            pnlGoraDane.Controls.Add(chckBoxArchiwalny);
             pnlGoraDane.Controls.Add(btnDataSprzed);
             pnlGoraDane.Controls.Add(btnDataWys);
-            pnlGoraDane.Controls.Add(dtPickerDo);
-            pnlGoraDane.Controls.Add(btnDo);
-            pnlGoraDane.Controls.Add(label10);
             pnlGoraDane.Controls.Add(label6);
             pnlGoraDane.Controls.Add(txtBoxNipKnt);
-            pnlGoraDane.Controls.Add(numBoxIloscDni);
-            pnlGoraDane.Controls.Add(cmbBoxPlatnosc);
             pnlGoraDane.Controls.Add(richTxtBoxOpis);
             pnlGoraDane.Controls.Add(label8);
-            pnlGoraDane.Controls.Add(label7);
             pnlGoraDane.Controls.Add(btnKontrahent);
             pnlGoraDane.Controls.Add(txtBoxMiastoKnt);
             pnlGoraDane.Controls.Add(txtBoxKodPoczKnt);
@@ -136,7 +143,7 @@
             // 
             // btnPobierzPoNip
             // 
-            btnPobierzPoNip.Location = new Point(383, 103);
+            btnPobierzPoNip.Location = new Point(383, 110);
             btnPobierzPoNip.Name = "btnPobierzPoNip";
             btnPobierzPoNip.Size = new Size(158, 23);
             btnPobierzPoNip.TabIndex = 27;
@@ -146,31 +153,17 @@
             // 
             // dtPickSprzed
             // 
-            dtPickSprzed.Location = new Point(951, 279);
+            dtPickSprzed.Location = new Point(546, 309);
             dtPickSprzed.Name = "dtPickSprzed";
             dtPickSprzed.Size = new Size(232, 23);
             dtPickSprzed.TabIndex = 26;
             // 
             // dtPickDataWystaw
             // 
-            dtPickDataWystaw.Location = new Point(951, 227);
+            dtPickDataWystaw.Location = new Point(546, 257);
             dtPickDataWystaw.Name = "dtPickDataWystaw";
             dtPickDataWystaw.Size = new Size(232, 23);
             dtPickDataWystaw.TabIndex = 25;
-            // 
-            // chckBoxCzyFaktura
-            // 
-            chckBoxCzyFaktura.AutoSize = true;
-            chckBoxCzyFaktura.BackColor = Color.Transparent;
-            chckBoxCzyFaktura.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxCzyFaktura.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chckBoxCzyFaktura.ForeColor = Color.FromArgb(255, 128, 0);
-            chckBoxCzyFaktura.Location = new Point(804, 80);
-            chckBoxCzyFaktura.Name = "chckBoxCzyFaktura";
-            chckBoxCzyFaktura.Size = new Size(95, 22);
-            chckBoxCzyFaktura.TabIndex = 24;
-            chckBoxCzyFaktura.Text = "Faktura";
-            chckBoxCzyFaktura.UseVisualStyleBackColor = false;
             // 
             // chckBoxArchiwalny
             // 
@@ -179,7 +172,7 @@
             chckBoxArchiwalny.CheckAlign = ContentAlignment.MiddleRight;
             chckBoxArchiwalny.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             chckBoxArchiwalny.ForeColor = Color.FromArgb(255, 128, 0);
-            chckBoxArchiwalny.Location = new Point(776, 137);
+            chckBoxArchiwalny.Location = new Point(792, 54);
             chckBoxArchiwalny.Name = "chckBoxArchiwalny";
             chckBoxArchiwalny.Size = new Size(123, 22);
             chckBoxArchiwalny.TabIndex = 23;
@@ -188,7 +181,7 @@
             // 
             // btnDataSprzed
             // 
-            btnDataSprzed.Location = new Point(813, 279);
+            btnDataSprzed.Location = new Point(408, 309);
             btnDataSprzed.Name = "btnDataSprzed";
             btnDataSprzed.Size = new Size(117, 23);
             btnDataSprzed.TabIndex = 21;
@@ -197,7 +190,7 @@
             // 
             // btnDataWys
             // 
-            btnDataWys.Location = new Point(813, 227);
+            btnDataWys.Location = new Point(408, 257);
             btnDataWys.Name = "btnDataWys";
             btnDataWys.Size = new Size(117, 23);
             btnDataWys.TabIndex = 19;
@@ -207,7 +200,7 @@
             // dtPickerDo
             // 
             dtPickerDo.Format = DateTimePickerFormat.Short;
-            dtPickerDo.Location = new Point(427, 205);
+            dtPickerDo.Location = new Point(615, 200);
             dtPickerDo.Name = "dtPickerDo";
             dtPickerDo.ShowUpDown = true;
             dtPickerDo.Size = new Size(108, 23);
@@ -215,7 +208,7 @@
             // 
             // btnDo
             // 
-            btnDo.Location = new Point(369, 205);
+            btnDo.Location = new Point(557, 200);
             btnDo.Name = "btnDo";
             btnDo.Size = new Size(40, 23);
             btnDo.TabIndex = 17;
@@ -228,7 +221,7 @@
             label10.BackColor = Color.Transparent;
             label10.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label10.ForeColor = Color.Transparent;
-            label10.Location = new Point(299, 213);
+            label10.Location = new Point(664, 168);
             label10.Name = "label10";
             label10.Size = new Size(26, 14);
             label10.TabIndex = 16;
@@ -240,7 +233,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(71, 107);
+            label6.Location = new Point(43, 114);
             label6.Name = "label6";
             label6.Size = new Size(34, 14);
             label6.TabIndex = 10;
@@ -249,14 +242,14 @@
             // txtBoxNipKnt
             // 
             txtBoxNipKnt.BackColor = SystemColors.Menu;
-            txtBoxNipKnt.Location = new Point(111, 103);
+            txtBoxNipKnt.Location = new Point(83, 110);
             txtBoxNipKnt.Name = "txtBoxNipKnt";
             txtBoxNipKnt.Size = new Size(266, 23);
             txtBoxNipKnt.TabIndex = 5;
             // 
             // numBoxIloscDni
             // 
-            numBoxIloscDni.Location = new Point(249, 208);
+            numBoxIloscDni.Location = new Point(614, 163);
             numBoxIloscDni.Name = "numBoxIloscDni";
             numBoxIloscDni.Size = new Size(45, 23);
             numBoxIloscDni.TabIndex = 15;
@@ -265,16 +258,16 @@
             // 
             cmbBoxPlatnosc.BackColor = SystemColors.Menu;
             cmbBoxPlatnosc.FormattingEnabled = true;
-            cmbBoxPlatnosc.Location = new Point(111, 208);
+            cmbBoxPlatnosc.Location = new Point(476, 163);
             cmbBoxPlatnosc.Name = "cmbBoxPlatnosc";
             cmbBoxPlatnosc.Size = new Size(121, 23);
             cmbBoxPlatnosc.TabIndex = 14;
             // 
             // richTxtBoxOpis
             // 
-            richTxtBoxOpis.Location = new Point(78, 237);
+            richTxtBoxOpis.Location = new Point(828, 219);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(659, 94);
+            richTxtBoxOpis.Size = new Size(420, 132);
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
@@ -284,7 +277,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(38, 239);
+            label8.Location = new Point(828, 197);
             label8.Name = "label8";
             label8.Size = new Size(40, 14);
             label8.TabIndex = 12;
@@ -296,7 +289,7 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(43, 212);
+            label7.Location = new Point(408, 167);
             label7.Name = "label7";
             label7.Size = new Size(65, 14);
             label7.TabIndex = 11;
@@ -304,7 +297,7 @@
             // 
             // btnKontrahent
             // 
-            btnKontrahent.Location = new Point(547, 103);
+            btnKontrahent.Location = new Point(550, 110);
             btnKontrahent.Name = "btnKontrahent";
             btnKontrahent.Size = new Size(146, 23);
             btnKontrahent.TabIndex = 9;
@@ -315,31 +308,31 @@
             // txtBoxMiastoKnt
             // 
             txtBoxMiastoKnt.BackColor = SystemColors.Menu;
-            txtBoxMiastoKnt.Location = new Point(477, 176);
+            txtBoxMiastoKnt.Location = new Point(145, 309);
             txtBoxMiastoKnt.Name = "txtBoxMiastoKnt";
-            txtBoxMiastoKnt.Size = new Size(216, 23);
+            txtBoxMiastoKnt.Size = new Size(204, 23);
             txtBoxMiastoKnt.TabIndex = 8;
             // 
             // txtBoxKodPoczKnt
             // 
             txtBoxKodPoczKnt.BackColor = SystemColors.Menu;
-            txtBoxKodPoczKnt.Location = new Point(396, 176);
+            txtBoxKodPoczKnt.Location = new Point(145, 276);
             txtBoxKodPoczKnt.Name = "txtBoxKodPoczKnt";
-            txtBoxKodPoczKnt.Size = new Size(73, 23);
+            txtBoxKodPoczKnt.Size = new Size(82, 23);
             txtBoxKodPoczKnt.TabIndex = 7;
             // 
             // txtBoxAdresKnt
             // 
             txtBoxAdresKnt.BackColor = SystemColors.Menu;
-            txtBoxAdresKnt.Location = new Point(111, 176);
+            txtBoxAdresKnt.Location = new Point(145, 243);
             txtBoxAdresKnt.Name = "txtBoxAdresKnt";
-            txtBoxAdresKnt.Size = new Size(266, 23);
+            txtBoxAdresKnt.Size = new Size(204, 23);
             txtBoxAdresKnt.TabIndex = 6;
             // 
             // txtBoxNazwaKnt
             // 
             txtBoxNazwaKnt.BackColor = SystemColors.Menu;
-            txtBoxNazwaKnt.Location = new Point(427, 138);
+            txtBoxNazwaKnt.Location = new Point(83, 188);
             txtBoxNazwaKnt.Name = "txtBoxNazwaKnt";
             txtBoxNazwaKnt.Size = new Size(266, 23);
             txtBoxNazwaKnt.TabIndex = 3;
@@ -347,9 +340,9 @@
             // txtBoxAkronimKnt
             // 
             txtBoxAkronimKnt.BackColor = SystemColors.Menu;
-            txtBoxAkronimKnt.Location = new Point(111, 138);
+            txtBoxAkronimKnt.Location = new Point(83, 149);
             txtBoxAkronimKnt.Name = "txtBoxAkronimKnt";
-            txtBoxAkronimKnt.Size = new Size(295, 23);
+            txtBoxAkronimKnt.Size = new Size(266, 23);
             txtBoxAkronimKnt.TabIndex = 2;
             // 
             // grpBoxWartDok
@@ -591,6 +584,7 @@
             // 
             panelGorny.BackgroundImage = (Image)resources.GetObject("panelGorny.BackgroundImage");
             panelGorny.Controls.Add(pictureBox1);
+            panelGorny.Controls.Add(chckBoxArchiwalny);
             panelGorny.Location = new Point(0, 0);
             panelGorny.Name = "panelGorny";
             panelGorny.Size = new Size(1260, 50);
@@ -685,6 +679,66 @@
             dtGridViewZamowienia.Size = new Size(1238, 203);
             dtGridViewZamowienia.TabIndex = 1;
             // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label12.ForeColor = Color.White;
+            label12.Location = new Point(15, 152);
+            label12.Name = "label12";
+            label12.Size = new Size(62, 14);
+            label12.TabIndex = 28;
+            label12.Text = "Akronim:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label13.ForeColor = Color.White;
+            label13.Location = new Point(22, 191);
+            label13.Name = "label13";
+            label13.Size = new Size(55, 14);
+            label13.TabIndex = 29;
+            label13.Text = "Nazwa:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BackColor = Color.Transparent;
+            label14.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label14.ForeColor = Color.White;
+            label14.Location = new Point(84, 312);
+            label14.Name = "label14";
+            label14.Size = new Size(53, 14);
+            label14.TabIndex = 30;
+            label14.Text = "Miasto:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.Transparent;
+            label15.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(89, 246);
+            label15.Name = "label15";
+            label15.Size = new Size(48, 14);
+            label15.TabIndex = 31;
+            label15.Text = "Adres:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.BackColor = Color.Transparent;
+            label16.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(37, 279);
+            label16.Name = "label16";
+            label16.Size = new Size(100, 14);
+            label16.TabIndex = 32;
+            label16.Text = "Kod pocztowy:";
+            // 
             // DokumentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -718,6 +772,7 @@
             pnlPrzyciski.ResumeLayout(false);
             pnlPrzyciski.PerformLayout();
             panelGorny.ResumeLayout(false);
+            panelGorny.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
@@ -772,7 +827,6 @@
         private Button btnTowarUslugi;
         private Button btnAnuluj;
         private Button btnZapisz;
-        private CheckBox chckBoxCzyFaktura;
         private DateTimePicker dtPickDataWystaw;
         private DateTimePicker dtPickSprzed;
         private Panel panelGorny;
@@ -782,5 +836,10 @@
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridViewZamowienia;
         private Button btnPobierzPoNip;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label13;
+        private Label label12;
     }
 }
