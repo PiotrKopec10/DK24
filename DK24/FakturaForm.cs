@@ -18,7 +18,11 @@ namespace DK24
 {
     public partial class DokumentForm : Form
     {
-
+        KontrahentClass DzialanieNaKontrahencie = new KontrahentClass();
+        KontrahentClass.Kontrahent AktualnyKontrahent = new KontrahentClass.Kontrahent();
+        AddressClass.Address AktualnyAdres = new AddressClass.Address();
+        AddressClass DzialanieNaAdressie = new AddressClass();
+        FakturaClass DzialanieNaFakturze = new FakturaClass();
 
         public DokumentForm()
         {
@@ -40,6 +44,34 @@ namespace DK24
         {
             WybierzKontrahentaForm wybierzKontrahentaForm = new WybierzKontrahentaForm();
             wybierzKontrahentaForm.ShowDialog();
+
+            if (GlobalClass.StanFormyFaktury.StanFormy == 1)
+            {
+                AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
+
+                AktualnyAdres = DzialanieNaAdressie.PobierzAdresWgId(AktualnyKontrahent.address_id);
+
+                txtBoxNipKnt.Text = AktualnyKontrahent.nip;
+                txtBoxAkronimKnt.Text = AktualnyKontrahent.acronym;
+                txtBoxNazwaKnt.Text = AktualnyKontrahent.name;
+
+                if (AktualnyAdres.apartment_number == "")
+                {
+                    txtBoxAdresKnt.Text = AktualnyAdres.street + " " + AktualnyAdres.house_number;
+                }
+                else
+                {
+
+                    txtBoxAdresKnt.Text = AktualnyAdres.street + " " + AktualnyAdres.house_number + " " + AktualnyAdres.apartment_number;
+                }
+
+
+                txtBoxKodPoczKnt.Text = AktualnyAdres.postal_code;
+                txtBoxMiastoKnt.Text = AktualnyAdres.city;
+            }
+
+
+
         }
 
 
@@ -123,7 +155,7 @@ namespace DK24
 
                 if (czyBlad == "4")
                 {
-                    
+
 
                     txtBoxNazwaKnt.Text = "";
                     txtBoxMiastoKnt.Text = "";
@@ -153,10 +185,84 @@ namespace DK24
 
                     txtBoxAdresKnt.Text = adres;
 
-                }           
+                }
 
             }
         }
 
+        private void grpBoxNaglowek_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool zmianaProgramowa = false;
+
+        private void numBoxIloscDni_ValueChanged(object sender, EventArgs e)
+        {
+            if (!zmianaProgramowa)
+            {
+                zmianaProgramowa = true;
+              
+
+                dtPickSprzed.Value = DateTime.Today.AddDays((double)numBoxIloscDni.Value);
+
+                zmianaProgramowa = false;
+            }
+        }
+
+        private void dtPickSprzed_ValueChanged(object sender, EventArgs e)
+        {
+
+
+            if (dtPickSprzed.Value >= DateTime.Today)
+            {
+
+                if (!zmianaProgramowa)
+                {
+                    zmianaProgramowa = true;
+
+                    int dniRoznicy = (dtPickSprzed.Value.Date - DateTime.Today).Days;
+                    if (dniRoznicy > 100)
+                    {
+                        dniRoznicy = 100;
+                    }
+                    else
+                    {
+                        numBoxIloscDni.Value = dniRoznicy;
+                    }
+
+
+                    zmianaProgramowa = false;
+                }
+
+            }
+            else
+            {
+
+                MessageBox.Show("Nie można wystawić faktury na skibidi", "Elo");
+                dtPickSprzed.Value = DateTime.Today;
+
+            }
+
+
+
+
+
+        }
+
+        private void DokumentForm_Load(object sender, EventArgs e)
+        {
+
+
+           
+            dtPickSprzed.MaxDate = DateTime.Now.AddDays(100);
+
+
+            if(GlobalClass.StanFormyFaktury.StanFormy == 1) 
+            {
+                txtBoxNumerFaktury.Text = DzialanieNaFakturze.PobierzNumerFaktury();
+            }
+            
+        }
     }
 }

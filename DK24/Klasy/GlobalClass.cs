@@ -44,6 +44,16 @@ namespace DK24.Klasy
         }
 
 
+        public static class StanFormyFaktury
+        {
+
+
+            //Jezeli 1 to dodawanie po stworzonym kontrahencie albo po Nipie, jezeli 2 to stworzona faktura,
+            public static int StanFormy { get; set; }
+
+        }
+
+
         public string WyczyscTekst(string TekstDoWyczyszczenia)
         {
             TekstDoWyczyszczenia = TekstDoWyczyszczenia.Trim();

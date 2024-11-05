@@ -68,5 +68,10 @@ namespace DK24
             this.Hide();
             listaTowary_Uslugi.ShowDialog();
         }
+
+        private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

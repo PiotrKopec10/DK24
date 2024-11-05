@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaFakturForm));
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnCofnij = new Button();
             btnUsun = new Button();
@@ -323,13 +323,14 @@
             // dodajToolStripMenuItem
             // 
             dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            dodajToolStripMenuItem.Size = new Size(154, 22);
+            dodajToolStripMenuItem.Size = new Size(180, 22);
             dodajToolStripMenuItem.Text = "Dodaj";
+            dodajToolStripMenuItem.Click += dodajToolStripMenuItem_Click;
             // 
             // zobaczFakturyToolStripMenuItem
             // 
             zobaczFakturyToolStripMenuItem.Name = "zobaczFakturyToolStripMenuItem";
-            zobaczFakturyToolStripMenuItem.Size = new Size(154, 22);
+            zobaczFakturyToolStripMenuItem.Size = new Size(180, 22);
             zobaczFakturyToolStripMenuItem.Text = "Zobacz Faktury";
             // 
             // kontrahenciToolStripMenuItem
@@ -371,13 +372,13 @@
             // stwórzPaczkęToolStripMenuItem
             // 
             stwórzPaczkęToolStripMenuItem.Name = "stwórzPaczkęToolStripMenuItem";
-            stwórzPaczkęToolStripMenuItem.Size = new Size(180, 22);
+            stwórzPaczkęToolStripMenuItem.Size = new Size(148, 22);
             stwórzPaczkęToolStripMenuItem.Text = "Stwórz paczkę";
             // 
             // zobaczPaczkiToolStripMenuItem
             // 
             zobaczPaczkiToolStripMenuItem.Name = "zobaczPaczkiToolStripMenuItem";
-            zobaczPaczkiToolStripMenuItem.Size = new Size(180, 22);
+            zobaczPaczkiToolStripMenuItem.Size = new Size(148, 22);
             zobaczPaczkiToolStripMenuItem.Text = "Zobacz paczki";
             // 
             // towaryToolStripMenuItem
@@ -414,30 +415,30 @@
             dtGridLstFakt.AccessibleRole = AccessibleRole.Caret;
             dtGridLstFakt.AllowUserToAddRows = false;
             dtGridLstFakt.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.NullValue = "Brak Danych";
-            dtGridLstFakt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridLstFakt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtGridLstFakt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstFakt.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtGridLstFakt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridLstFakt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridLstFakt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.NullValue = "Brak Danych";
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dtGridLstFakt.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridLstFakt.DefaultCellStyle = dataGridViewCellStyle3;
             dtGridLstFakt.Dock = DockStyle.Fill;
             dtGridLstFakt.GridColor = Color.Gray;
             dtGridLstFakt.Location = new Point(0, 0);
@@ -445,14 +446,14 @@
             dtGridLstFakt.Name = "dtGridLstFakt";
             dtGridLstFakt.ReadOnly = true;
             dtGridLstFakt.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtGridLstFakt.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridLstFakt.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtGridLstFakt.RowHeadersVisible = false;
             dtGridLstFakt.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstFakt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

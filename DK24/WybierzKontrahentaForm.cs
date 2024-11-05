@@ -115,7 +115,23 @@ namespace DK24
         private void btnZaznacz_Click(object sender, EventArgs e)
         {
             PobierzKontrahenta();
-            this.Hide();
+            
+
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz wybrać tego kontrahenta?", "Potwierdzenie", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+
+                GlobalClass.StanFormyFaktury.StanFormy = 1;
+                this.Hide();
+
+            }
+            else
+            {
+                GlobalClass.StanFormyFaktury.StanFormy = 0;
+                this.Hide();
+            }
+
 
         }
     }
