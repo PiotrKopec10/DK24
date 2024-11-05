@@ -21,14 +21,36 @@ namespace DK24
         KontrahentClass DzialanieNaKontrahencie = new KontrahentClass();
         KontrahentClass.Kontrahent AktualnyKontrahent = new KontrahentClass.Kontrahent();
         AddressClass.Address AktualnyAdres = new AddressClass.Address();
-        AddressClass DzialanieNaAdressie = new AddressClass();
+        AddressClass DzialanieNaAdresie = new AddressClass();
         FakturaClass DzialanieNaFakturze = new FakturaClass();
+        GlobalClass GlobalneDzialania = new GlobalClass();
 
         public DokumentForm()
         {
             InitializeComponent();
 
             GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
+
+
+            // Obsługa NIP
+            txtBoxNipKnt.MaxLength = 10;
+            txtBoxNipKnt.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
+
+            // Obsługa Akronimu
+            txtBoxAkronimKnt.MaxLength = 10;
+
+            // Obsługa Kod Pocztowy
+            txtBoxKodPoczKnt.KeyPress += new KeyPressEventHandler(txtBoxKodPoczKnt_KeyPress);
+            txtBoxKodPoczKnt.TextChanged += new EventHandler(txtBoxKodPoczKnt_TextChanged);
+
+            // Obsługa Nazwy Kontrahenta
+            txtBoxNazwaKnt.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Obsługa Adresu
+            txtBoxAdresKnt.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
+
+            // Obsługa Miasta
+            txtBoxMiastoKnt.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
 
         }
 
@@ -49,7 +71,7 @@ namespace DK24
             {
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
 
-                AktualnyAdres = DzialanieNaAdressie.PobierzAdresWgId(AktualnyKontrahent.address_id);
+                AktualnyAdres = DzialanieNaAdresie.PobierzAdresWgId(AktualnyKontrahent.address_id);
 
                 txtBoxNipKnt.Text = AktualnyKontrahent.nip;
                 txtBoxAkronimKnt.Text = AktualnyKontrahent.acronym;
@@ -202,7 +224,7 @@ namespace DK24
             if (!zmianaProgramowa)
             {
                 zmianaProgramowa = true;
-              
+
 
                 dtPickSprzed.Value = DateTime.Today.AddDays((double)numBoxIloscDni.Value);
 
@@ -254,15 +276,167 @@ namespace DK24
         {
 
 
-           
+            txtBoxNumerFaktury.Text = DzialanieNaFakturze.PobierzNumerFaktury();
             dtPickSprzed.MaxDate = DateTime.Now.AddDays(100);
 
 
-            if(GlobalClass.StanFormyFaktury.StanFormy == 1) 
+            if (GlobalClass.StanFormyFaktury.StanFormy == 1)
             {
-                txtBoxNumerFaktury.Text = DzialanieNaFakturze.PobierzNumerFaktury();
+                //txtBoxNumerFaktury.Text = DzialanieNaFakturze.PobierzNumerFaktury();
             }
-            
+
+        }
+
+        private void btnZapisz_Click(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip
+            {
+                IsBalloon = true,
+                InitialDelay = 0,
+                ShowAlways = true
+            };
+
+            bool isValid = true;
+            List<string> pustePola = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(txtBoxNipKnt.Text))
+            {
+                txtBoxNipKnt.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxNipKnt, "Pole NIP nie może być puste!");
+                pustePola.Add("NIP");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxNipKnt.BackColor = SystemColors.Window;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxNazwaKnt.Text))
+            {
+                txtBoxNazwaKnt.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxNazwaKnt, "Pole Nazwa nie może być puste!");
+                pustePola.Add("Nazwa");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxNazwaKnt.BackColor = SystemColors.Window;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxKodPoczKnt.Text))
+            {
+                txtBoxKodPoczKnt.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxKodPoczKnt, "Pole Kod Pocztowy nie może być puste!");
+                pustePola.Add("Kod Pocztowy");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxKodPoczKnt.BackColor = SystemColors.Window;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxAdresKnt.Text))
+            {
+                txtBoxAdresKnt.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxAdresKnt, "Pole Adres nie może być puste!");
+                pustePola.Add("Adres");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxAdresKnt.BackColor = SystemColors.Window;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxMiastoKnt.Text))
+            {
+                txtBoxMiastoKnt.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxMiastoKnt, "Pole Miasto nie może być puste!");
+                pustePola.Add("Miasto");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxMiastoKnt.BackColor = SystemColors.Window;
+            }
+
+            if (!isValid)
+            {
+                if (pustePola.Count > 1)
+                {
+                    MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (pustePola.Count == 1)
+                {
+                    string pustePole = pustePola[0];
+                    Control pustePoleControl = null;
+
+                    if (pustePole == "NIP") pustePoleControl = txtBoxNipKnt;
+                    else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwaKnt;
+                    else if (pustePole == "Kod Pocztowy") pustePoleControl = txtBoxKodPoczKnt;
+                    else if (pustePole == "Adres") pustePoleControl = txtBoxAdresKnt;
+                    else if (pustePole == "Miasto") pustePoleControl = txtBoxMiastoKnt;
+
+                    MessageBox.Show($"Pole {pustePole} nie może być puste!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    if (pustePoleControl != null)
+                    {
+                        toolTip.Show($"Uzupełnij pole {pustePole}!", pustePoleControl, 20, 21, 4000);
+                    }
+                }
+                return;
+            }
+
+            // stanyFormy
+        }
+
+        private void txtBoxKodPoczKnt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxKodPoczKnt_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = txtBoxKodPoczKnt.Text.Replace("-", "");
+            if (currentText.Length > 2)
+            {
+                currentText = currentText.Insert(2, "-");
+            }
+
+            if (currentText.Length > 6)
+            {
+                currentText = currentText.Substring(0, 6);
+            }
+
+            txtBoxKodPoczKnt.Text = currentText;
+            txtBoxKodPoczKnt.SelectionStart = txtBoxKodPoczKnt.Text.Length;
+        }
+
+        private void txtBoxNipKnt_Enter(object sender, EventArgs e)
+        {
+            txtBoxNipKnt.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxNazwaKnt_Enter(object sender, EventArgs e)
+        {
+            txtBoxNazwaKnt.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxAdresKnt_Enter(object sender, EventArgs e)
+        {
+            txtBoxAdresKnt.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxKodPoczKnt_Enter(object sender, EventArgs e)
+        {
+            txtBoxKodPoczKnt.BackColor = SystemColors.Window;
+        }
+
+        private void txtBoxMiastoKnt_Enter(object sender, EventArgs e)
+        {
+            txtBoxMiastoKnt.BackColor = SystemColors.Window;
         }
     }
 }

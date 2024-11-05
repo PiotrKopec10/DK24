@@ -100,17 +100,6 @@ namespace DK24
             bool isValid = true;
             List<string> pustePola = new List<string>();
 
-            if (string.IsNullOrWhiteSpace(txtBoxAkronim.Text))
-            {
-                txtBoxAkronim.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAkronim, "Pole Akronim nie może być puste!");
-                pustePola.Add("Akronim");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxAkronim.BackColor = SystemColors.Window;
-            }
 
             if (string.IsNullOrWhiteSpace(txtBoxNazwa.Text))
             {
@@ -317,11 +306,7 @@ namespace DK24
                     string pustePole = pustePola[0];
                     Control pustePoleControl = null;
 
-                    if (pustePole == "Akronim")
-                    {
-                        pustePoleControl = txtBoxAkronim;
-                    }
-                    else if (pustePole == "Nazwa")
+                    if (pustePole == "Nazwa")
                     {
                         pustePoleControl = txtBoxNazwa;
                     }

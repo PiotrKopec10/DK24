@@ -287,6 +287,7 @@
             txtBoxNipKnt.Name = "txtBoxNipKnt";
             txtBoxNipKnt.Size = new Size(266, 23);
             txtBoxNipKnt.TabIndex = 5;
+            txtBoxNipKnt.Enter += txtBoxNipKnt_Enter;
             // 
             // btnKontrahent
             // 
@@ -305,6 +306,7 @@
             txtBoxMiastoKnt.Name = "txtBoxMiastoKnt";
             txtBoxMiastoKnt.Size = new Size(204, 23);
             txtBoxMiastoKnt.TabIndex = 8;
+            txtBoxMiastoKnt.Enter += txtBoxMiastoKnt_Enter;
             // 
             // txtBoxKodPoczKnt
             // 
@@ -313,6 +315,7 @@
             txtBoxKodPoczKnt.Name = "txtBoxKodPoczKnt";
             txtBoxKodPoczKnt.Size = new Size(82, 23);
             txtBoxKodPoczKnt.TabIndex = 7;
+            txtBoxKodPoczKnt.Enter += txtBoxKodPoczKnt_Enter;
             // 
             // txtBoxAdresKnt
             // 
@@ -321,6 +324,7 @@
             txtBoxAdresKnt.Name = "txtBoxAdresKnt";
             txtBoxAdresKnt.Size = new Size(204, 23);
             txtBoxAdresKnt.TabIndex = 6;
+            txtBoxAdresKnt.Enter += txtBoxAdresKnt_Enter;
             // 
             // txtBoxNazwaKnt
             // 
@@ -329,6 +333,7 @@
             txtBoxNazwaKnt.Name = "txtBoxNazwaKnt";
             txtBoxNazwaKnt.Size = new Size(266, 23);
             txtBoxNazwaKnt.TabIndex = 3;
+            txtBoxNazwaKnt.Enter += txtBoxNazwaKnt_Enter;
             // 
             // txtBoxAkronimKnt
             // 
@@ -475,6 +480,7 @@
             btnZapisz.Size = new Size(44, 33);
             btnZapisz.TabIndex = 5;
             btnZapisz.UseVisualStyleBackColor = true;
+            btnZapisz.Click += btnZapisz_Click;
             // 
             // btnUsun
             // 
