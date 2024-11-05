@@ -22,18 +22,15 @@ namespace DK24
 
         }
 
-
-        private void btnDodaj_Click(object sender, EventArgs e)
-        {
-            DokumentForm dokumentForm = new DokumentForm();
-            this.Hide();
-            dokumentForm.ShowDialog();
-        }
-
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
+        }
+
+
+        private void ListaFakturForm_Load(object sender, EventArgs e)
+        {
+            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
 
         private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,35 +40,31 @@ namespace DK24
             mainForm.ShowDialog();
         }
 
-        private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KontrahentForm kontrahentForm = new KontrahentForm();
-            this.Hide();
-            kontrahentForm.ShowDialog();
-        }
-
-        private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kontrahenciToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
             this.Hide();
             listaKontrahentowForm.ShowDialog();
         }
 
-        private void ListaFakturForm_Load(object sender, EventArgs e)
+        private void wysyłkiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+
         }
 
-        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
+        private void towaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
             this.Hide();
             listaTowary_Uslugi.ShowDialog();
         }
 
-        private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            DokumentForm dokumentForm = new DokumentForm();
+            this.Hide();
+            dokumentForm.ShowDialog();
         }
     }
 }

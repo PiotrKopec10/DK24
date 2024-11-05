@@ -21,6 +21,39 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
         }
 
+        private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void btnCofnij_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void fakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
+
+        private void kontrahenciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
+        }
+
+        private void wysyłkiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void ListaTowary_UslugiForm_Load(object sender, EventArgs e)
         {
 
@@ -31,11 +64,6 @@ namespace DK24
 
         }
 
-        private void btnCofnij_Click(object sender, EventArgs e)
-        {
-            MainForm mainForm = new MainForm();
-            this.Hide();
-            mainForm.ShowDialog();
-        }
+
     }
 }

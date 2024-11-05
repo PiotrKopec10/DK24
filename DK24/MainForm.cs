@@ -58,45 +58,6 @@ namespace DK24
 
         }
 
-
-        private void dodajToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DokumentForm dokumentForm = new DokumentForm();
-            this.Hide();
-            dokumentForm.ShowDialog();
-        }
-
-        private void zobaczFakturyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaFakturForm listaFakturForm = new ListaFakturForm();
-            this.Hide();
-            listaFakturForm.ShowDialog();
-        }
-
-        private void dodajKontrahentaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KontrahentForm kontrahentForm = new KontrahentForm();
-            this.Hide();
-            kontrahentForm.ShowDialog();
-        }
-
-        private void zobaczKontrahentówToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
-            this.Hide();
-            listaKontrahentowForm.ShowDialog();
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnDodaj_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
@@ -109,11 +70,38 @@ namespace DK24
             szczegolyZamowieniaForm.ShowDialog();
         }
 
-        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void fakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
+
+        private void kontrahenciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentowForm.ShowDialog();
+        }
+
+        private void wysyłkiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void towaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
             this.Hide();
             listaTowary_Uslugi.ShowDialog();
+        }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
+            this.Hide();
+            szczegolyZamowieniaForm.ShowDialog();
         }
     }
 }

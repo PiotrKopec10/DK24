@@ -30,6 +30,39 @@ namespace DK24
 
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void zamówieniaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void fakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
+
+        private void wysyłkiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void towaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
+            this.Hide();
+            listaTowary_Uslugi.ShowDialog();
+        }
+
+
+
         private void btnDodaj_Click(object sender, EventArgs e)
         {
 
@@ -39,6 +72,15 @@ namespace DK24
             this.Hide();
             kontrahentForm.ShowDialog();
         }
+
+
+        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
+            this.Hide();
+            listaTowary_Uslugi.ShowDialog();
+        }
+
 
         private void ListaKontrahentowForm_Load(object sender, EventArgs e)
         {
@@ -151,31 +193,7 @@ namespace DK24
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void zamówieniaToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            MainForm mainForm = new MainForm();
-            this.Hide();
-            mainForm.ShowDialog();
-        }
-
-        private void dodajToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            DokumentForm dokumentForm = new DokumentForm();
-            this.Hide();
-            dokumentForm.ShowDialog();
-        }
-
-        private void zobaczFakturyToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            ListaFakturForm listaFakturForm = new ListaFakturForm();
-            this.Hide();
-            listaFakturForm.ShowDialog();
-        }
 
         private void btnUsun_Click(object sender, EventArgs e)
         {
@@ -195,11 +213,6 @@ namespace DK24
 
         }
 
-        private void zobaczToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
-            this.Hide();
-            listaTowary_Uslugi.ShowDialog();
-        }
+
     }
 }
