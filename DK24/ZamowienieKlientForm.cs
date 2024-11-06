@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DK24
 {
-    public partial class ZamowinieKlient : Form
+    public partial class ZamowienieKlientForm : Form
     {
-        public ZamowinieKlient()
+        public ZamowienieKlientForm()
         {
             InitializeComponent();
         }

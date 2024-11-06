@@ -54,6 +54,14 @@ namespace DK24.Klasy
         }
 
 
+        public static class ProduktSesja
+        {
+            public static Uslugi_TowarClass.Produkt AktualnyProdukt { get; set; }
+
+        }
+
+
+
         public string WyczyscTekst(string TekstDoWyczyszczenia)
         {
             TekstDoWyczyszczenia = TekstDoWyczyszczenia.Trim();

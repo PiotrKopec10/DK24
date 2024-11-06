@@ -99,9 +99,9 @@ namespace DK24
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
+            WyborKlient_KontrahentZamowienieForm wyborKlient_KontrahentZamowienieForm = new WyborKlient_KontrahentZamowienieForm();
             this.Hide();
-            szczegolyZamowieniaForm.ShowDialog();
+            wyborKlient_KontrahentZamowienieForm.ShowDialog();
         }
     }
 }

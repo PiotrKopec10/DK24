@@ -1,6 +1,6 @@
 ﻿namespace DK24
 {
-    partial class ZamowinieKlient
+    partial class ZamowienieKlientForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZamowinieKlient));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZamowienieKlientForm));
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
             dataGridView3 = new DataGridView();

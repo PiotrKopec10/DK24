@@ -25,20 +25,20 @@ namespace DK24.Klasy
                     {
                         using (MySqlDataReader reader = sqlPobierzNumerFaktury.ExecuteReader())
                         {
-                            if (reader.Read() && !reader.IsDBNull(0)) 
+                            if (reader.Read() && !reader.IsDBNull(0))
                             {
                                 nrFaktury = reader.GetString("next_invoice_number");
                             }
                             else
                             {
-                                nrFaktury = ""; 
+                                nrFaktury = "";
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd Pobierania nr Faktury: " + ex.Message, "Błąd");              
+                    MessageBox.Show("Błąd Pobierania nr Faktury: " + ex.Message, "Błąd");
                     nrFaktury = "";
                 }
                 finally

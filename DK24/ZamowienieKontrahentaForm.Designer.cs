@@ -1,6 +1,6 @@
 ﻿namespace DK24
 {
-    partial class ZamowienieKontrahenta
+    partial class ZamowienieKontrahentaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZamowienieKontrahenta));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZamowienieKontrahentaForm));
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             button3 = new Button();
-            button2 = new Button();
+            btnWybierzProdukt = new Button();
             button1 = new Button();
             groupBox1 = new GroupBox();
             comboBox1 = new ComboBox();
@@ -47,13 +47,13 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            dataGridView3 = new DataGridView();
-            dataGridView2 = new DataGridView();
-            dataGridView1 = new DataGridView();
+            dtGridZamowienie = new DataGridView();
+            dtGridWybProdukty = new DataGridView();
+            dtGridWybParam = new DataGridView();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridZamowienie).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridWybProdukty).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridWybParam).BeginInit();
             SuspendLayout();
             // 
             // label9
@@ -110,14 +110,15 @@
             button3.Text = "Podsumuj zamówienie";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnWybierzProdukt
             // 
-            button2.Location = new Point(43, 255);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 17;
-            button2.Text = "Wybierz";
-            button2.UseVisualStyleBackColor = true;
+            btnWybierzProdukt.Location = new Point(43, 255);
+            btnWybierzProdukt.Name = "btnWybierzProdukt";
+            btnWybierzProdukt.Size = new Size(75, 23);
+            btnWybierzProdukt.TabIndex = 17;
+            btnWybierzProdukt.Text = "Wybierz";
+            btnWybierzProdukt.UseVisualStyleBackColor = true;
+            btnWybierzProdukt.Click += btnWybierzProdukt_Click;
             // 
             // button1
             // 
@@ -218,31 +219,33 @@
             label1.TabIndex = 0;
             label1.Text = "Nazwa:";
             // 
-            // dataGridView3
+            // dtGridZamowienie
             // 
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(594, 70);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.Size = new Size(394, 201);
-            dataGridView3.TabIndex = 14;
+            dtGridZamowienie.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtGridZamowienie.Location = new Point(594, 70);
+            dtGridZamowienie.Name = "dtGridZamowienie";
+            dtGridZamowienie.Size = new Size(394, 201);
+            dtGridZamowienie.TabIndex = 14;
             // 
-            // dataGridView2
+            // dtGridWybProdukty
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(43, 99);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(478, 150);
-            dataGridView2.TabIndex = 13;
+            dtGridWybProdukty.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtGridWybProdukty.Location = new Point(43, 99);
+            dtGridWybProdukty.MultiSelect = false;
+            dtGridWybProdukty.Name = "dtGridWybProdukty";
+            dtGridWybProdukty.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridWybProdukty.Size = new Size(478, 150);
+            dtGridWybProdukty.TabIndex = 13;
             // 
-            // dataGridView1
+            // dtGridWybParam
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(43, 365);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(478, 164);
-            dataGridView1.TabIndex = 12;
+            dtGridWybParam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtGridWybParam.Location = new Point(43, 365);
+            dtGridWybParam.Name = "dtGridWybParam";
+            dtGridWybParam.Size = new Size(478, 164);
+            dtGridWybParam.TabIndex = 12;
             // 
-            // ZamowienieKontrahenta
+            // ZamowienieKontrahentaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -254,22 +257,23 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btnWybierzProdukt);
             Controls.Add(button1);
             Controls.Add(groupBox1);
-            Controls.Add(dataGridView3);
-            Controls.Add(dataGridView2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dtGridZamowienie);
+            Controls.Add(dtGridWybProdukty);
+            Controls.Add(dtGridWybParam);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "ZamowienieKontrahenta";
+            Name = "ZamowienieKontrahentaForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ZamowienieKontrahenta";
+            Load += ZamowienieKontrahentaForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridZamowienie).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridWybProdukty).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtGridWybParam).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -282,7 +286,7 @@
         private Label label6;
         private Label label5;
         private Button button3;
-        private Button button2;
+        private Button btnWybierzProdukt;
         private Button button1;
         private GroupBox groupBox1;
         private ComboBox comboBox1;
@@ -294,8 +298,8 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private DataGridView dataGridView3;
-        private DataGridView dataGridView2;
-        private DataGridView dataGridView1;
+        private DataGridView dtGridZamowienie;
+        private DataGridView dtGridWybProdukty;
+        private DataGridView dtGridWybParam;
     }
 }
