@@ -4,23 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using static DK24.Klasy.AddressClass;
-using static DK24.Klasy.Uslugi_TowarClass;
 
 namespace DK24.Klasy
 {
     internal class Uslugi_TowarClass
     {
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
-      
 
-
-
-
-
-        public class Produkt 
+        public class Produkt
         {
             public int product_id = 0;
             public string sku = "";
@@ -32,11 +25,7 @@ namespace DK24.Klasy
             public bool is_archived;
             public DateTime created_at;
             public DateTime modified_at;
-        
-        
-        
         }
-
 
         public class Option_groups
         {
@@ -46,8 +35,6 @@ namespace DK24.Klasy
             public string title = "";
             public enum type { select, number };
             public bool is_mandatory;
-
-
         }
 
         public class Options
@@ -58,6 +45,39 @@ namespace DK24.Klasy
             public decimal price_increment = 0;
         }
 
+        
+        public List<DataRow> PobierzTowaryIUslugi()
+        {
+            List<DataRow> towaryIUslugi = new List<DataRow>();
+            using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+                    string query = @"
+                        SELECT p.product_id, p.sku, p.name AS ProductName, p.base_price, 
+                               og.option_group_id, og.title AS OptionGroupTitle, 
+                               o.option_id, o.name AS OptionName, o.price_increment
+                        FROM products p
+                        LEFT JOIN option_groups og ON p.product_id = og.product_id
+                        LEFT JOIN options o ON og.option_group_id = o.option_group_id";
+
+                    MySqlCommand command = new MySqlCommand(query, polaczenie);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    towaryIUslugi = dt.AsEnumerable().ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas pobierania towarów i usług: " + ex.Message);
+                }
+            }
+            return towaryIUslugi;
+        }
 
         public List<Option_groups> PobierzGrupyOpcji(int productId)
         {
@@ -70,8 +90,8 @@ namespace DK24.Klasy
                     polaczenie.Open();
 
                     string query = @"SELECT option_group_id, product_id, name, title, type, is_mandatory
-                             FROM option_groups
-                             WHERE product_id = @productId";
+                                     FROM option_groups
+                                     WHERE product_id = @productId";
 
                     using (MySqlCommand sqlPobierzGrupyOpcji = new MySqlCommand(query, polaczenie))
                     {
@@ -87,7 +107,6 @@ namespace DK24.Klasy
                                     product_id = reader.GetInt32("product_id"),
                                     name = reader.GetString("name"),
                                     title = reader.GetString("title"),
-                                    //type = reader.GetString("type"),
                                     is_mandatory = reader.GetBoolean("is_mandatory")
                                 };
 
@@ -105,7 +124,6 @@ namespace DK24.Klasy
             return grupyOpcji;
         }
 
-
         public List<Options> PobierzOpcje(int optionGroupId)
         {
             List<Options> opcje = new List<Options>();
@@ -117,8 +135,8 @@ namespace DK24.Klasy
                     polaczenie.Open();
 
                     string query = @"SELECT option_id, option_group_id, name, price_increment
-                             FROM options
-                             WHERE option_group_id = @optionGroupId";
+                                     FROM options
+                                     WHERE option_group_id = @optionGroupId";
 
                     using (MySqlCommand sqlPobierzOpcje = new MySqlCommand(query, polaczenie))
                     {
@@ -149,7 +167,5 @@ namespace DK24.Klasy
 
             return opcje;
         }
-
-
     }
 }

@@ -170,7 +170,6 @@
             wysyłkiToolStripMenuItem.Size = new Size(59, 40);
             wysyłkiToolStripMenuItem.Text = "Wysyłki";
             wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            wysyłkiToolStripMenuItem.Click += wysyłkiToolStripMenuItem_Click;
             // 
             // towaryToolStripMenuItem
             // 
@@ -342,6 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(1260, 680);
             Controls.Add(pnlDtGridZamowienia);
             Controls.Add(panel4);
@@ -350,6 +350,7 @@
             Controls.Add(panelZalogowania);
             Controls.Add(menuStrip);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListaTowary_UslugiForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ListaTowary_UslugiForm";
