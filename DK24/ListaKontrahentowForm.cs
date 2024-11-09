@@ -85,6 +85,7 @@ namespace DK24
         private void ListaKontrahentowForm_Load(object sender, EventArgs e)
         {
             WyswietlListeKontrahentow();
+           
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
 
@@ -130,6 +131,51 @@ namespace DK24
             polaczenie.Close();
 
         }
+
+
+
+
+
+
+        public void FiltrujKontrahentow()
+        {
+            string filtr = "";
+            bool czyCheckboxZaznaczony = chckBoxNazwa.Checked || chckBoxAkronim.Checked;
+            string tekstWyszukiwany = txtBoxWyszukaj.Text.Trim();
+
+            if (czyCheckboxZaznaczony && !string.IsNullOrEmpty(tekstWyszukiwany))
+            {
+                List<string> warunkiFiltra = new List<string>();
+                string tekstFiltra = tekstWyszukiwany.Replace("'", "''");
+
+                if (chckBoxNazwa.Checked)
+                {
+                    warunkiFiltra.Add($"[Nazwa Kontrahenta] LIKE '%{tekstFiltra}%'");
+                }
+
+                if (chckBoxAkronim.Checked)
+                {
+                    warunkiFiltra.Add($"[Akronim] LIKE '%{tekstFiltra}%'");
+                }
+
+              
+                filtr = string.Join(" OR ", warunkiFiltra);
+            }
+            else
+            {
+                
+                filtr = "";
+            }
+
+   
+            (dtGridLstKnt.DataSource as DataView).RowFilter = filtr;
+        }
+
+
+
+
+
+
 
 
 
@@ -213,6 +259,19 @@ namespace DK24
 
         }
 
+        private void txtBoxWyszukaj_TextChanged(object sender, EventArgs e)
+        {
+            FiltrujKontrahentow();
+        }
 
+        private void chckBoxAkronim_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrujKontrahentow();
+        }
+
+        private void chckBoxNazwa_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrujKontrahentow();
+        }
     }
 }

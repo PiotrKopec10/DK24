@@ -214,6 +214,7 @@
             radioButtonTowary.TabIndex = 17;
             radioButtonTowary.Text = "TOWARY";
             radioButtonTowary.UseVisualStyleBackColor = false;
+            radioButtonTowary.CheckedChanged += radioButtonTowary_CheckedChanged_1;
             // 
             // radioButtonUslugi
             // 
@@ -226,6 +227,7 @@
             radioButtonUslugi.TabIndex = 16;
             radioButtonUslugi.Text = "USŁUGI";
             radioButtonUslugi.UseVisualStyleBackColor = false;
+            radioButtonUslugi.CheckedChanged += radioButtonUslugi_CheckedChanged;
             // 
             // radioButtonWszystko
             // 
@@ -240,7 +242,7 @@
             radioButtonWszystko.TabStop = true;
             radioButtonWszystko.Text = "WSZYSTKO";
             radioButtonWszystko.UseVisualStyleBackColor = false;
-            radioButtonWszystko.CheckedChanged += radioButtonTowary_CheckedChanged;
+            radioButtonWszystko.CheckedChanged += radioButtonWszystko_CheckedChanged;
             // 
             // btnCofnij
             // 

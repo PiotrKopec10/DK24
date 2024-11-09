@@ -1,10 +1,6 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace DK24
 {
@@ -53,43 +49,52 @@ namespace DK24
         }
 
 
-        private void WyswietlTowaryIUslugi()
+        private void WyswietlTowaryIUslugi(string filtrSKU = "")
         {
             DataTable dt = new DataTable();
             using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
             {
                 try
                 {
+                    polaczenie.Open();
+
                     string query = @"
-                SELECT 
+                    SELECT 
                     p.sku AS 'Numer Produktu',
                     p.name AS 'Nazwa Produktu',
                     p.base_price AS 'Cena',
                     og.title AS 'GrupaOpcji',
                     o.name AS 'Opcja',
                     COALESCE(o.price_increment, 0) AS 'CenaDodatkowa'
-                FROM products p
-                LEFT JOIN option_groups og ON p.product_id = og.product_id
-                LEFT JOIN options o ON og.option_group_id = o.option_group_id
-                ORDER BY p.product_id, og.option_group_id, o.option_id";
+                    FROM products p
+                    LEFT JOIN option_groups og ON p.product_id = og.product_id
+                    LEFT JOIN options o ON og.option_group_id = o.option_group_id
+                    ";
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, polaczenie);
+                    if (!string.IsNullOrEmpty(filtrSKU))
+                    {
+                        query += " WHERE p.sku LIKE @filtrSKU";
+                    }
+
+                    query += " ORDER BY p.product_id, og.option_group_id, o.option_id";
+
+                    MySqlCommand command = new MySqlCommand(query, polaczenie);
+
+                    if (!string.IsNullOrEmpty(filtrSKU))
+                    {
+                        command.Parameters.AddWithValue("@filtrSKU", filtrSKU + "%");
+                    }
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     adapter.Fill(dt);
-
 
                     DataTable dynamicDt = new DataTable();
                     dynamicDt.Columns.Add("Numer Produktu", typeof(string));
                     dynamicDt.Columns.Add("Nazwa Produktu", typeof(string));
-                    dynamicDt.Columns.Add("Cena", typeof(decimal));
-                    dynamicDt.Columns.Add("Grupa Opcji #1", typeof(string));
-                    dynamicDt.Columns.Add("Opcja #1", typeof(string));
-                    dynamicDt.Columns.Add("Cena dodatkowa #1", typeof(decimal));
-                    dynamicDt.Columns.Add("Grupa Opcji #2", typeof(string));
-                    dynamicDt.Columns.Add("Opcja #2", typeof(string));
-                    dynamicDt.Columns.Add("Cena dodatkowa #2", typeof(decimal));
+                    dynamicDt.Columns.Add("Typ", typeof(string));
+                    dynamicDt.Columns.Add("Rodzaj", typeof(string));
                     dynamicDt.Columns.Add("Łączna kwota", typeof(decimal));
 
-                    // Grupowanie danych według produktu
                     var groupedData = dt.AsEnumerable()
                         .GroupBy(row => new
                         {
@@ -98,24 +103,50 @@ namespace DK24
                             Cena = row.Field<decimal>("Cena")
                         });
 
-                    // Wypełnianie dynamicznej tabeli na podstawie grup opcji
                     foreach (var productGroup in groupedData)
                     {
-                        foreach (var optionCombination in PobierzKombinacjeOpcji(productGroup.ToList(), 2))
+                        var opcjeProduktow = PobierzKombinacjeOpcji(productGroup.ToList(), 2);
+
+                 
+                        if (!opcjeProduktow.Any())
+                        {
+                            opcjeProduktow.Add(new List<SzczegolyOpcji>());
+                        }
+
+                        foreach (var optionCombination in opcjeProduktow)
                         {
                             var newRow = dynamicDt.NewRow();
                             newRow["Numer Produktu"] = productGroup.Key.NumerProduktu;
                             newRow["Nazwa Produktu"] = productGroup.Key.NazwaProduktu;
-                            newRow["Cena"] = productGroup.Key.Cena;
 
                             decimal lacznaKwota = productGroup.Key.Cena;
 
-                            for (int i = 0; i < optionCombination.Count; i++)
+                         
+                            for (int i = 0; i < 2; i++)
                             {
-                                newRow[$"Grupa Opcji #{i + 1}"] = optionCombination[i].NazwaGrupy;
-                                newRow[$"Opcja #{i + 1}"] = optionCombination[i].NazwaOpcji;
-                                newRow[$"Cena dodatkowa #{i + 1}"] = optionCombination[i].CenaDodatkowa;
-                                lacznaKwota += optionCombination[i].CenaDodatkowa;
+                                string kolumna = i == 0 ? "Typ" : "Rodzaj";
+                                if (optionCombination.Count > i)
+                                {
+                                    var opcja = optionCombination[i];
+                                    string grupaOpcji = opcja.NazwaGrupy;
+                                    string nazwaOpcji = opcja.NazwaOpcji;
+
+                                    if (string.IsNullOrEmpty(grupaOpcji) && string.IsNullOrEmpty(nazwaOpcji))
+                                    {
+                                        newRow[kolumna] = "Usługa";
+                                    }
+                                    else
+                                    {
+                                        newRow[kolumna] = $"{grupaOpcji} | {nazwaOpcji}";
+                                    }
+
+                                    lacznaKwota += opcja.CenaDodatkowa;
+                                }
+                                else
+                                {
+                                  
+                                    newRow[kolumna] = "Usługa";
+                                }
                             }
 
                             newRow["Łączna kwota"] = lacznaKwota;
@@ -131,6 +162,10 @@ namespace DK24
                 }
             }
         }
+
+
+
+
 
         private List<List<SzczegolyOpcji>> PobierzKombinacjeOpcji(List<DataRow> opcje, int liczbaGrup)
         {
@@ -182,9 +217,30 @@ namespace DK24
 
 
 
-        private void radioButtonTowary_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonTowary_CheckedChanged_1(object sender, EventArgs e)
         {
+            if (radioButtonTowary.Checked)
+            {
+                WyswietlTowaryIUslugi("P");
+            }
 
+        }
+
+        private void radioButtonUslugi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonUslugi.Checked)
+            {
+                WyswietlTowaryIUslugi("U");
+            }
+
+        }
+
+        private void radioButtonWszystko_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonWszystko.Checked)
+            {
+                WyswietlTowaryIUslugi();
+            }
         }
     }
 }

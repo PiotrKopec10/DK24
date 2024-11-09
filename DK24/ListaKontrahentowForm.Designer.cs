@@ -146,6 +146,7 @@
             chckBoxNazwa.TabIndex = 4;
             chckBoxNazwa.Text = "Nazwa:";
             chckBoxNazwa.UseVisualStyleBackColor = false;
+            chckBoxNazwa.CheckedChanged += chckBoxNazwa_CheckedChanged;
             // 
             // chckBoxAkronim
             // 
@@ -160,6 +161,7 @@
             chckBoxAkronim.TabIndex = 3;
             chckBoxAkronim.Text = "Akronim:";
             chckBoxAkronim.UseVisualStyleBackColor = false;
+            chckBoxAkronim.CheckedChanged += chckBoxAkronim_CheckedChanged;
             // 
             // label2
             // 
@@ -178,6 +180,7 @@
             txtBoxWyszukaj.Name = "txtBoxWyszukaj";
             txtBoxWyszukaj.Size = new Size(252, 23);
             txtBoxWyszukaj.TabIndex = 1;
+            txtBoxWyszukaj.TextChanged += txtBoxWyszukaj_TextChanged;
             // 
             // label1
             // 
