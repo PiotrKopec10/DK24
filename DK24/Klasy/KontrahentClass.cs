@@ -331,6 +331,45 @@ namespace DK24.Klasy
 
 
 
+        public bool CzyUserJestPrzypisanyDoKontrahenta(int userId)
+        {
+            bool czyPrzypisany = false;
+
+            using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+                    string zapytanie = @"SELECT COUNT(*) FROM serwer197774_drukarnia.company_details WHERE user_id = @userId";
+
+                    using (MySqlCommand sqlZapytanie = new MySqlCommand(zapytanie, polaczenie))
+                    {
+                        sqlZapytanie.Parameters.AddWithValue("@userId", userId);
+
+                        int liczbaRekordow = Convert.ToInt32(sqlZapytanie.ExecuteScalar());
+
+                        if (liczbaRekordow > 0)
+                        {
+                            czyPrzypisany = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas sprawdzania przypisania użytkownika: " + ex.Message, "Błąd");
+                }
+                finally
+                {
+                    polaczenie.Close();
+                }
+            }
+
+            return czyPrzypisany;
+        }
+
+
+
     }
 
 }

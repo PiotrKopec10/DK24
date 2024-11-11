@@ -419,7 +419,20 @@ namespace DK24
                     if(DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1 )
                     {
                         AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
-                        DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+
+                        if (DzialanieNaKontrahencie.CzyUserJestPrzypisanyDoKontrahenta(AktualnyKontrahent.user_id) == false) 
+                        {
+                            DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Podany Adres email jest przypisany do danego konta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                        
+
+
+                       
                     }
                     else
                     {
@@ -447,6 +460,7 @@ namespace DK24
             {
 
 
+                
 
 
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -488,20 +502,20 @@ namespace DK24
 
 
 
-                if (DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1)
-                {
-                    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
-                    DzialanieNaKontrahencie.EdytujKontrahenta(AktualnyKontrahent);
-                }
-                else
-                {
-                    MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                //if (DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1)
+                //{
+                //    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+                    
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
 
 
 
-               
 
+                DzialanieNaKontrahencie.EdytujKontrahenta(AktualnyKontrahent);
 
 
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
@@ -698,6 +712,7 @@ namespace DK24
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
             {
+                txtBoxEmail.Enabled = false;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -713,7 +728,7 @@ namespace DK24
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 3)
             {
-
+                txtBoxEmail.Enabled = true;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;
 
@@ -778,6 +793,13 @@ namespace DK24
 
         private void btnPobierzPoNip_Click(object sender, EventArgs e)
         {
+
+            if (txtBoxNIP.Text.Length != 10)
+            {
+                MessageBox.Show("NIP musi mieć dokładnie 10 cyfr!", "Pole NIP musi być wypełnione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtBoxNIP.Focus();
+                return;
+            }
 
 
             DialogResult result = MessageBox.Show("Czy na pewno chcesz szukać po NIP-ie kontrahenta?","Potwierdzenie",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
