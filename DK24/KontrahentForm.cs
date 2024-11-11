@@ -376,9 +376,6 @@ namespace DK24
 
 
 
-
-            //musimy sprawdzic forme czy my dodajemy czy edytujemy bo nie mozemy edytowac po aktualnym adresie jezeli zmieni sie np tylko nazwa firmy to nam nie doda
-
             if (GlobalClass.StanFormyKontrahenta.StanFormy == 3)
             {
 
@@ -415,7 +412,25 @@ namespace DK24
                     AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
                     AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
 
-                    DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+
+
+
+
+                    if(DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1 )
+                    {
+                        AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+                        DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+                   
+
+
+
                 }
                 else
                 {
@@ -471,7 +486,21 @@ namespace DK24
                 AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
                 AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
 
-                DzialanieNaKontrahencie.EdytujKontrahenta(AktualnyKontrahent);
+
+
+                if (DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1)
+                {
+                    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+                    DzialanieNaKontrahencie.EdytujKontrahenta(AktualnyKontrahent);
+                }
+                else
+                {
+                    MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+
+
+               
 
 
 

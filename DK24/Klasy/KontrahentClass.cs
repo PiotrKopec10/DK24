@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using static DK24.Klasy.AddressClass;
 
 namespace DK24.Klasy
 {
@@ -282,6 +283,51 @@ namespace DK24.Klasy
         }
 
 
+
+
+        public int PobierzIdUseraPoEmail(string email )
+        {
+            int idUsera = -1;
+
+            using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+
+                    string PobierzIdUsera = @"SELECT user_id FROM serwer197774_drukarnia.users WHERE LOWER(email) = LOWER(@adresemail)";
+
+                    using (MySqlCommand sqlPobierzIdUsera = new MySqlCommand(PobierzIdUsera, polaczenie))
+                    {
+
+                        sqlPobierzIdUsera.Parameters.AddWithValue("@adresemail",email.ToLower());
+
+
+
+                        using (MySqlDataReader reader = sqlPobierzIdUsera.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idUsera = reader.GetInt32("user_id");
+                            }
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Błąd Pobierania Użytkownika: " + ex.Message, "Błąd");
+
+                }
+
+                polaczenie.Close();
+
+                return idUsera;
+
+            }
+        }
 
 
 
