@@ -1,4 +1,5 @@
 ﻿using DK24.Klasy;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,11 @@ namespace DK24
 {
     public partial class MainForm : Form
     {
+        string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
+        ZamowieniaClass.Orders PobieraneZamowienie = new ZamowieniaClass.Orders();
+        ZamowieniaClass DzialaniaNaZamowieniach = new ZamowieniaClass();
+        AddressClass.Address PobieranyAdres = new AddressClass.Address();
+        AddressClass DzialanieNaAdresie = new AddressClass();
 
 
         public MainForm()
@@ -27,28 +33,13 @@ namespace DK24
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // PobieraneZamowienie = DzialaniaNaZamowieniach.WyswietlZamowienia();
 
 
-            DataSet ds = new DataSet();
+            DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();
 
-            DataTable dtZamowienia = new DataTable("Zamowienia");
 
-            dtZamowienia.Columns.Add("Nr.Zamówienia", typeof(string));
-            dtZamowienia.Columns.Add("Cena", typeof(decimal));
-            dtZamowienia.Columns.Add("Czy Faktura", typeof(bool));
-            dtZamowienia.Columns.Add("Czy Wysyłka", typeof(bool));
-            dtZamowienia.Columns.Add("Pozycje", typeof(string));
-
-            // Dodaj dane do tabeli
-            dtZamowienia.Rows.Add("Zam001", 200.00m, true, false, "Produkt A, Produkt B");
-            dtZamowienia.Rows.Add("Zam002", 350.50m, false, true, "Produkt C, Produkt D");
-            dtZamowienia.Rows.Add("Zam003", 150.75m, true, true, "Produkt E");
-
-            // Dodaj tabelę do DataSet
-            ds.Tables.Add(dtZamowienia);
-
-            // Przypisz tabelę do DataGridView jako źródło danych
-            dtGridViewZamowienia.DataSource = ds.Tables["Zamowienia"];
+            dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
 
 
 
@@ -58,6 +49,78 @@ namespace DK24
 
         }
 
+
+        public DataTable PobierzZamowieniaZDetalami()
+        {
+            string query = @"SELECT 
+    o.order_id,
+    o.total_price,
+    o.status,
+    o.created_at,
+    COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
+    COALESCE(cd.email, u.email) AS email,
+    COALESCE(cd.phone_number, u.phone_number) AS phone_number,
+    CONCAT(a.street, ' ', a.house_number, 
+           IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
+           ', ', a.city, ', ', a.country) AS full_address
+FROM 
+    orders o
+INNER JOIN 
+    users u ON o.user_id = u.user_id
+LEFT JOIN 
+    company_details cd ON u.user_id = cd.user_id
+INNER JOIN 
+    addresses a ON o.delivery_address_id = a.address_id;
+;
+";
+
+            using (MySqlConnection conn = new MySqlConnection(PolaczenieDB))
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+            }
+        }
+
+
+
+
+        public void PobierzZamowienie()
+        {
+
+            if (dtGridViewZamowienia.RowCount != 0)
+            {
+                if (dtGridViewZamowienia.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dtGridViewZamowienia.SelectedRows[0];
+
+
+                    if (GlobalClass.ZamowienieSesja.AktualneZamowienie == null)
+                    {
+                        GlobalClass.ZamowienieSesja.AktualneZamowienie = new ZamowieniaClass.Orders();
+                    }
+
+                    GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id = Convert.ToInt32(selectedRow.Cells["order_id"].Value);
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Proszę zaznaczyć Zamowienie.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+
+
+            }
+
+
+        }
+
+
+
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
@@ -65,6 +128,7 @@ namespace DK24
 
         private void button1_Click(object sender, EventArgs e)
         {
+            PobierzZamowienie();
             SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
             this.Hide();
             szczegolyZamowieniaForm.ShowDialog();
@@ -99,9 +163,18 @@ namespace DK24
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            WyborKlient_KontrahentZamowienieForm wyborKlient_KontrahentZamowienieForm = new WyborKlient_KontrahentZamowienieForm();
-            this.Hide();
-            wyborKlient_KontrahentZamowienieForm.ShowDialog();
+            //WyborKlient_KontrahentZamowienieForm wyborKlient_KontrahentZamowienieForm = new WyborKlient_KontrahentZamowienieForm();
+            //this.Hide();
+            //wyborKlient_KontrahentZamowienieForm.ShowDialog();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();
+
+
+            dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
+
         }
     }
 }

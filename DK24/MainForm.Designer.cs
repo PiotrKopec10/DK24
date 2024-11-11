@@ -205,6 +205,7 @@
             btnRefresh.TextAlign = ContentAlignment.MiddleRight;
             btnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // lblZalogowanoJako
             // 

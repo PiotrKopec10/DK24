@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Runtime.InteropServices;
+using Mysqlx.Crud;
 
 namespace DK24.Klasy
 {
@@ -30,6 +31,12 @@ namespace DK24.Klasy
 
         }
 
+
+        public static class ZamowienieSesja
+        {
+            public static ZamowieniaClass.Orders  AktualneZamowienie { get; set; }
+
+        }
 
 
 
