@@ -39,6 +39,18 @@ namespace DK24.Klasy
         }
 
 
+        public static class PracownikSesja
+        {
+            public static UserClass.User AktualnyUser { get; set; }
+
+        }
+
+
+        public static class StanFormyPracownika
+        {
+            public static int StanFormy { get; set; }
+        } 
+
 
 
         public static class StanFormyKontrahenta

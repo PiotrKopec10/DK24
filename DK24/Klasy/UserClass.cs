@@ -105,7 +105,45 @@ namespace DK24.Klasy
             return sBuilder.ToString();
         }
 
-
-
+        public User PobierzUseraPoIdUsera(int userId)
+        {
+            User pobranyUser = new User();
+            using (MySqlConnection polaczenie = new MySqlConnection(Polaczenie))
+            {
+                try
+                {
+                    polaczenie.Open();
+                    string query = "SELECT * FROM users WHERE user_id = @userId";
+                    using (MySqlCommand PobierzUsera = new MySqlCommand(query, polaczenie))
+                    {
+                        PobierzUsera.Parameters.AddWithValue("@userId", userId);
+                        using (MySqlDataReader reader = PobierzUsera.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                pobranyUser.user_id = reader.GetInt32("user_id");
+                                pobranyUser.worker_login = reader.GetString("worker_login");
+                                pobranyUser.first_name = reader.GetString("first_name");
+                                pobranyUser.last_name = reader.GetString("last_name");
+                                pobranyUser.email = reader.GetString("email");
+                                pobranyUser.phone_number = reader.GetString("phone_number");
+                          //      pobranyUser.role = (User.Role)Enum.Parse(typeof(User.Role), reader.GetString("role"), true);
+                                pobranyUser.created_at = reader.GetDateTime("created_at");
+                                pobranyUser.modified_at = reader.GetDateTime("modified_at");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas pobierania użytkownika: " + ex.Message, "Błąd");
+                }
+                finally
+                {
+                    polaczenie.Close();
+                }
+            }
+            return pobranyUser;
+        }
     }
 }

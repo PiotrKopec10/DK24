@@ -58,7 +58,6 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             pnlZarzadzaniaPracownikami = new Panel();
-            dtGridLstPracownikow = new DataGridView();
             label12 = new Label();
             btnAktywacja = new Button();
             btnResetujHaslo = new Button();
@@ -82,6 +81,7 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
+            dtGridLstPracownikow = new DataGridView();
             panel1 = new Panel();
             dataScrollBar = new HScrollBar();
             pnlPrzyciski.SuspendLayout();
@@ -146,6 +146,7 @@
             btnEdytuj.Size = new Size(44, 33);
             btnEdytuj.TabIndex = 12;
             btnEdytuj.UseVisualStyleBackColor = true;
+            btnEdytuj.Click += btnEdytuj_Click;
             // 
             // btnDodaj
             // 
@@ -155,6 +156,7 @@
             btnDodaj.Size = new Size(44, 33);
             btnDodaj.TabIndex = 11;
             btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // chckBoxNazwa
             // 
@@ -390,60 +392,6 @@
             pnlZarzadzaniaPracownikami.Size = new Size(563, 533);
             pnlZarzadzaniaPracownikami.TabIndex = 13;
             // 
-            // dtGridLstPracownikow
-            // 
-            dtGridLstPracownikow.AccessibleRole = AccessibleRole.Caret;
-            dtGridLstPracownikow.AllowUserToAddRows = false;
-            dtGridLstPracownikow.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.NullValue = "Brak Danych";
-            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dtGridLstPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtGridLstPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dtGridLstPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.NullValue = "Brak Danych";
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle3;
-            dtGridLstPracownikow.GridColor = Color.Gray;
-            dtGridLstPracownikow.Location = new Point(0, 1);
-            dtGridLstPracownikow.Margin = new Padding(3, 2, 3, 2);
-            dtGridLstPracownikow.Name = "dtGridLstPracownikow";
-            dtGridLstPracownikow.ReadOnly = true;
-            dtGridLstPracownikow.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dtGridLstPracownikow.RowHeadersVisible = false;
-            dtGridLstPracownikow.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dtGridLstPracownikow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtGridLstPracownikow.ShowCellErrors = false;
-            dtGridLstPracownikow.ShowCellToolTips = false;
-            dtGridLstPracownikow.ShowEditingIcon = false;
-            dtGridLstPracownikow.ShowRowErrors = false;
-            dtGridLstPracownikow.Size = new Size(964, 515);
-            dtGridLstPracownikow.TabIndex = 0;
-            dtGridLstPracownikow.SizeChanged += dtGridLstPracownikow_SizeChanged;
-            // 
             // label12
             // 
             label12.AutoSize = true;
@@ -481,9 +429,11 @@
             btnZapisz.TabIndex = 20;
             btnZapisz.Text = "Zapisz dane";
             btnZapisz.UseVisualStyleBackColor = true;
+            btnZapisz.Click += btnZapisz_Click;
             // 
             // dtPickerUtworzono
             // 
+            dtPickerUtworzono.Enabled = false;
             dtPickerUtworzono.Location = new Point(26, 374);
             dtPickerUtworzono.Name = "dtPickerUtworzono";
             dtPickerUtworzono.Size = new Size(221, 23);
@@ -491,6 +441,7 @@
             // 
             // dtPickerModyfikacja
             // 
+            dtPickerModyfikacja.Enabled = false;
             dtPickerModyfikacja.Location = new Point(320, 374);
             dtPickerModyfikacja.Name = "dtPickerModyfikacja";
             dtPickerModyfikacja.Size = new Size(221, 23);
@@ -636,6 +587,60 @@
             label3.TabIndex = 0;
             label3.Text = "Imie:\r\n";
             // 
+            // dtGridLstPracownikow
+            // 
+            dtGridLstPracownikow.AccessibleRole = AccessibleRole.Caret;
+            dtGridLstPracownikow.AllowUserToAddRows = false;
+            dtGridLstPracownikow.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtGridLstPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtGridLstPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dtGridLstPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle3;
+            dtGridLstPracownikow.GridColor = Color.Gray;
+            dtGridLstPracownikow.Location = new Point(0, 1);
+            dtGridLstPracownikow.Margin = new Padding(3, 2, 3, 2);
+            dtGridLstPracownikow.Name = "dtGridLstPracownikow";
+            dtGridLstPracownikow.ReadOnly = true;
+            dtGridLstPracownikow.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dtGridLstPracownikow.RowHeadersVisible = false;
+            dtGridLstPracownikow.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dtGridLstPracownikow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtGridLstPracownikow.ShowCellErrors = false;
+            dtGridLstPracownikow.ShowCellToolTips = false;
+            dtGridLstPracownikow.ShowEditingIcon = false;
+            dtGridLstPracownikow.ShowRowErrors = false;
+            dtGridLstPracownikow.Size = new Size(1084, 515);
+            dtGridLstPracownikow.TabIndex = 0;
+            dtGridLstPracownikow.SizeChanged += dtGridLstPracownikow_SizeChanged;
+            // 
             // panel1
             // 
             panel1.AutoScroll = true;
@@ -655,7 +660,7 @@
             dataScrollBar.Visible = false;
             dataScrollBar.Scroll += dataScrollBar_Scroll;
             // 
-            // ZarzadzajPracownikami
+            // ZarzadzajPracownikamiForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -670,7 +675,7 @@
             Controls.Add(pnlPrzyciski);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "ZarzadzajPracownikami";
+            Name = "ZarzadzajPracownikamiForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ZarzadzajPracownikami";
             Load += ZarzadzajPracownikami_Load;
