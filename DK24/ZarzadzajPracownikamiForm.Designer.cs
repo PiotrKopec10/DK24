@@ -173,6 +173,7 @@
             btnUsun.Size = new Size(44, 33);
             btnUsun.TabIndex = 13;
             btnUsun.UseVisualStyleBackColor = true;
+            btnUsun.Click += btnUsun_Click;
             // 
             // btnEdytuj
             // 
@@ -419,6 +420,7 @@
             // 
             // cmbBoxRola
             // 
+            cmbBoxRola.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxRola.FormattingEnabled = true;
             cmbBoxRola.Location = new Point(366, 86);
             cmbBoxRola.Name = "cmbBoxRola";
@@ -427,7 +429,9 @@
             // 
             // cmbBoxNrTelPrefix
             // 
+            cmbBoxNrTelPrefix.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxNrTelPrefix.FormattingEnabled = true;
+            cmbBoxNrTelPrefix.Items.AddRange(new object[] { "+48", "+44", "+42" });
             cmbBoxNrTelPrefix.Location = new Point(100, 199);
             cmbBoxNrTelPrefix.Name = "cmbBoxNrTelPrefix";
             cmbBoxNrTelPrefix.Size = new Size(42, 23);
@@ -450,9 +454,11 @@
             // txtBoxNrTel
             // 
             txtBoxNrTel.Location = new Point(145, 199);
+            txtBoxNrTel.MaxLength = 12;
             txtBoxNrTel.Name = "txtBoxNrTel";
             txtBoxNrTel.Size = new Size(132, 23);
             txtBoxNrTel.TabIndex = 12;
+            txtBoxNrTel.KeyPress += txtBoxNrTel_KeyPress;
             // 
             // txtBoxEmail
             // 

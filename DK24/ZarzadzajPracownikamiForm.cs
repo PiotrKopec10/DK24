@@ -155,6 +155,7 @@ namespace DK24
                 txtBoxEmail.Text = "";
                 txtBoxNrTel.Text = "";
                 cmbBoxRola.SelectedIndex = -1;
+                cmbBoxNrTelPrefix.SelectedIndex = -1;
                 txtBoxLogin.Text = "";
                 txtBoxHaslo.Text = "";
                 txtBoxHaslo.Enabled = true;
@@ -181,14 +182,36 @@ namespace DK24
 
         private void btnZapisz_Click(object sender, EventArgs e)
         {
-            if (GlobalClass.StanFormyPracownika.StanFormy == 1)
+
+            if (!string.IsNullOrEmpty(txtBoxImie.Text) &&
+        !string.IsNullOrEmpty(txtBoxNazwisko.Text) &&
+        !string.IsNullOrEmpty(txtBoxEmail.Text) &&
+        !string.IsNullOrEmpty(txtBoxNrTel.Text) && txtBoxNrTel.Text.Length > 8 &&
+        !string.IsNullOrEmpty(txtBoxLogin.Text) &&
+        !string.IsNullOrEmpty(txtBoxHaslo.Text) &&
+        !string.IsNullOrEmpty(cmbBoxRola.Text) &&
+        !string.IsNullOrEmpty(cmbBoxNrTelPrefix.Text))
             {
-                DodajPracownika();
+
+                if (GlobalClass.StanFormyPracownika.StanFormy == 1)
+                {
+                    DodajPracownika();
+                }
+                else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
+                {
+                    EdytujPracownika();
+                    GlobalClass.StanFormyPracownika.StanFormy = 1;
+                }
+
             }
-            else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
+            else
             {
-                EdytujPracownika();
+
+                MessageBox.Show("Upewnij się, że wszystkie pola są wypełnione!!!.");
             }
+
+
+
         }
 
         private void DodajPracownika()
@@ -207,9 +230,21 @@ namespace DK24
 
             };
 
-            DzialaniaNaUserze.DodajPracownika(AktualnyUser);
-            WyswietlListePracownikow();
-            WyczyscPola();
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz dodać użytkownika?", "Potwierdzenie dodawania", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                DzialaniaNaUserze.DodajPracownika(AktualnyUser);
+                WyswietlListePracownikow();
+                WyczyscPola();
+            }
+            else
+            {
+                MessageBox.Show("Operacja anulowana.");
+            }
+
+
+
         }
 
         private void EdytujPracownika()
@@ -224,9 +259,21 @@ namespace DK24
             AktualnyUser.created_at = dtPickerUtworzono.Value;
             AktualnyUser.modified_at = DateTime.Now;
 
-            DzialaniaNaUserze.EdytujPracownika(AktualnyUser);
-            WyswietlListePracownikow();
-            WyczyscPola();
+
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz edytować użytkownika?", "Potwierdzenie edycji", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                DzialaniaNaUserze.EdytujPracownika(AktualnyUser);
+                WyswietlListePracownikow();
+                WyczyscPola();
+            }
+            else
+            {
+                MessageBox.Show("Operacja anulowana.");
+            }
+
+
         }
 
 
@@ -238,6 +285,7 @@ namespace DK24
             txtBoxEmail.Text = "";
             txtBoxNrTel.Text = "";
             cmbBoxRola.SelectedIndex = -1;
+            cmbBoxNrTelPrefix.SelectedIndex = -1;
             txtBoxLogin.Text = "";
             txtBoxHaslo.Text = "";
             txtBoxHaslo.Enabled = true;
@@ -297,5 +345,32 @@ namespace DK24
             }
         }
 
+        private void btnUsun_Click(object sender, EventArgs e)
+        {
+            PobierzPracownika();
+
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć użytkownika?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                DzialaniaNaUserze.UsunUzytkownika(AktualnyUser.user_id);
+                WyswietlListePracownikow();
+            }
+            else
+            {
+                MessageBox.Show("Operacja anulowana.");
+            }
+
+
+        }
+
+        private void txtBoxNrTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+               
+                e.Handled = true;
+            }
+        }
     }
 }

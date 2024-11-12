@@ -168,12 +168,14 @@ namespace DK24.Klasy
                 using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
                 {
                     string query = @"INSERT INTO `serwer197774_drukarnia`.`users` 
-                             (`worker_login`, `first_name`, `last_name`, `phone_number`, `email`, `password_hash`, `role`, `created_at`, `modified_at`) 
+                             (`address_id`,`worker_login`, `first_name`, `last_name`, `phone_number`, `email`, `password_hash`, `role`, `created_at`, `modified_at`) 
                              VALUES 
-                             (@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, current_timestamp(), current_timestamp())";
+                             (@address_id,@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, current_timestamp(), current_timestamp())";
 
                     using (MySqlCommand sqlDodajPracownika = new MySqlCommand(query, polaczenie, transakcja))
                     {
+                        sqlDodajPracownika.Parameters.AddWithValue("@address_id", DBNull.Value);
+                      
                         sqlDodajPracownika.Parameters.AddWithValue("@worker_login", nowyPracownik.worker_login);
                         sqlDodajPracownika.Parameters.AddWithValue("@first_name", nowyPracownik.first_name);
                         sqlDodajPracownika.Parameters.AddWithValue("@last_name", nowyPracownik.last_name);
@@ -249,6 +251,41 @@ namespace DK24.Klasy
             }
         }
 
+
+        public void UsunUzytkownika(int IdUsuwanegoUzytkownika)
+        {
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+
+            try
+            {
+                polaczenie.Open();
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+                    string UsunUzytkownika = "DELETE FROM `serwer197774_drukarnia`.`users` WHERE `user_id` = @IdUsuwanegoUzytkownika;";
+
+                    using (MySqlCommand sqlUsunUzytkownika = new MySqlCommand(UsunUzytkownika, polaczenie, transakcja))
+                    {
+                        sqlUsunUzytkownika.Parameters.AddWithValue("@IdUsuwanegoUzytkownika", IdUsuwanegoUzytkownika);
+
+
+                        sqlUsunUzytkownika.ExecuteNonQuery();
+                    }
+
+
+                    transakcja.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd Usuwania Uzytkownika: " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+        }
 
     }
 }
