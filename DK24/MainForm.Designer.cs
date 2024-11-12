@@ -54,6 +54,7 @@
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
+            ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -289,7 +290,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -353,6 +354,16 @@
             panel4.Size = new Size(10, 535);
             panel4.TabIndex = 5;
             // 
+            // ądzajPracownikamiToolStripMenuItem
+            // 
+            ądzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
+            ądzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ądzajPracownikamiToolStripMenuItem.Image");
+            ądzajPracownikamiToolStripMenuItem.Name = "ądzajPracownikamiToolStripMenuItem";
+            ądzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
+            ądzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
+            ądzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            ądzajPracownikamiToolStripMenuItem.Click += ądzajPracownikamiToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -409,5 +420,6 @@
         private Panel panel4;
         private PictureBox pictureBox1;
         private LinkLabel linkLabel1;
+        private ToolStripMenuItem ądzajPracownikamiToolStripMenuItem;
     }
 }

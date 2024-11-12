@@ -176,5 +176,12 @@ INNER JOIN
             dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
 
         }
+
+        private void ądzajPracownikamiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ZarzadzajPracownikamiForm zarzadzajPracownikami = new ZarzadzajPracownikamiForm();
+            this.Hide();
+            zarzadzajPracownikami.ShowDialog();
+        }
     }
 }

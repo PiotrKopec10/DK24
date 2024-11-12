@@ -36,6 +36,7 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             grpBoxDane = new GroupBox();
+            btnPobierzPoNip = new Button();
             cmbBoxZnizka = new ComboBox();
             rchTxtBoxOpis = new RichTextBox();
             chckBoxArchiwalny = new CheckBox();
@@ -84,7 +85,6 @@
             btnAnuluj = new Button();
             btnZapisz = new Button();
             toolTip1 = new ToolTip(components);
-            btnPobierzPoNip = new Button();
             pnlDane.SuspendLayout();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -178,6 +178,16 @@
             grpBoxDane.TabIndex = 1;
             grpBoxDane.TabStop = false;
             grpBoxDane.Text = "Dane";
+            // 
+            // btnPobierzPoNip
+            // 
+            btnPobierzPoNip.Location = new Point(516, 152);
+            btnPobierzPoNip.Name = "btnPobierzPoNip";
+            btnPobierzPoNip.Size = new Size(180, 23);
+            btnPobierzPoNip.TabIndex = 27;
+            btnPobierzPoNip.Text = "Pobierz Kontrahenta po NIP";
+            btnPobierzPoNip.UseVisualStyleBackColor = true;
+            btnPobierzPoNip.Click += btnPobierzPoNip_Click;
             // 
             // cmbBoxZnizka
             // 
@@ -619,16 +629,6 @@
             btnZapisz.TabIndex = 7;
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
-            // 
-            // btnPobierzPoNip
-            // 
-            btnPobierzPoNip.Location = new Point(516, 152);
-            btnPobierzPoNip.Name = "btnPobierzPoNip";
-            btnPobierzPoNip.Size = new Size(180, 23);
-            btnPobierzPoNip.TabIndex = 27;
-            btnPobierzPoNip.Text = "Pobierz Kontrahenta po NIP";
-            btnPobierzPoNip.UseVisualStyleBackColor = true;
-            btnPobierzPoNip.Click += btnPobierzPoNip_Click;
             // 
             // KontrahentForm
             // 
