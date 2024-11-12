@@ -1,14 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using static DK24.Klasy.AddressClass;
 
 namespace DK24.Klasy
 {
-    internal class UserClass
+    public class UserClass
     {
 
 
         string Polaczenie = GlobalClass.GlobalnaZmienna.DBPolaczenie;
+
+
 
 
         public class User
@@ -22,11 +25,17 @@ namespace DK24.Klasy
             public string first_name = "";
             public string last_name = "";
             public string phone_number = "";
-            public enum role { user, admin, worker };
+            public RoleEnum role;
             public DateTime created_at;
             public DateTime modified_at;
 
 
+            public enum RoleEnum
+            {
+                user,
+                admin,
+                worker
+            }
         }
 
         public bool PobierzHasloDlaUsera(User AktualnyUser)
@@ -127,7 +136,8 @@ namespace DK24.Klasy
                                 pobranyUser.last_name = reader.GetString("last_name");
                                 pobranyUser.email = reader.GetString("email");
                                 pobranyUser.phone_number = reader.GetString("phone_number");
-                          //      pobranyUser.role = (User.Role)Enum.Parse(typeof(User.Role), reader.GetString("role"), true);
+                                pobranyUser.role = (User.RoleEnum)Enum.Parse(typeof(User.RoleEnum), reader.GetString("role"), true);
+                                pobranyUser.password_hash = reader.GetString("password_hash");
                                 pobranyUser.created_at = reader.GetDateTime("created_at");
                                 pobranyUser.modified_at = reader.GetDateTime("modified_at");
                             }
@@ -145,5 +155,100 @@ namespace DK24.Klasy
             }
             return pobranyUser;
         }
+
+
+        public void DodajPracownika(UserClass.User nowyPracownik)
+        {
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+            try
+            {
+                polaczenie.Open();
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+                    string query = @"INSERT INTO `serwer197774_drukarnia`.`users` 
+                             (`worker_login`, `first_name`, `last_name`, `phone_number`, `email`, `password_hash`, `role`, `created_at`, `modified_at`) 
+                             VALUES 
+                             (@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, current_timestamp(), current_timestamp())";
+
+                    using (MySqlCommand sqlDodajPracownika = new MySqlCommand(query, polaczenie, transakcja))
+                    {
+                        sqlDodajPracownika.Parameters.AddWithValue("@worker_login", nowyPracownik.worker_login);
+                        sqlDodajPracownika.Parameters.AddWithValue("@first_name", nowyPracownik.first_name);
+                        sqlDodajPracownika.Parameters.AddWithValue("@last_name", nowyPracownik.last_name);
+                        sqlDodajPracownika.Parameters.AddWithValue("@phone_number", nowyPracownik.phone_number);
+                        sqlDodajPracownika.Parameters.AddWithValue("@email", nowyPracownik.email);
+                        sqlDodajPracownika.Parameters.AddWithValue("@password_hash", nowyPracownik.password_hash);
+                        sqlDodajPracownika.Parameters.AddWithValue("@role", nowyPracownik.role.ToString());
+
+                        sqlDodajPracownika.ExecuteNonQuery();
+                    }
+
+                    transakcja.Commit();
+                    MessageBox.Show("Pomyślnie dodano pracownika!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas dodawania pracownika: " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+        }
+
+
+
+        public void EdytujPracownika(User EdytowanyPracownik)
+        {
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+            try
+            {
+                polaczenie.Open();
+
+                using (MySqlTransaction transakcja = polaczenie.BeginTransaction())
+                {
+                    string EdytujPracownikaQuery = @"UPDATE `serwer197774_drukarnia`.`users`
+                                             SET `first_name` = @first_name, 
+                                                 `last_name` = @last_name, 
+                                                 `phone_number` = @phone_number, 
+                                                 `email` = @email, 
+                                                 `role` = @role,
+                                                 `worker_login` = @worker_login,                     
+                                                 `modified_at` = @modified_at
+                                             WHERE `user_id` = @user_id;";
+
+                    using (MySqlCommand sqlEdytujPracownika = new MySqlCommand(EdytujPracownikaQuery, polaczenie, transakcja))
+                    {
+                        sqlEdytujPracownika.Parameters.AddWithValue("@user_id", EdytowanyPracownik.user_id);
+                        sqlEdytujPracownika.Parameters.AddWithValue("@first_name", EdytowanyPracownik.first_name);
+                        sqlEdytujPracownika.Parameters.AddWithValue("@last_name", EdytowanyPracownik.last_name);
+                        sqlEdytujPracownika.Parameters.AddWithValue("@phone_number", EdytowanyPracownik.phone_number);
+                        sqlEdytujPracownika.Parameters.AddWithValue("@email", EdytowanyPracownik.email);
+                        sqlEdytujPracownika.Parameters.AddWithValue("@role", EdytowanyPracownik.role.ToString());
+                        sqlEdytujPracownika.Parameters.AddWithValue("@worker_login", EdytowanyPracownik.worker_login); // Poprawka: usunięcie .ToString()
+                        sqlEdytujPracownika.Parameters.AddWithValue("@modified_at", EdytowanyPracownik.modified_at);
+
+                        sqlEdytujPracownika.ExecuteNonQuery();
+                    }
+
+                    transakcja.Commit();
+                    MessageBox.Show("Pomyślnie edytowano dane pracownika!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas edytowania pracownika: " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+        }
+
+
     }
 }

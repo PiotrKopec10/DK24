@@ -1,21 +1,15 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DK24
 {
     public partial class ZarzadzajPracownikamiForm : Form
     {
-
         DataTable dt = new DataTable();
+        GlobalClass GlobalneDzialania = new GlobalClass();
         UserClass DzialaniaNaUserze = new UserClass();
         UserClass.User AktualnyUser = new UserClass.User();
 
@@ -25,55 +19,83 @@ namespace DK24
 
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
+
+            cmbBoxRola.Items.Add("Pracownik");
+            cmbBoxRola.Items.Add("Admin");
+            cmbBoxRola.SelectedIndexChanged += cmbBoxRola_SelectedIndexChanged;
+
+            radioButtonWszyscy.CheckedChanged += radioButtonWszystko_CheckedChanged;
+            radioButtonPracownicy.CheckedChanged += radioButtonPracownicy_CheckedChanged;
+            radioButtonAdmin.CheckedChanged += radioButtonAdmin_CheckedChanged;
         }
 
-        private UserClass.User.role GetRoleFromComboBox()
+        private void cmbBoxRola_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return cmbBoxRola.SelectedItem.ToString() == "Pracownik"
-                ? UserClass.User.role.worker
-                : UserClass.User.role.admin;
+            if (cmbBoxRola.SelectedItem != null)
+            {
+                AktualnyUser.role = cmbBoxRola.SelectedItem.ToString() == "Pracownik"
+                    ? UserClass.User.RoleEnum.worker
+                    : UserClass.User.RoleEnum.admin;
+            }
         }
 
-        public void WyswietlListePracownikow()
+
+        public void WyswietlListePracownikow(string filtrRoli = "")
         {
             MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
             MySqlDataAdapter AdapterPolaczenia = new MySqlDataAdapter();
-
             dt.Clear();
-
 
             try
             {
                 polaczenie.Open();
 
-                string SelectDanych = "SELECT user_id, worker_login AS 'Login Pracownika', role AS 'Rola', CONCAT(first_name, ' ', last_name) " +
-                                       "AS 'Imię i Nazwisko', phone_number AS 'Numer Telefonu', email AS 'Email', created_at AS 'Data utworzenia', " +
-                                        "modified_at AS 'Data Modyfikacji' FROM serwer197774_drukarnia.users " +
-                                           "WHERE role = 'admin' OR role = 'worker'";
+                string query = "SELECT user_id, worker_login AS 'Login Pracownika', role AS 'Rola', CONCAT(first_name, ' ', last_name) " +
+                               "AS 'Imię i Nazwisko', phone_number AS 'Numer Telefonu', email AS 'Email', created_at AS 'Data utworzenia', " +
+                               "modified_at AS 'Data Modyfikacji' FROM serwer197774_drukarnia.users " +
+                               "WHERE (role = 'admin' OR role = 'worker') ";
 
-
-                using (MySqlCommand wyswietlDane = new MySqlCommand(SelectDanych, polaczenie))
+                if (!string.IsNullOrEmpty(filtrRoli))
                 {
+                    query += "AND role = @filtrRoli ";
+                }
+
+                query += "ORDER BY user_id";
+
+                using (MySqlCommand wyswietlDane = new MySqlCommand(query, polaczenie))
+                {
+
+                    if (!string.IsNullOrEmpty(filtrRoli))
+                    {
+                        wyswietlDane.Parameters.AddWithValue("@filtrRoli", filtrRoli);
+                    }
+
                     AdapterPolaczenia = new MySqlDataAdapter(wyswietlDane);
-                    AdapterPolaczenia.SelectCommand.ExecuteNonQuery();
                     AdapterPolaczenia.Fill(dt);
                     dtGridLstPracownikow.DataSource = dt.DefaultView;
-
                     dtGridLstPracownikow.Columns["user_id"].Visible = false;
-
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Błąd pobrania danych!!! " + ex.Message, "Błąd");
             }
-            polaczenie.Close();
+            finally
+            {
+                polaczenie.Close();
+            }
         }
+
+
+
 
         private void ZarzadzajPracownikami_Load(object sender, EventArgs e)
         {
             WyswietlListePracownikow();
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+
+            GlobalClass.StanFormyPracownika.StanFormy = 1;
+            UstawPanelPracownika();
 
             dataScrollBar.Width = dtGridLstPracownikow.Width;
             dataScrollBar.Left = dtGridLstPracownikow.Left;
@@ -84,7 +106,6 @@ namespace DK24
             dataScrollBar.Maximum = Math.Max(0, totalWidth - dtGridLstPracownikow.ClientSize.Width) + dataScrollBar.LargeChange;
 
             dataScrollBar.Scroll += new ScrollEventHandler(dataScrollBar_Scroll);
-
             dtGridLstPracownikow.SizeChanged += dtGridLstPracownikow_SizeChanged;
         }
 
@@ -101,43 +122,28 @@ namespace DK24
 
         public void PobierzPracownika()
         {
-
-            if (dtGridLstPracownikow.RowCount != 0)
+            if (dtGridLstPracownikow.RowCount != 0 && dtGridLstPracownikow.SelectedRows.Count > 0)
             {
-                if (dtGridLstPracownikow.SelectedRows.Count > 0)
-                {
-                    DataGridViewRow selectedRow = dtGridLstPracownikow.SelectedRows[0];
-
-
-                    if (GlobalClass.PracownikSesja.AktualnyUser == null)
-                    {
-                        GlobalClass.PracownikSesja.AktualnyUser = new UserClass.User();
-                    }
-
-                    GlobalClass.PracownikSesja.AktualnyUser.user_id = Convert.ToInt32(selectedRow.Cells["users_id"].Value);
-
-                }
-                else
-                {
-                    MessageBox.Show("Proszę zaznaczyć Pracownika.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                DataGridViewRow selectedRow = dtGridLstPracownikow.SelectedRows[0];
+                AktualnyUser.user_id = Convert.ToInt32(selectedRow.Cells["user_id"].Value);
             }
-        }
-
-        private void btnDodaj_Click(object sender, EventArgs e)
-        {
-            PobierzPracownika();
-
-            GlobalClass.StanFormyPracownika.StanFormy = 1;
+            else
+            {
+                MessageBox.Show("Proszę zaznaczyć Pracownika.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
             PobierzPracownika();
 
-            GlobalClass.StanFormyPracownika.StanFormy = 2;
+            if (AktualnyUser.user_id >= 0)
+            {
+                GlobalClass.StanFormyPracownika.StanFormy = 2;
+                AktualnyUser = DzialaniaNaUserze.PobierzUseraPoIdUsera(AktualnyUser.user_id);
+                UstawPanelPracownika();
+            }
         }
-
 
         private void UstawPanelPracownika()
         {
@@ -151,7 +157,8 @@ namespace DK24
                 cmbBoxRola.SelectedIndex = -1;
                 txtBoxLogin.Text = "";
                 txtBoxHaslo.Text = "";
-                dtPickerUtworzono.Value = DateTime.Today;
+                txtBoxHaslo.Enabled = true;
+                btnResetujHaslo.Visible = false;
             }
             else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
             {
@@ -160,11 +167,11 @@ namespace DK24
                 txtBoxNazwisko.Text = AktualnyUser.last_name;
                 txtBoxEmail.Text = AktualnyUser.email;
                 txtBoxNrTel.Text = AktualnyUser.phone_number;
-               // cmbBoxRola.Text = AktualnyUser.role == UserClass.User.role.worker ? "Pracownik" : "Admin";
+                cmbBoxRola.Text = AktualnyUser.role == UserClass.User.RoleEnum.worker ? "Pracownik" : "Admin";
                 txtBoxLogin.Text = AktualnyUser.worker_login;
                 txtBoxHaslo.Text = AktualnyUser.password_hash;
-                dtPickerUtworzono.Value = AktualnyUser.created_at;
-                dtPickerUtworzono.Value = DateTime.Today;
+                txtBoxHaslo.Enabled = false;
+                btnResetujHaslo.Visible = true;
             }
             else
             {
@@ -186,7 +193,7 @@ namespace DK24
 
         private void DodajPracownika()
         {
-            UserClass.User nowyPracownik = new UserClass.User
+            AktualnyUser = new UserClass.User
             {
                 first_name = txtBoxImie.Text,
                 last_name = txtBoxNazwisko.Text,
@@ -194,76 +201,99 @@ namespace DK24
                 phone_number = txtBoxNrTel.Text,
                 worker_login = txtBoxLogin.Text,
                 password_hash = DzialaniaNaUserze.ZahashujHaslo(txtBoxHaslo.Text),
-         //       role = (UserClass.User.role)Enum.Parse(typeof(UserClass.User.role), cmbBoxRola.SelectedItem.ToString()),
+                role = cmbBoxRola.SelectedItem.ToString() == "Pracownik" ? UserClass.User.RoleEnum.worker : UserClass.User.RoleEnum.admin,
                 created_at = DateTime.Now,
-                modified_at = DateTime.Now
+                modified_at = DateTime.Now,
+
             };
 
-            using (MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
-            {
-                try
-                {
-                    polaczenie.Open();
-                    string query = @"INSERT INTO users (worker_login, first_name, last_name, phone_number, email, password_hash, role, created_at, modified_at)
-                                     VALUES (@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, @created_at, @modified_at)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, polaczenie))
-                    {
-                        cmd.Parameters.AddWithValue("@worker_login", nowyPracownik.worker_login);
-                        cmd.Parameters.AddWithValue("@first_name", nowyPracownik.first_name);
-                        cmd.Parameters.AddWithValue("@last_name", nowyPracownik.last_name);
-                        cmd.Parameters.AddWithValue("@phone_number", nowyPracownik.phone_number);
-                        cmd.Parameters.AddWithValue("@email", nowyPracownik.email);
-                        cmd.Parameters.AddWithValue("@password_hash", nowyPracownik.password_hash);
-                  //      cmd.Parameters.AddWithValue("@role", nowyPracownik.role.ToString());
-                        cmd.Parameters.AddWithValue("@created_at", nowyPracownik.created_at);
-                        cmd.Parameters.AddWithValue("@modified_at", nowyPracownik.modified_at);
-
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Pomyślnie dodano pracownika!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Błąd podczas dodawania pracownika: " + ex.Message, "Błąd");
-                }
-            }
+            DzialaniaNaUserze.DodajPracownika(AktualnyUser);
+            WyswietlListePracownikow();
+            WyczyscPola();
         }
-
 
         private void EdytujPracownika()
         {
-            AktualnyUser.first_name = txtBoxImie.Text;
-            AktualnyUser.last_name = txtBoxNazwisko.Text;
-            AktualnyUser.email = txtBoxEmail.Text;
-            AktualnyUser.phone_number = txtBoxNrTel.Text;
-        //    AktualnyUser.role = (UserClass.User.Role)Enum.Parse(typeof(UserClass.User.Role), cmbBoxRola.SelectedItem.ToString());
+            AktualnyUser.first_name = GlobalneDzialania.WyczyscTekst(txtBoxImie.Text);
+            AktualnyUser.last_name = GlobalneDzialania.WyczyscTekst(txtBoxNazwisko.Text);
+            AktualnyUser.email = GlobalneDzialania.WyczyscTekst(txtBoxEmail.Text);
+            AktualnyUser.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
+            AktualnyUser.role = cmbBoxRola.SelectedItem.ToString() == "Pracownik" ? UserClass.User.RoleEnum.worker : UserClass.User.RoleEnum.admin;
+            AktualnyUser.worker_login = txtBoxLogin.Text;
+            AktualnyUser.password_hash = txtBoxHaslo.Text;
+            AktualnyUser.created_at = dtPickerUtworzono.Value;
             AktualnyUser.modified_at = DateTime.Now;
 
-            using (MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
-            {
-                try
-                {
-                    polaczenie.Open();
-                    string query = @"UPDATE users SET first_name = @first_name, last_name = @last_name, phone_number = @phone_number, 
-                                     email = @email, role = @role, modified_at = @modified_at WHERE user_id = @user_id";
-                    using (MySqlCommand cmd = new MySqlCommand(query, polaczenie))
-                    {
-                        cmd.Parameters.AddWithValue("@first_name", AktualnyUser.first_name);
-                        cmd.Parameters.AddWithValue("@last_name", AktualnyUser.last_name);
-                        cmd.Parameters.AddWithValue("@phone_number", AktualnyUser.phone_number);
-                        cmd.Parameters.AddWithValue("@email", AktualnyUser.email);
-                   //     cmd.Parameters.AddWithValue("@role", AktualnyUser.role.ToString());
-                        cmd.Parameters.AddWithValue("@modified_at", AktualnyUser.modified_at);
-                        cmd.Parameters.AddWithValue("@user_id", AktualnyUser.user_id);
+            DzialaniaNaUserze.EdytujPracownika(AktualnyUser);
+            WyswietlListePracownikow();
+            WyczyscPola();
+        }
 
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Pomyślnie edytowano dane pracownika!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+        private void WyczyscPola()
+        {
+            txtBoxImie.Text = "";
+            txtBoxNazwisko.Text = "";
+            txtBoxEmail.Text = "";
+            txtBoxNrTel.Text = "";
+            cmbBoxRola.SelectedIndex = -1;
+            txtBoxLogin.Text = "";
+            txtBoxHaslo.Text = "";
+            txtBoxHaslo.Enabled = true;
+        }
+
+        private void btnCofnij_Click(object sender, EventArgs e)
+        {
+            WyczyscPola();
+            btnResetujHaslo.Visible = false;
+        }
+
+        private void btnResetujHaslo_Click(object sender, EventArgs e)
+        {
+            PobierzPracownika();
+            if (AktualnyUser.user_id >= 0)
+            {
+                using (ResetujHasloForm resetForm = new ResetujHasloForm(AktualnyUser))
+                {
+                    if (resetForm.ShowDialog() == DialogResult.OK)
+                    {
+                        txtBoxHaslo.Text = resetForm.NoweHaslo;
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Błąd podczas edytowania pracownika: " + ex.Message, "Błąd");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Proszę zaznaczyć Pracownika przed resetowaniem hasła.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void radioButtonWszystko_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonWszyscy.Checked)
+            {
+                WyswietlListePracownikow();
+            }
+        }
+
+        private void radioButtonPracownicy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonPracownicy.Checked)
+            {
+                WyswietlListePracownikow("worker");
+            }
+        }
+
+        private void radioButtonAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAdmin.Checked)
+            {
+                WyswietlListePracownikow("admin");
             }
         }
 

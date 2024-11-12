@@ -34,16 +34,13 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
-            btnZaznacz = new Button();
+            radioButtonPracownicy = new RadioButton();
+            radioButtonAdmin = new RadioButton();
+            radioButtonWszyscy = new RadioButton();
+            label1 = new Label();
             btnCofnij = new Button();
             btnUsun = new Button();
             btnEdytuj = new Button();
-            btnDodaj = new Button();
-            chckBoxNazwa = new CheckBox();
-            chckBoxAkronim = new CheckBox();
-            label2 = new Label();
-            txtBoxWyszukaj = new TextBox();
-            label1 = new Label();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
@@ -96,29 +93,67 @@
             // pnlPrzyciski
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
-            pnlPrzyciski.Controls.Add(btnZaznacz);
+            pnlPrzyciski.Controls.Add(radioButtonPracownicy);
+            pnlPrzyciski.Controls.Add(radioButtonAdmin);
+            pnlPrzyciski.Controls.Add(radioButtonWszyscy);
+            pnlPrzyciski.Controls.Add(label1);
             pnlPrzyciski.Controls.Add(btnCofnij);
             pnlPrzyciski.Controls.Add(btnUsun);
             pnlPrzyciski.Controls.Add(btnEdytuj);
-            pnlPrzyciski.Controls.Add(btnDodaj);
-            pnlPrzyciski.Controls.Add(chckBoxNazwa);
-            pnlPrzyciski.Controls.Add(chckBoxAkronim);
-            pnlPrzyciski.Controls.Add(label2);
-            pnlPrzyciski.Controls.Add(txtBoxWyszukaj);
-            pnlPrzyciski.Controls.Add(label1);
             pnlPrzyciski.Location = new Point(0, 615);
             pnlPrzyciski.Name = "pnlPrzyciski";
             pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 2;
             // 
-            // btnZaznacz
+            // radioButtonPracownicy
             // 
-            btnZaznacz.Image = (Image)resources.GetObject("btnZaznacz.Image");
-            btnZaznacz.Location = new Point(941, 16);
-            btnZaznacz.Name = "btnZaznacz";
-            btnZaznacz.Size = new Size(44, 33);
-            btnZaznacz.TabIndex = 15;
-            btnZaznacz.UseVisualStyleBackColor = true;
+            radioButtonPracownicy.AutoSize = true;
+            radioButtonPracownicy.BackColor = Color.Transparent;
+            radioButtonPracownicy.ForeColor = Color.White;
+            radioButtonPracownicy.Location = new Point(227, 23);
+            radioButtonPracownicy.Name = "radioButtonPracownicy";
+            radioButtonPracownicy.Size = new Size(102, 19);
+            radioButtonPracownicy.TabIndex = 22;
+            radioButtonPracownicy.Text = "PRACOWNICY";
+            radioButtonPracownicy.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonAdmin
+            // 
+            radioButtonAdmin.AutoSize = true;
+            radioButtonAdmin.BackColor = Color.Transparent;
+            radioButtonAdmin.ForeColor = Color.White;
+            radioButtonAdmin.Location = new Point(347, 23);
+            radioButtonAdmin.Name = "radioButtonAdmin";
+            radioButtonAdmin.Size = new Size(128, 19);
+            radioButtonAdmin.TabIndex = 21;
+            radioButtonAdmin.Text = "ADMINISTRATORZY";
+            radioButtonAdmin.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonWszyscy
+            // 
+            radioButtonWszyscy.AutoSize = true;
+            radioButtonWszyscy.BackColor = Color.Transparent;
+            radioButtonWszyscy.Checked = true;
+            radioButtonWszyscy.ForeColor = Color.White;
+            radioButtonWszyscy.Location = new Point(129, 23);
+            radioButtonWszyscy.Name = "radioButtonWszyscy";
+            radioButtonWszyscy.Size = new Size(77, 19);
+            radioButtonWszyscy.TabIndex = 19;
+            radioButtonWszyscy.TabStop = true;
+            radioButtonWszyscy.Text = "WSZYSCY";
+            radioButtonWszyscy.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.FromArgb(255, 128, 0);
+            label1.Location = new Point(23, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 18);
+            label1.TabIndex = 18;
+            label1.Text = "Sortuj po:";
             // 
             // btnCofnij
             // 
@@ -128,6 +163,7 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 14;
             btnCofnij.UseVisualStyleBackColor = true;
+            btnCofnij.Click += btnCofnij_Click;
             // 
             // btnUsun
             // 
@@ -147,74 +183,6 @@
             btnEdytuj.TabIndex = 12;
             btnEdytuj.UseVisualStyleBackColor = true;
             btnEdytuj.Click += btnEdytuj_Click;
-            // 
-            // btnDodaj
-            // 
-            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(1004, 16);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(44, 33);
-            btnDodaj.TabIndex = 11;
-            btnDodaj.UseVisualStyleBackColor = true;
-            btnDodaj.Click += btnDodaj_Click;
-            // 
-            // chckBoxNazwa
-            // 
-            chckBoxNazwa.AutoSize = true;
-            chckBoxNazwa.BackColor = Color.Transparent;
-            chckBoxNazwa.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxNazwa.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            chckBoxNazwa.ForeColor = Color.White;
-            chckBoxNazwa.Location = new Point(647, 27);
-            chckBoxNazwa.Name = "chckBoxNazwa";
-            chckBoxNazwa.Size = new Size(74, 18);
-            chckBoxNazwa.TabIndex = 4;
-            chckBoxNazwa.Text = "Nazwa:";
-            chckBoxNazwa.UseVisualStyleBackColor = false;
-            // 
-            // chckBoxAkronim
-            // 
-            chckBoxAkronim.AutoSize = true;
-            chckBoxAkronim.BackColor = Color.Transparent;
-            chckBoxAkronim.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxAkronim.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            chckBoxAkronim.ForeColor = Color.White;
-            chckBoxAkronim.Location = new Point(551, 27);
-            chckBoxAkronim.Name = "chckBoxAkronim";
-            chckBoxAkronim.Size = new Size(81, 18);
-            chckBoxAkronim.TabIndex = 3;
-            chckBoxAkronim.Text = "Akronim:";
-            chckBoxAkronim.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.ForeColor = Color.Silver;
-            label2.Location = new Point(382, 27);
-            label2.Name = "label2";
-            label2.Size = new Size(121, 15);
-            label2.TabIndex = 2;
-            label2.Text = "(używaj checkboxów)";
-            // 
-            // txtBoxWyszukaj
-            // 
-            txtBoxWyszukaj.Location = new Point(126, 22);
-            txtBoxWyszukaj.Name = "txtBoxWyszukaj";
-            txtBoxWyszukaj.Size = new Size(252, 23);
-            txtBoxWyszukaj.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.ForeColor = Color.FromArgb(255, 128, 0);
-            label1.Location = new Point(25, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(94, 18);
-            label1.TabIndex = 0;
-            label1.Text = "Wyszukaj:";
             // 
             // panelZalogowania
             // 
@@ -240,6 +208,7 @@
             linkLabel1.TabIndex = 2;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Wyloguj się";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // pictureBox1
             // 
@@ -420,6 +389,7 @@
             btnResetujHaslo.TabIndex = 21;
             btnResetujHaslo.Text = "Resetuj hasło";
             btnResetujHaslo.UseVisualStyleBackColor = true;
+            btnResetujHaslo.Click += btnResetujHaslo_Click;
             // 
             // btnZapisz
             // 
@@ -450,7 +420,6 @@
             // cmbBoxRola
             // 
             cmbBoxRola.FormattingEnabled = true;
-            cmbBoxRola.Items.AddRange(new object[] { "Pracownik", "Admin" });
             cmbBoxRola.Location = new Point(366, 86);
             cmbBoxRola.Name = "cmbBoxRola";
             cmbBoxRola.Size = new Size(175, 23);
@@ -696,16 +665,9 @@
         #endregion
 
         private Panel pnlPrzyciski;
-        private Button btnZaznacz;
         private Button btnCofnij;
         private Button btnUsun;
         private Button btnEdytuj;
-        private Button btnDodaj;
-        private CheckBox chckBoxNazwa;
-        private CheckBox chckBoxAkronim;
-        private Label label2;
-        private TextBox txtBoxWyszukaj;
-        private Label label1;
         private Panel panelZalogowania;
         private LinkLabel linkLabel1;
         private PictureBox pictureBox1;
@@ -746,5 +708,10 @@
         private Panel panel1;
         private DataGridView dtGridLstPracownikow;
         private HScrollBar dataScrollBar;
+        private RadioButton radioButtonAdmin;
+        private RadioButton radioButtonUslugi;
+        private RadioButton radioButtonWszyscy;
+        private Label label1;
+        private RadioButton radioButtonPracownicy;
     }
 }
