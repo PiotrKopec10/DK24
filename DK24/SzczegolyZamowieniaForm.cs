@@ -14,6 +14,9 @@ namespace DK24
 {
     public partial class SzczegolyZamowieniaForm : Form
     {
+        ZamowieniaClass.Orders Zamowienia = new ZamowieniaClass.Orders();
+        ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass()
+;
         public SzczegolyZamowieniaForm()
         {
             InitializeComponent();
@@ -24,7 +27,7 @@ namespace DK24
         private void SzczegolyZamowieniaForm_Load(object sender, EventArgs e)
         {
             WypelnijSzczegolyZamowienia();
-
+            DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id,dtGridViewZamowienia);
         }
 
         private void WypelnijSzczegolyZamowienia()
@@ -65,9 +68,9 @@ namespace DK24
                         lblCenaNetto.Text = !reader.IsDBNull(reader.GetOrdinal("total_price")) ? reader["total_price"].ToString() : "0.00";
                         txtBoxNazwaKlienta.Text = !reader.IsDBNull(reader.GetOrdinal("customer_name")) ? reader["customer_name"].ToString() : string.Empty;
                         //txtf.Text = !reader.IsDBNull(reader.GetOrdinal("email")) ? reader["email"].ToString() : string.Empty;
-                       
+
                         dtPickDataWystaw.Value = !reader.IsDBNull(reader.GetOrdinal("created_at")) ? Convert.ToDateTime(reader["created_at"]) : DateTime.Now;
-                       // txtBoxAdresKnt.Text = !reader.IsDBNull(reader.GetOrdinal("full_address")) ? reader["full_address"].ToString() : string.Empty;
+                        // txtBoxAdresKnt.Text = !reader.IsDBNull(reader.GetOrdinal("full_address")) ? reader["full_address"].ToString() : string.Empty;
                     }
                     else
                     {
@@ -83,6 +86,11 @@ namespace DK24
             MainForm mainForm = new MainForm();
             this.Hide();
             mainForm.ShowDialog();
+        }
+
+        private void btnZapisz_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

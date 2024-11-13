@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,90 @@ namespace DK24.Klasy
             }
 
             return pobraneZamowienia;
+        }
+
+
+
+
+
+        public void WyswietlSzczegolyZamowienia(int orderId, DataGridView dataGridView)
+        {
+            using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+                    string zapytanie = @"
+                SELECT 
+                    i.name AS item_name,
+                    i.quantity,
+                    i.price,
+                    GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS options,
+                    o.total_price,
+                    o.status,
+                    o.created_at
+                FROM 
+                    serwer197774_drukarnia.items AS i
+                JOIN 
+                    serwer197774_drukarnia.orders AS o ON i.order_id = o.order_id
+                LEFT JOIN 
+                    serwer197774_drukarnia.item_options AS io ON i.item_id = io.item_id
+                LEFT JOIN 
+                    serwer197774_drukarnia.options AS op ON io.option_id = op.option_id
+                LEFT JOIN 
+                    serwer197774_drukarnia.option_groups AS og ON op.option_group_id = og.option_group_id
+                WHERE 
+                    o.order_id = @orderId
+                GROUP BY 
+                    i.item_id
+                ORDER BY 
+                    i.item_id;
+            ";
+
+                    using (MySqlCommand sqlCommand = new MySqlCommand(zapytanie, polaczenie))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@orderId", orderId);
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(sqlCommand))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            dataGridView.DataSource = dataTable;
+
+                       
+                            if (dataGridView.Columns.Contains("order_id"))
+                                dataGridView.Columns["order_id"].Visible = false;
+
+                 
+                            dataGridView.Columns["item_name"].DisplayIndex = 0;
+                            dataGridView.Columns["quantity"].DisplayIndex = 1;
+                            dataGridView.Columns["price"].DisplayIndex = 2;
+                            dataGridView.Columns["options"].DisplayIndex = 3;
+                            dataGridView.Columns["total_price"].DisplayIndex = 4;
+                            dataGridView.Columns["status"].DisplayIndex = 5;
+                            dataGridView.Columns["created_at"].DisplayIndex = 6;
+
+                        
+                            dataGridView.Columns["item_name"].Width = 150;
+                            dataGridView.Columns["quantity"].Width = 60;
+                            dataGridView.Columns["price"].Width = 80;
+                            dataGridView.Columns["options"].Width = 250;
+                            dataGridView.Columns["total_price"].Width = 100;
+                            dataGridView.Columns["status"].Width = 100;
+                            dataGridView.Columns["created_at"].Width = 120;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
+                }
+                finally
+                {
+                    polaczenie.Close();
+                }
+            }
         }
 
 

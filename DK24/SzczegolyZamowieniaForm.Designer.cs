@@ -125,6 +125,7 @@
             btnZapisz.Size = new Size(44, 33);
             btnZapisz.TabIndex = 5;
             btnZapisz.UseVisualStyleBackColor = true;
+            btnZapisz.Click += btnZapisz_Click;
             // 
             // btnUsun
             // 
