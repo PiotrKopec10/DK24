@@ -170,7 +170,7 @@ namespace DK24.Klasy
                     string query = @"INSERT INTO `serwer197774_drukarnia`.`users` 
                              (`address_id`,`worker_login`, `first_name`, `last_name`, `phone_number`, `email`, `password_hash`, `role`, `created_at`, `modified_at`) 
                              VALUES 
-                             (@address_id,@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, current_timestamp(), current_timestamp())";
+                             (@address_id,@worker_login, @first_name, @last_name, @phone_number, @email, @password_hash, @role, NOW(), NOW())";
 
                     using (MySqlCommand sqlDodajPracownika = new MySqlCommand(query, polaczenie, transakcja))
                     {
@@ -231,7 +231,7 @@ namespace DK24.Klasy
                         sqlEdytujPracownika.Parameters.AddWithValue("@phone_number", EdytowanyPracownik.phone_number);
                         sqlEdytujPracownika.Parameters.AddWithValue("@email", EdytowanyPracownik.email);
                         sqlEdytujPracownika.Parameters.AddWithValue("@role", EdytowanyPracownik.role.ToString());
-                        sqlEdytujPracownika.Parameters.AddWithValue("@worker_login", EdytowanyPracownik.worker_login); // Poprawka: usunięcie .ToString()
+                        sqlEdytujPracownika.Parameters.AddWithValue("@worker_login", EdytowanyPracownik.worker_login);
                         sqlEdytujPracownika.Parameters.AddWithValue("@modified_at", EdytowanyPracownik.modified_at);
 
                         sqlEdytujPracownika.ExecuteNonQuery();

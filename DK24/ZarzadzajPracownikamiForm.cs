@@ -256,7 +256,6 @@ namespace DK24
             AktualnyUser.role = cmbBoxRola.SelectedItem.ToString() == "Pracownik" ? UserClass.User.RoleEnum.worker : UserClass.User.RoleEnum.admin;
             AktualnyUser.worker_login = txtBoxLogin.Text;
             AktualnyUser.password_hash = txtBoxHaslo.Text;
-            AktualnyUser.created_at = dtPickerUtworzono.Value;
             AktualnyUser.modified_at = DateTime.Now;
 
 
