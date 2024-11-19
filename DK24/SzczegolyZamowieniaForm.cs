@@ -29,6 +29,7 @@ namespace DK24
             o.total_price,
             o.status,
             o.created_at,
+            o.shipping_method,
             COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
             COALESCE(cd.email, u.email) AS email,
             COALESCE(cd.phone_number, u.phone_number) AS phone_number,
@@ -78,6 +79,30 @@ namespace DK24
                             dtPickDataWystaw.Value = reader.IsDBNull(reader.GetOrdinal("created_at"))
                                                      ? DateTime.Now
                                                      : Convert.ToDateTime(reader["created_at"]);
+
+                           
+                            string shippingMethod = reader.IsDBNull(reader.GetOrdinal("shipping_method"))
+                                                    ? "self_pickup"
+                                                    : reader["shipping_method"].ToString();
+
+                            if (shippingMethod == "self_pickup")
+                            {
+                                chckBoxOdbior.Checked = true;
+                                chckBoxWysylka.Checked = false;
+                                btnWygenerujEtykiete.Visible = false;
+                            }
+                            if(shippingMethod == "dhl")
+                            {
+                                chckBoxOdbior.Checked = false;
+                                chckBoxWysylka.Checked = true;
+                                btnWygenerujEtykiete.Visible = true;
+                            }
+
+                            string status = reader.IsDBNull(reader.GetOrdinal("status"))
+                                    ? "newOrder"
+                                    : reader["status"].ToString();
+                            cmbBoxStatusZamowienia.SelectedItem = status;
+
                         }
                         else
                         {

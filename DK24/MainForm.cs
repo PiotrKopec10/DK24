@@ -33,7 +33,7 @@ namespace DK24
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // PobieraneZamowienie = DzialaniaNaZamowieniach.WyswietlZamowienia();
+            
 
 
             DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();

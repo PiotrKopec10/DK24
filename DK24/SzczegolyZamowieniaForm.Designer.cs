@@ -35,10 +35,12 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
-            btnZapisz = new Button();
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            btnAnulujZamowienie = new Button();
+            btnGotowe = new Button();
+            btnWygenerujEtykiete = new Button();
             txtBoxAdres = new TextBox();
             chckBoxWysylka = new CheckBox();
             chckBoxOdbior = new CheckBox();
@@ -50,7 +52,7 @@
             btnDataSprzed = new Button();
             btnDataWys = new Button();
             richTxtBoxOpis = new RichTextBox();
-            cmbBoxPlatnosc = new ComboBox();
+            cmbBoxStatusZamowienia = new ComboBox();
             label8 = new Label();
             label7 = new Label();
             txtBoxNazwaKlienta = new TextBox();
@@ -59,29 +61,16 @@
             lblCenaBrutto = new Label();
             lblCenaNetto = new Label();
             label5 = new Label();
-            grpBoxNaglowek = new GroupBox();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            numBoxMiesiac = new NumericUpDown();
-            numBoxDzien = new NumericUpDown();
-            numBoxRok = new NumericUpDown();
-            numBoxNrDok = new NumericUpDown();
-            cmbBoxTypDokumentu = new ComboBox();
-            label1 = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
+            label1 = new Label();
+            lblNrZamowienia = new Label();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
             grpBoxWartDok.SuspendLayout();
-            grpBoxNaglowek.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numBoxMiesiac).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxDzien).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxRok).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxNrDok).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             SuspendLayout();
@@ -103,16 +92,6 @@
             btnAnuluj.TabIndex = 6;
             btnAnuluj.UseVisualStyleBackColor = true;
             btnAnuluj.Click += btnAnuluj_Click;
-            // 
-            // btnZapisz
-            // 
-            btnZapisz.Image = (Image)resources.GetObject("btnZapisz.Image");
-            btnZapisz.Location = new Point(1130, 311);
-            btnZapisz.Name = "btnZapisz";
-            btnZapisz.Size = new Size(44, 33);
-            btnZapisz.TabIndex = 5;
-            btnZapisz.UseVisualStyleBackColor = true;
-            btnZapisz.Click += btnZapisz_Click;
             // 
             // panelGorny
             // 
@@ -138,9 +117,13 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(lblNrZamowienia);
+            pnlGoraDane.Controls.Add(label1);
+            pnlGoraDane.Controls.Add(btnAnulujZamowienie);
+            pnlGoraDane.Controls.Add(btnGotowe);
+            pnlGoraDane.Controls.Add(btnWygenerujEtykiete);
             pnlGoraDane.Controls.Add(btnAnuluj);
             pnlGoraDane.Controls.Add(txtBoxAdres);
-            pnlGoraDane.Controls.Add(btnZapisz);
             pnlGoraDane.Controls.Add(chckBoxWysylka);
             pnlGoraDane.Controls.Add(chckBoxOdbior);
             pnlGoraDane.Controls.Add(label13);
@@ -151,16 +134,42 @@
             pnlGoraDane.Controls.Add(btnDataSprzed);
             pnlGoraDane.Controls.Add(btnDataWys);
             pnlGoraDane.Controls.Add(richTxtBoxOpis);
-            pnlGoraDane.Controls.Add(cmbBoxPlatnosc);
+            pnlGoraDane.Controls.Add(cmbBoxStatusZamowienia);
             pnlGoraDane.Controls.Add(label8);
             pnlGoraDane.Controls.Add(label7);
             pnlGoraDane.Controls.Add(txtBoxNazwaKlienta);
             pnlGoraDane.Controls.Add(grpBoxWartDok);
-            pnlGoraDane.Controls.Add(grpBoxNaglowek);
             pnlGoraDane.Location = new Point(0, 50);
             pnlGoraDane.Name = "pnlGoraDane";
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
+            // 
+            // btnAnulujZamowienie
+            // 
+            btnAnulujZamowienie.Location = new Point(1028, 311);
+            btnAnulujZamowienie.Name = "btnAnulujZamowienie";
+            btnAnulujZamowienie.Size = new Size(122, 33);
+            btnAnulujZamowienie.TabIndex = 35;
+            btnAnulujZamowienie.Text = "Anuluj Zamówienie";
+            btnAnulujZamowienie.UseVisualStyleBackColor = true;
+            // 
+            // btnGotowe
+            // 
+            btnGotowe.Location = new Point(258, 190);
+            btnGotowe.Name = "btnGotowe";
+            btnGotowe.Size = new Size(150, 48);
+            btnGotowe.TabIndex = 34;
+            btnGotowe.Text = "Zakceptuj/Zakończ Zamówienie";
+            btnGotowe.UseVisualStyleBackColor = true;
+            // 
+            // btnWygenerujEtykiete
+            // 
+            btnWygenerujEtykiete.Location = new Point(712, 107);
+            btnWygenerujEtykiete.Name = "btnWygenerujEtykiete";
+            btnWygenerujEtykiete.Size = new Size(100, 38);
+            btnWygenerujEtykiete.TabIndex = 33;
+            btnWygenerujEtykiete.Text = "Wygeneruj Etykiete";
+            btnWygenerujEtykiete.UseVisualStyleBackColor = true;
             // 
             // txtBoxAdres
             // 
@@ -174,6 +183,7 @@
             // 
             chckBoxWysylka.AutoSize = true;
             chckBoxWysylka.BackColor = Color.Transparent;
+            chckBoxWysylka.Enabled = false;
             chckBoxWysylka.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxWysylka.ForeColor = Color.White;
             chckBoxWysylka.Location = new Point(538, 137);
@@ -187,6 +197,7 @@
             // 
             chckBoxOdbior.AutoSize = true;
             chckBoxOdbior.BackColor = Color.Transparent;
+            chckBoxOdbior.Enabled = false;
             chckBoxOdbior.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxOdbior.ForeColor = Color.White;
             chckBoxOdbior.Location = new Point(538, 107);
@@ -272,14 +283,17 @@
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
-            // cmbBoxPlatnosc
+            // cmbBoxStatusZamowienia
             // 
-            cmbBoxPlatnosc.BackColor = SystemColors.Menu;
-            cmbBoxPlatnosc.FormattingEnabled = true;
-            cmbBoxPlatnosc.Location = new Point(38, 215);
-            cmbBoxPlatnosc.Name = "cmbBoxPlatnosc";
-            cmbBoxPlatnosc.Size = new Size(189, 23);
-            cmbBoxPlatnosc.TabIndex = 14;
+            cmbBoxStatusZamowienia.BackColor = SystemColors.Menu;
+            cmbBoxStatusZamowienia.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxStatusZamowienia.Enabled = false;
+            cmbBoxStatusZamowienia.FormattingEnabled = true;
+            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "created", "in_progress ", "completed ", "canceled" });
+            cmbBoxStatusZamowienia.Location = new Point(38, 215);
+            cmbBoxStatusZamowienia.Name = "cmbBoxStatusZamowienia";
+            cmbBoxStatusZamowienia.Size = new Size(189, 23);
+            cmbBoxStatusZamowienia.TabIndex = 14;
             // 
             // label8
             // 
@@ -369,105 +383,6 @@
             label5.TabIndex = 0;
             label5.Text = "Netto:";
             // 
-            // grpBoxNaglowek
-            // 
-            grpBoxNaglowek.BackColor = Color.Transparent;
-            grpBoxNaglowek.Controls.Add(label4);
-            grpBoxNaglowek.Controls.Add(label3);
-            grpBoxNaglowek.Controls.Add(label2);
-            grpBoxNaglowek.Controls.Add(numBoxMiesiac);
-            grpBoxNaglowek.Controls.Add(numBoxDzien);
-            grpBoxNaglowek.Controls.Add(numBoxRok);
-            grpBoxNaglowek.Controls.Add(numBoxNrDok);
-            grpBoxNaglowek.Controls.Add(cmbBoxTypDokumentu);
-            grpBoxNaglowek.Controls.Add(label1);
-            grpBoxNaglowek.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            grpBoxNaglowek.ForeColor = Color.FromArgb(255, 128, 0);
-            grpBoxNaglowek.Location = new Point(11, 5);
-            grpBoxNaglowek.Name = "grpBoxNaglowek";
-            grpBoxNaglowek.Size = new Size(726, 83);
-            grpBoxNaglowek.TabIndex = 0;
-            grpBoxNaglowek.TabStop = false;
-            grpBoxNaglowek.Text = "Nagłówek";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(484, 28);
-            label4.Name = "label4";
-            label4.Size = new Size(20, 25);
-            label4.TabIndex = 8;
-            label4.Text = "/";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(403, 28);
-            label3.Name = "label3";
-            label3.Size = new Size(20, 25);
-            label3.TabIndex = 7;
-            label3.Text = "/";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(260, 36);
-            label2.Name = "label2";
-            label2.Size = new Size(86, 14);
-            label2.TabIndex = 6;
-            label2.Text = "Seria(D/M/R)";
-            // 
-            // numBoxMiesiac
-            // 
-            numBoxMiesiac.Location = new Point(425, 32);
-            numBoxMiesiac.Name = "numBoxMiesiac";
-            numBoxMiesiac.Size = new Size(56, 22);
-            numBoxMiesiac.TabIndex = 5;
-            // 
-            // numBoxDzien
-            // 
-            numBoxDzien.Location = new Point(352, 32);
-            numBoxDzien.Name = "numBoxDzien";
-            numBoxDzien.Size = new Size(48, 22);
-            numBoxDzien.TabIndex = 4;
-            // 
-            // numBoxRok
-            // 
-            numBoxRok.Location = new Point(504, 32);
-            numBoxRok.Name = "numBoxRok";
-            numBoxRok.Size = new Size(82, 22);
-            numBoxRok.TabIndex = 3;
-            // 
-            // numBoxNrDok
-            // 
-            numBoxNrDok.Location = new Point(152, 32);
-            numBoxNrDok.Name = "numBoxNrDok";
-            numBoxNrDok.Size = new Size(53, 22);
-            numBoxNrDok.TabIndex = 2;
-            // 
-            // cmbBoxTypDokumentu
-            // 
-            cmbBoxTypDokumentu.FormattingEnabled = true;
-            cmbBoxTypDokumentu.Location = new Point(66, 32);
-            cmbBoxTypDokumentu.Name = "cmbBoxTypDokumentu";
-            cmbBoxTypDokumentu.Size = new Size(68, 22);
-            cmbBoxTypDokumentu.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(13, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 14);
-            label1.TabIndex = 0;
-            label1.Text = "Numer:";
-            // 
             // panel2
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
@@ -545,6 +460,24 @@
             dtGridViewZamowienia.Size = new Size(1238, 255);
             dtGridViewZamowienia.TabIndex = 1;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(38, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(115, 15);
+            label1.TabIndex = 36;
+            label1.Text = "Numer Zamówienia:";
+            // 
+            // lblNrZamowienia
+            // 
+            lblNrZamowienia.AutoSize = true;
+            lblNrZamowienia.Location = new Point(159, 27);
+            lblNrZamowienia.Name = "lblNrZamowienia";
+            lblNrZamowienia.Size = new Size(51, 15);
+            lblNrZamowienia.TabIndex = 37;
+            lblNrZamowienia.Text = "Przykład";
+            // 
             // SzczegolyZamowieniaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -567,12 +500,6 @@
             pnlGoraDane.PerformLayout();
             grpBoxWartDok.ResumeLayout(false);
             grpBoxWartDok.PerformLayout();
-            grpBoxNaglowek.ResumeLayout(false);
-            grpBoxNaglowek.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numBoxMiesiac).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxDzien).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxRok).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numBoxNrDok).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
             ResumeLayout(false);
@@ -582,7 +509,6 @@
 
         private Panel pnlPrzyciski;
         private Button btnAnuluj;
-        private Button btnZapisz;
         private Panel panelGorny;
         private PictureBox pictureBox1;
         private Panel pnlGoraDane;
@@ -590,7 +516,7 @@
         private DateTimePicker dtPickDataWystaw;
         private Button btnDataSprzed;
         private Button btnDataWys;
-        private ComboBox cmbBoxPlatnosc;
+        private ComboBox cmbBoxStatusZamowienia;
         private RichTextBox richTxtBoxOpis;
         private Label label8;
         private Label label7;
@@ -607,16 +533,6 @@
         private Label lblCenaBrutto;
         private Label lblCenaNetto;
         private Label label5;
-        private GroupBox grpBoxNaglowek;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private NumericUpDown numBoxMiesiac;
-        private NumericUpDown numBoxDzien;
-        private NumericUpDown numBoxRok;
-        private NumericUpDown numBoxNrDok;
-        private ComboBox cmbBoxTypDokumentu;
-        private Label label1;
         private Panel panel2;
         private Panel panel3;
         private Panel pnlDtGridZamowienia;
@@ -627,5 +543,10 @@
         private CheckBox chckBoxOdbior;
         private Label label13;
         private TextBox txtBoxAdres;
+        private Button btnGotowe;
+        private Button btnWygenerujEtykiete;
+        private Button btnAnulujZamowienie;
+        private Label lblNrZamowienia;
+        private Label label1;
     }
 }
