@@ -1,12 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DK24.Klasy.KontrahentClass;
-using static DK24.Klasy.ZamowieniaClass.Orders;
 
 namespace DK24.Klasy
 {
@@ -20,14 +13,15 @@ namespace DK24.Klasy
             public int user_id = 0;
             public int delivery_address_id = 0;
             public decimal total_price = 0;
-            public StatusEnum status { get; set; } 
+            public StatusEnum status { get; set; }
             public DateTime created_at;
             public DateTime modified_at;
-            public ShippingMethodEnum shipping_method { get; set; } 
+            public ShippingMethodEnum shipping_method { get; set; }
             public DateOnly shipping_date;
 
             public enum StatusEnum
             {
+                created,
                 in_progress,
                 completed,
                 canceled
@@ -70,11 +64,11 @@ namespace DK24.Klasy
                         pobraneZamowienia.created_at = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("created_at")) ? odczytZamowien.GetDateTime("created_at") : DateTime.MinValue;
                         pobraneZamowienia.modified_at = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("modified_at")) ? odczytZamowien.GetDateTime("modified_at") : DateTime.MinValue;
 
-                     
+
                         string shippingMethodString = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("shipping_method")) ? odczytZamowien.GetString("shipping_method") : "self_pickup";
                         pobraneZamowienia.shipping_method = Enum.TryParse(shippingMethodString, true, out Orders.ShippingMethodEnum shippingMethodEnum) ? shippingMethodEnum : Orders.ShippingMethodEnum.self_pickup;
 
-                        pobraneZamowienia.shipping_date = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("shipping_date"))? DateOnly.FromDateTime(odczytZamowien.GetDateTime("shipping_date")): DateOnly.MinValue;
+                        pobraneZamowienia.shipping_date = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("shipping_date")) ? DateOnly.FromDateTime(odczytZamowien.GetDateTime("shipping_date")) : DateOnly.MinValue;
 
                     }
                 }
@@ -92,8 +86,6 @@ namespace DK24.Klasy
 
             return pobraneZamowienia;
         }
-
-
 
 
 
@@ -142,11 +134,7 @@ namespace DK24.Klasy
                             adapter.Fill(dataTable);
                             dataGridView.DataSource = dataTable;
 
-                       
-                            if (dataGridView.Columns.Contains("order_id"))
-                                dataGridView.Columns["order_id"].Visible = false;
 
-                 
                             dataGridView.Columns["item_name"].DisplayIndex = 0;
                             dataGridView.Columns["quantity"].DisplayIndex = 1;
                             dataGridView.Columns["price"].DisplayIndex = 2;
@@ -155,20 +143,21 @@ namespace DK24.Klasy
                             dataGridView.Columns["status"].DisplayIndex = 5;
                             dataGridView.Columns["created_at"].DisplayIndex = 6;
 
-                        
-                            dataGridView.Columns["item_name"].Width = 150;
-                            dataGridView.Columns["quantity"].Width = 60;
-                            dataGridView.Columns["price"].Width = 80;
-                            dataGridView.Columns["options"].Width = 250;
-                            dataGridView.Columns["total_price"].Width = 100;
-                            dataGridView.Columns["status"].Width = 100;
-                            dataGridView.Columns["created_at"].Width = 120;
+                            dataGridView.Columns["item_name"].HeaderText = "Produkt";
+                            dataGridView.Columns["quantity"].HeaderText = "Ilość";
+                            dataGridView.Columns["price"].HeaderText = "Cena jednostkowa";
+                            dataGridView.Columns["options"].HeaderText = "Opcje";
+                            dataGridView.Columns["total_price"].HeaderText = "Łączna cena";
+                            dataGridView.Columns["status"].HeaderText = "Status";
+                            dataGridView.Columns["created_at"].HeaderText = "Data utworzenia";
+
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
+                    MessageBox.Show("Błąd podczas wyświetlania szczegółów zamówienia: " + ex.Message, "Błąd");
                 }
                 finally
                 {
@@ -176,6 +165,9 @@ namespace DK24.Klasy
                 }
             }
         }
+
+
+
 
 
 

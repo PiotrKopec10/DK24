@@ -36,17 +36,12 @@
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
             btnZapisz = new Button();
-            btnUsun = new Button();
-            btnDodaj = new Button();
-            label11 = new Label();
-            textBox1 = new TextBox();
-            btnTowarUslugi = new Button();
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
             txtBoxAdres = new TextBox();
-            checkBox2 = new CheckBox();
-            checkBox1 = new CheckBox();
+            chckBoxWysylka = new CheckBox();
+            chckBoxOdbior = new CheckBox();
             label13 = new Label();
             label12 = new Label();
             label6 = new Label();
@@ -78,7 +73,6 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            pnlPrzyciski.SuspendLayout();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
@@ -95,22 +89,15 @@
             // pnlPrzyciski
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
-            pnlPrzyciski.Controls.Add(btnAnuluj);
-            pnlPrzyciski.Controls.Add(btnZapisz);
-            pnlPrzyciski.Controls.Add(btnUsun);
-            pnlPrzyciski.Controls.Add(btnDodaj);
-            pnlPrzyciski.Controls.Add(label11);
-            pnlPrzyciski.Controls.Add(textBox1);
-            pnlPrzyciski.Controls.Add(btnTowarUslugi);
-            pnlPrzyciski.Location = new Point(0, 615);
+            pnlPrzyciski.Location = new Point(0, 665);
             pnlPrzyciski.Name = "pnlPrzyciski";
-            pnlPrzyciski.Size = new Size(1260, 65);
+            pnlPrzyciski.Size = new Size(1260, 15);
             pnlPrzyciski.TabIndex = 3;
             // 
             // btnAnuluj
             // 
             btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
-            btnAnuluj.Location = new Point(1191, 15);
+            btnAnuluj.Location = new Point(1191, 311);
             btnAnuluj.Name = "btnAnuluj";
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 6;
@@ -120,58 +107,12 @@
             // btnZapisz
             // 
             btnZapisz.Image = (Image)resources.GetObject("btnZapisz.Image");
-            btnZapisz.Location = new Point(1134, 15);
+            btnZapisz.Location = new Point(1130, 311);
             btnZapisz.Name = "btnZapisz";
             btnZapisz.Size = new Size(44, 33);
             btnZapisz.TabIndex = 5;
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
-            // 
-            // btnUsun
-            // 
-            btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(813, 15);
-            btnUsun.Name = "btnUsun";
-            btnUsun.Size = new Size(44, 33);
-            btnUsun.TabIndex = 4;
-            btnUsun.UseVisualStyleBackColor = true;
-            // 
-            // btnDodaj
-            // 
-            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(749, 15);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(40, 33);
-            btnDodaj.TabIndex = 3;
-            btnDodaj.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label11.ForeColor = Color.Silver;
-            label11.Location = new Point(447, 27);
-            label11.Name = "label11";
-            label11.Size = new Size(274, 15);
-            label11.TabIndex = 2;
-            label11.Text = "Wpisz kod Towaru/Usługi aby go dodać i kliknij [+]";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(152, 24);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(260, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // btnTowarUslugi
-            // 
-            btnTowarUslugi.Location = new Point(14, 23);
-            btnTowarUslugi.Name = "btnTowarUslugi";
-            btnTowarUslugi.Size = new Size(91, 23);
-            btnTowarUslugi.TabIndex = 0;
-            btnTowarUslugi.Text = "Towar/Usługi";
-            btnTowarUslugi.UseVisualStyleBackColor = true;
             // 
             // panelGorny
             // 
@@ -197,9 +138,11 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(btnAnuluj);
             pnlGoraDane.Controls.Add(txtBoxAdres);
-            pnlGoraDane.Controls.Add(checkBox2);
-            pnlGoraDane.Controls.Add(checkBox1);
+            pnlGoraDane.Controls.Add(btnZapisz);
+            pnlGoraDane.Controls.Add(chckBoxWysylka);
+            pnlGoraDane.Controls.Add(chckBoxOdbior);
             pnlGoraDane.Controls.Add(label13);
             pnlGoraDane.Controls.Add(label12);
             pnlGoraDane.Controls.Add(label6);
@@ -227,31 +170,31 @@
             txtBoxAdres.Size = new Size(295, 23);
             txtBoxAdres.TabIndex = 32;
             // 
-            // checkBox2
+            // chckBoxWysylka
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.BackColor = Color.Transparent;
-            checkBox2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBox2.ForeColor = Color.White;
-            checkBox2.Location = new Point(538, 137);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(138, 18);
-            checkBox2.TabIndex = 31;
-            checkBox2.Text = "Wysyłka na adres";
-            checkBox2.UseVisualStyleBackColor = false;
+            chckBoxWysylka.AutoSize = true;
+            chckBoxWysylka.BackColor = Color.Transparent;
+            chckBoxWysylka.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            chckBoxWysylka.ForeColor = Color.White;
+            chckBoxWysylka.Location = new Point(538, 137);
+            chckBoxWysylka.Name = "chckBoxWysylka";
+            chckBoxWysylka.Size = new Size(138, 18);
+            chckBoxWysylka.TabIndex = 31;
+            chckBoxWysylka.Text = "Wysyłka na adres";
+            chckBoxWysylka.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
+            // chckBoxOdbior
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = Color.Transparent;
-            checkBox1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBox1.ForeColor = Color.White;
-            checkBox1.Location = new Point(538, 107);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(125, 18);
-            checkBox1.TabIndex = 30;
-            checkBox1.Text = "Odbiór osobisty";
-            checkBox1.UseVisualStyleBackColor = false;
+            chckBoxOdbior.AutoSize = true;
+            chckBoxOdbior.BackColor = Color.Transparent;
+            chckBoxOdbior.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            chckBoxOdbior.ForeColor = Color.White;
+            chckBoxOdbior.Location = new Point(538, 107);
+            chckBoxOdbior.Name = "chckBoxOdbior";
+            chckBoxOdbior.Size = new Size(125, 18);
+            chckBoxOdbior.TabIndex = 30;
+            chckBoxOdbior.Text = "Odbiór osobisty";
+            chckBoxOdbior.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
@@ -323,9 +266,9 @@
             // 
             // richTxtBoxOpis
             // 
-            richTxtBoxOpis.Location = new Point(749, 198);
+            richTxtBoxOpis.Location = new Point(967, 195);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(482, 146);
+            richTxtBoxOpis.Size = new Size(282, 92);
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
@@ -344,7 +287,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(749, 180);
+            label8.Location = new Point(967, 177);
             label8.Name = "label8";
             label8.Size = new Size(40, 14);
             label8.TabIndex = 12;
@@ -530,15 +473,15 @@
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.Location = new Point(0, 410);
             panel2.Name = "panel2";
-            panel2.Size = new Size(10, 205);
+            panel2.Size = new Size(11, 258);
             panel2.TabIndex = 6;
             // 
             // panel3
             // 
             panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.Location = new Point(1250, 410);
+            panel3.Location = new Point(1243, 410);
             panel3.Name = "panel3";
-            panel3.Size = new Size(10, 205);
+            panel3.Size = new Size(17, 255);
             panel3.TabIndex = 7;
             // 
             // pnlDtGridZamowienia
@@ -546,10 +489,10 @@
             pnlDtGridZamowienia.BackColor = Color.White;
             pnlDtGridZamowienia.Controls.Add(dtGridViewZamowienia);
             pnlDtGridZamowienia.ImeMode = ImeMode.NoControl;
-            pnlDtGridZamowienia.Location = new Point(11, 411);
+            pnlDtGridZamowienia.Location = new Point(11, 410);
             pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
             pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
-            pnlDtGridZamowienia.Size = new Size(1238, 203);
+            pnlDtGridZamowienia.Size = new Size(1238, 255);
             pnlDtGridZamowienia.TabIndex = 8;
             // 
             // dtGridViewZamowienia
@@ -599,7 +542,7 @@
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtGridViewZamowienia.Size = new Size(1238, 203);
+            dtGridViewZamowienia.Size = new Size(1238, 255);
             dtGridViewZamowienia.TabIndex = 1;
             // 
             // SzczegolyZamowieniaForm
@@ -618,8 +561,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SzczegolyZamowieniaForm";
             Load += SzczegolyZamowieniaForm_Load;
-            pnlPrzyciski.ResumeLayout(false);
-            pnlPrzyciski.PerformLayout();
             panelGorny.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlGoraDane.ResumeLayout(false);
@@ -642,11 +583,6 @@
         private Panel pnlPrzyciski;
         private Button btnAnuluj;
         private Button btnZapisz;
-        private Button btnUsun;
-        private Button btnDodaj;
-        private Label label11;
-        private TextBox textBox1;
-        private Button btnTowarUslugi;
         private Panel panelGorny;
         private PictureBox pictureBox1;
         private Panel pnlGoraDane;
@@ -687,8 +623,8 @@
         private DataGridView dtGridViewZamowienia;
         private Label label6;
         private Label label12;
-        private CheckBox checkBox2;
-        private CheckBox checkBox1;
+        private CheckBox chckBoxWysylka;
+        private CheckBox chckBoxOdbior;
         private Label label13;
         private TextBox txtBoxAdres;
     }

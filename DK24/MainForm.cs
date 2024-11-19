@@ -53,26 +53,27 @@ namespace DK24
         public DataTable PobierzZamowieniaZDetalami()
         {
             string query = @"SELECT 
-    o.order_id,
-    o.total_price,
-    o.status,
-    o.created_at,
-    COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
-    COALESCE(cd.email, u.email) AS email,
-    COALESCE(cd.phone_number, u.phone_number) AS phone_number,
-    CONCAT(a.street, ' ', a.house_number, 
-           IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
-           ', ', a.city, ', ', a.country) AS full_address
-FROM 
-    orders o
-INNER JOIN 
-    users u ON o.user_id = u.user_id
-LEFT JOIN 
-    company_details cd ON u.user_id = cd.user_id
-INNER JOIN 
-    addresses a ON o.delivery_address_id = a.address_id;
-;
-";
+        o.order_id,
+        o.total_price,
+        o.status,
+        o.created_at,
+        COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
+        COALESCE(cd.email, u.email) AS email,
+        COALESCE(cd.phone_number, u.phone_number) AS phone_number,
+        COALESCE(
+            CONCAT(a.street, ' ', a.house_number, 
+                   IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
+                   ', ', a.city, ', ', a.country), 
+            'Odbiór osobisty'
+        ) AS full_address
+    FROM 
+        orders o
+    INNER JOIN 
+        users u ON o.user_id = u.user_id
+    LEFT JOIN 
+        company_details cd ON u.user_id = cd.user_id
+    LEFT JOIN 
+        addresses a ON o.delivery_address_id = a.address_id;";
 
             using (MySqlConnection conn = new MySqlConnection(PolaczenieDB))
             {
@@ -83,6 +84,7 @@ INNER JOIN
                 return dt;
             }
         }
+
 
 
 
