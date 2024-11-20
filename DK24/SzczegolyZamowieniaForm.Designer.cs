@@ -38,8 +38,11 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            btnZakonczZamowienie = new Button();
+            lblNrZamowienia = new Label();
+            label1 = new Label();
             btnAnulujZamowienie = new Button();
-            btnGotowe = new Button();
+            btnZakceptuj = new Button();
             btnWygenerujEtykiete = new Button();
             txtBoxAdres = new TextBox();
             chckBoxWysylka = new CheckBox();
@@ -65,8 +68,6 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            label1 = new Label();
-            lblNrZamowienia = new Label();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
@@ -117,10 +118,11 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(btnZakonczZamowienie);
             pnlGoraDane.Controls.Add(lblNrZamowienia);
             pnlGoraDane.Controls.Add(label1);
             pnlGoraDane.Controls.Add(btnAnulujZamowienie);
-            pnlGoraDane.Controls.Add(btnGotowe);
+            pnlGoraDane.Controls.Add(btnZakceptuj);
             pnlGoraDane.Controls.Add(btnWygenerujEtykiete);
             pnlGoraDane.Controls.Add(btnAnuluj);
             pnlGoraDane.Controls.Add(txtBoxAdres);
@@ -144,23 +146,53 @@
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
             // 
+            // btnZakonczZamowienie
+            // 
+            btnZakonczZamowienie.Location = new Point(866, 311);
+            btnZakonczZamowienie.Name = "btnZakonczZamowienie";
+            btnZakonczZamowienie.Size = new Size(132, 33);
+            btnZakonczZamowienie.TabIndex = 38;
+            btnZakonczZamowienie.Text = "Zakończ Zamówienie";
+            btnZakonczZamowienie.UseVisualStyleBackColor = true;
+            btnZakonczZamowienie.Click += btnZakonczZamowienie_Click;
+            // 
+            // lblNrZamowienia
+            // 
+            lblNrZamowienia.AutoSize = true;
+            lblNrZamowienia.Location = new Point(159, 27);
+            lblNrZamowienia.Name = "lblNrZamowienia";
+            lblNrZamowienia.Size = new Size(51, 15);
+            lblNrZamowienia.TabIndex = 37;
+            lblNrZamowienia.Text = "Przykład";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(38, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(115, 15);
+            label1.TabIndex = 36;
+            label1.Text = "Numer Zamówienia:";
+            // 
             // btnAnulujZamowienie
             // 
-            btnAnulujZamowienie.Location = new Point(1028, 311);
+            btnAnulujZamowienie.Location = new Point(1013, 311);
             btnAnulujZamowienie.Name = "btnAnulujZamowienie";
             btnAnulujZamowienie.Size = new Size(122, 33);
             btnAnulujZamowienie.TabIndex = 35;
             btnAnulujZamowienie.Text = "Anuluj Zamówienie";
             btnAnulujZamowienie.UseVisualStyleBackColor = true;
+            btnAnulujZamowienie.Click += btnAnulujZamowienie_Click;
             // 
-            // btnGotowe
+            // btnZakceptuj
             // 
-            btnGotowe.Location = new Point(258, 190);
-            btnGotowe.Name = "btnGotowe";
-            btnGotowe.Size = new Size(150, 48);
-            btnGotowe.TabIndex = 34;
-            btnGotowe.Text = "Zakceptuj/Zakończ Zamówienie";
-            btnGotowe.UseVisualStyleBackColor = true;
+            btnZakceptuj.Location = new Point(258, 205);
+            btnZakceptuj.Name = "btnZakceptuj";
+            btnZakceptuj.Size = new Size(150, 33);
+            btnZakceptuj.TabIndex = 34;
+            btnZakceptuj.Text = "Zakceptuj Zamówienie";
+            btnZakceptuj.UseVisualStyleBackColor = true;
+            btnZakceptuj.Click += btnZakceptuj_Click;
             // 
             // btnWygenerujEtykiete
             // 
@@ -289,7 +321,7 @@
             cmbBoxStatusZamowienia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxStatusZamowienia.Enabled = false;
             cmbBoxStatusZamowienia.FormattingEnabled = true;
-            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "created", "in_progress ", "completed ", "canceled" });
+            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "Nowe", "W przygotowaniu ", "Zakończone", "Anulowane" });
             cmbBoxStatusZamowienia.Location = new Point(38, 215);
             cmbBoxStatusZamowienia.Name = "cmbBoxStatusZamowienia";
             cmbBoxStatusZamowienia.Size = new Size(189, 23);
@@ -460,24 +492,6 @@
             dtGridViewZamowienia.Size = new Size(1238, 255);
             dtGridViewZamowienia.TabIndex = 1;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(38, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(115, 15);
-            label1.TabIndex = 36;
-            label1.Text = "Numer Zamówienia:";
-            // 
-            // lblNrZamowienia
-            // 
-            lblNrZamowienia.AutoSize = true;
-            lblNrZamowienia.Location = new Point(159, 27);
-            lblNrZamowienia.Name = "lblNrZamowienia";
-            lblNrZamowienia.Size = new Size(51, 15);
-            lblNrZamowienia.TabIndex = 37;
-            lblNrZamowienia.Text = "Przykład";
-            // 
             // SzczegolyZamowieniaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -543,10 +557,11 @@
         private CheckBox chckBoxOdbior;
         private Label label13;
         private TextBox txtBoxAdres;
-        private Button btnGotowe;
+        private Button btnZakceptuj;
         private Button btnWygenerujEtykiete;
         private Button btnAnulujZamowienie;
         private Label lblNrZamowienia;
         private Label label1;
+        private Button btnZakonczZamowienie;
     }
 }

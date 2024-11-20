@@ -1,5 +1,6 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DK24
 {
@@ -16,9 +17,16 @@ namespace DK24
         }
 
         private void SzczegolyZamowieniaForm_Load(object sender, EventArgs e)
-        {
+        {         
             WypelnijSzczegolyZamowienia();
             DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, dtGridViewZamowienia);
+
+            if (cmbBoxStatusZamowienia.SelectedIndex == 3)
+            {
+                btnAnulujZamowienie.Visible = false;
+                btnZakonczZamowienie.Visible = false;
+                btnZakceptuj.Visible = false;
+            }
         }
 
         private void WypelnijSzczegolyZamowienia()
@@ -80,7 +88,7 @@ namespace DK24
                                                      ? DateTime.Now
                                                      : Convert.ToDateTime(reader["created_at"]);
 
-                           
+
                             string shippingMethod = reader.IsDBNull(reader.GetOrdinal("shipping_method"))
                                                     ? "self_pickup"
                                                     : reader["shipping_method"].ToString();
@@ -91,7 +99,7 @@ namespace DK24
                                 chckBoxWysylka.Checked = false;
                                 btnWygenerujEtykiete.Visible = false;
                             }
-                            if(shippingMethod == "dhl")
+                            if (shippingMethod == "dhl")
                             {
                                 chckBoxOdbior.Checked = false;
                                 chckBoxWysylka.Checked = true;
@@ -101,7 +109,33 @@ namespace DK24
                             string status = reader.IsDBNull(reader.GetOrdinal("status"))
                                     ? "newOrder"
                                     : reader["status"].ToString();
-                            cmbBoxStatusZamowienia.SelectedItem = status;
+
+                            if (status == "created")
+                            {
+                                cmbBoxStatusZamowienia.SelectedIndex = 0;
+                                btnZakonczZamowienie.Enabled = false;
+                            }
+                            else if (status == "in_progress")
+                            {
+                                cmbBoxStatusZamowienia.SelectedIndex = 1;
+                                btnZakonczZamowienie.Enabled = true;
+                                btnZakceptuj.Enabled = false;
+                            }
+                            else if (status == "completed")
+                            {
+                                cmbBoxStatusZamowienia.SelectedIndex = 2;
+                                btnZakonczZamowienie.Enabled = false;
+                                btnZakceptuj.Enabled = false;
+                            }
+                            else if (status == "canceled")
+                            {
+                                cmbBoxStatusZamowienia.SelectedIndex = 3;
+                                btnZakonczZamowienie.Enabled = false;
+                                btnZakceptuj.Enabled = false;
+                            }
+
+
+
 
                         }
                         else
@@ -133,9 +167,48 @@ namespace DK24
             mainForm.ShowDialog();
         }
 
-        private void btnZapisz_Click(object sender, EventArgs e)
+
+
+
+
+        private void btnZakceptuj_Click(object sender, EventArgs e)
         {
 
+           
+
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "in_progress", "W przygotowaniu");
+
+            WypelnijSzczegolyZamowienia();
+
+
+        }
+
+        private void btnZakonczZamowienie_Click(object sender, EventArgs e)
+        {
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone");
+
+            WypelnijSzczegolyZamowienia();
+            
+        }
+
+        private void btnAnulujZamowienie_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz anulować zamówienie?","Potwierdzenie anulowania",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane");
+
+                WypelnijSzczegolyZamowienia();
+
+                MainForm mainForm = new MainForm();
+                this.Hide();
+                mainForm.ShowDialog();
+            }
+
+            
+
+           
         }
     }
 }
