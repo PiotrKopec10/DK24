@@ -101,17 +101,11 @@ namespace DK24.Klasy
 
                     string zapytanie = @"
                 SELECT 
-                    i.name AS item_name,
-                    i.quantity,
-                    i.price,
-                    GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS options,
-                    o.total_price,
-                    o.status,
-                    o.created_at
+                    i.name AS Produkt,
+                    GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS Opcje,
+                    i.quantity AS Ilość
                 FROM 
                     serwer197774_drukarnia.items AS i
-                JOIN 
-                    serwer197774_drukarnia.orders AS o ON i.order_id = o.order_id
                 LEFT JOIN 
                     serwer197774_drukarnia.item_options AS io ON i.item_id = io.item_id
                 LEFT JOIN 
@@ -119,7 +113,7 @@ namespace DK24.Klasy
                 LEFT JOIN 
                     serwer197774_drukarnia.option_groups AS og ON op.option_group_id = og.option_group_id
                 WHERE 
-                    o.order_id = @orderId
+                    i.order_id = @orderId
                 GROUP BY 
                     i.item_id
                 ORDER BY 
@@ -134,32 +128,24 @@ namespace DK24.Klasy
                         {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
+
+
                             dataGridView.DataSource = dataTable;
-
-
-                            dataGridView.Columns["item_name"].DisplayIndex = 0;
-                            dataGridView.Columns["quantity"].DisplayIndex = 1;
-                            dataGridView.Columns["price"].DisplayIndex = 2;
-                            dataGridView.Columns["options"].DisplayIndex = 3;
-                            dataGridView.Columns["total_price"].DisplayIndex = 4;
-                            dataGridView.Columns["status"].DisplayIndex = 5;
-                            dataGridView.Columns["created_at"].DisplayIndex = 6;
-
-                            dataGridView.Columns["item_name"].HeaderText = "Produkt";
-                            dataGridView.Columns["quantity"].HeaderText = "Ilość";
-                            dataGridView.Columns["price"].HeaderText = "Cena jednostkowa";
-                            dataGridView.Columns["options"].HeaderText = "Opcje";
-                            dataGridView.Columns["total_price"].HeaderText = "Łączna cena";
-                            dataGridView.Columns["status"].HeaderText = "Status";
-                            dataGridView.Columns["created_at"].HeaderText = "Data utworzenia";
-
-                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         }
+                        dataGridView.Columns["Produkt"].DisplayIndex = 0;
+                        dataGridView.Columns["Opcje"].DisplayIndex = 1;
+                        dataGridView.Columns["Ilość"].DisplayIndex = 2;
+
+
+                        dataGridView.Columns["Produkt"].Width = 200;
+                        dataGridView.Columns["Opcje"].Width = 300;
+                        dataGridView.Columns["Ilość"].Width = 100;
+
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd podczas wyświetlania szczegółów zamówienia: " + ex.Message, "Błąd");
+                    MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
                 }
                 finally
                 {
@@ -171,7 +157,8 @@ namespace DK24.Klasy
 
 
 
-        public void EdytujStatusZamowienia(int orderId,string statusZamowieniaDoBazy, string statusZamowieniaDoWyswietlenia)
+
+        public void EdytujStatusZamowienia(int orderId, string statusZamowieniaDoBazy, string statusZamowieniaDoWyswietlenia)
         {
 
             MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
@@ -203,7 +190,7 @@ namespace DK24.Klasy
                     transakcja.Commit();
 
 
-                    MessageBox.Show("Pomyślnie Zmieniono Status Zamówienia na: \n " + "[ " + statusZamowieniaDoWyswietlenia +" ]", "Poprawnie Zmieniono!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Pomyślnie Zmieniono Status Zamówienia na: \n " + "[ " + statusZamowieniaDoWyswietlenia + " ]", "Poprawnie Zmieniono!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }

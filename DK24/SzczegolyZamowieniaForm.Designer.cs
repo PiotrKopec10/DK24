@@ -159,18 +159,24 @@
             // lblNrZamowienia
             // 
             lblNrZamowienia.AutoSize = true;
-            lblNrZamowienia.Location = new Point(159, 27);
+            lblNrZamowienia.BackColor = Color.Transparent;
+            lblNrZamowienia.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lblNrZamowienia.ForeColor = Color.White;
+            lblNrZamowienia.Location = new Point(195, 27);
             lblNrZamowienia.Name = "lblNrZamowienia";
-            lblNrZamowienia.Size = new Size(51, 15);
+            lblNrZamowienia.Size = new Size(21, 20);
             lblNrZamowienia.TabIndex = 37;
-            lblNrZamowienia.Text = "Przykład";
+            lblNrZamowienia.Text = "...";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(38, 27);
             label1.Name = "label1";
-            label1.Size = new Size(115, 15);
+            label1.Size = new Size(151, 20);
             label1.TabIndex = 36;
             label1.Text = "Numer Zamówienia:";
             // 
