@@ -145,7 +145,7 @@ namespace DK24
                             {
                                 cmbBoxStatusZamowienia.SelectedIndex = 0;
                                 btnZakonczZamowienie.Enabled = false;
-                                
+
                             }
                             else if (status == "in_progress")
                             {
@@ -275,7 +275,7 @@ namespace DK24
         {
             //DHLForm dhlForm = new DHLForm();
             this.Hide();
-           // dhlForm.ShowDialog();
+            // dhlForm.ShowDialog();
         }
     }
 }

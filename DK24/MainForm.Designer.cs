@@ -36,9 +36,8 @@
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
             panel1 = new Panel();
+            lblRefreshTimeLeft = new Label();
             button1 = new Button();
-            radioButtonArchiwalne = new RadioButton();
-            radioButtonAktualne = new RadioButton();
             btnDodaj = new Button();
             btnRefresh = new Button();
             lblZalogowanoJako = new Label();
@@ -49,12 +48,15 @@
             wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip = new MenuStrip();
+            ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
-            ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
+            cbxZakonczone = new CheckBox();
+            cbxWrealizacji = new CheckBox();
+            cbxNowe = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -127,15 +129,29 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(cbxNowe);
+            panel1.Controls.Add(cbxWrealizacji);
+            panel1.Controls.Add(cbxZakonczone);
+            panel1.Controls.Add(lblRefreshTimeLeft);
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(radioButtonArchiwalne);
-            panel1.Controls.Add(radioButtonAktualne);
             panel1.Controls.Add(btnDodaj);
             panel1.Controls.Add(btnRefresh);
             panel1.Location = new Point(0, 615);
             panel1.Name = "panel1";
             panel1.Size = new Size(1260, 65);
             panel1.TabIndex = 3;
+            // 
+            // lblRefreshTimeLeft
+            // 
+            lblRefreshTimeLeft.AutoSize = true;
+            lblRefreshTimeLeft.BackColor = Color.Transparent;
+            lblRefreshTimeLeft.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            lblRefreshTimeLeft.ForeColor = SystemColors.Control;
+            lblRefreshTimeLeft.Location = new Point(127, 34);
+            lblRefreshTimeLeft.Name = "lblRefreshTimeLeft";
+            lblRefreshTimeLeft.Size = new Size(30, 13);
+            lblRefreshTimeLeft.TabIndex = 16;
+            lblRefreshTimeLeft.Text = "(... s)";
             // 
             // button1
             // 
@@ -151,32 +167,6 @@
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
-            // 
-            // radioButtonArchiwalne
-            // 
-            radioButtonArchiwalne.AutoSize = true;
-            radioButtonArchiwalne.BackColor = Color.Transparent;
-            radioButtonArchiwalne.ForeColor = Color.White;
-            radioButtonArchiwalne.Location = new Point(241, 23);
-            radioButtonArchiwalne.Name = "radioButtonArchiwalne";
-            radioButtonArchiwalne.Size = new Size(100, 19);
-            radioButtonArchiwalne.TabIndex = 2;
-            radioButtonArchiwalne.Text = "ARCHIWALNE";
-            radioButtonArchiwalne.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonAktualne
-            // 
-            radioButtonAktualne.AutoSize = true;
-            radioButtonAktualne.BackColor = Color.Transparent;
-            radioButtonAktualne.Checked = true;
-            radioButtonAktualne.ForeColor = Color.White;
-            radioButtonAktualne.Location = new Point(143, 23);
-            radioButtonAktualne.Name = "radioButtonAktualne";
-            radioButtonAktualne.Size = new Size(83, 19);
-            radioButtonAktualne.TabIndex = 1;
-            radioButtonAktualne.TabStop = true;
-            radioButtonAktualne.Text = "AKTUALNE";
-            radioButtonAktualne.UseVisualStyleBackColor = false;
             // 
             // btnDodaj
             // 
@@ -301,6 +291,16 @@
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip1";
             // 
+            // ądzajPracownikamiToolStripMenuItem
+            // 
+            ądzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
+            ądzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ądzajPracownikamiToolStripMenuItem.Image");
+            ądzajPracownikamiToolStripMenuItem.Name = "ądzajPracownikamiToolStripMenuItem";
+            ądzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
+            ądzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
+            ądzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            ądzajPracownikamiToolStripMenuItem.Click += ądzajPracownikamiToolStripMenuItem_Click;
+            // 
             // panel2
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
@@ -354,15 +354,41 @@
             panel4.Size = new Size(10, 535);
             panel4.TabIndex = 5;
             // 
-            // ądzajPracownikamiToolStripMenuItem
+            // cbxZakonczone
             // 
-            ądzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
-            ądzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ądzajPracownikamiToolStripMenuItem.Image");
-            ądzajPracownikamiToolStripMenuItem.Name = "ądzajPracownikamiToolStripMenuItem";
-            ądzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
-            ądzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
-            ądzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            ądzajPracownikamiToolStripMenuItem.Click += ądzajPracownikamiToolStripMenuItem_Click;
+            cbxZakonczone.AutoSize = true;
+            cbxZakonczone.BackColor = Color.Transparent;
+            cbxZakonczone.ForeColor = Color.White;
+            cbxZakonczone.Location = new Point(362, 22);
+            cbxZakonczone.Name = "cbxZakonczone";
+            cbxZakonczone.Size = new Size(104, 19);
+            cbxZakonczone.TabIndex = 17;
+            cbxZakonczone.Text = "ZAKOŃCZONE";
+            cbxZakonczone.UseVisualStyleBackColor = false;
+            // 
+            // cbxWrealizacji
+            // 
+            cbxWrealizacji.AutoSize = true;
+            cbxWrealizacji.BackColor = Color.Transparent;
+            cbxWrealizacji.ForeColor = Color.White;
+            cbxWrealizacji.Location = new Point(249, 22);
+            cbxWrealizacji.Name = "cbxWrealizacji";
+            cbxWrealizacji.Size = new Size(100, 19);
+            cbxWrealizacji.TabIndex = 18;
+            cbxWrealizacji.Text = "W REALIZACJI";
+            cbxWrealizacji.UseVisualStyleBackColor = false;
+            // 
+            // cbxNowe
+            // 
+            cbxNowe.AutoSize = true;
+            cbxNowe.BackColor = Color.Transparent;
+            cbxNowe.ForeColor = Color.White;
+            cbxNowe.Location = new Point(173, 22);
+            cbxNowe.Name = "cbxNowe";
+            cbxNowe.Size = new Size(61, 19);
+            cbxNowe.TabIndex = 19;
+            cbxNowe.Text = "NOWE";
+            cbxNowe.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -409,8 +435,6 @@
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private MenuStrip menuStrip;
         private Button btnRefresh;
-        private RadioButton radioButtonArchiwalne;
-        private RadioButton radioButtonAktualne;
         private Button btnDodaj;
         private Panel panel1;
         private Button button1;
@@ -421,5 +445,9 @@
         private PictureBox pictureBox1;
         private LinkLabel linkLabel1;
         private ToolStripMenuItem ądzajPracownikamiToolStripMenuItem;
+        private Label lblRefreshTimeLeft;
+        private CheckBox cbxNowe;
+        private CheckBox cbxWrealizacji;
+        private CheckBox cbxZakonczone;
     }
 }

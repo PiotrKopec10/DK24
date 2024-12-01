@@ -142,6 +142,7 @@ namespace DK24
                 GlobalClass.StanFormyPracownika.StanFormy = 2;
                 AktualnyUser = DzialaniaNaUserze.PobierzUseraPoIdUsera(AktualnyUser.user_id);
                 UstawPanelPracownika();
+                dtPickerUtworzono.Value = AktualnyUser.created_at;
             }
         }
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DK24
 {
     public partial class MainForm : Form
@@ -20,6 +21,10 @@ namespace DK24
         AddressClass.Address PobieranyAdres = new AddressClass.Address();
         AddressClass DzialanieNaAdresie = new AddressClass();
 
+        private System.Windows.Forms.Timer refreshTimer;
+        private int odliczanie = 31;
+
+
 
         public MainForm()
         {
@@ -28,29 +33,101 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelZalogowania, this.Handle);
             GlobalClass.przesuwanieFormsa(menuStrip, this.Handle);
 
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 1000;
+            refreshTimer.Tick += RefreshTimer_Tick;
+
+            cbxNowe.CheckedChanged += CheckBox_CheckedChanged;
+            cbxWrealizacji.CheckedChanged += CheckBox_CheckedChanged;
+            cbxZakonczone.CheckedChanged += CheckBox_CheckedChanged;
+
+            dtGridViewZamowienia.RowPrePaint += DtGridViewZamowienia_WierszAnulowano;
+
         }
+
 
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
-
 
             DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();
 
-
             dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
-
-
-
-
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
 
+            odliczanie = 30;
+            lblRefreshTimeLeft.Text = $"({odliczanie} s)";
+            refreshTimer.Start();
 
         }
 
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            odliczanie--;
+            lblRefreshTimeLeft.Text = $"({odliczanie} s)";
 
-        public DataTable PobierzZamowieniaZDetalami()
+            if (odliczanie == 0)
+            {
+                DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();
+                dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
+
+                odliczanie = 31;
+            }
+        }
+
+
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxNowe.CheckedChanged -= CheckBox_CheckedChanged;
+            cbxWrealizacji.CheckedChanged -= CheckBox_CheckedChanged;
+            cbxZakonczone.CheckedChanged -= CheckBox_CheckedChanged;
+
+            if (sender == cbxNowe)
+            {
+                cbxWrealizacji.Checked = false;
+                cbxZakonczone.Checked = false;
+            }
+            else if (sender == cbxWrealizacji)
+            {
+                cbxNowe.Checked = false;
+                cbxZakonczone.Checked = false;
+            }
+            else if (sender == cbxZakonczone)
+            {
+                cbxNowe.Checked = false;
+                cbxWrealizacji.Checked = false;
+            }
+
+            cbxNowe.CheckedChanged += CheckBox_CheckedChanged;
+            cbxWrealizacji.CheckedChanged += CheckBox_CheckedChanged;
+            cbxZakonczone.CheckedChanged += CheckBox_CheckedChanged;
+
+            string[] filtrStatus = null;
+
+            if (cbxNowe.Checked)
+            {
+                filtrStatus = new[] { "created" };
+            }
+            else if (cbxWrealizacji.Checked)
+            {
+                filtrStatus = new[] { "in_progress" };
+            }
+            else if (cbxZakonczone.Checked)
+            {
+                filtrStatus = new[] { "completed", "canceled" };
+            }
+
+            DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami(filtrStatus);
+            dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
+
+            odliczanie = 30;
+            lblRefreshTimeLeft.Text = $"({odliczanie} s)";
+            refreshTimer.Start();
+        }
+
+
+
+        public DataTable PobierzZamowieniaZDetalami(string[] statuses = null)
         {
             string query = @"SELECT 
         o.order_id,
@@ -73,20 +150,35 @@ namespace DK24
     LEFT JOIN 
         company_details cd ON u.user_id = cd.user_id
     LEFT JOIN 
-        addresses a ON o.delivery_address_id = a.address_id;";
+        addresses a ON o.delivery_address_id = a.address_id";
+
+
+
+            if (statuses != null && statuses.Length > 0)
+            {
+                query += " WHERE o.status IN (" + string.Join(", ", statuses.Select((s, i) => $"@status{i}")) + ")";
+            }
+
+            query += " ORDER BY o.created_at DESC;";
 
             using (MySqlConnection conn = new MySqlConnection(PolaczenieDB))
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                if (statuses != null && statuses.Length > 0)
+                {
+                    for (int i = 0; i < statuses.Length; i++)
+                    {
+                        cmd.Parameters.AddWithValue($"@status{i}", statuses[i]);
+                    }
+                }
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 return dt;
             }
         }
-
-
-
 
 
         public void PobierzZamowienie()
@@ -113,10 +205,7 @@ namespace DK24
                     MessageBox.Show("Proszę zaznaczyć Zamowienie.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-
-
             }
-
 
         }
 
@@ -172,10 +261,16 @@ namespace DK24
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            cbxNowe.Checked = false;
+            cbxWrealizacji.Checked = false;
+            cbxZakonczone.Checked = false;
+
             DataTable zamowieniaZDetalami = PobierzZamowieniaZDetalami();
-
-
             dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
+
+            odliczanie = 30;
+            lblRefreshTimeLeft.Text = $"({odliczanie} s)";
+            refreshTimer.Start();
 
         }
 
@@ -185,5 +280,23 @@ namespace DK24
             this.Hide();
             zarzadzajPracownikami.ShowDialog();
         }
+
+        private void DtGridViewZamowienia_WierszAnulowano(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (cbxZakonczone.Checked)
+            {
+                if (dtGridViewZamowienia.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
+                {
+                    string status = rowView["status"].ToString();
+
+                    if (status == "canceled")
+                    {
+                        dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    }
+                }
+            }
+        }
+
+
     }
 }
