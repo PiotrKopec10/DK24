@@ -297,6 +297,11 @@ namespace DK24
             }
         }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KurierForm dHLForm = new KurierForm();
+            this.Hide();
+            dHLForm.ShowDialog();
+        }
     }
 }

@@ -36,6 +36,9 @@
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
             panel1 = new Panel();
+            cbxNowe = new CheckBox();
+            cbxWrealizacji = new CheckBox();
+            cbxZakonczone = new CheckBox();
             lblRefreshTimeLeft = new Label();
             button1 = new Button();
             btnDodaj = new Button();
@@ -54,9 +57,7 @@
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
-            cbxZakonczone = new CheckBox();
-            cbxWrealizacji = new CheckBox();
-            cbxNowe = new CheckBox();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -129,6 +130,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(cbxNowe);
             panel1.Controls.Add(cbxWrealizacji);
             panel1.Controls.Add(cbxZakonczone);
@@ -140,6 +142,42 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1260, 65);
             panel1.TabIndex = 3;
+            // 
+            // cbxNowe
+            // 
+            cbxNowe.AutoSize = true;
+            cbxNowe.BackColor = Color.Transparent;
+            cbxNowe.ForeColor = Color.White;
+            cbxNowe.Location = new Point(173, 22);
+            cbxNowe.Name = "cbxNowe";
+            cbxNowe.Size = new Size(61, 19);
+            cbxNowe.TabIndex = 19;
+            cbxNowe.Text = "NOWE";
+            cbxNowe.UseVisualStyleBackColor = false;
+            // 
+            // cbxWrealizacji
+            // 
+            cbxWrealizacji.AutoSize = true;
+            cbxWrealizacji.BackColor = Color.Transparent;
+            cbxWrealizacji.ForeColor = Color.White;
+            cbxWrealizacji.Location = new Point(249, 22);
+            cbxWrealizacji.Name = "cbxWrealizacji";
+            cbxWrealizacji.Size = new Size(100, 19);
+            cbxWrealizacji.TabIndex = 18;
+            cbxWrealizacji.Text = "W REALIZACJI";
+            cbxWrealizacji.UseVisualStyleBackColor = false;
+            // 
+            // cbxZakonczone
+            // 
+            cbxZakonczone.AutoSize = true;
+            cbxZakonczone.BackColor = Color.Transparent;
+            cbxZakonczone.ForeColor = Color.White;
+            cbxZakonczone.Location = new Point(362, 22);
+            cbxZakonczone.Name = "cbxZakonczone";
+            cbxZakonczone.Size = new Size(104, 19);
+            cbxZakonczone.TabIndex = 17;
+            cbxZakonczone.Text = "ZAKOŃCZONE";
+            cbxZakonczone.UseVisualStyleBackColor = false;
             // 
             // lblRefreshTimeLeft
             // 
@@ -354,41 +392,15 @@
             panel4.Size = new Size(10, 535);
             panel4.TabIndex = 5;
             // 
-            // cbxZakonczone
+            // button2
             // 
-            cbxZakonczone.AutoSize = true;
-            cbxZakonczone.BackColor = Color.Transparent;
-            cbxZakonczone.ForeColor = Color.White;
-            cbxZakonczone.Location = new Point(362, 22);
-            cbxZakonczone.Name = "cbxZakonczone";
-            cbxZakonczone.Size = new Size(104, 19);
-            cbxZakonczone.TabIndex = 17;
-            cbxZakonczone.Text = "ZAKOŃCZONE";
-            cbxZakonczone.UseVisualStyleBackColor = false;
-            // 
-            // cbxWrealizacji
-            // 
-            cbxWrealizacji.AutoSize = true;
-            cbxWrealizacji.BackColor = Color.Transparent;
-            cbxWrealizacji.ForeColor = Color.White;
-            cbxWrealizacji.Location = new Point(249, 22);
-            cbxWrealizacji.Name = "cbxWrealizacji";
-            cbxWrealizacji.Size = new Size(100, 19);
-            cbxWrealizacji.TabIndex = 18;
-            cbxWrealizacji.Text = "W REALIZACJI";
-            cbxWrealizacji.UseVisualStyleBackColor = false;
-            // 
-            // cbxNowe
-            // 
-            cbxNowe.AutoSize = true;
-            cbxNowe.BackColor = Color.Transparent;
-            cbxNowe.ForeColor = Color.White;
-            cbxNowe.Location = new Point(173, 22);
-            cbxNowe.Name = "cbxNowe";
-            cbxNowe.Size = new Size(61, 19);
-            cbxNowe.TabIndex = 19;
-            cbxNowe.Text = "NOWE";
-            cbxNowe.UseVisualStyleBackColor = false;
+            button2.Location = new Point(701, 23);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 20;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // MainForm
             // 
@@ -449,5 +461,6 @@
         private CheckBox cbxNowe;
         private CheckBox cbxWrealizacji;
         private CheckBox cbxZakonczone;
+        private Button button2;
     }
 }
