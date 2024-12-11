@@ -30,6 +30,7 @@
         {
             button1 = new Button();
             label1 = new Label();
+            rchBoxLogi = new RichTextBox();
             SuspendLayout();
             // 
             // button1
@@ -51,14 +52,23 @@
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
-            // DHLForm
+            // rchBoxLogi
+            // 
+            rchBoxLogi.Location = new Point(33, 324);
+            rchBoxLogi.Name = "rchBoxLogi";
+            rchBoxLogi.Size = new Size(714, 96);
+            rchBoxLogi.TabIndex = 2;
+            rchBoxLogi.Text = "";
+            // 
+            // KurierForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(rchBoxLogi);
             Controls.Add(label1);
             Controls.Add(button1);
-            Name = "DHLForm";
+            Name = "KurierForm";
             Text = "DHLForm";
             ResumeLayout(false);
             PerformLayout();
@@ -68,5 +78,6 @@
 
         private Button button1;
         private Label label1;
+        private RichTextBox rchBoxLogi;
     }
 }

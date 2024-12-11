@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Crmf;
 using RestSharp;
-using System;
-using System.Net.Http.Headers;
-using System.Text;
 
 
 namespace DK24
@@ -92,49 +88,59 @@ namespace DK24
             bool isValid = await furgonetkaService.ValidatePackage(packageData);
             if (isValid)
             {
-                MessageBox.Show("Paczka jest poprawna.");
-
                 string packageId = await furgonetkaService.CreatePackage(packageData);
                 if (!string.IsNullOrEmpty(packageId))
                 {
-                    MessageBox.Show("Przesyłka została pomyślnie utworzona. ID: " + packageId);
-
                     bool isOrdered = await furgonetkaService.OrderPackage(packageId);
                     if (isOrdered)
                     {
-                        MessageBox.Show("Przesyłka została pomyślnie zamówiona.");
+                        byte[] labelData = null;
+                        int retries = 5;     
+                        int delay = 3000;   
 
-                        // Pobranie etykiety
-                        var labelData = await furgonetkaService.GetPackageLabel(packageId);
-                        if (labelData != null)
+                        for (int i = 0; i < retries; i++)
+                        {
+                  
+                            await Task.Delay(delay);
+                            labelData = await furgonetkaService.GetPackageLabel(packageId);
+
+                            if (labelData != null && labelData.Length > 0)
+                            {
+                                rchBoxLogi.AppendText("Etykieta została pomyślnie pobrana.\n");
+                                break;
+                            }
+                            else
+                            {
+                                rchBoxLogi.AppendText($"Próba {i + 1}/{retries}: Etykieta wciąż nie gotowa. Ponawiam próbę...\n");
+                            }
+                        }
+
+
+                        if (labelData != null && labelData.Length > 0)
                         {
                             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                             string folderPath = Path.Combine(desktopPath, "D&K_Etykiety_zamówień");
 
-                            // Tworzenie folderu, jeśli nie istnieje
                             if (!Directory.Exists(folderPath))
                             {
                                 Directory.CreateDirectory(folderPath);
                             }
-
-                            // Ścieżka zapisu etykiety
                             string labelPath = Path.Combine(folderPath, $"label_{packageId}.pdf");
 
-                            // Zapis etykiety
                             File.WriteAllBytes(labelPath, labelData);
-
-                            MessageBox.Show($"Etykieta została zapisana jako {labelPath}");
-                            Console.WriteLine($"Etykieta została zapisana w: {Path.GetFullPath(labelPath)}");
+                            rchBoxLogi.AppendText($"Etykieta została zapisana jako {labelPath}\n");
                         }
                         else
                         {
-                            MessageBox.Show("Nie udało się pobrać etykiety.");
+                            MessageBox.Show("Nie udało się pobrać etykiety po kilkukrotnych próbach.");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Nie udało się zamówić przesyłki. Sprawdź szczegóły logów.");
+                        MessageBox.Show("Nie udało się zamówić przesyłki.");
                     }
+
+
                 }
                 else
                 {
@@ -258,7 +264,7 @@ namespace DK24
 
 
 
-       
+
 
 
 
@@ -284,14 +290,14 @@ namespace DK24
 
             Console.WriteLine("ValidatePackage Response Status Code: " + response.StatusCode);
 
-           
+
             if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
                 Console.WriteLine("Paczka została poprawnie zweryfikowana (204 No Content).");
                 return true;
             }
 
-        
+
             if (response.IsSuccessful)
             {
                 Console.WriteLine("Paczka została poprawnie zweryfikowana.");
@@ -314,7 +320,7 @@ namespace DK24
                 throw new InvalidOperationException("Authenticate first before making API requests.");
             }
 
-        
+
             string uuid = Guid.NewGuid().ToString();
             Console.WriteLine("Wygenerowany UUID dla zamówienia: " + uuid);
 
@@ -370,7 +376,7 @@ namespace DK24
             var client = new RestClient($"{BaseUrl}/packages/{packageId}/label");
             var request = new RestRequest
             {
-                Method = Method.Get
+                Method = Method.Get,
             };
 
             request.AddHeader("Authorization", $"Bearer {AccessToken}");
