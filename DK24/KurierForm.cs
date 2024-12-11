@@ -27,7 +27,7 @@ namespace DK24
                 return;
             }
 
-         
+
             var packageData = new
             {
                 pickup = new
@@ -38,9 +38,9 @@ namespace DK24
                     postcode = "00-001",
                     city = "Warszawa",
                     country_code = "PL",
-                    county = "", 
-                    email = "test@wp.pl", 
-                    phone = "606596110" 
+                    county = "",
+                    email = "test@wp.pl",
+                    phone = "606596110"
                 },
                 receiver = new
                 {
@@ -50,26 +50,26 @@ namespace DK24
                     postcode = "31-002",
                     city = "Kraków",
                     country_code = "PL",
-                    county = "", 
+                    county = "",
                     email = "test1@wp.pl",
-                    phone = "576358560" 
+                    phone = "576358560"
                 },
-                service_id = 10232121, 
+                service_id = 10232121,
                 parcels = new[]
                 {
         new
         {
-            weight = 5.0, 
-            length = 30, 
-            width = 20,  
-            height = 10, 
+            weight = 5.0,
+            length = 30,
+            width = 20,
+            height = 10,
             depth = 2,
-            content = "Dokumenty", 
-            type = "package" 
+            content = "Dokumenty",
+            type = "package"
         }
     },
-                type = "package", 
-                user_reference_number = "Zamówienie 123", 
+                type = "package",
+                user_reference_number = "Zamówienie 123",
             };
 
 
@@ -103,31 +103,55 @@ namespace DK24
                     if (isOrdered)
                     {
                         MessageBox.Show("Przesyłka została pomyślnie zamówiona.");
+
+                        // Pobranie etykiety
+                        var labelData = await furgonetkaService.GetPackageLabel(packageId);
+                        if (labelData != null)
+                        {
+                            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                            string folderPath = Path.Combine(desktopPath, "D&K_Etykiety_zamówień");
+
+                            // Tworzenie folderu, jeśli nie istnieje
+                            if (!Directory.Exists(folderPath))
+                            {
+                                Directory.CreateDirectory(folderPath);
+                            }
+
+                            // Ścieżka zapisu etykiety
+                            string labelPath = Path.Combine(folderPath, $"label_{packageId}.pdf");
+
+                            // Zapis etykiety
+                            File.WriteAllBytes(labelPath, labelData);
+
+                            MessageBox.Show($"Etykieta została zapisana jako {labelPath}");
+                            Console.WriteLine($"Etykieta została zapisana w: {Path.GetFullPath(labelPath)}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nie udało się pobrać etykiety.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Nie udało się zamówić przesyłki.");
+                        MessageBox.Show("Nie udało się zamówić przesyłki. Sprawdź szczegóły logów.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nie udało się utworzyć przesyłki.");
+                    MessageBox.Show("Nie udało się utworzyć przesyłki. Sprawdź szczegóły logów.");
                 }
             }
             else
             {
-                MessageBox.Show("Paczka nie przeszła walidacji.");
+                MessageBox.Show("Paczka nie przeszła walidacji. Sprawdź szczegóły błędów w konsoli.");
             }
-
-
-
         }
-
     }
 
 
 
-       
+
+
 
     public class FurgonetkaService
     {
@@ -335,6 +359,31 @@ namespace DK24
             }
         }
 
+
+        public async Task<byte[]> GetPackageLabel(string packageId)
+        {
+            if (string.IsNullOrEmpty(AccessToken))
+            {
+                throw new InvalidOperationException("Authenticate first before making API requests.");
+            }
+
+            var client = new RestClient($"{BaseUrl}/packages/{packageId}/label");
+            var request = new RestRequest
+            {
+                Method = Method.Get
+            };
+
+            request.AddHeader("Authorization", $"Bearer {AccessToken}");
+            request.AddHeader("Accept", "application/vnd.furgonetka.v1+json");
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return response.RawBytes; // Zwraca dane w formacie PDF
+            }
+
+            return null;
+        }
 
 
     }
