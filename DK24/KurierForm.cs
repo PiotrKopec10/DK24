@@ -27,7 +27,7 @@ namespace DK24
                 return;
             }
 
-           
+         
             var packageData = new
             {
                 pickup = new
@@ -37,7 +37,7 @@ namespace DK24
                     street = "Ulica Nadawcza 1",
                     postcode = "00-001",
                     city = "Warszawa",
-                    country_code = "",
+                    country_code = "PL",
                     county = "", 
                     email = "test@wp.pl", 
                     phone = "606596110" 
@@ -49,7 +49,7 @@ namespace DK24
                     street = "Ulica Odbiorcza 2",
                     postcode = "31-002",
                     city = "Kraków",
-                    country_code = "",
+                    country_code = "PL",
                     county = "", 
                     email = "test1@wp.pl",
                     phone = "576358560" 
@@ -75,28 +75,54 @@ namespace DK24
 
 
 
-            string carriers = await furgonetkaService.GetCarriers();
-            if (!string.IsNullOrEmpty(carriers))
+
+
+            //string carriers = await furgonetkaService.GetCarriers();
+            //if (!string.IsNullOrEmpty(carriers))
+            //{
+            //    MessageBox.Show("Lista przewoźników:\n" + carriers);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Nie udało się pobrać listy przewoźników.");
+            //}
+
+
+
+            bool isValid = await furgonetkaService.ValidatePackage(packageData);
+            if (isValid)
             {
-                MessageBox.Show("Lista przewoźników:\n" + carriers);
+                MessageBox.Show("Paczka jest poprawna.");
+
+                string packageId = await furgonetkaService.CreatePackage(packageData);
+                if (!string.IsNullOrEmpty(packageId))
+                {
+                    MessageBox.Show("Przesyłka została pomyślnie utworzona. ID: " + packageId);
+
+                    bool isOrdered = await furgonetkaService.OrderPackage(packageId);
+                    if (isOrdered)
+                    {
+                        MessageBox.Show("Przesyłka została pomyślnie zamówiona.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie udało się zamówić przesyłki.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nie udało się utworzyć przesyłki.");
+                }
             }
             else
             {
-                MessageBox.Show("Nie udało się pobrać listy przewoźników.");
+                MessageBox.Show("Paczka nie przeszła walidacji.");
             }
 
 
-            
-            string response = await furgonetkaService.CreatePackage(packageData);
-            if (!string.IsNullOrEmpty(response))
-            {
-                MessageBox.Show("Przesyłka została pomyślnie utworzona.");
-            }
-            else
-            {
-                MessageBox.Show("Nie udało się utworzyć przesyłki.");
-            }
+
         }
+
     }
 
 
@@ -162,10 +188,16 @@ namespace DK24
 
             if (response.IsSuccessful)
             {
-                return response.Content;
+                dynamic jsonResponse = JsonConvert.DeserializeObject(response.Content);
+                string packageId = jsonResponse.package_id;
+                Console.WriteLine("Utworzono paczkę z ID: " + packageId);
+                return packageId;
             }
+
+            Console.WriteLine($"Błąd tworzenia paczki: {response.StatusCode} - {response.ErrorMessage}");
             return null;
         }
+
 
         public async Task<string> GetCarriers()
         {
@@ -202,14 +234,106 @@ namespace DK24
 
 
 
+       
 
 
 
 
+        public async Task<bool> ValidatePackage(object packageData)
+        {
+            if (string.IsNullOrEmpty(AccessToken))
+            {
+                throw new InvalidOperationException("Authenticate first before making API requests.");
+            }
+
+            var client = new RestClient($"{BaseUrl}/packages/validate");
+            var request = new RestRequest
+            {
+                Method = Method.Post
+            };
+
+            request.AddHeader("Authorization", $"Bearer {AccessToken}");
+            request.AddHeader("Content-Type", "application/vnd.furgonetka.v1+json");
+            request.AddJsonBody(packageData);
+
+            var response = await client.ExecuteAsync(request);
+
+            Console.WriteLine("ValidatePackage Response Status Code: " + response.StatusCode);
+
+           
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+            {
+                Console.WriteLine("Paczka została poprawnie zweryfikowana (204 No Content).");
+                return true;
+            }
+
+        
+            if (response.IsSuccessful)
+            {
+                Console.WriteLine("Paczka została poprawnie zweryfikowana.");
+                return true;
+            }
+
+            // Obsługa błędów
+            Console.WriteLine($"Błąd walidacji: {response.StatusCode} - {response.ErrorMessage}");
+            Console.WriteLine("Szczegóły błędu: " + response.Content);
+            return false;
+        }
 
 
 
 
+        public async Task<bool> OrderPackage(string packageId)
+        {
+            if (string.IsNullOrEmpty(AccessToken))
+            {
+                throw new InvalidOperationException("Authenticate first before making API requests.");
+            }
+
+        
+            string uuid = Guid.NewGuid().ToString();
+            Console.WriteLine("Wygenerowany UUID dla zamówienia: " + uuid);
+
+            var orderData = new
+            {
+                packages = new[]
+                {
+            new { id = packageId }
+        },
+                label = new
+                {
+                    page_format = "a6",
+                    file_format = "pdf"
+                },
+                only_order_pickup = false,
+                skip_email_send = false
+            };
+
+            var client = new RestClient($"{BaseUrl}/order-commands/{uuid}");
+            var request = new RestRequest
+            {
+                Method = Method.Put
+            };
+
+            request.AddHeader("Authorization", $"Bearer {AccessToken}");
+            request.AddHeader("Content-Type", "application/vnd.furgonetka.v1+json");
+            request.AddJsonBody(orderData);
+
+            var response = await client.ExecuteAsync(request);
+            Console.WriteLine("OrderPackage Response: " + response.Content);
+
+            if (response.IsSuccessful)
+            {
+                Console.WriteLine("Przesyłka została zamówiona.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"Błąd zamawiania przesyłki: {response.StatusCode} - {response.ErrorMessage}");
+                Console.WriteLine("Szczegóły błędu: " + response.Content);
+                return false;
+            }
+        }
 
 
 
