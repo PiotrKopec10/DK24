@@ -208,6 +208,7 @@
             btnWygenerujEtykiete.TabIndex = 33;
             btnWygenerujEtykiete.Text = "Wygeneruj Etykiete";
             btnWygenerujEtykiete.UseVisualStyleBackColor = true;
+            btnWygenerujEtykiete.Click += btnWygenerujEtykiete_Click_1;
             // 
             // txtBoxAdres
             // 

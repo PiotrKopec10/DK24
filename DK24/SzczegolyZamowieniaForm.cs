@@ -271,11 +271,11 @@ namespace DK24
 
         }
 
-        private void btnWygenerujEtykiete_Click(object sender, EventArgs e)
+        private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
-            //DHLForm dhlForm = new DHLForm();
+            KurierForm dHLForm = new KurierForm();
             this.Hide();
-            // dhlForm.ShowDialog();
+            dHLForm.ShowDialog();
         }
     }
 }

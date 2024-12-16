@@ -95,12 +95,12 @@ namespace DK24
                     if (isOrdered)
                     {
                         byte[] labelData = null;
-                        int retries = 5;     
-                        int delay = 3000;   
+                        int retries = 5;
+                        int delay = 3000;
 
                         for (int i = 0; i < retries; i++)
                         {
-                  
+
                             await Task.Delay(delay);
                             labelData = await furgonetkaService.GetPackageLabel(packageId);
 
@@ -151,6 +151,13 @@ namespace DK24
             {
                 MessageBox.Show("Paczka nie przeszła walidacji. Sprawdź szczegóły błędów w konsoli.");
             }
+        }
+
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
         }
     }
 

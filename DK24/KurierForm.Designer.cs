@@ -28,56 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            label1 = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KurierForm));
+            btnStworzZamowienie = new Button();
             rchBoxLogi = new RichTextBox();
+            btnAnuluj = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btnStworzZamowienie
             // 
-            button1.Location = new Point(332, 204);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(107, 79);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            btnStworzZamowienie.Location = new Point(157, 96);
+            btnStworzZamowienie.Name = "btnStworzZamowienie";
+            btnStworzZamowienie.Size = new Size(136, 56);
+            btnStworzZamowienie.TabIndex = 0;
+            btnStworzZamowienie.Text = "Zamów kuriera i wygeneruj etykietę";
+            btnStworzZamowienie.UseVisualStyleBackColor = true;
+            btnStworzZamowienie.Click += button1_Click;
             // 
             // rchBoxLogi
             // 
-            rchBoxLogi.Location = new Point(33, 324);
+            rchBoxLogi.Location = new Point(15, 210);
             rchBoxLogi.Name = "rchBoxLogi";
-            rchBoxLogi.Size = new Size(714, 96);
+            rchBoxLogi.Size = new Size(420, 110);
             rchBoxLogi.TabIndex = 2;
             rchBoxLogi.Text = "";
+            // 
+            // btnAnuluj
+            // 
+            btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
+            btnAnuluj.Location = new Point(202, 158);
+            btnAnuluj.Name = "btnAnuluj";
+            btnAnuluj.Size = new Size(44, 33);
+            btnAnuluj.TabIndex = 7;
+            btnAnuluj.UseVisualStyleBackColor = true;
+            btnAnuluj.Click += btnAnuluj_Click;
             // 
             // KurierForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(450, 330);
+            Controls.Add(btnAnuluj);
             Controls.Add(rchBoxLogi);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(btnStworzZamowienie);
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "KurierForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DHLForm";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Label label1;
+        private Button btnStworzZamowienie;
         private RichTextBox rchBoxLogi;
+        private Button btnAnuluj;
     }
 }
