@@ -19,6 +19,8 @@ namespace DK24.Klasy
             public string apartment_number = "";
 
 
+        
+
         }
 
         public void DodajAdres(Address DodawanyAdres)

@@ -158,7 +158,7 @@ namespace DK24.Klasy
 
 
 
-        public void EdytujStatusZamowienia(int orderId, string statusZamowieniaDoBazy, string statusZamowieniaDoWyswietlenia)
+        public void EdytujStatusZamowienia(int orderId, string statusZamowieniaDoBazy, string statusZamowieniaDoWyswietlenia, string SciezkaZapisaniaEtykiety)
         {
 
             MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB);
@@ -189,8 +189,15 @@ namespace DK24.Klasy
 
                     transakcja.Commit();
 
+                    if(SciezkaZapisaniaEtykiety == "")
+                    {
+                        MessageBox.Show("Pomyślnie Zmieniono Status Zamówienia na: \n " + "[ " + statusZamowieniaDoWyswietlenia + " ]", "Poprawnie Zmieniono!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    MessageBox.Show("Pomyślnie Zmieniono Status Zamówienia na: \n " + "[ " + statusZamowieniaDoWyswietlenia + " ]", "Poprawnie Zmieniono!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }else
+                    {
+                        MessageBox.Show("Zmieniono Status Zamówienia na: \n " + "[ " + statusZamowieniaDoWyswietlenia + " ]\n\n\n Ścieżka w której została zapisana etykieta:\n "+SciezkaZapisaniaEtykiety, "Poprawnie Zmieniono!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
 
                 }
             }

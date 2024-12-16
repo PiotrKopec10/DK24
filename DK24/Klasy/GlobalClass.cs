@@ -49,7 +49,29 @@ namespace DK24.Klasy
         public static class StanFormyPracownika
         {
             public static int StanFormy { get; set; }
-        } 
+        }
+
+
+
+
+        public static class AdressGlobalne
+        {
+            public static AddressClass.Address AktualnyAddress { get; set; }
+
+        }
+
+        public static class UserGlobalne
+        {
+            public static UserClass.User AktualnyUser { get; set; }
+
+        }
+
+        public static class OdbiorcaPaczki
+        {
+            public static string NazwaKlientaDoWysylki { get; set; }
+
+        }
+
 
 
 

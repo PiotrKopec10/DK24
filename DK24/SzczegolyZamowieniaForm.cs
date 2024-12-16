@@ -1,5 +1,8 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
+using System.Xml.Linq;
+using static DK24.Klasy.AddressClass;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DK24
@@ -7,8 +10,7 @@ namespace DK24
     public partial class SzczegolyZamowieniaForm : Form
     {
         ZamowieniaClass.Orders Zamowienia = new ZamowieniaClass.Orders();
-        ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass()
-;
+        ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
         public SzczegolyZamowieniaForm()
         {
             InitializeComponent();
@@ -63,6 +65,8 @@ namespace DK24
             o.created_at,
             o.modified_at,
             o.shipping_method,
+            o.user_id,              
+            o.delivery_address_id,
             COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
             COALESCE(cd.email, u.email) AS email,
             COALESCE(cd.phone_number, u.phone_number) AS phone_number,
@@ -97,11 +101,51 @@ namespace DK24
                     {
                         if (reader.HasRows && reader.Read())
                         {
+
+                            if (GlobalClass.UserGlobalne.AktualnyUser == null)
+                                GlobalClass.UserGlobalne.AktualnyUser = new UserClass.User();
+
+
+
+                            if (GlobalClass.AdressGlobalne.AktualnyAddress == null)
+                                GlobalClass.AdressGlobalne.AktualnyAddress = new Address();
+
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("user_id")))
+                                GlobalClass.UserGlobalne.AktualnyUser.user_id = reader.GetInt32(reader.GetOrdinal("user_id"));
+                            else
+                                GlobalClass.UserGlobalne.AktualnyUser.user_id = -1;
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("delivery_address_id")))
+                                GlobalClass.AdressGlobalne.AktualnyAddress.address_id = reader.GetInt32(reader.GetOrdinal("delivery_address_id"));
+                            else
+                                GlobalClass.AdressGlobalne.AktualnyAddress.address_id = -1;
+
+
+
+                            //tutaj musimy to podzielic na customer name do paczki ale w name przytrymowac znaki na dole przyklad jak to zrobic w KurierForm
+                            //TAK JAK MAMY TUTAJ TYLKO ZE NAME NIE MOZE BYC ZE ZNAKAMI SPECJALNYMI
+                            //name = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
+                            // company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,  
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
+                                GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = reader.GetString(reader.GetOrdinal("customer_name"));
+                            else
+                                GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = "Nie Znaleziono";
+
+
+                           
+
+
                             lblNrZamowienia.Text = GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id.ToString();
+
+
 
                             lblCenaNetto.Text = reader.IsDBNull(reader.GetOrdinal("total_price"))
                                                 ? "0.00"
                                                 : reader["total_price"].ToString();
+
+
 
                             txtBoxNazwaKlienta.Text = reader.IsDBNull(reader.GetOrdinal("customer_name"))
                                                       ? "Nieznany klient"
@@ -110,6 +154,12 @@ namespace DK24
                             txtBoxAdres.Text = reader.IsDBNull(reader.GetOrdinal("full_address"))
                                                ? "Odbiór osobisty"
                                                : reader["full_address"].ToString();
+
+
+                         
+                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
+
+
 
                             dtPickDataWystaw.Value = reader.IsDBNull(reader.GetOrdinal("created_at"))
                                                      ? DateTime.Now
@@ -150,8 +200,20 @@ namespace DK24
                             else if (status == "in_progress")
                             {
                                 cmbBoxStatusZamowienia.SelectedIndex = 1;
-                                btnZakonczZamowienie.Enabled = true;
-                                btnZakceptuj.Enabled = false;
+                                if (shippingMethod == "dhl")
+                                {
+                                    btnZakonczZamowienie.Enabled = false;
+                                    btnZakceptuj.Enabled = false;
+
+                                }
+                                else 
+                                {
+                                    btnZakonczZamowienie.Enabled = true;
+                                    btnZakceptuj.Enabled = false;
+                                }
+
+                                
+                               
                             }
                             else if (status == "completed")
                             {
@@ -227,7 +289,7 @@ namespace DK24
 
 
 
-            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "in_progress", "W przygotowaniu");
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "in_progress", "W przygotowaniu","");
 
             btnZakonczZamowienie.Enabled = false;
 
@@ -240,7 +302,7 @@ namespace DK24
 
         private void btnZakonczZamowienie_Click(object sender, EventArgs e)
         {
-            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone");
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone","");
 
             btnWygenerujEtykiete.Enabled = false;
 
@@ -257,7 +319,7 @@ namespace DK24
             DialogResult result = MessageBox.Show("Czy na pewno chcesz anulować zamówienie?", "Potwierdzenie anulowania", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane");
+                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane","");
 
                 WypelnijSzczegolyZamowienia();
 
@@ -276,6 +338,9 @@ namespace DK24
             KurierForm dHLForm = new KurierForm();
             this.Hide();
             dHLForm.ShowDialog();
+
+
+
         }
     }
 }

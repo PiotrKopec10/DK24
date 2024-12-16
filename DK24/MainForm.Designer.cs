@@ -57,7 +57,6 @@
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             panel1.SuspendLayout();
@@ -115,6 +114,7 @@
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtGridViewZamowienia.Size = new Size(1238, 533);
             dtGridViewZamowienia.TabIndex = 1;
+            dtGridViewZamowienia.CellFormatting += dtGridViewZamowienia_CellFormatting;
             // 
             // pnlDtGridZamowienia
             // 
@@ -130,7 +130,6 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Controls.Add(button2);
             panel1.Controls.Add(cbxNowe);
             panel1.Controls.Add(cbxWrealizacji);
             panel1.Controls.Add(cbxZakonczone);
@@ -392,16 +391,6 @@
             panel4.Size = new Size(10, 535);
             panel4.TabIndex = 5;
             // 
-            // button2
-            // 
-            button2.Location = new Point(701, 23);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 20;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -461,6 +450,5 @@
         private CheckBox cbxNowe;
         private CheckBox cbxWrealizacji;
         private CheckBox cbxZakonczone;
-        private Button button2;
     }
 }

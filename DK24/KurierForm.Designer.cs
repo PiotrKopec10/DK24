@@ -36,7 +36,7 @@
             // 
             // btnStworzZamowienie
             // 
-            btnStworzZamowienie.Location = new Point(157, 96);
+            btnStworzZamowienie.Location = new Point(137, 247);
             btnStworzZamowienie.Name = "btnStworzZamowienie";
             btnStworzZamowienie.Size = new Size(136, 56);
             btnStworzZamowienie.TabIndex = 0;
@@ -46,16 +46,17 @@
             // 
             // rchBoxLogi
             // 
-            rchBoxLogi.Location = new Point(15, 210);
+            rchBoxLogi.Enabled = false;
+            rchBoxLogi.Location = new Point(12, 49);
             rchBoxLogi.Name = "rchBoxLogi";
-            rchBoxLogi.Size = new Size(420, 110);
+            rchBoxLogi.Size = new Size(420, 145);
             rchBoxLogi.TabIndex = 2;
             rchBoxLogi.Text = "";
             // 
             // btnAnuluj
             // 
             btnAnuluj.Image = (Image)resources.GetObject("btnAnuluj.Image");
-            btnAnuluj.Location = new Point(202, 158);
+            btnAnuluj.Location = new Point(388, 270);
             btnAnuluj.Name = "btnAnuluj";
             btnAnuluj.Size = new Size(44, 33);
             btnAnuluj.TabIndex = 7;
@@ -67,7 +68,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(450, 330);
+            ClientSize = new Size(452, 332);
             Controls.Add(btnAnuluj);
             Controls.Add(rchBoxLogi);
             Controls.Add(btnStworzZamowienie);

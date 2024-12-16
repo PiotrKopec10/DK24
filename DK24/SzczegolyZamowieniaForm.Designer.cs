@@ -213,6 +213,7 @@
             // txtBoxAdres
             // 
             txtBoxAdres.BackColor = SystemColors.Menu;
+            txtBoxAdres.Enabled = false;
             txtBoxAdres.Location = new Point(91, 137);
             txtBoxAdres.Name = "txtBoxAdres";
             txtBoxAdres.Size = new Size(295, 23);
@@ -284,6 +285,7 @@
             // 
             // dtPickSprzed
             // 
+            dtPickSprzed.Enabled = false;
             dtPickSprzed.Location = new Point(176, 311);
             dtPickSprzed.Name = "dtPickSprzed";
             dtPickSprzed.Size = new Size(232, 23);
@@ -291,6 +293,7 @@
             // 
             // dtPickDataWystaw
             // 
+            dtPickDataWystaw.Enabled = false;
             dtPickDataWystaw.Location = new Point(176, 259);
             dtPickDataWystaw.Name = "dtPickDataWystaw";
             dtPickDataWystaw.Size = new Size(232, 23);
@@ -316,6 +319,7 @@
             // 
             // richTxtBoxOpis
             // 
+            richTxtBoxOpis.Enabled = false;
             richTxtBoxOpis.Location = new Point(967, 195);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
             richTxtBoxOpis.Size = new Size(282, 92);
@@ -361,6 +365,7 @@
             // txtBoxNazwaKlienta
             // 
             txtBoxNazwaKlienta.BackColor = SystemColors.Menu;
+            txtBoxNazwaKlienta.Enabled = false;
             txtBoxNazwaKlienta.Location = new Point(91, 102);
             txtBoxNazwaKlienta.Name = "txtBoxNazwaKlienta";
             txtBoxNazwaKlienta.Size = new Size(295, 23);

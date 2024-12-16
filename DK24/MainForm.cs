@@ -55,6 +55,10 @@ namespace DK24
             dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
 
+
+
+
+
             odliczanie = 30;
             lblRefreshTimeLeft.Text = $"({odliczanie} s)";
             refreshTimer.Start();
@@ -130,19 +134,19 @@ namespace DK24
         public DataTable PobierzZamowieniaZDetalami(string[] statuses = null)
         {
             string query = @"SELECT 
-        o.order_id,
-        o.total_price,
-        o.status,
-        o.created_at,
-        COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
-        COALESCE(cd.email, u.email) AS email,
-        COALESCE(cd.phone_number, u.phone_number) AS phone_number,
+        o.order_id AS 'Numer Zamówienia',
+        o.total_price AS 'Cena',
+        o.status AS 'Status',
+        o.created_at AS 'Data Utworzenia',
+        COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS 'Klient',
+        COALESCE(cd.email, u.email) AS 'Email',
+        COALESCE(cd.phone_number, u.phone_number) AS 'Numer Telefonu',
         COALESCE(
             CONCAT(a.street, ' ', a.house_number, 
                    IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
                    ', ', a.city, ', ', a.country), 
             'Odbiór osobisty'
-        ) AS full_address
+        ) AS 'Sposób odbioru'
     FROM 
         orders o
     INNER JOIN 
@@ -196,7 +200,7 @@ namespace DK24
                         GlobalClass.ZamowienieSesja.AktualneZamowienie = new ZamowieniaClass.Orders();
                     }
 
-                    GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id = Convert.ToInt32(selectedRow.Cells["order_id"].Value);
+                    GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id = Convert.ToInt32(selectedRow.Cells["Numer Zamówienia"].Value);
 
 
                 }
@@ -302,6 +306,19 @@ namespace DK24
             KurierForm dHLForm = new KurierForm();
             this.Hide();
             dHLForm.ShowDialog();
+        }
+
+        private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dtGridViewZamowienia.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
+            {
+                string status = rowView["status"]?.ToString();
+                if (status == "canceled")
+                {
+                    dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                }
+               
+            }
         }
     }
 }
