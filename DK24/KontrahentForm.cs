@@ -677,6 +677,7 @@ namespace DK24
 
             if (GlobalClass.StanFormyKontrahenta.StanFormy == 1)
             {
+                lblNaglowek.Text = "PODGLĄD KONTRAHNETA";
                 btnZapisz.Visible = false;
                 btnPobierzPoNip.Visible = false;
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -712,6 +713,7 @@ namespace DK24
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
             {
+                lblNaglowek.Text = "EDYTUJ KONTRAHENTA";
                 txtBoxEmail.Enabled = false;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;

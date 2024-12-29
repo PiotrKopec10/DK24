@@ -157,7 +157,7 @@ namespace DK24
 
 
                          
-                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
+//                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
 
 
 
@@ -178,11 +178,13 @@ namespace DK24
                             {
                                 chckBoxOdbior.Checked = true;
                                 chckBoxWysylka.Checked = false;
+                                chckBoxWysylka.Enabled = false;
                                 btnWygenerujEtykiete.Visible = false;
                             }
                             if (shippingMethod == "dhl")
                             {
                                 chckBoxOdbior.Checked = false;
+                                chckBoxOdbior.Enabled = false;
                                 chckBoxWysylka.Checked = true;
                                 btnWygenerujEtykiete.Visible = true;
                             }
@@ -336,7 +338,6 @@ namespace DK24
         private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
             KurierForm dHLForm = new KurierForm();
-            this.Hide();
             dHLForm.ShowDialog();
 
 

@@ -170,7 +170,7 @@
             label2.ForeColor = Color.Silver;
             label2.Location = new Point(382, 27);
             label2.Name = "label2";
-            label2.Size = new Size(121, 15);
+            label2.Size = new Size(120, 15);
             label2.TabIndex = 2;
             label2.Text = "(używaj checkboxów)";
             // 
@@ -263,7 +263,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 40);
+            towaryToolStripMenuItem.Size = new Size(99, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             towaryToolStripMenuItem.Click += towaryToolStripMenuItem_Click;

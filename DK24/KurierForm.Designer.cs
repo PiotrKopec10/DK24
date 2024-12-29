@@ -32,11 +32,13 @@
             btnStworzZamowienie = new Button();
             rchBoxLogi = new RichTextBox();
             btnAnuluj = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnStworzZamowienie
             // 
-            btnStworzZamowienie.Location = new Point(137, 247);
+            btnStworzZamowienie.Location = new Point(152, 247);
             btnStworzZamowienie.Name = "btnStworzZamowienie";
             btnStworzZamowienie.Size = new Size(136, 56);
             btnStworzZamowienie.TabIndex = 0;
@@ -47,9 +49,9 @@
             // rchBoxLogi
             // 
             rchBoxLogi.Enabled = false;
-            rchBoxLogi.Location = new Point(12, 49);
+            rchBoxLogi.Location = new Point(11, 58);
             rchBoxLogi.Name = "rchBoxLogi";
-            rchBoxLogi.Size = new Size(420, 145);
+            rchBoxLogi.Size = new Size(430, 156);
             rchBoxLogi.TabIndex = 2;
             rchBoxLogi.Text = "";
             // 
@@ -63,20 +65,35 @@
             btnAnuluj.UseVisualStyleBackColor = true;
             btnAnuluj.Click += btnAnuluj_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Enabled = false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, -13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(132, 82);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
             // KurierForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(452, 332);
-            Controls.Add(btnAnuluj);
             Controls.Add(rchBoxLogi);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnAnuluj);
             Controls.Add(btnStworzZamowienie);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Location = new Point(0, 200);
             Name = "KurierForm";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "DHLForm";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -85,5 +102,6 @@
         private Button btnStworzZamowienie;
         private RichTextBox rchBoxLogi;
         private Button btnAnuluj;
+        private PictureBox pictureBox1;
     }
 }

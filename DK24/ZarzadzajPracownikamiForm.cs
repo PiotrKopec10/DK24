@@ -96,17 +96,6 @@ namespace DK24
 
             GlobalClass.StanFormyPracownika.StanFormy = 1;
             UstawPanelPracownika();
-
-            dataScrollBar.Width = dtGridLstPracownikow.Width;
-            dataScrollBar.Left = dtGridLstPracownikow.Left;
-            dataScrollBar.Top = dtGridLstPracownikow.Bottom + 15;
-
-            dataScrollBar.Minimum = 0;
-            int totalWidth = dtGridLstPracownikow.Columns.GetColumnsWidth(DataGridViewElementStates.Visible);
-            dataScrollBar.Maximum = Math.Max(0, totalWidth - dtGridLstPracownikow.ClientSize.Width) + dataScrollBar.LargeChange;
-
-            dataScrollBar.Scroll += new ScrollEventHandler(dataScrollBar_Scroll);
-            dtGridLstPracownikow.SizeChanged += dtGridLstPracownikow_SizeChanged;
         }
 
         private void dataScrollBar_Scroll(object sender, ScrollEventArgs e)
@@ -114,11 +103,6 @@ namespace DK24
             dtGridLstPracownikow.HorizontalScrollingOffset = e.NewValue;
         }
 
-        private void dtGridLstPracownikow_SizeChanged(object sender, EventArgs e)
-        {
-            int totalWidth = dtGridLstPracownikow.Columns.GetColumnsWidth(DataGridViewElementStates.Visible);
-            dataScrollBar.Maximum = Math.Max(0, totalWidth - dtGridLstPracownikow.ClientSize.Width) + dataScrollBar.LargeChange;
-        }
 
         public void PobierzPracownika()
         {
@@ -368,9 +352,37 @@ namespace DK24
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-               
+
                 e.Handled = true;
             }
+        }
+
+        private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void fakturyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaFakturForm listaFakturForm = new ListaFakturForm();
+            this.Hide();
+            listaFakturForm.ShowDialog();
+        }
+
+        private void kontrahenciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaKontrahentowForm listaKontrahentow = new ListaKontrahentowForm();
+            this.Hide();
+            listaKontrahentow.ShowDialog();
+        }
+
+        private void towaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
+            this.Hide();
+            listaTowary_Uslugi.ShowDialog();
         }
     }
 }

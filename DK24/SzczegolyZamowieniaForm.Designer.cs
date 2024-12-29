@@ -162,7 +162,7 @@
             lblNrZamowienia.BackColor = Color.Transparent;
             lblNrZamowienia.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblNrZamowienia.ForeColor = Color.White;
-            lblNrZamowienia.Location = new Point(195, 27);
+            lblNrZamowienia.Location = new Point(158, 28);
             lblNrZamowienia.Name = "lblNrZamowienia";
             lblNrZamowienia.Size = new Size(21, 20);
             lblNrZamowienia.TabIndex = 37;
@@ -172,13 +172,13 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(38, 27);
+            label1.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.FromArgb(255, 128, 0);
+            label1.Location = new Point(38, 31);
             label1.Name = "label1";
-            label1.Size = new Size(151, 20);
+            label1.Size = new Size(120, 16);
             label1.TabIndex = 36;
-            label1.Text = "Numer Zamówienia:";
+            label1.Text = "Nr Zamówienia:";
             // 
             // btnAnulujZamowienie
             // 
@@ -202,9 +202,9 @@
             // 
             // btnWygenerujEtykiete
             // 
-            btnWygenerujEtykiete.Location = new Point(712, 107);
+            btnWygenerujEtykiete.Location = new Point(676, 115);
             btnWygenerujEtykiete.Name = "btnWygenerujEtykiete";
-            btnWygenerujEtykiete.Size = new Size(100, 38);
+            btnWygenerujEtykiete.Size = new Size(139, 54);
             btnWygenerujEtykiete.TabIndex = 33;
             btnWygenerujEtykiete.Text = "Wygeneruj Etykiete";
             btnWygenerujEtykiete.UseVisualStyleBackColor = true;
@@ -221,12 +221,12 @@
             // 
             // chckBoxWysylka
             // 
+            chckBoxWysylka.AutoCheck = false;
             chckBoxWysylka.AutoSize = true;
             chckBoxWysylka.BackColor = Color.Transparent;
-            chckBoxWysylka.Enabled = false;
             chckBoxWysylka.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxWysylka.ForeColor = Color.White;
-            chckBoxWysylka.Location = new Point(538, 137);
+            chckBoxWysylka.Location = new Point(464, 161);
             chckBoxWysylka.Name = "chckBoxWysylka";
             chckBoxWysylka.Size = new Size(138, 18);
             chckBoxWysylka.TabIndex = 31;
@@ -235,12 +235,12 @@
             // 
             // chckBoxOdbior
             // 
+            chckBoxOdbior.AutoCheck = false;
             chckBoxOdbior.AutoSize = true;
             chckBoxOdbior.BackColor = Color.Transparent;
-            chckBoxOdbior.Enabled = false;
             chckBoxOdbior.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxOdbior.ForeColor = Color.White;
-            chckBoxOdbior.Location = new Point(538, 107);
+            chckBoxOdbior.Location = new Point(464, 131);
             chckBoxOdbior.Name = "chckBoxOdbior";
             chckBoxOdbior.Size = new Size(125, 18);
             chckBoxOdbior.TabIndex = 30;
@@ -253,7 +253,7 @@
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(414, 105);
+            label13.Location = new Point(464, 105);
             label13.Name = "label13";
             label13.Size = new Size(118, 14);
             label13.TabIndex = 29;
@@ -320,9 +320,9 @@
             // richTxtBoxOpis
             // 
             richTxtBoxOpis.Enabled = false;
-            richTxtBoxOpis.Location = new Point(967, 195);
+            richTxtBoxOpis.Location = new Point(866, 195);
             richTxtBoxOpis.Name = "richTxtBoxOpis";
-            richTxtBoxOpis.Size = new Size(282, 92);
+            richTxtBoxOpis.Size = new Size(383, 92);
             richTxtBoxOpis.TabIndex = 13;
             richTxtBoxOpis.Text = "";
             // 
@@ -344,7 +344,7 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(967, 177);
+            label8.Location = new Point(866, 178);
             label8.Name = "label8";
             label8.Size = new Size(40, 14);
             label8.TabIndex = 12;
@@ -380,9 +380,9 @@
             grpBoxWartDok.Controls.Add(label5);
             grpBoxWartDok.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             grpBoxWartDok.ForeColor = Color.FromArgb(255, 128, 0);
-            grpBoxWartDok.Location = new Point(993, 5);
+            grpBoxWartDok.Location = new Point(981, 16);
             grpBoxWartDok.Name = "grpBoxWartDok";
-            grpBoxWartDok.Size = new Size(242, 164);
+            grpBoxWartDok.Size = new Size(268, 164);
             grpBoxWartDok.TabIndex = 1;
             grpBoxWartDok.TabStop = false;
             grpBoxWartDok.Text = "Wartość Dokumentu:";
@@ -438,9 +438,9 @@
             // panel3
             // 
             panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.Location = new Point(1243, 410);
+            panel3.Location = new Point(1249, 410);
             panel3.Name = "panel3";
-            panel3.Size = new Size(17, 255);
+            panel3.Size = new Size(11, 255);
             panel3.TabIndex = 7;
             // 
             // pnlDtGridZamowienia
@@ -451,7 +451,7 @@
             pnlDtGridZamowienia.Location = new Point(11, 410);
             pnlDtGridZamowienia.Margin = new Padding(3, 2, 3, 2);
             pnlDtGridZamowienia.Name = "pnlDtGridZamowienia";
-            pnlDtGridZamowienia.Size = new Size(1238, 255);
+            pnlDtGridZamowienia.Size = new Size(1238, 256);
             pnlDtGridZamowienia.TabIndex = 8;
             // 
             // dtGridViewZamowienia
@@ -501,7 +501,7 @@
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtGridViewZamowienia.Size = new Size(1238, 255);
+            dtGridViewZamowienia.Size = new Size(1238, 256);
             dtGridViewZamowienia.TabIndex = 1;
             // 
             // SzczegolyZamowieniaForm
