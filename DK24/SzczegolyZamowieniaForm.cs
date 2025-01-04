@@ -66,7 +66,6 @@ namespace DK24
                 btnDataSprzed.Visible = true;
 
                 btnWygenerujEtykiete.Enabled = true;
-                btnZakonczZamowienie.Enabled = false;
                 btnAnulujZamowienie.Enabled = false;
 
             }
