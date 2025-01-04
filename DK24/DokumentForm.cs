@@ -24,6 +24,7 @@ namespace DK24
         AddressClass DzialanieNaAdresie = new AddressClass();
         FakturaClass DzialanieNaFakturze = new FakturaClass();
         GlobalClass GlobalneDzialania = new GlobalClass();
+        ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
 
         public DokumentForm()
         {
@@ -289,102 +290,116 @@ namespace DK24
 
         private void btnZapisz_Click(object sender, EventArgs e)
         {
-            ToolTip toolTip = new ToolTip
-            {
-                IsBalloon = true,
-                InitialDelay = 0,
-                ShowAlways = true
-            };
+            //ToolTip toolTip = new ToolTip
+            //{
+            //    IsBalloon = true,
+            //    InitialDelay = 0,
+            //    ShowAlways = true
+            //};
 
-            bool isValid = true;
-            List<string> pustePola = new List<string>();
+            //bool isValid = true;
+            //List<string> pustePola = new List<string>();
 
-            if (string.IsNullOrWhiteSpace(txtBoxNipKnt.Text))
-            {
-                txtBoxNipKnt.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxNipKnt, "Pole NIP nie może być puste!");
-                pustePola.Add("NIP");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxNipKnt.BackColor = SystemColors.Window;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxNipKnt.Text))
+            //{
+            //    txtBoxNipKnt.BackColor = Color.Pink;
+            //    toolTip.SetToolTip(txtBoxNipKnt, "Pole NIP nie może być puste!");
+            //    pustePola.Add("NIP");
+            //    isValid = false;
+            //}
+            //else
+            //{
+            //    txtBoxNipKnt.BackColor = SystemColors.Window;
+            //}
 
-            if (string.IsNullOrWhiteSpace(txtBoxNazwaKnt.Text))
-            {
-                txtBoxNazwaKnt.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxNazwaKnt, "Pole Nazwa nie może być puste!");
-                pustePola.Add("Nazwa");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxNazwaKnt.BackColor = SystemColors.Window;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxNazwaKnt.Text))
+            //{
+            //    txtBoxNazwaKnt.BackColor = Color.Pink;
+            //    toolTip.SetToolTip(txtBoxNazwaKnt, "Pole Nazwa nie może być puste!");
+            //    pustePola.Add("Nazwa");
+            //    isValid = false;
+            //}
+            //else
+            //{
+            //    txtBoxNazwaKnt.BackColor = SystemColors.Window;
+            //}
 
-            if (string.IsNullOrWhiteSpace(txtBoxKodPoczKnt.Text))
-            {
-                txtBoxKodPoczKnt.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxKodPoczKnt, "Pole Kod Pocztowy nie może być puste!");
-                pustePola.Add("Kod Pocztowy");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxKodPoczKnt.BackColor = SystemColors.Window;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxKodPoczKnt.Text))
+            //{
+            //    txtBoxKodPoczKnt.BackColor = Color.Pink;
+            //    toolTip.SetToolTip(txtBoxKodPoczKnt, "Pole Kod Pocztowy nie może być puste!");
+            //    pustePola.Add("Kod Pocztowy");
+            //    isValid = false;
+            //}
+            //else
+            //{
+            //    txtBoxKodPoczKnt.BackColor = SystemColors.Window;
+            //}
 
-            if (string.IsNullOrWhiteSpace(txtBoxAdresKnt.Text))
-            {
-                txtBoxAdresKnt.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxAdresKnt, "Pole Adres nie może być puste!");
-                pustePola.Add("Adres");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxAdresKnt.BackColor = SystemColors.Window;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxAdresKnt.Text))
+            //{
+            //    txtBoxAdresKnt.BackColor = Color.Pink;
+            //    toolTip.SetToolTip(txtBoxAdresKnt, "Pole Adres nie może być puste!");
+            //    pustePola.Add("Adres");
+            //    isValid = false;
+            //}
+            //else
+            //{
+            //    txtBoxAdresKnt.BackColor = SystemColors.Window;
+            //}
 
-            if (string.IsNullOrWhiteSpace(txtBoxMiastoKnt.Text))
-            {
-                txtBoxMiastoKnt.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxMiastoKnt, "Pole Miasto nie może być puste!");
-                pustePola.Add("Miasto");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxMiastoKnt.BackColor = SystemColors.Window;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBoxMiastoKnt.Text))
+            //{
+            //    txtBoxMiastoKnt.BackColor = Color.Pink;
+            //    toolTip.SetToolTip(txtBoxMiastoKnt, "Pole Miasto nie może być puste!");
+            //    pustePola.Add("Miasto");
+            //    isValid = false;
+            //}
+            //else
+            //{
+            //    txtBoxMiastoKnt.BackColor = SystemColors.Window;
+            //}
 
-            if (!isValid)
-            {
-                if (pustePola.Count > 1)
-                {
-                    MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (pustePola.Count == 1)
-                {
-                    string pustePole = pustePola[0];
-                    Control pustePoleControl = null;
+            //if (!isValid)
+            //{
+            //    if (pustePola.Count > 1)
+            //    {
+            //        MessageBox.Show("Te pola nie mogą być puste: " + string.Join(", ", pustePola) + "!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //    else if (pustePola.Count == 1)
+            //    {
+            //        string pustePole = pustePola[0];
+            //        Control pustePoleControl = null;
 
-                    if (pustePole == "NIP") pustePoleControl = txtBoxNipKnt;
-                    else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwaKnt;
-                    else if (pustePole == "Kod Pocztowy") pustePoleControl = txtBoxKodPoczKnt;
-                    else if (pustePole == "Adres") pustePoleControl = txtBoxAdresKnt;
-                    else if (pustePole == "Miasto") pustePoleControl = txtBoxMiastoKnt;
+            //        if (pustePole == "NIP") pustePoleControl = txtBoxNipKnt;
+            //        else if (pustePole == "Nazwa") pustePoleControl = txtBoxNazwaKnt;
+            //        else if (pustePole == "Kod Pocztowy") pustePoleControl = txtBoxKodPoczKnt;
+            //        else if (pustePole == "Adres") pustePoleControl = txtBoxAdresKnt;
+            //        else if (pustePole == "Miasto") pustePoleControl = txtBoxMiastoKnt;
 
-                    MessageBox.Show($"Pole {pustePole} nie może być puste!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        MessageBox.Show($"Pole {pustePole} nie może być puste!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    if (pustePoleControl != null)
-                    {
-                        toolTip.Show($"Uzupełnij pole {pustePole}!", pustePoleControl, 20, 21, 4000);
-                    }
-                }
-                return;
-            }
+            //        if (pustePoleControl != null)
+            //        {
+            //            toolTip.Show($"Uzupełnij pole {pustePole}!", pustePoleControl, 20, 21, 4000);
+            //        }
+            //    }
+            //    return;
+            //}
+
+
+
+
+
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
+
+            SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
+            this.Hide();
+            szczegolyZamowieniaForm.ShowDialog();
+
+
+
+
 
             // stanyFormy
         }

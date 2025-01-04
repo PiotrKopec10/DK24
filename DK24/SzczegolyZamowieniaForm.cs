@@ -11,6 +11,9 @@ namespace DK24
     {
         ZamowieniaClass.Orders Zamowienia = new ZamowieniaClass.Orders();
         ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
+
+       
+
         public SzczegolyZamowieniaForm()
         {
             InitializeComponent();
@@ -23,7 +26,7 @@ namespace DK24
             WypelnijSzczegolyZamowienia();
             DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, dtGridViewZamowienia);
 
-            if (cmbBoxStatusZamowienia.SelectedIndex == 3)
+            if (cmbBoxStatusZamowienia.SelectedIndex == 4)
             {
                 btnAnulujZamowienie.Visible = false;
                 btnZakonczZamowienie.Visible = false;
@@ -31,20 +34,33 @@ namespace DK24
 
                 btnWygenerujEtykiete.Enabled = false;
 
+
+
+            }else if(cmbBoxStatusZamowienia.SelectedIndex == 3) 
+            {
+
+                dtPickSprzed.Visible = true;
+                btnDataSprzed.Visible = true;
+
+                btnWygenerujEtykiete.Enabled = false;
+                btnZakonczZamowienie.Enabled = false;
+
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 2)
             {
                 dtPickSprzed.Visible = true;
                 btnDataSprzed.Visible = true;
 
-                btnWygenerujEtykiete.Enabled = false;
+                btnWygenerujEtykiete.Enabled = true;
+                btnZakonczZamowienie.Enabled = false;
+
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 1)
             {
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
-
-                btnWygenerujEtykiete.Enabled = true;
+                btnZakonczZamowienie.Enabled = false;
+                btnWygenerujEtykiete.Enabled = false;
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 0)
             {
@@ -134,7 +150,7 @@ namespace DK24
                                 GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = "Nie Znaleziono";
 
 
-                           
+
 
 
                             lblNrZamowienia.Text = GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id.ToString();
@@ -156,8 +172,8 @@ namespace DK24
                                                : reader["full_address"].ToString();
 
 
-                         
-//                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
+
+                            //                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
 
 
 
@@ -202,24 +218,54 @@ namespace DK24
                             else if (status == "in_progress")
                             {
                                 cmbBoxStatusZamowienia.SelectedIndex = 1;
-                                if (shippingMethod == "dhl")
+
+
+
+                                if (DzialanieNaZamowieniu.PobierzCzyFakturaPoIdZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id) == true)
                                 {
-                                    btnZakonczZamowienie.Enabled = false;
+
+                                    btnFaktura.Visible = true;
+                                    btnWygenerujEtykiete.Enabled = false;
+
+                                    btnZakceptuj.Enabled = false;
+                                }
+                                else
+                                {
+                                    btnWygenerujEtykiete.Enabled = true;
                                     btnZakceptuj.Enabled = false;
 
-                                }
-                                else 
-                                {
-                                    btnZakonczZamowienie.Enabled = true;
-                                    btnZakceptuj.Enabled = false;
+                                    if (shippingMethod == "dhl")
+                                    {
+                                        btnZakonczZamowienie.Enabled = false;
+
+                                    }
+                                    else
+                                    {
+                                        btnZakonczZamowienie.Enabled = true;
+
+                                    }
+
                                 }
 
-                                
-                               
+
+
+
+
+
+
+
+                            }else if(status == "invoice_ready") 
+                            {
+
+                                cmbBoxStatusZamowienia.SelectedIndex = 2;
+                                btnZakceptuj.Enabled = false;
+                                btnZakonczZamowienie.Enabled = false;
+                                btnAnulujZamowienie.Enabled = false;
                             }
+
                             else if (status == "completed")
                             {
-                                cmbBoxStatusZamowienia.SelectedIndex = 2;
+                                cmbBoxStatusZamowienia.SelectedIndex = 3;
                                 btnZakonczZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
                                 btnAnulujZamowienie.Enabled = false;
@@ -229,7 +275,7 @@ namespace DK24
                             }
                             else if (status == "canceled")
                             {
-                                cmbBoxStatusZamowienia.SelectedIndex = 3;
+                                cmbBoxStatusZamowienia.SelectedIndex = 4;
                                 btnZakonczZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
                             }
@@ -291,20 +337,25 @@ namespace DK24
 
 
 
-            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "in_progress", "W przygotowaniu","");
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "in_progress", "W przygotowaniu", "");
+
+
 
             btnZakonczZamowienie.Enabled = false;
 
-            btnWygenerujEtykiete.Enabled = true;
+            btnWygenerujEtykiete.Enabled = false;
 
             WypelnijSzczegolyZamowienia();
+
+
+
 
 
         }
 
         private void btnZakonczZamowienie_Click(object sender, EventArgs e)
         {
-            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone","");
+            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone", "");
 
             btnWygenerujEtykiete.Enabled = false;
 
@@ -321,7 +372,7 @@ namespace DK24
             DialogResult result = MessageBox.Show("Czy na pewno chcesz anulować zamówienie?", "Potwierdzenie anulowania", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane","");
+                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane", "");
 
                 WypelnijSzczegolyZamowienia();
 
@@ -340,6 +391,16 @@ namespace DK24
             KurierForm dHLForm = new KurierForm();
             dHLForm.ShowDialog();
 
+
+
+        }
+
+        private void btnFaktura_Click(object sender, EventArgs e)
+        {
+            DokumentForm dokumentForm = new DokumentForm();
+            this.Hide();
+            dokumentForm.ShowDialog();
+           
 
 
         }

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 using static DK24.Klasy.KontrahentClass;
 
 namespace DK24.Klasy
@@ -20,11 +21,13 @@ namespace DK24.Klasy
             public ShippingMethodEnum shipping_method { get; set; }
             public DateOnly shipping_date;
 
+            public bool is_invoice = false;
             public enum StatusEnum
             {
                 created,
                 in_progress,
                 completed,
+                invoice_ready,
                 canceled
             }
 
@@ -213,6 +216,50 @@ namespace DK24.Klasy
 
 
 
+        }
+
+
+
+        public bool PobierzCzyFakturaPoIdZamowienia(int idZamowienia)
+        {
+            bool CzyFaktura = false;
+
+            using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+                  
+                    string zapytanie = @"
+                SELECT is_invoice
+                FROM orders
+                WHERE order_id = @orderId
+                LIMIT 1
+            ";
+
+                    using (MySqlCommand sqlCommand = new MySqlCommand(zapytanie, polaczenie))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@orderId", idZamowienia);
+                        object wynik = sqlCommand.ExecuteScalar();
+                        if (wynik != null && wynik != DBNull.Value)
+                        {
+                            int invoiceValue = Convert.ToInt32(wynik);
+                            CzyFaktura = (invoiceValue == 1);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas pobierania danych o fakturze dla zamówienia: " + ex.Message, "Błąd");
+                }
+                finally
+                {
+                    polaczenie.Close();
+                }
+            }
+
+            return CzyFaktura;
         }
 
 

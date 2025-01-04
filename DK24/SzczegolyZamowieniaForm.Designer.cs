@@ -38,6 +38,7 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            btnFaktura = new Button();
             btnZakonczZamowienie = new Button();
             lblNrZamowienia = new Label();
             label1 = new Label();
@@ -118,6 +119,7 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(btnFaktura);
             pnlGoraDane.Controls.Add(btnZakonczZamowienie);
             pnlGoraDane.Controls.Add(lblNrZamowienia);
             pnlGoraDane.Controls.Add(label1);
@@ -145,6 +147,17 @@
             pnlGoraDane.Name = "pnlGoraDane";
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
+            // 
+            // btnFaktura
+            // 
+            btnFaktura.Location = new Point(580, 257);
+            btnFaktura.Name = "btnFaktura";
+            btnFaktura.Size = new Size(99, 50);
+            btnFaktura.TabIndex = 39;
+            btnFaktura.Text = "Wygeneruj Fakture";
+            btnFaktura.UseVisualStyleBackColor = true;
+            btnFaktura.Visible = false;
+            btnFaktura.Click += btnFaktura_Click;
             // 
             // btnZakonczZamowienie
             // 
@@ -332,7 +345,7 @@
             cmbBoxStatusZamowienia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxStatusZamowienia.Enabled = false;
             cmbBoxStatusZamowienia.FormattingEnabled = true;
-            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "Nowe", "W przygotowaniu ", "Zakończone", "Anulowane" });
+            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "Nowe", "W przygotowaniu", "Gotowa Faktura ", "Zakończone", "Anulowane" });
             cmbBoxStatusZamowienia.Location = new Point(38, 215);
             cmbBoxStatusZamowienia.Name = "cmbBoxStatusZamowienia";
             cmbBoxStatusZamowienia.Size = new Size(189, 23);
@@ -575,5 +588,6 @@
         private Label lblNrZamowienia;
         private Label label1;
         private Button btnZakonczZamowienie;
+        private Button btnFaktura;
     }
 }

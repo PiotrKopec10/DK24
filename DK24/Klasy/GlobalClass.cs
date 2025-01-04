@@ -32,6 +32,9 @@ namespace DK24.Klasy
         }
 
 
+       
+
+
         public static class ZamowienieSesja
         {
             public static ZamowieniaClass.Orders  AktualneZamowienie { get; set; }
