@@ -10,6 +10,9 @@ namespace DK24
         ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
         MainForm mainForm = new MainForm();
 
+        SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
+
+
         AddressClass DzialaniaNaAdresie = new AddressClass();
         AddressClass.Address Address = new AddressClass.Address();
         UserClass DzialaniaNaUserze = new UserClass();
@@ -161,15 +164,17 @@ namespace DK24
                             rchBoxLogi.SelectionFont = new Font(rchBoxLogi.Font.FontFamily, rchBoxLogi.Font.Size + 2, FontStyle.Bold);
 
 
-                           // rchBoxLogi.AppendText($"Etykieta została zapisana jako {labelPath}\n");
+                            // rchBoxLogi.AppendText($"Etykieta została zapisana jako {labelPath}\n");
+
+
+
+                            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "label_ready", "Gotowa Etykieta", labelPath);
+
 
 
                             
-
-                            DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "completed", "Zakończone",labelPath);
-
                             this.Hide();
-                            mainForm.ShowDialog();
+                            szczegolyZamowieniaForm.ShowDialog();
 
 
 

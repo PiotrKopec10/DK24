@@ -26,47 +26,67 @@ namespace DK24
             WypelnijSzczegolyZamowienia();
             DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, dtGridViewZamowienia);
 
-            if (cmbBoxStatusZamowienia.SelectedIndex == 4)
+
+
+           if (cmbBoxStatusZamowienia.SelectedIndex == 5) //Anulowano
+            {
+
+                btnAnulujZamowienie.Visible = false;
+                btnZakonczZamowienie.Visible = false;
+                btnZakceptuj.Visible = false;
+                btnWygenerujEtykiete.Enabled = false;
+
+            }
+            else if (cmbBoxStatusZamowienia.SelectedIndex == 4) //Zakończono
             {
                 btnAnulujZamowienie.Visible = false;
                 btnZakonczZamowienie.Visible = false;
                 btnZakceptuj.Visible = false;
-
                 btnWygenerujEtykiete.Enabled = false;
 
 
 
-            }else if(cmbBoxStatusZamowienia.SelectedIndex == 3) 
+            }
+            else if(cmbBoxStatusZamowienia.SelectedIndex == 3) //Gotowa Etykieta
             {
 
                 dtPickSprzed.Visible = true;
                 btnDataSprzed.Visible = true;
 
+
                 btnWygenerujEtykiete.Enabled = false;
-                btnZakonczZamowienie.Enabled = false;
+                btnZakonczZamowienie.Enabled = true;
+                btnAnulujZamowienie.Enabled = false;
+
 
             }
-            else if (cmbBoxStatusZamowienia.SelectedIndex == 2)
+            else if (cmbBoxStatusZamowienia.SelectedIndex == 2) // Gotowa Faktura
             {
                 dtPickSprzed.Visible = true;
                 btnDataSprzed.Visible = true;
 
                 btnWygenerujEtykiete.Enabled = true;
                 btnZakonczZamowienie.Enabled = false;
+                btnAnulujZamowienie.Enabled = false;
 
             }
-            else if (cmbBoxStatusZamowienia.SelectedIndex == 1)
+            else if (cmbBoxStatusZamowienia.SelectedIndex == 1) //W przygotwaniu
             {
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
                 btnZakonczZamowienie.Enabled = false;
-                btnWygenerujEtykiete.Enabled = false;
+                btnWygenerujEtykiete.Enabled = false;              
             }
-            else if (cmbBoxStatusZamowienia.SelectedIndex == 0)
+            else if (cmbBoxStatusZamowienia.SelectedIndex == 0) //Nowe
             {
-                btnWygenerujEtykiete.Enabled = false;
                 btnDataSprzed.Visible = false;
                 dtPickSprzed.Visible = false;
+
+                btnZakceptuj.Enabled = true;
+                btnAnulujZamowienie.Enabled = true;
+                btnZakonczZamowienie.Enabled = false;
+                btnWygenerujEtykiete.Enabled = false;
+
             }
 
         }
@@ -212,7 +232,18 @@ namespace DK24
                             if (status == "created")
                             {
                                 cmbBoxStatusZamowienia.SelectedIndex = 0;
+
+
+
+                                btnDataSprzed.Visible = false;
+                                dtPickSprzed.Visible = false;
+
+                                btnZakceptuj.Enabled = true;
+                                btnAnulujZamowienie.Enabled = true;
                                 btnZakonczZamowienie.Enabled = false;
+                                btnWygenerujEtykiete.Enabled = false;
+
+                             
 
                             }
                             else if (status == "in_progress")
@@ -226,46 +257,87 @@ namespace DK24
 
                                     btnFaktura.Visible = true;
                                     btnWygenerujEtykiete.Enabled = false;
-
                                     btnZakceptuj.Enabled = false;
+                                    btnAnulujZamowienie.Enabled = false;
                                 }
                                 else
                                 {
-                                    btnWygenerujEtykiete.Enabled = true;
-                                    btnZakceptuj.Enabled = false;
-
+                                  
                                     if (shippingMethod == "dhl")
                                     {
                                         btnZakonczZamowienie.Enabled = false;
+
+                                        btnFaktura.Visible = false;
+                                        btnWygenerujEtykiete.Enabled = true;
+                                        btnZakceptuj.Enabled = false;
+                                        btnAnulujZamowienie.Enabled = false;
 
                                     }
                                     else
                                     {
                                         btnZakonczZamowienie.Enabled = true;
 
+                                        btnFaktura.Visible = false;
+                                        btnZakceptuj.Enabled = false;
+                                        btnAnulujZamowienie.Enabled = false;
+                                        btnWygenerujEtykiete.Enabled = false;
+
                                     }
 
                                 }
 
 
-
-
-
-
-
-
-                            }else if(status == "invoice_ready") 
+                            }
+                            else if (status == "invoice_ready")
                             {
 
                                 cmbBoxStatusZamowienia.SelectedIndex = 2;
-                                btnZakceptuj.Enabled = false;
-                                btnZakonczZamowienie.Enabled = false;
-                                btnAnulujZamowienie.Enabled = false;
+                                //btnZakceptuj.Enabled = false;
+                                //btnZakonczZamowienie.Enabled = true;
+                                //btnAnulujZamowienie.Enabled = false;
+
+
+
+                                if (shippingMethod == "dhl")
+                                {
+                                    btnZakonczZamowienie.Enabled = false;
+
+                                    btnFaktura.Visible = false;
+                                    btnWygenerujEtykiete.Enabled = true;
+                                    btnZakceptuj.Enabled = false;
+                                    btnAnulujZamowienie.Enabled = false;
+
+                                }
+                                else
+                                {
+                                    btnZakonczZamowienie.Enabled = true;
+
+                                    btnFaktura.Visible = false;
+                                    btnZakceptuj.Enabled = false;
+                                    btnAnulujZamowienie.Enabled = false;
+                                    btnWygenerujEtykiete.Enabled = false;
+
+                                }
+
+
                             }
+                            else if(status == "label_ready") 
+                            {
+                                cmbBoxStatusZamowienia.SelectedIndex = 3;
+                                btnWygenerujEtykiete.Enabled = false;
+
+                                btnZakonczZamowienie.Enabled = true;
+
+                                btnAnulujZamowienie.Enabled = false;
+                                btnZakceptuj.Enabled = false;
+
+
+                            }
+                            
 
                             else if (status == "completed")
                             {
-                                cmbBoxStatusZamowienia.SelectedIndex = 3;
+                                cmbBoxStatusZamowienia.SelectedIndex = 4;
                                 btnZakonczZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
                                 btnAnulujZamowienie.Enabled = false;
@@ -275,7 +347,7 @@ namespace DK24
                             }
                             else if (status == "canceled")
                             {
-                                cmbBoxStatusZamowienia.SelectedIndex = 4;
+                                cmbBoxStatusZamowienia.SelectedIndex = 5;
                                 btnZakonczZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
                             }
@@ -388,6 +460,8 @@ namespace DK24
 
         private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
+           
+
             KurierForm dHLForm = new KurierForm();
             dHLForm.ShowDialog();
 

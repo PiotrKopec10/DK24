@@ -345,7 +345,7 @@
             cmbBoxStatusZamowienia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxStatusZamowienia.Enabled = false;
             cmbBoxStatusZamowienia.FormattingEnabled = true;
-            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "Nowe", "W przygotowaniu", "Gotowa Faktura ", "Zakończone", "Anulowane" });
+            cmbBoxStatusZamowienia.Items.AddRange(new object[] { "Nowe", "W przygotowaniu", "Gotowa Faktura ", "Gotowa Etykieta", "Zakończone", "Anulowane" });
             cmbBoxStatusZamowienia.Location = new Point(38, 215);
             cmbBoxStatusZamowienia.Name = "cmbBoxStatusZamowienia";
             cmbBoxStatusZamowienia.Size = new Size(189, 23);
