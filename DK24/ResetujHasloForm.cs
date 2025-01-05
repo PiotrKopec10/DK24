@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace DK24
 {
@@ -18,11 +19,29 @@ namespace DK24
         private UserClass.User _user;
         private UserClass _userClass;
 
+        private Timer timerStworzHaslo;
+        private Timer timerPowtorzHaslo;
+        private Dictionary<int, char> stworzHasloChars = new Dictionary<int, char>();
+        private Dictionary<int, char> powtorzHasloChars = new Dictionary<int, char>();
+
+
         public string NoweHaslo { get; private set; }
 
         public ResetujHasloForm(UserClass.User user)
         {
             InitializeComponent();
+
+            timerStworzHaslo = new Timer();
+            timerStworzHaslo.Interval = 300; 
+            timerStworzHaslo.Tick += TimerStworzHaslo_Tick;
+
+            timerPowtorzHaslo = new Timer();
+            timerPowtorzHaslo.Interval = 300; 
+            timerPowtorzHaslo.Tick += TimerPowtorzHaslo_Tick;
+
+     
+            txtBoxStworzHaslo.TextChanged += TxtBoxStworzHaslo_TextChanged;
+            txtBoxPowtorzHaslo.TextChanged += TxtBoxPowtorzHaslo_TextChanged;
 
 
             _user = user;
@@ -90,6 +109,63 @@ namespace DK24
         private void btnCofnij_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void TxtBoxStworzHaslo_TextChanged(object sender, EventArgs e)
+        {
+            StartPasswordProcessing(txtBoxStworzHaslo, stworzHasloChars, timerStworzHaslo);
+        }
+
+        private void TxtBoxPowtorzHaslo_TextChanged(object sender, EventArgs e)
+        {
+            StartPasswordProcessing(txtBoxPowtorzHaslo, powtorzHasloChars, timerPowtorzHaslo);
+        }
+
+        private void StartPasswordProcessing(TextBox textBox, Dictionary<int, char> charDictionary, Timer timer)
+        {
+            for (int i = 0; i < textBox.Text.Length; i++)
+            {
+                if (!charDictionary.ContainsKey(i))
+                {
+                    charDictionary[i] = textBox.Text[i];
+                }
+            }
+
+            if (!timer.Enabled)
+            {
+                timer.Start();
+            }
+        }
+
+        private void TimerStworzHaslo_Tick(object sender, EventArgs e)
+        {
+            ReplaceCharactersWithBullet(txtBoxStworzHaslo, stworzHasloChars, timerStworzHaslo);
+        }
+
+        private void TimerPowtorzHaslo_Tick(object sender, EventArgs e)
+        {
+            ReplaceCharactersWithBullet(txtBoxPowtorzHaslo, powtorzHasloChars, timerPowtorzHaslo);
+        }
+
+        private void ReplaceCharactersWithBullet(TextBox textBox, Dictionary<int, char> charDictionary, Timer timer)
+        {
+            for (int i = 0; i < textBox.Text.Length; i++)
+            {
+                if (charDictionary.ContainsKey(i) && charDictionary[i] != '•')
+                {
+                    charDictionary[i] = '•';
+                }
+            }
+
+            string updatedText = new string(textBox.Text.Select((c, i) => charDictionary.ContainsKey(i) ? charDictionary[i] : c).ToArray());
+            int selectionStart = textBox.SelectionStart;
+            textBox.Text = updatedText;
+            textBox.SelectionStart = selectionStart;
+
+            if (!charDictionary.Values.Any(c => c != '•'))
+            {
+                timer.Stop();
+            }
         }
     }
 }
