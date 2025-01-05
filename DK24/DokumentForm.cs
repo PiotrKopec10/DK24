@@ -388,14 +388,13 @@ namespace DK24
             //}
 
 
-
-
-
             DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
 
             SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
             this.Hide();
             szczegolyZamowieniaForm.ShowDialog();
+            
+            
 
 
 

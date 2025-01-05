@@ -1,5 +1,7 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using static DK24.Klasy.AddressClass;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -53,10 +55,20 @@ namespace DK24
                 dtPickSprzed.Visible = true;
                 btnDataSprzed.Visible = true;
 
-
                 btnWygenerujEtykiete.Enabled = false;
                 btnZakonczZamowienie.Enabled = true;
                 btnAnulujZamowienie.Enabled = false;
+
+                
+                if (chckBoxFaktura.Checked) 
+                {
+                    btnFaktura.Enabled = false;
+                    btnFaktura.Visible = true;
+                }
+                else 
+                {
+                    btnFaktura.Visible = false;
+                }
 
 
             }
@@ -67,6 +79,8 @@ namespace DK24
 
                 btnWygenerujEtykiete.Enabled = true;
                 btnAnulujZamowienie.Enabled = false;
+                btnFaktura.Enabled = false;
+                btnFaktura.Visible = true;
 
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 1) //W przygotwaniu
@@ -74,7 +88,7 @@ namespace DK24
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
                 btnZakonczZamowienie.Enabled = false;
-                btnWygenerujEtykiete.Enabled = false;              
+                //btnWygenerujEtykiete.Enabled = false;              
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 0) //Nowe
             {
@@ -100,7 +114,8 @@ namespace DK24
             o.created_at,
             o.modified_at,
             o.shipping_method,
-            o.user_id,              
+            o.user_id,          
+            o.is_invoice,
             o.delivery_address_id,
             COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
             COALESCE(cd.email, u.email) AS email,
@@ -163,13 +178,40 @@ namespace DK24
                             //name = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
                             // company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,  
 
+                            //if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
+                            //    GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = reader.GetString(reader.GetOrdinal("customer_name"));
+                            //else
+                            //    GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = "Nie Znaleziono";
+
                             if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
-                                GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = reader.GetString(reader.GetOrdinal("customer_name"));
+                            {
+                                string rawCustomerName = reader.GetString(reader.GetOrdinal("customer_name"));
+                                // Usunięcie znaków specjalnych
+                                string filteredCustomerName = Regex.Replace(rawCustomerName, @"[^a-zA-Z0-9\s]", "");
+                                GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = filteredCustomerName;
+                            }
                             else
+                            {
                                 GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = "Nie Znaleziono";
+                            }
 
 
-
+                            if (!reader.IsDBNull(reader.GetOrdinal("is_invoice")))
+                            {
+                                int isInvoice = reader.GetInt32(reader.GetOrdinal("is_invoice")); 
+                                if (isInvoice == 1)
+                                {
+                                    chckBoxFaktura.Checked = true; 
+                                }
+                                else
+                                {
+                                    chckBoxFaktura.Checked = false; 
+                                }
+                            }
+                            else
+                            {
+                                chckBoxFaktura.Checked = false; 
+                            }
 
 
                             lblNrZamowienia.Text = GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id.ToString();
@@ -322,6 +364,7 @@ namespace DK24
                             }
                             else if(status == "label_ready") 
                             {
+
                                 cmbBoxStatusZamowienia.SelectedIndex = 3;
                                 btnWygenerujEtykiete.Enabled = false;
 
@@ -329,8 +372,6 @@ namespace DK24
 
                                 btnAnulujZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
-
-
                             }
                             
 

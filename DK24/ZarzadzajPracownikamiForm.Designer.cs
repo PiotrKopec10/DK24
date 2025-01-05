@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZarzadzajPracownikamiForm));
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             radioButtonPracownicy = new RadioButton();
             radioButtonAdmin = new RadioButton();
@@ -434,13 +434,15 @@
             // 
             // cmbBoxNrTelPrefix
             // 
+            cmbBoxNrTelPrefix.DisplayMember = "+48";
             cmbBoxNrTelPrefix.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxNrTelPrefix.FormattingEnabled = true;
-            cmbBoxNrTelPrefix.Items.AddRange(new object[] { "+48", "+44", "+42" });
-            cmbBoxNrTelPrefix.Location = new Point(150, 183);
+            cmbBoxNrTelPrefix.Items.AddRange(new object[] { "+48" });
+            cmbBoxNrTelPrefix.Location = new Point(154, 183);
             cmbBoxNrTelPrefix.Name = "cmbBoxNrTelPrefix";
-            cmbBoxNrTelPrefix.Size = new Size(42, 23);
+            cmbBoxNrTelPrefix.Size = new Size(51, 23);
             cmbBoxNrTelPrefix.TabIndex = 15;
+            cmbBoxNrTelPrefix.ValueMember = "+48";
             // 
             // txtBoxHaslo
             // 
@@ -458,10 +460,10 @@
             // 
             // txtBoxNrTel
             // 
-            txtBoxNrTel.Location = new Point(195, 183);
+            txtBoxNrTel.Location = new Point(211, 183);
             txtBoxNrTel.MaxLength = 12;
             txtBoxNrTel.Name = "txtBoxNrTel";
-            txtBoxNrTel.Size = new Size(132, 23);
+            txtBoxNrTel.Size = new Size(116, 23);
             txtBoxNrTel.TabIndex = 12;
             txtBoxNrTel.KeyPress += txtBoxNrTel_KeyPress;
             // 
@@ -601,30 +603,30 @@
             dtGridLstPracownikow.AccessibleRole = AccessibleRole.Caret;
             dtGridLstPracownikow.AllowUserToAddRows = false;
             dtGridLstPracownikow.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = Color.LightGray;
-            dataGridViewCellStyle13.ForeColor = Color.Black;
-            dataGridViewCellStyle13.NullValue = "Brak Danych";
-            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.NullValue = "Brak Danych";
+            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dtGridLstPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle14.ForeColor = Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dtGridLstPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = SystemColors.Control;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle15.ForeColor = Color.Black;
-            dataGridViewCellStyle15.NullValue = "Brak Danych";
-            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.NullValue = "Brak Danych";
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle7;
             dtGridLstPracownikow.Dock = DockStyle.Fill;
             dtGridLstPracownikow.GridColor = Color.Gray;
             dtGridLstPracownikow.Location = new Point(0, 0);
@@ -632,14 +634,14 @@
             dtGridLstPracownikow.Name = "dtGridLstPracownikow";
             dtGridLstPracownikow.ReadOnly = true;
             dtGridLstPracownikow.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtGridLstPracownikow.RowHeadersVisible = false;
             dtGridLstPracownikow.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstPracownikow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

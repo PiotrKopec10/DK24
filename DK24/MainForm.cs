@@ -114,7 +114,7 @@ namespace DK24
             }
             else if (cbxWrealizacji.Checked)
             {
-                filtrStatus = new[] { "in_progress" };
+                filtrStatus = new[] { "in_progress", "invoice_ready", "label_ready" };
             }
             else if (cbxZakonczone.Checked)
             {
@@ -308,17 +308,65 @@ namespace DK24
             dHLForm.ShowDialog();
         }
 
+        //private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0 && dtGridViewZamowienia.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
+        //    {
+        //        string status = rowView["status"]?.ToString();
+        //        if (status == "canceled")
+        //        {
+        //            dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+        //        }
+
+        //    }
+        //}
         private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0 && dtGridViewZamowienia.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
+            if (e.RowIndex >= 0 && dtGridViewZamowienia.Columns[e.ColumnIndex].Name == "Status")
             {
-                string status = rowView["status"]?.ToString();
+                string status = e.Value?.ToString();
+
+                if (status == "created")
+                {
+                    e.Value = "Nowe";
+                }
+                else if (status == "in_progress")
+                {
+                    e.Value = "W realizacji";
+                }
+                else if (status == "invoice_ready")
+                {
+                    e.Value = "Gotowa faktura";
+                }
+                else if (status == "label_ready")
+                {
+                    e.Value = "Gotowa etykieta";
+                }
+                else if (status == "canceled")
+                {
+                    e.Value = "Anulowano";
+                }
+                else if (status == "completed")
+                {
+                    e.Value = "Ukończone";
+                }
+
+                // Możesz dodać różne kolory w zależności od statusu, jeśli tego chcesz
                 if (status == "canceled")
                 {
                     dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                 }
-               
+                else if (status == "label_ready")
+                {
+                    dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSteelBlue;
+                }
+                else if (status == "invoice_ready")
+                {
+                    dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                }
             }
         }
+
+
     }
 }
