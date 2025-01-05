@@ -34,7 +34,9 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
+            btnUsun = new Button();
             btnCofnij = new Button();
+            btnEdytuj = new Button();
             btnDodaj = new Button();
             txtBoxFilter = new TextBox();
             label2 = new Label();
@@ -53,12 +55,9 @@
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
-            wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             pnlDtGridZamowienia = new Panel();
             dtGridLstFakt = new DataGridView();
-            btnUsun = new Button();
-            btnEdytuj = new Button();
             pnlPrzyciski.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panelZalogowania.SuspendLayout();
@@ -87,6 +86,15 @@
             pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 2;
             // 
+            // btnUsun
+            // 
+            btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
+            btnUsun.Location = new Point(1129, 16);
+            btnUsun.Name = "btnUsun";
+            btnUsun.Size = new Size(44, 33);
+            btnUsun.TabIndex = 15;
+            btnUsun.UseVisualStyleBackColor = true;
+            // 
             // btnCofnij
             // 
             btnCofnij.BackColor = Color.Transparent;
@@ -96,6 +104,15 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 10;
             btnCofnij.UseVisualStyleBackColor = false;
+            // 
+            // btnEdytuj
+            // 
+            btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
+            btnEdytuj.Location = new Point(1066, 16);
+            btnEdytuj.Name = "btnEdytuj";
+            btnEdytuj.Size = new Size(44, 33);
+            btnEdytuj.TabIndex = 14;
+            btnEdytuj.UseVisualStyleBackColor = true;
             // 
             // btnDodaj
             // 
@@ -258,7 +275,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -302,17 +319,6 @@
             kontrahenciToolStripMenuItem.Text = "Kontrahenci";
             kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             kontrahenciToolStripMenuItem.Click += kontrahenciToolStripMenuItem_Click;
-            // 
-            // wysyłkiToolStripMenuItem
-            // 
-            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
-            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
-            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
-            wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
-            wysyłkiToolStripMenuItem.Text = "Wysyłki";
-            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            wysyłkiToolStripMenuItem.Click += wysyłkiToolStripMenuItem_Click;
             // 
             // towaryToolStripMenuItem
             // 
@@ -390,24 +396,6 @@
             dtGridLstFakt.Size = new Size(1238, 533);
             dtGridLstFakt.TabIndex = 0;
             // 
-            // btnUsun
-            // 
-            btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(1129, 16);
-            btnUsun.Name = "btnUsun";
-            btnUsun.Size = new Size(44, 33);
-            btnUsun.TabIndex = 15;
-            btnUsun.UseVisualStyleBackColor = true;
-            // 
-            // btnEdytuj
-            // 
-            btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
-            btnEdytuj.Location = new Point(1066, 16);
-            btnEdytuj.Name = "btnEdytuj";
-            btnEdytuj.Size = new Size(44, 33);
-            btnEdytuj.TabIndex = 14;
-            btnEdytuj.UseVisualStyleBackColor = true;
-            // 
             // ListaFakturForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -462,7 +450,6 @@
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
-        private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridLstFakt;

@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZarzadzajPracownikamiForm));
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
+            btnDodaj = new Button();
             radioButtonPracownicy = new RadioButton();
             radioButtonAdmin = new RadioButton();
             radioButtonWszyscy = new RadioButton();
@@ -51,19 +52,19 @@
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
-            wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             pnlZarzadzaniaPracownikami = new Panel();
+            lblWymaganiaHasla = new LinkLabel();
+            lblNaglowek = new Label();
+            txtBoxHaslo = new TextBox();
             label14 = new Label();
-            btnAktywacja = new Button();
             btnResetujHaslo = new Button();
             btnZapisz = new Button();
             dtPickerUtworzono = new DateTimePicker();
             dtPickerModyfikacja = new DateTimePicker();
             cmbBoxRola = new ComboBox();
             cmbBoxNrTelPrefix = new ComboBox();
-            txtBoxHaslo = new TextBox();
             txtBoxLogin = new TextBox();
             txtBoxNrTel = new TextBox();
             txtBoxEmail = new TextBox();
@@ -92,6 +93,7 @@
             // pnlPrzyciski
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
+            pnlPrzyciski.Controls.Add(btnDodaj);
             pnlPrzyciski.Controls.Add(radioButtonPracownicy);
             pnlPrzyciski.Controls.Add(radioButtonAdmin);
             pnlPrzyciski.Controls.Add(radioButtonWszyscy);
@@ -103,6 +105,17 @@
             pnlPrzyciski.Name = "pnlPrzyciski";
             pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 2;
+            // 
+            // btnDodaj
+            // 
+            btnDodaj.BackColor = Color.Transparent;
+            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
+            btnDodaj.Location = new Point(1010, 16);
+            btnDodaj.Name = "btnDodaj";
+            btnDodaj.Size = new Size(44, 33);
+            btnDodaj.TabIndex = 15;
+            btnDodaj.UseVisualStyleBackColor = false;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // radioButtonPracownicy
             // 
@@ -177,7 +190,7 @@
             // btnEdytuj
             // 
             btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
-            btnEdytuj.Location = new Point(1067, 16);
+            btnEdytuj.Location = new Point(1070, 16);
             btnEdytuj.Name = "btnEdytuj";
             btnEdytuj.Size = new Size(44, 33);
             btnEdytuj.TabIndex = 12;
@@ -256,7 +269,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -301,16 +314,6 @@
             kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             kontrahenciToolStripMenuItem.Click += kontrahenciToolStripMenuItem_Click;
             // 
-            // wysyłkiToolStripMenuItem
-            // 
-            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
-            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
-            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
-            wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
-            wysyłkiToolStripMenuItem.Text = "Wysyłki";
-            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
             // towaryToolStripMenuItem
             // 
             towaryToolStripMenuItem.BackColor = Color.Transparent;
@@ -336,15 +339,16 @@
             // 
             pnlZarzadzaniaPracownikami.BackColor = SystemColors.ControlDark;
             pnlZarzadzaniaPracownikami.BackgroundImage = (Image)resources.GetObject("pnlZarzadzaniaPracownikami.BackgroundImage");
+            pnlZarzadzaniaPracownikami.Controls.Add(lblWymaganiaHasla);
+            pnlZarzadzaniaPracownikami.Controls.Add(lblNaglowek);
+            pnlZarzadzaniaPracownikami.Controls.Add(txtBoxHaslo);
             pnlZarzadzaniaPracownikami.Controls.Add(label14);
-            pnlZarzadzaniaPracownikami.Controls.Add(btnAktywacja);
             pnlZarzadzaniaPracownikami.Controls.Add(btnResetujHaslo);
             pnlZarzadzaniaPracownikami.Controls.Add(btnZapisz);
             pnlZarzadzaniaPracownikami.Controls.Add(dtPickerUtworzono);
             pnlZarzadzaniaPracownikami.Controls.Add(dtPickerModyfikacja);
             pnlZarzadzaniaPracownikami.Controls.Add(cmbBoxRola);
             pnlZarzadzaniaPracownikami.Controls.Add(cmbBoxNrTelPrefix);
-            pnlZarzadzaniaPracownikami.Controls.Add(txtBoxHaslo);
             pnlZarzadzaniaPracownikami.Controls.Add(txtBoxLogin);
             pnlZarzadzaniaPracownikami.Controls.Add(txtBoxNrTel);
             pnlZarzadzaniaPracownikami.Controls.Add(txtBoxEmail);
@@ -366,6 +370,44 @@
             pnlZarzadzaniaPracownikami.Size = new Size(1228, 277);
             pnlZarzadzaniaPracownikami.TabIndex = 13;
             // 
+            // lblWymaganiaHasla
+            // 
+            lblWymaganiaHasla.ActiveLinkColor = Color.FromArgb(255, 128, 0);
+            lblWymaganiaHasla.AutoSize = true;
+            lblWymaganiaHasla.BackColor = Color.Transparent;
+            lblWymaganiaHasla.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 238);
+            lblWymaganiaHasla.ImeMode = ImeMode.NoControl;
+            lblWymaganiaHasla.LinkColor = Color.DarkGray;
+            lblWymaganiaHasla.Location = new Point(416, 172);
+            lblWymaganiaHasla.Name = "lblWymaganiaHasla";
+            lblWymaganiaHasla.Size = new Size(256, 13);
+            lblWymaganiaHasla.TabIndex = 41;
+            lblWymaganiaHasla.TabStop = true;
+            lblWymaganiaHasla.Text = "WYMAGANIA: 1 znak specjalny, 1 cyfra i długość > 5\r\n";
+            lblWymaganiaHasla.Visible = false;
+            lblWymaganiaHasla.VisitedLinkColor = Color.FromArgb(255, 128, 0);
+            // 
+            // lblNaglowek
+            // 
+            lblNaglowek.AutoSize = true;
+            lblNaglowek.BackColor = Color.Transparent;
+            lblNaglowek.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lblNaglowek.ForeColor = Color.Silver;
+            lblNaglowek.Location = new Point(511, 17);
+            lblNaglowek.Name = "lblNaglowek";
+            lblNaglowek.Size = new Size(26, 18);
+            lblNaglowek.TabIndex = 40;
+            lblNaglowek.Text = "...";
+            lblNaglowek.Visible = false;
+            // 
+            // txtBoxHaslo
+            // 
+            txtBoxHaslo.Enabled = false;
+            txtBoxHaslo.Location = new Point(416, 146);
+            txtBoxHaslo.Name = "txtBoxHaslo";
+            txtBoxHaslo.Size = new Size(175, 23);
+            txtBoxHaslo.TabIndex = 39;
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -378,18 +420,9 @@
             label14.TabIndex = 38;
             label14.Text = "ZARZĄDZAJ PRACOWNIKAMI";
             // 
-            // btnAktywacja
-            // 
-            btnAktywacja.Location = new Point(873, 146);
-            btnAktywacja.Name = "btnAktywacja";
-            btnAktywacja.Size = new Size(146, 51);
-            btnAktywacja.TabIndex = 22;
-            btnAktywacja.Text = "Aktywuj / Dezaktywuj\r\nPracownika\r\n";
-            btnAktywacja.UseVisualStyleBackColor = true;
-            // 
             // btnResetujHaslo
             // 
-            btnResetujHaslo.Location = new Point(452, 182);
+            btnResetujHaslo.Location = new Point(450, 186);
             btnResetujHaslo.Name = "btnResetujHaslo";
             btnResetujHaslo.Size = new Size(107, 23);
             btnResetujHaslo.TabIndex = 21;
@@ -399,12 +432,13 @@
             // 
             // btnZapisz
             // 
-            btnZapisz.Location = new Point(1104, 213);
+            btnZapisz.Location = new Point(872, 149);
             btnZapisz.Name = "btnZapisz";
-            btnZapisz.Size = new Size(112, 52);
+            btnZapisz.Size = new Size(112, 42);
             btnZapisz.TabIndex = 20;
             btnZapisz.Text = "Zapisz dane";
             btnZapisz.UseVisualStyleBackColor = true;
+            btnZapisz.Visible = false;
             btnZapisz.Click += btnZapisz_Click;
             // 
             // dtPickerUtworzono
@@ -426,6 +460,7 @@
             // cmbBoxRola
             // 
             cmbBoxRola.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxRola.Enabled = false;
             cmbBoxRola.FormattingEnabled = true;
             cmbBoxRola.Location = new Point(416, 70);
             cmbBoxRola.Name = "cmbBoxRola";
@@ -436,6 +471,7 @@
             // 
             cmbBoxNrTelPrefix.DisplayMember = "+48";
             cmbBoxNrTelPrefix.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxNrTelPrefix.Enabled = false;
             cmbBoxNrTelPrefix.FormattingEnabled = true;
             cmbBoxNrTelPrefix.Items.AddRange(new object[] { "+48" });
             cmbBoxNrTelPrefix.Location = new Point(154, 183);
@@ -444,15 +480,9 @@
             cmbBoxNrTelPrefix.TabIndex = 15;
             cmbBoxNrTelPrefix.ValueMember = "+48";
             // 
-            // txtBoxHaslo
-            // 
-            txtBoxHaslo.Location = new Point(416, 146);
-            txtBoxHaslo.Name = "txtBoxHaslo";
-            txtBoxHaslo.Size = new Size(175, 23);
-            txtBoxHaslo.TabIndex = 14;
-            // 
             // txtBoxLogin
             // 
+            txtBoxLogin.Enabled = false;
             txtBoxLogin.Location = new Point(416, 108);
             txtBoxLogin.Name = "txtBoxLogin";
             txtBoxLogin.Size = new Size(175, 23);
@@ -460,8 +490,9 @@
             // 
             // txtBoxNrTel
             // 
+            txtBoxNrTel.Enabled = false;
             txtBoxNrTel.Location = new Point(211, 183);
-            txtBoxNrTel.MaxLength = 12;
+            txtBoxNrTel.MaxLength = 9;
             txtBoxNrTel.Name = "txtBoxNrTel";
             txtBoxNrTel.Size = new Size(116, 23);
             txtBoxNrTel.TabIndex = 12;
@@ -469,6 +500,7 @@
             // 
             // txtBoxEmail
             // 
+            txtBoxEmail.Enabled = false;
             txtBoxEmail.Location = new Point(117, 146);
             txtBoxEmail.Name = "txtBoxEmail";
             txtBoxEmail.Size = new Size(210, 23);
@@ -476,6 +508,7 @@
             // 
             // txtBoxNazwisko
             // 
+            txtBoxNazwisko.Enabled = false;
             txtBoxNazwisko.Location = new Point(142, 108);
             txtBoxNazwisko.Name = "txtBoxNazwisko";
             txtBoxNazwisko.Size = new Size(185, 23);
@@ -483,6 +516,7 @@
             // 
             // txtBoxImie
             // 
+            txtBoxImie.Enabled = false;
             txtBoxImie.Location = new Point(117, 70);
             txtBoxImie.Name = "txtBoxImie";
             txtBoxImie.Size = new Size(210, 23);
@@ -603,30 +637,30 @@
             dtGridLstPracownikow.AccessibleRole = AccessibleRole.Caret;
             dtGridLstPracownikow.AllowUserToAddRows = false;
             dtGridLstPracownikow.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.NullValue = "Brak Danych";
-            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridLstPracownikow.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtGridLstPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridLstPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.NullValue = "Brak Danych";
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridLstPracownikow.DefaultCellStyle = dataGridViewCellStyle3;
             dtGridLstPracownikow.Dock = DockStyle.Fill;
             dtGridLstPracownikow.GridColor = Color.Gray;
             dtGridLstPracownikow.Location = new Point(0, 0);
@@ -634,14 +668,14 @@
             dtGridLstPracownikow.Name = "dtGridLstPracownikow";
             dtGridLstPracownikow.ReadOnly = true;
             dtGridLstPracownikow.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridLstPracownikow.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtGridLstPracownikow.RowHeadersVisible = false;
             dtGridLstPracownikow.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstPracownikow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -701,7 +735,6 @@
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
-        private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
         private ToolStripMenuItem ądzajPracownikamiToolStripMenuItem;
         private Panel pnlZarzadzaniaPracownikami;
@@ -718,13 +751,11 @@
         private DateTimePicker dtPickerModyfikacja;
         private ComboBox cmbBoxRola;
         private ComboBox cmbBoxNrTelPrefix;
-        private TextBox txtBoxHaslo;
         private TextBox txtBoxLogin;
         private TextBox txtBoxNrTel;
         private TextBox txtBoxEmail;
         private TextBox txtBoxNazwisko;
         private TextBox txtBoxImie;
-        private Button btnAktywacja;
         private Button btnResetujHaslo;
         private Button btnZapisz;
         private RadioButton radioButtonAdmin;
@@ -735,5 +766,9 @@
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridLstPracownikow;
         private Label label14;
+        private Button btnDodaj;
+        private TextBox txtBoxHaslo;
+        private Label lblNaglowek;
+        private LinkLabel lblWymaganiaHasla;
     }
 }

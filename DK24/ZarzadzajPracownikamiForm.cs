@@ -119,7 +119,13 @@ namespace DK24
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
+            EnableFields();
+            btnZapisz.Visible = true;
             PobierzPracownika();
+            lblNaglowek.Visible = true;
+            lblNaglowek.Text = "EDYTUJ PRACOWNIKA";
+            cmbBoxNrTelPrefix.SelectedItem = "+48";
+            lblWymaganiaHasla.Visible = false;
 
             if (AktualnyUser.user_id >= 0)
             {
@@ -143,7 +149,6 @@ namespace DK24
                 cmbBoxNrTelPrefix.SelectedIndex = -1;
                 txtBoxLogin.Text = "";
                 txtBoxHaslo.Text = "";
-                txtBoxHaslo.Enabled = true;
                 btnResetujHaslo.Visible = false;
             }
             else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
@@ -165,41 +170,121 @@ namespace DK24
             }
         }
 
-        private void btnZapisz_Click(object sender, EventArgs e)
-        {
 
-            if (!string.IsNullOrEmpty(txtBoxImie.Text) &&
-        !string.IsNullOrEmpty(txtBoxNazwisko.Text) &&
-        !string.IsNullOrEmpty(txtBoxEmail.Text) &&
-        !string.IsNullOrEmpty(txtBoxNrTel.Text) && txtBoxNrTel.Text.Length > 8 &&
-        !string.IsNullOrEmpty(txtBoxLogin.Text) &&
-        !string.IsNullOrEmpty(txtBoxHaslo.Text) &&
-        !string.IsNullOrEmpty(cmbBoxRola.Text) &&
-        !string.IsNullOrEmpty(cmbBoxNrTelPrefix.Text))
+            private void btnZapisz_Click(object sender, EventArgs e)
             {
+                ToolTip toolTip = new ToolTip
+                {
+                    IsBalloon = true,
+                    InitialDelay = 0,
+                    ShowAlways = true
+                };
+
+                bool isValid = true;
+
+                
+                if (string.IsNullOrWhiteSpace(txtBoxImie.Text) || txtBoxImie.TextLength < 3)
+                {
+                    txtBoxImie.BackColor = Color.Pink;
+                    toolTip.SetToolTip(txtBoxImie, "Pole Imię nie może być puste!");
+                    isValid = false;
+                }
+                else
+                {
+                    txtBoxImie.BackColor = SystemColors.Window;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtBoxNazwisko.Text) || txtBoxNazwisko.TextLength < 5)
+                {
+                    txtBoxNazwisko.BackColor = Color.Pink;
+                    toolTip.SetToolTip(txtBoxNazwisko, "Pole Nazwisko nie może być puste!");
+                    isValid = false;
+                }
+                else
+                {
+                    txtBoxNazwisko.BackColor = SystemColors.Window;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtBoxEmail.Text) || !txtBoxEmail.Text.Contains("@"))
+                {
+                    txtBoxEmail.BackColor = Color.Pink;
+                    toolTip.SetToolTip(txtBoxEmail, "Pole Email nie może być puste i musi zawierać '@'!");
+                    isValid = false;
+                }
+                else
+                {
+                    txtBoxEmail.BackColor = SystemColors.Window;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text) || txtBoxNrTel.Text.Length < 9)
+                {
+                    txtBoxNrTel.BackColor = Color.Pink;
+                    toolTip.SetToolTip(txtBoxNrTel, "Pole Numer Telefonu musi mieć równo 9 znaków!");
+                    isValid = false;
+                }
+                else
+                {
+                    txtBoxNrTel.BackColor = SystemColors.Window;
+                }
+
+            if (GlobalClass.StanFormyPracownika.StanFormy == 1 &&
+            (string.IsNullOrWhiteSpace(txtBoxHaslo.Text) ||
+            txtBoxHaslo.Text.Length < 5 ||
+            !txtBoxHaslo.Text.Any(char.IsDigit) ||
+            !txtBoxHaslo.Text.Any(ch => !char.IsLetterOrDigit(ch))))
+            {
+                txtBoxHaslo.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxHaslo, "Hasło musi mieć co najmniej 5 znaków, zawierać co najmniej jedną cyfrę i jeden znak specjalny!");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxHaslo.BackColor = SystemColors.Window;
+            }
+
+            if (!isValid)
+                {
+                    MessageBox.Show("Upewnij się, że wszystkie wymagane pola są poprawnie wypełnione!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 if (GlobalClass.StanFormyPracownika.StanFormy == 1)
                 {
                     DodajPracownika();
-                }
+                    WyczyscPola();
+                    txtBoxImie.Enabled = false;
+                    txtBoxNazwisko.Enabled = false;
+                    txtBoxEmail.Enabled = false;
+                    txtBoxNrTel.Enabled = false;
+                    txtBoxLogin.Enabled = false;
+                    cmbBoxRola.Enabled = false;
+                    txtBoxHaslo.Enabled = false;
+                    cmbBoxNrTelPrefix.Enabled = false;
+                    btnResetujHaslo.Visible = false;
+                    btnZapisz.Visible = false;
+                lblWymaganiaHasla.Visible = false;
+            }
                 else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
                 {
                     EdytujPracownika();
                     GlobalClass.StanFormyPracownika.StanFormy = 1;
+                    WyczyscPola();
+                    txtBoxImie.Enabled = false;
+                    txtBoxNazwisko.Enabled = false;
+                    txtBoxEmail.Enabled = false;
+                    txtBoxNrTel.Enabled = false;
+                    txtBoxLogin.Enabled = false;
+                    cmbBoxRola.Enabled = false;
+                    txtBoxHaslo.Enabled = false;
+                    cmbBoxNrTelPrefix.Enabled = false;
+                    btnResetujHaslo.Visible = false;
+                    btnZapisz.Visible = false;
+                lblWymaganiaHasla.Visible = false;
                 }
-
-            }
-            else
-            {
-
-                MessageBox.Show("Upewnij się, że wszystkie pola są wypełnione!!!.");
             }
 
 
-
-        }
-
-        private void DodajPracownika()
+            private void DodajPracownika()
         {
             AktualnyUser = new UserClass.User
             {
@@ -278,7 +363,25 @@ namespace DK24
         private void btnCofnij_Click(object sender, EventArgs e)
         {
             WyczyscPola();
+            txtBoxImie.Enabled = false;
+            txtBoxNazwisko.Enabled = false;
+            txtBoxEmail.Enabled = false;
+            txtBoxNrTel.Enabled = false;
+            txtBoxLogin.Enabled = false;
+            cmbBoxRola.Enabled = false;
+            txtBoxHaslo.Enabled = false;
+            cmbBoxNrTelPrefix.Enabled = false;
             btnResetujHaslo.Visible = false;
+            btnZapisz.Visible = false;
+            lblNaglowek.Visible = false;
+
+            lblWymaganiaHasla.Visible = false;
+
+            txtBoxImie.BackColor = SystemColors.Window;
+            txtBoxNazwisko.BackColor = SystemColors.Window;
+            txtBoxEmail.BackColor = SystemColors.Window;
+            txtBoxNrTel.BackColor = SystemColors.Window;
+            txtBoxHaslo.BackColor = SystemColors.Window;
         }
 
         private void btnResetujHaslo_Click(object sender, EventArgs e)
@@ -332,6 +435,7 @@ namespace DK24
         private void btnUsun_Click(object sender, EventArgs e)
         {
             PobierzPracownika();
+            lblNaglowek.Visible = false;
 
             DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć użytkownika?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -383,6 +487,37 @@ namespace DK24
             ListaTowary_UslugiForm listaTowary_Uslugi = new ListaTowary_UslugiForm();
             this.Hide();
             listaTowary_Uslugi.ShowDialog();
+        }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            WyczyscPola();
+            EnableFields();
+            btnResetujHaslo.Visible = false;
+            btnZapisz.Visible = true;
+            lblNaglowek.Visible = true;
+            lblNaglowek.Text = "DODAJ PRACOWNIKA";
+            cmbBoxNrTelPrefix.SelectedItem = "+48";
+            lblWymaganiaHasla.Visible = true;
+
+        }
+
+        private void EnableFields()
+        {
+            txtBoxImie.Enabled = true;
+            txtBoxNazwisko.Enabled = true;
+            txtBoxEmail.Enabled = true;
+            txtBoxNrTel.Enabled = true;
+            txtBoxLogin.Enabled = true;
+            cmbBoxRola.Enabled = true;
+            txtBoxHaslo.Enabled = true;
+            cmbBoxNrTelPrefix.Enabled = true;
+
+            txtBoxImie.BackColor = SystemColors.Window;
+            txtBoxNazwisko.BackColor = SystemColors.Window;
+            txtBoxEmail.BackColor = SystemColors.Window;
+            txtBoxNrTel.BackColor = SystemColors.Window;
+            txtBoxHaslo.BackColor = SystemColors.Window;
         }
     }
 }

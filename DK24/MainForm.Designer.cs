@@ -48,7 +48,6 @@
             edytujToolStripMenuItem = new ToolStripDropDownMenu();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
-            wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip = new MenuStrip();
             ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
@@ -282,21 +281,10 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 40);
+            towaryToolStripMenuItem.Size = new Size(99, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             towaryToolStripMenuItem.Click += towaryToolStripMenuItem_Click;
-            // 
-            // wysyłkiToolStripMenuItem
-            // 
-            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
-            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
-            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
-            wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
-            wysyłkiToolStripMenuItem.Text = "Wysyłki";
-            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            wysyłkiToolStripMenuItem.Click += wysyłkiToolStripMenuItem_Click;
             // 
             // zamówieniaToolStripMenuItem
             // 
@@ -317,7 +305,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -432,7 +420,6 @@
         private ToolStripDropDownMenu edytujToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
-        private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private MenuStrip menuStrip;
         private Button btnRefresh;

@@ -48,7 +48,6 @@
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             fakturyToolStripMenuItem = new ToolStripMenuItem();
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
-            wysyłkiToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
@@ -201,7 +200,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, wysyłkiToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -245,17 +244,6 @@
             kontrahenciToolStripMenuItem.Size = new Size(83, 40);
             kontrahenciToolStripMenuItem.Text = "Kontrahenci";
             kontrahenciToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // wysyłkiToolStripMenuItem
-            // 
-            wysyłkiToolStripMenuItem.BackColor = Color.Transparent;
-            wysyłkiToolStripMenuItem.ForeColor = Color.Silver;
-            wysyłkiToolStripMenuItem.Image = (Image)resources.GetObject("wysyłkiToolStripMenuItem.Image");
-            wysyłkiToolStripMenuItem.Name = "wysyłkiToolStripMenuItem";
-            wysyłkiToolStripMenuItem.Size = new Size(59, 40);
-            wysyłkiToolStripMenuItem.Text = "Wysyłki";
-            wysyłkiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            wysyłkiToolStripMenuItem.Click += wysyłkiToolStripMenuItem_Click;
             // 
             // towaryToolStripMenuItem
             // 
@@ -446,7 +434,6 @@
         private ToolStripMenuItem zamówieniaToolStripMenuItem;
         private ToolStripMenuItem fakturyToolStripMenuItem;
         private ToolStripMenuItem kontrahenciToolStripMenuItem;
-        private ToolStripMenuItem wysyłkiToolStripMenuItem;
         private ToolStripMenuItem towaryToolStripMenuItem;
         private Panel panelZalogowania;
         private LinkLabel linkLabel1;
