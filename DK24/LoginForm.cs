@@ -10,9 +10,18 @@ namespace DK24
         UserClass DzialaniaNaUserze = new UserClass();
         UserClass.User AktualnyUser = new UserClass.User();
 
+        private string aktualneHaslo;
+
         public LoginForm()
         {
             InitializeComponent();
+
+            aktualneHaslo = string.Empty;
+
+
+            txtBoxPassword.TextChanged += TxtBoxHaslo_TextChanged;
+            imgOdszyfruj.MouseDown += ImgOdszyfruj_MouseDown;
+            imgOdszyfruj.MouseUp += ImgOdszyfruj_MouseUp;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,6 +98,19 @@ namespace DK24
 
         }
 
+        private void TxtBoxHaslo_TextChanged(object sender, EventArgs e)
+        {
+            aktualneHaslo = txtBoxPassword.Text;
+        }
 
+        private void ImgOdszyfruj_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtBoxPassword.PasswordChar = '\0';
+        }
+
+        private void ImgOdszyfruj_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtBoxPassword.PasswordChar = '•';
+        }
     }
 }

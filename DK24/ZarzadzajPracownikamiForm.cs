@@ -13,6 +13,8 @@ namespace DK24
         UserClass DzialaniaNaUserze = new UserClass();
         UserClass.User AktualnyUser = new UserClass.User();
 
+        private string aktualneHaslo;
+
         public ZarzadzajPracownikamiForm()
         {
             InitializeComponent();
@@ -27,6 +29,14 @@ namespace DK24
             radioButtonWszyscy.CheckedChanged += radioButtonWszystko_CheckedChanged;
             radioButtonPracownicy.CheckedChanged += radioButtonPracownicy_CheckedChanged;
             radioButtonAdmin.CheckedChanged += radioButtonAdmin_CheckedChanged;
+
+            aktualneHaslo = string.Empty;
+
+            
+            txtBoxHaslo.TextChanged += TxtBoxHaslo_TextChanged;
+            imgOdszyfruj.MouseDown += ImgOdszyfruj_MouseDown;
+            imgOdszyfruj.MouseUp += ImgOdszyfruj_MouseUp;
+
         }
 
         private void cmbBoxRola_SelectedIndexChanged(object sender, EventArgs e)
@@ -518,6 +528,21 @@ namespace DK24
             txtBoxEmail.BackColor = SystemColors.Window;
             txtBoxNrTel.BackColor = SystemColors.Window;
             txtBoxHaslo.BackColor = SystemColors.Window;
+        }
+
+        private void TxtBoxHaslo_TextChanged(object sender, EventArgs e)
+        {
+            aktualneHaslo = txtBoxHaslo.Text;
+        }
+
+        private void ImgOdszyfruj_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtBoxHaslo.PasswordChar = '\0';
+        }
+
+        private void ImgOdszyfruj_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtBoxHaslo.PasswordChar = '•';
         }
     }
 }

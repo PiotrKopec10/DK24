@@ -41,9 +41,11 @@
             btnZaloguj = new Button();
             lblWyjdz = new LinkLabel();
             lblZleHaslo = new Label();
+            imgOdszyfruj = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).BeginInit();
             SuspendLayout();
             // 
             // lblWitaj
@@ -132,12 +134,20 @@
             lblZleHaslo.ForeColor = Color.Red;
             lblZleHaslo.Name = "lblZleHaslo";
             // 
+            // imgOdszyfruj
+            // 
+            imgOdszyfruj.BackColor = Color.Transparent;
+            resources.ApplyResources(imgOdszyfruj, "imgOdszyfruj");
+            imgOdszyfruj.Name = "imgOdszyfruj";
+            imgOdszyfruj.TabStop = false;
+            // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ControlBox = false;
+            Controls.Add(imgOdszyfruj);
             Controls.Add(lblZleHaslo);
             Controls.Add(lblWyjdz);
             Controls.Add(imgPassword);
@@ -158,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,5 +186,6 @@
         private Button btnZaloguj;
         private LinkLabel lblWyjdz;
         private Label lblZleHaslo;
+        private PictureBox imgOdszyfruj;
     }
 }

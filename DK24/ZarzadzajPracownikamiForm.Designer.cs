@@ -55,6 +55,7 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             pnlZarzadzaniaPracownikami = new Panel();
+            imgOdszyfruj = new PictureBox();
             lblWymaganiaHasla = new LinkLabel();
             lblNaglowek = new Label();
             txtBoxHaslo = new TextBox();
@@ -86,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip.SuspendLayout();
             pnlZarzadzaniaPracownikami.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridLstPracownikow).BeginInit();
             SuspendLayout();
@@ -339,6 +341,7 @@
             // 
             pnlZarzadzaniaPracownikami.BackColor = SystemColors.ControlDark;
             pnlZarzadzaniaPracownikami.BackgroundImage = (Image)resources.GetObject("pnlZarzadzaniaPracownikami.BackgroundImage");
+            pnlZarzadzaniaPracownikami.Controls.Add(imgOdszyfruj);
             pnlZarzadzaniaPracownikami.Controls.Add(lblWymaganiaHasla);
             pnlZarzadzaniaPracownikami.Controls.Add(lblNaglowek);
             pnlZarzadzaniaPracownikami.Controls.Add(txtBoxHaslo);
@@ -369,6 +372,17 @@
             pnlZarzadzaniaPracownikami.Name = "pnlZarzadzaniaPracownikami";
             pnlZarzadzaniaPracownikami.Size = new Size(1228, 277);
             pnlZarzadzaniaPracownikami.TabIndex = 13;
+            // 
+            // imgOdszyfruj
+            // 
+            imgOdszyfruj.BackColor = Color.Transparent;
+            imgOdszyfruj.Image = (Image)resources.GetObject("imgOdszyfruj.Image");
+            imgOdszyfruj.Location = new Point(597, 146);
+            imgOdszyfruj.Name = "imgOdszyfruj";
+            imgOdszyfruj.Size = new Size(33, 22);
+            imgOdszyfruj.SizeMode = PictureBoxSizeMode.Zoom;
+            imgOdszyfruj.TabIndex = 42;
+            imgOdszyfruj.TabStop = false;
             // 
             // lblWymaganiaHasla
             // 
@@ -405,6 +419,7 @@
             txtBoxHaslo.Enabled = false;
             txtBoxHaslo.Location = new Point(416, 146);
             txtBoxHaslo.Name = "txtBoxHaslo";
+            txtBoxHaslo.PasswordChar = '•';
             txtBoxHaslo.Size = new Size(175, 23);
             txtBoxHaslo.TabIndex = 39;
             // 
@@ -714,6 +729,7 @@
             menuStrip.PerformLayout();
             pnlZarzadzaniaPracownikami.ResumeLayout(false);
             pnlZarzadzaniaPracownikami.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridLstPracownikow).EndInit();
             ResumeLayout(false);
@@ -770,5 +786,6 @@
         private TextBox txtBoxHaslo;
         private Label lblNaglowek;
         private LinkLabel lblWymaganiaHasla;
+        private PictureBox imgOdszyfruj;
     }
 }
