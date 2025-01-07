@@ -102,6 +102,8 @@ namespace DK24
 
             }
 
+            WypelnijSzczegolyZamowienia();
+
         }
 
         private void WypelnijSzczegolyZamowienia()
