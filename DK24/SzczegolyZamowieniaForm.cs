@@ -1,5 +1,7 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -21,6 +23,8 @@ namespace DK24
             InitializeComponent();
 
             GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
+
+            QuestPDF.Settings.License = LicenseType.Community;
         }
 
         private void SzczegolyZamowieniaForm_Load(object sender, EventArgs e)
@@ -502,28 +506,67 @@ namespace DK24
 
         private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
-
-
             KurierForm dHLForm = new KurierForm();
             dHLForm.ShowDialog();
-
-
-
         }
+
+
+
 
         private void btnFaktura_Click(object sender, EventArgs e)
         {
-            DokumentForm dokumentForm = new DokumentForm();
-            this.Hide();
-            dokumentForm.ShowDialog();
+            //DokumentForm dokumentForm = new DokumentForm();
+            //this.Hide();
+            //dokumentForm.ShowDialog();
+
+                try
+                {
+                    // Dane przykładowe
+                    var items = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>
+        {
+            ("Produkt A", 2, 49.99m, 19.99m ),
+            ("Produkt B", 1, 19.99m, 19.99m ),
+            ("Produkt C", 3, 14.99m, 19.99m )
+        };
+
+                    // Ścieżka do logo
+                    var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    var resourcesDirectory = Path.Combine(baseDirectory, "Resources");
+                var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "logo.png");
+
+                if (!File.Exists(logoPath))
+                    {
+                        throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
+                    }
+
+                    // Generowanie dokumentu
+                    var invoice = new DokumentFakturaClass("D&K Centrum Kopiowania", items, logoPath);
+
+                    // Ścieżka zapisu pliku
+                    var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Faktura.pdf");
+
+                    // Generowanie PDF i zapis do pliku
+                    invoice.GeneratePdf(filePath);
+
+                    // Informacja o sukcesie
+                    MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Opcjonalne otwarcie PDF
+                    System.Diagnostics.Process.Start("explorer", filePath);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Wystąpił błąd podczas generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
 
 
-        }
 
-
-
-      
 
         private void dtGridViewZamowienia_CellContentClick(object sender, DataGridViewCellEventArgs e)
         { 
