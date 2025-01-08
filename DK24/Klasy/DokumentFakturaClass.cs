@@ -31,7 +31,7 @@ namespace DK24
             container
                 .Page(strona =>
                 {
-                    strona.Margin(30);
+                    strona.Margin(50);
 
                     strona.Header().Row(wiersz =>
                     {
@@ -50,8 +50,8 @@ namespace DK24
                                 {
                                     kolumny.RelativeColumn(); // Nazwa
                                     kolumny.ConstantColumn(50); // Ilość
-                                    kolumny.ConstantColumn(70); // Cena Brutto
-                                    kolumny.ConstantColumn(70); // Cena Netto
+                                    kolumny.ConstantColumn(90); // Cena Brutto
+                                    kolumny.ConstantColumn(90); // Cena Netto
                                 });
 
                                 tabela.Header(naglowek =>
@@ -181,7 +181,5 @@ namespace DK24
 
             return numerFaktury;
         }
-
-        public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
     }
 }

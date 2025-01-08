@@ -519,50 +519,65 @@ namespace DK24
             //this.Hide();
             //dokumentForm.ShowDialog();
 
-                try
-                {
-                    // Dane przykładowe
-                    var items = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>
+            try
+            {
+                // Dane przykładowe
+                var items = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>
         {
-            ("Produkt A", 2, 49.99m, 19.99m ),
-            ("Produkt B", 1, 19.99m, 19.99m ),
-            ("Produkt C", 3, 14.99m, 19.99m )
+            ("Produkt A", 2, 49.99m, 19.99m),
+            ("Produkt B", 1, 19.99m, 19.99m),
+            ("Produkt C", 3, 14.99m, 19.99m)
         };
 
-                    // Ścieżka do logo
-                    var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    var resourcesDirectory = Path.Combine(baseDirectory, "Resources");
-                var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "logo.png");
+                // Ścieżka do logo
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
 
                 if (!File.Exists(logoPath))
-                    {
-                        throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
-                    }
-
-                    // Generowanie dokumentu
-                    var invoice = new DokumentFakturaClass("D&K Centrum Kopiowania", items, logoPath);
-
-                    // Ścieżka zapisu pliku
-                    var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Faktura.pdf");
-
-                    // Generowanie PDF i zapis do pliku
-                    invoice.GeneratePdf(filePath);
-
-                    // Informacja o sukcesie
-                    MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Opcjonalne otwarcie PDF
-                    System.Diagnostics.Process.Start("explorer", filePath);
-                }
-                catch (FileNotFoundException ex)
                 {
-                    MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
                 }
-                catch (Exception ex)
+
+                // Generowanie dokumentu
+                var invoice = new DokumentFakturaClass("D&K Centrum Kopiowania", items, logoPath);
+
+                // Tworzenie folderu "D&K_Faktury_zamówień" na pulpicie, jeśli nie istnieje
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string invoicesFolderPath = Path.Combine(desktopPath, "D&K_Faktury_zamówień");
+                if (!Directory.Exists(invoicesFolderPath))
                 {
-                    MessageBox.Show($"Wystąpił błąd podczas generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Directory.CreateDirectory(invoicesFolderPath);
+                }
+
+                // Generowanie nazwy pliku na podstawie numeru zamówienia i nazwy klienta
+                string fileName = $"Faktura_Nr{lblNrZamowienia.Text}_{txtBoxNazwaKlienta.Text.Replace(" ", "_").Replace("/", "_")}.pdf";
+                string filePath = Path.Combine(invoicesFolderPath, fileName);
+
+                // Generowanie PDF i zapis do pliku
+                invoice.GeneratePdf(filePath);
+
+                // Informacja o sukcesie
+                var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Zmiana statusu na "invoice_ready" po kliknięciu OK
+                if (result == DialogResult.OK)
+                {
+                    DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
+ 
+
+                    // Odśwież szczegóły zamówienia
+                    WypelnijSzczegolyZamowienia();
                 }
             }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd podczas generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 
