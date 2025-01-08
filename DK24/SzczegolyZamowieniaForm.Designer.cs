@@ -29,22 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SzczegolyZamowieniaForm));
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            chckBoxFaktura = new CheckBox();
+            btnWygenerujEtykiete = new Button();
             btnFaktura = new Button();
             btnZakonczZamowienie = new Button();
             lblNrZamowienia = new Label();
             label1 = new Label();
             btnAnulujZamowienie = new Button();
             btnZakceptuj = new Button();
-            btnWygenerujEtykiete = new Button();
             txtBoxAdres = new TextBox();
             chckBoxWysylka = new CheckBox();
             chckBoxOdbior = new CheckBox();
@@ -69,7 +70,6 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            chckBoxFaktura = new CheckBox();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
@@ -150,6 +150,30 @@
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
             // 
+            // chckBoxFaktura
+            // 
+            chckBoxFaktura.AutoCheck = false;
+            chckBoxFaktura.AutoSize = true;
+            chckBoxFaktura.BackColor = Color.Transparent;
+            chckBoxFaktura.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            chckBoxFaktura.ForeColor = Color.White;
+            chckBoxFaktura.Location = new Point(648, 213);
+            chckBoxFaktura.Name = "chckBoxFaktura";
+            chckBoxFaktura.Size = new Size(107, 18);
+            chckBoxFaktura.TabIndex = 40;
+            chckBoxFaktura.Text = "Czy Faktura?";
+            chckBoxFaktura.UseVisualStyleBackColor = false;
+            // 
+            // btnWygenerujEtykiete
+            // 
+            btnWygenerujEtykiete.Location = new Point(644, 115);
+            btnWygenerujEtykiete.Name = "btnWygenerujEtykiete";
+            btnWygenerujEtykiete.Size = new Size(130, 54);
+            btnWygenerujEtykiete.TabIndex = 33;
+            btnWygenerujEtykiete.Text = "Wygeneruj Etykiete";
+            btnWygenerujEtykiete.UseVisualStyleBackColor = true;
+            btnWygenerujEtykiete.Click += btnWygenerujEtykiete_Click_1;
+            // 
             // btnFaktura
             // 
             btnFaktura.Location = new Point(644, 237);
@@ -214,16 +238,6 @@
             btnZakceptuj.Text = "Zakceptuj Zamówienie";
             btnZakceptuj.UseVisualStyleBackColor = true;
             btnZakceptuj.Click += btnZakceptuj_Click;
-            // 
-            // btnWygenerujEtykiete
-            // 
-            btnWygenerujEtykiete.Location = new Point(644, 115);
-            btnWygenerujEtykiete.Name = "btnWygenerujEtykiete";
-            btnWygenerujEtykiete.Size = new Size(130, 54);
-            btnWygenerujEtykiete.TabIndex = 33;
-            btnWygenerujEtykiete.Text = "Wygeneruj Etykiete";
-            btnWygenerujEtykiete.UseVisualStyleBackColor = true;
-            btnWygenerujEtykiete.Click += btnWygenerujEtykiete_Click_1;
             // 
             // txtBoxAdres
             // 
@@ -473,30 +487,30 @@
             // 
             dtGridViewZamowienia.AllowUserToAddRows = false;
             dtGridViewZamowienia.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.NullValue = "Brak Danych";
-            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.NullValue = "Brak Danych";
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.NullValue = "Brak Danych";
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
             dtGridViewZamowienia.Dock = DockStyle.Fill;
             dtGridViewZamowienia.EnableHeadersVisualStyles = false;
             dtGridViewZamowienia.GridColor = Color.Gray;
@@ -505,33 +519,20 @@
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
             dtGridViewZamowienia.ReadOnly = true;
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtGridViewZamowienia.Size = new Size(1238, 256);
             dtGridViewZamowienia.TabIndex = 1;
-            // 
-            // chckBoxFaktura
-            // 
-            chckBoxFaktura.AutoCheck = false;
-            chckBoxFaktura.AutoSize = true;
-            chckBoxFaktura.BackColor = Color.Transparent;
-            chckBoxFaktura.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            chckBoxFaktura.ForeColor = Color.White;
-            chckBoxFaktura.Location = new Point(648, 213);
-            chckBoxFaktura.Name = "chckBoxFaktura";
-            chckBoxFaktura.Size = new Size(107, 18);
-            chckBoxFaktura.TabIndex = 40;
-            chckBoxFaktura.Text = "Czy Faktura?";
-            chckBoxFaktura.UseVisualStyleBackColor = false;
+            dtGridViewZamowienia.CellContentClick += dtGridViewZamowienia_CellContentClick;
             // 
             // SzczegolyZamowieniaForm
             // 

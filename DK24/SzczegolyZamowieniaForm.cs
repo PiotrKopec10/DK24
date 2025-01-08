@@ -1,7 +1,7 @@
 ﻿using DK24.Klasy;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
-using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static DK24.Klasy.AddressClass;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -13,8 +13,8 @@ namespace DK24
     {
         ZamowieniaClass.Orders Zamowienia = new ZamowieniaClass.Orders();
         ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
+        string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
 
-       
 
         public SzczegolyZamowieniaForm()
         {
@@ -30,7 +30,7 @@ namespace DK24
 
 
 
-           if (cmbBoxStatusZamowienia.SelectedIndex == 5) //Anulowano
+            if (cmbBoxStatusZamowienia.SelectedIndex == 5) //Anulowano
             {
 
                 btnAnulujZamowienie.Visible = false;
@@ -49,7 +49,7 @@ namespace DK24
 
 
             }
-            else if(cmbBoxStatusZamowienia.SelectedIndex == 3) //Gotowa Etykieta
+            else if (cmbBoxStatusZamowienia.SelectedIndex == 3) //Gotowa Etykieta
             {
 
                 dtPickSprzed.Visible = true;
@@ -59,13 +59,13 @@ namespace DK24
                 btnZakonczZamowienie.Enabled = true;
                 btnAnulujZamowienie.Enabled = false;
 
-                
-                if (chckBoxFaktura.Checked) 
+
+                if (chckBoxFaktura.Checked)
                 {
                     btnFaktura.Enabled = false;
                     btnFaktura.Visible = true;
                 }
-                else 
+                else
                 {
                     btnFaktura.Visible = false;
                 }
@@ -200,19 +200,19 @@ namespace DK24
 
                             if (!reader.IsDBNull(reader.GetOrdinal("is_invoice")))
                             {
-                                int isInvoice = reader.GetInt32(reader.GetOrdinal("is_invoice")); 
+                                int isInvoice = reader.GetInt32(reader.GetOrdinal("is_invoice"));
                                 if (isInvoice == 1)
                                 {
-                                    chckBoxFaktura.Checked = true; 
+                                    chckBoxFaktura.Checked = true;
                                 }
                                 else
                                 {
-                                    chckBoxFaktura.Checked = false; 
+                                    chckBoxFaktura.Checked = false;
                                 }
                             }
                             else
                             {
-                                chckBoxFaktura.Checked = false; 
+                                chckBoxFaktura.Checked = false;
                             }
 
 
@@ -286,7 +286,7 @@ namespace DK24
                                 btnZakonczZamowienie.Enabled = false;
                                 btnWygenerujEtykiete.Enabled = false;
 
-                             
+
 
                             }
                             else if (status == "in_progress")
@@ -305,7 +305,7 @@ namespace DK24
                                 }
                                 else
                                 {
-                                  
+
                                     if (shippingMethod == "dhl")
                                     {
                                         btnZakonczZamowienie.Enabled = false;
@@ -364,7 +364,7 @@ namespace DK24
 
 
                             }
-                            else if(status == "label_ready") 
+                            else if (status == "label_ready")
                             {
 
                                 cmbBoxStatusZamowienia.SelectedIndex = 3;
@@ -375,7 +375,7 @@ namespace DK24
                                 btnAnulujZamowienie.Enabled = false;
                                 btnZakceptuj.Enabled = false;
                             }
-                            
+
 
                             else if (status == "completed")
                             {
@@ -502,7 +502,7 @@ namespace DK24
 
         private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
-           
+
 
             KurierForm dHLForm = new KurierForm();
             dHLForm.ShowDialog();
@@ -516,9 +516,76 @@ namespace DK24
             DokumentForm dokumentForm = new DokumentForm();
             this.Hide();
             dokumentForm.ShowDialog();
-           
+
 
 
         }
+
+        private void dtGridViewZamowienia_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtGridViewZamowienia.Columns["PobierzPlik"].Index)
+            {
+                object fileIdObj = dtGridViewZamowienia.Rows[e.RowIndex].Cells["file_id"].Value;
+                if (fileIdObj != null && int.TryParse(fileIdObj.ToString(), out int fileId))
+                {
+                    // Jeśli fileId rozne od zera to pobieramy
+                    if (fileId > 0)
+                    {
+                        PobierzPlikZBazy(fileId);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Brak pliku do pobrania (file_id = 0 lub null).");
+                    }
+                }
+            }
+        }
+
+        private void PobierzPlikZBazy(int fileId)
+        {
+            try
+            {
+                using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+                {
+                    polaczenie.Open();
+                    string query = "SELECT filename, file_data FROM files WHERE file_id = @fileId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, polaczenie))
+                    {
+                        cmd.Parameters.AddWithValue("@fileId", fileId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string fileName = reader["filename"].ToString();
+                                byte[] fileData = (byte[])reader["file_data"];
+
+                               
+                                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                                string filePath = Path.Combine(desktopPath, fileName);
+
+                         
+                                File.WriteAllBytes(filePath, fileData);
+
+                                MessageBox.Show($"Plik został pobrany i zapisany na pulpicie:\n{filePath}",
+                                    "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nie znaleziono pliku o podanym ID.",
+                                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

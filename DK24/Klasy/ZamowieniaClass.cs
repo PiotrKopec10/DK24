@@ -94,6 +94,71 @@ namespace DK24.Klasy
 
 
 
+        //public void WyswietlSzczegolyZamowienia(int orderId, DataGridView dataGridView)
+        //{
+        //    using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
+        //    {
+        //        try
+        //        {
+        //            polaczenie.Open();
+
+        //            string zapytanie = @"
+        //        SELECT 
+        //            i.name AS Produkt,
+        //            GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS Opcje,
+        //            i.quantity AS Ilość
+        //        FROM 
+        //            serwer197774_drukarnia.items AS i
+        //        LEFT JOIN 
+        //            serwer197774_drukarnia.item_options AS io ON i.item_id = io.item_id
+        //        LEFT JOIN 
+        //            serwer197774_drukarnia.options AS op ON io.option_id = op.option_id
+        //        LEFT JOIN 
+        //            serwer197774_drukarnia.option_groups AS og ON op.option_group_id = og.option_group_id
+        //        WHERE 
+        //            i.order_id = @orderId
+        //        GROUP BY 
+        //            i.item_id
+        //        ORDER BY 
+        //            i.item_id;
+        //    ";
+
+        //            using (MySqlCommand sqlCommand = new MySqlCommand(zapytanie, polaczenie))
+        //            {
+        //                sqlCommand.Parameters.AddWithValue("@orderId", orderId);
+
+        //                using (MySqlDataAdapter adapter = new MySqlDataAdapter(sqlCommand))
+        //                {
+        //                    DataTable dataTable = new DataTable();
+        //                    adapter.Fill(dataTable);
+
+
+        //                    dataGridView.DataSource = dataTable;
+        //                }
+        //                dataGridView.Columns["Produkt"].DisplayIndex = 0;
+        //                dataGridView.Columns["Opcje"].DisplayIndex = 1;
+        //                dataGridView.Columns["Ilość"].DisplayIndex = 2;
+
+
+        //                dataGridView.Columns["Produkt"].Width = 200;
+        //                dataGridView.Columns["Opcje"].Width = 300;
+        //                dataGridView.Columns["Ilość"].Width = 100;
+
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
+        //        }
+        //        finally
+        //        {
+        //            polaczenie.Close();
+        //        }
+        //    }
+        //}
+
+
+
         public void WyswietlSzczegolyZamowienia(int orderId, DataGridView dataGridView)
         {
             using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
@@ -105,22 +170,33 @@ namespace DK24.Klasy
                     string zapytanie = @"
                 SELECT 
                     i.name AS Produkt,
-                    GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS Opcje,
-                    i.quantity AS Ilość
-                FROM 
-                    serwer197774_drukarnia.items AS i
-                LEFT JOIN 
-                    serwer197774_drukarnia.item_options AS io ON i.item_id = io.item_id
-                LEFT JOIN 
-                    serwer197774_drukarnia.options AS op ON io.option_id = op.option_id
-                LEFT JOIN 
-                    serwer197774_drukarnia.option_groups AS og ON op.option_group_id = og.option_group_id
+                    GROUP_CONCAT(
+                        CONCAT(og.title, ': ', op.name)
+                        ORDER BY og.option_group_id SEPARATOR ' | '
+                    ) AS Opcje,
+                    i.quantity AS 'Ilość',
+                    f.filename AS 'Plik',
+
+                    -- Tutaj pobieramy file_id (nawet jeśli go nie wyświetlamy)
+                    f.file_id
+                FROM serwer197774_drukarnia.items AS i
+                    LEFT JOIN serwer197774_drukarnia.item_options AS io 
+                        ON i.item_id = io.item_id
+                    LEFT JOIN serwer197774_drukarnia.options AS op 
+                        ON io.option_id = op.option_id
+                    LEFT JOIN serwer197774_drukarnia.option_groups AS og 
+                        ON op.option_group_id = og.option_group_id
+                    LEFT JOIN serwer197774_drukarnia.files AS f
+                        ON i.item_id = f.item_id
                 WHERE 
                     i.order_id = @orderId
                 GROUP BY 
-                    i.item_id
+                    i.name, 
+                    i.quantity,
+                    f.filename,
+                    f.file_id
                 ORDER BY 
-                    i.item_id;
+                    i.name;
             ";
 
                     using (MySqlCommand sqlCommand = new MySqlCommand(zapytanie, polaczenie))
@@ -132,30 +208,55 @@ namespace DK24.Klasy
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
 
-
+                            // Powiązanie z DataGridView
                             dataGridView.DataSource = dataTable;
                         }
+
+                        // Ustawienia (kolejność kolumn, szerokości)
                         dataGridView.Columns["Produkt"].DisplayIndex = 0;
                         dataGridView.Columns["Opcje"].DisplayIndex = 1;
                         dataGridView.Columns["Ilość"].DisplayIndex = 2;
-
+                        dataGridView.Columns["Plik"].DisplayIndex = 3;
 
                         dataGridView.Columns["Produkt"].Width = 200;
                         dataGridView.Columns["Opcje"].Width = 300;
                         dataGridView.Columns["Ilość"].Width = 100;
+                        dataGridView.Columns["Plik"].Width = 150;
 
+                        // Ukryj kolumnę file_id (bo nie chcemy jej widzieć):
+                        if (dataGridView.Columns.Contains("file_id"))
+                        {
+                            dataGridView.Columns["file_id"].Visible = false;
+                        }
+
+                        // Na koniec dodajemy kolumnę z przyciskiem „Pobierz”.
+                        DodajKolumnePobierz(dataGridView);
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
                 }
-                finally
-                {
-                    polaczenie.Close();
-                }
             }
         }
+
+
+
+        private void DodajKolumnePobierz(DataGridView dataGridView)
+        {         
+            if (!dataGridView.Columns.Contains("PobierzPlik"))
+            {
+                var btnCol = new DataGridViewButtonColumn
+                {
+                    Name = "PobierzPlik",
+                    HeaderText = "Pobierz plik",
+                    Text = "Pobierz",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridView.Columns.Add(btnCol);
+            }
+        }
+
 
 
 
