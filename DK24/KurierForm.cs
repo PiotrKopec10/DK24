@@ -164,8 +164,6 @@ namespace DK24
                             rchBoxLogi.SelectionFont = new Font(rchBoxLogi.Font.FontFamily, rchBoxLogi.Font.Size + 2, FontStyle.Bold);
 
 
-                            // rchBoxLogi.AppendText($"Etykieta została zapisana jako {labelPath}\n");
-
 
 
                             DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "label_ready", "Gotowa Etykieta", labelPath);
@@ -182,12 +180,17 @@ namespace DK24
                         else
                         {
                             MessageBox.Show("Nie udało się pobrać etykiety po kilkukrotnych próbach.");
+                            MainForm mainForm = new MainForm();
+                            this.Hide();
+                            mainForm.ShowDialog();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Nie udało się zamówić przesyłki.");
-                        
+                        MainForm mainForm = new MainForm();
+                        this.Hide();
+                        mainForm.ShowDialog();
                     }
 
 
@@ -195,13 +198,17 @@ namespace DK24
                 else
                 {
                     MessageBox.Show("Nie udało się utworzyć przesyłki. Sprawdź szczegóły logów.");
-                 
+                    MainForm mainForm = new MainForm();
+                    this.Hide();
+                    mainForm.ShowDialog();
                 }
             }
             else
             {
                 MessageBox.Show("Paczka nie przeszła walidacji. Sprawdź szczegóły błędów w konsoli.");
-           
+                MainForm mainForm = new MainForm();
+                this.Hide();
+                mainForm.ShowDialog();
             }
 
 

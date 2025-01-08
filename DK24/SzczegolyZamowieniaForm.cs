@@ -521,17 +521,21 @@ namespace DK24
 
         }
 
+
+
+      
+
         private void dtGridViewZamowienia_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { 
             if (e.RowIndex >= 0 && e.ColumnIndex == dtGridViewZamowienia.Columns["PobierzPlik"].Index)
             {
                 object fileIdObj = dtGridViewZamowienia.Rows[e.RowIndex].Cells["file_id"].Value;
                 if (fileIdObj != null && int.TryParse(fileIdObj.ToString(), out int fileId))
                 {
-                    // Jeśli fileId rozne od zera to pobieramy
                     if (fileId > 0)
                     {
-                        PobierzPlikZBazy(fileId);
+                       
+                        PobierzPlikZBazy(fileId, GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     }
                     else
                     {
@@ -541,7 +545,9 @@ namespace DK24
             }
         }
 
-        private void PobierzPlikZBazy(int fileId)
+
+
+        private void PobierzPlikZBazy(int fileId, int orderId)
         {
             try
             {
@@ -561,20 +567,22 @@ namespace DK24
                                 string fileName = reader["filename"].ToString();
                                 byte[] fileData = (byte[])reader["file_data"];
 
-                               
+                              
                                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                                string filePath = Path.Combine(desktopPath, fileName);
 
-                         
+                                string orderFolderName = $"Zamowienie_{orderId}";
+                                string orderFolderPath = Path.Combine(desktopPath, orderFolderName);
+
+                                Directory.CreateDirectory(orderFolderPath);
+
+                                string filePath = Path.Combine(orderFolderPath, fileName);
                                 File.WriteAllBytes(filePath, fileData);
 
-                                MessageBox.Show($"Plik został pobrany i zapisany na pulpicie:\n{filePath}",
-                                    "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Plik został pobrany i zapisany w folderze:\n{filePath}","Sukces",MessageBoxButtons.OK,MessageBoxIcon.Information);
                             }
                             else
                             {
-                                MessageBox.Show("Nie znaleziono pliku o podanym ID.",
-                                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Nie znaleziono pliku o podanym ID.","Błąd",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -582,9 +590,10 @@ namespace DK24
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}","Błąd",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
+
 
 
     }

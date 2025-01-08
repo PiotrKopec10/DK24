@@ -39,124 +39,7 @@ namespace DK24.Klasy
             }
         }
 
-        //NARAZIE NIE UZYWANE
-
-
-        //public Orders WyswietlZamowienia()
-        //{
-        //    Orders pobraneZamowienia = new Orders();
-        //    MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
-
-        //    try
-        //    {
-        //        polaczenie.Open();
-        //        string query = "SELECT * FROM serwer197774_drukarnia.orders";
-        //        MySqlCommand PobierzZamowienia = new MySqlCommand(query, polaczenie);
-        //        MySqlDataReader odczytZamowien = PobierzZamowienia.ExecuteReader();
-
-        //        if (odczytZamowien.Read())
-        //        {
-        //            if (odczytZamowien.HasRows)
-        //            {
-        //                pobraneZamowienia.order_id = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("order_id")) ? odczytZamowien.GetInt32("order_id") : 0;
-        //                pobraneZamowienia.user_id = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("user_id")) ? odczytZamowien.GetInt32("user_id") : 0;
-        //                pobraneZamowienia.delivery_address_id = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("delivery_address_id")) ? odczytZamowien.GetInt32("delivery_address_id") : 0;
-        //                pobraneZamowienia.total_price = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("total_price")) ? odczytZamowien.GetDecimal("total_price") : 0;
-
-        //                string statusString = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("status")) ? odczytZamowien.GetString("status") : "in_progress";
-        //                pobraneZamowienia.status = Enum.TryParse(statusString, true, out Orders.StatusEnum statusEnum) ? statusEnum : Orders.StatusEnum.in_progress;
-
-        //                pobraneZamowienia.created_at = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("created_at")) ? odczytZamowien.GetDateTime("created_at") : DateTime.MinValue;
-        //                pobraneZamowienia.modified_at = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("modified_at")) ? odczytZamowien.GetDateTime("modified_at") : DateTime.MinValue;
-
-
-        //                string shippingMethodString = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("shipping_method")) ? odczytZamowien.GetString("shipping_method") : "self_pickup";
-        //                pobraneZamowienia.shipping_method = Enum.TryParse(shippingMethodString, true, out Orders.ShippingMethodEnum shippingMethodEnum) ? shippingMethodEnum : Orders.ShippingMethodEnum.self_pickup;
-
-        //                pobraneZamowienia.shipping_date = !odczytZamowien.IsDBNull(odczytZamowien.GetOrdinal("shipping_date")) ? DateOnly.FromDateTime(odczytZamowien.GetDateTime("shipping_date")) : DateOnly.MinValue;
-
-        //            }
-        //        }
-
-        //        odczytZamowien.Close();
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        MessageBox.Show("Błąd Pobierania Zamówienia!!! " + ex.Message, "Błąd");
-        //    }
-        //    finally
-        //    {
-        //        polaczenie.Close();
-        //    }
-
-        //    return pobraneZamowienia;
-        //}
-
-
-
-        //public void WyswietlSzczegolyZamowienia(int orderId, DataGridView dataGridView)
-        //{
-        //    using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
-        //    {
-        //        try
-        //        {
-        //            polaczenie.Open();
-
-        //            string zapytanie = @"
-        //        SELECT 
-        //            i.name AS Produkt,
-        //            GROUP_CONCAT(CONCAT(og.title, ': ', op.name) ORDER BY og.option_group_id SEPARATOR ' | ') AS Opcje,
-        //            i.quantity AS Ilość
-        //        FROM 
-        //            serwer197774_drukarnia.items AS i
-        //        LEFT JOIN 
-        //            serwer197774_drukarnia.item_options AS io ON i.item_id = io.item_id
-        //        LEFT JOIN 
-        //            serwer197774_drukarnia.options AS op ON io.option_id = op.option_id
-        //        LEFT JOIN 
-        //            serwer197774_drukarnia.option_groups AS og ON op.option_group_id = og.option_group_id
-        //        WHERE 
-        //            i.order_id = @orderId
-        //        GROUP BY 
-        //            i.item_id
-        //        ORDER BY 
-        //            i.item_id;
-        //    ";
-
-        //            using (MySqlCommand sqlCommand = new MySqlCommand(zapytanie, polaczenie))
-        //            {
-        //                sqlCommand.Parameters.AddWithValue("@orderId", orderId);
-
-        //                using (MySqlDataAdapter adapter = new MySqlDataAdapter(sqlCommand))
-        //                {
-        //                    DataTable dataTable = new DataTable();
-        //                    adapter.Fill(dataTable);
-
-
-        //                    dataGridView.DataSource = dataTable;
-        //                }
-        //                dataGridView.Columns["Produkt"].DisplayIndex = 0;
-        //                dataGridView.Columns["Opcje"].DisplayIndex = 1;
-        //                dataGridView.Columns["Ilość"].DisplayIndex = 2;
-
-
-        //                dataGridView.Columns["Produkt"].Width = 200;
-        //                dataGridView.Columns["Opcje"].Width = 300;
-        //                dataGridView.Columns["Ilość"].Width = 100;
-
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Błąd podczas wyświetlania zamówienia: " + ex.Message, "Błąd");
-        //        }
-        //        finally
-        //        {
-        //            polaczenie.Close();
-        //        }
-        //    }
-        //}
-
+        
 
 
         public void WyswietlSzczegolyZamowienia(int orderId, DataGridView dataGridView)
@@ -177,7 +60,6 @@ namespace DK24.Klasy
                     i.quantity AS 'Ilość',
                     f.filename AS 'Plik',
 
-                    -- Tutaj pobieramy file_id (nawet jeśli go nie wyświetlamy)
                     f.file_id
                 FROM serwer197774_drukarnia.items AS i
                     LEFT JOIN serwer197774_drukarnia.item_options AS io 
@@ -208,11 +90,9 @@ namespace DK24.Klasy
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
 
-                            // Powiązanie z DataGridView
                             dataGridView.DataSource = dataTable;
                         }
 
-                        // Ustawienia (kolejność kolumn, szerokości)
                         dataGridView.Columns["Produkt"].DisplayIndex = 0;
                         dataGridView.Columns["Opcje"].DisplayIndex = 1;
                         dataGridView.Columns["Ilość"].DisplayIndex = 2;
@@ -223,13 +103,11 @@ namespace DK24.Klasy
                         dataGridView.Columns["Ilość"].Width = 100;
                         dataGridView.Columns["Plik"].Width = 150;
 
-                        // Ukryj kolumnę file_id (bo nie chcemy jej widzieć):
                         if (dataGridView.Columns.Contains("file_id"))
                         {
                             dataGridView.Columns["file_id"].Visible = false;
                         }
 
-                        // Na koniec dodajemy kolumnę z przyciskiem „Pobierz”.
                         DodajKolumnePobierz(dataGridView);
                     }
                 }
