@@ -16,6 +16,14 @@ namespace DK24
         private readonly List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> _produkty;
         private readonly string _sciezkaLogo;
 
+        public string NazwaNabywcy = "";
+        public string PelnyAdresNabywcy = "";
+        public string SposobZaplaty = "";
+        public DateTime DataWystawienia;
+        public DateTime DataSprzedazy = DateTime.Now;
+        public string NumerNip = "";
+
+
         public DokumentFakturaClass(
             string nazwaSprzedawcy,
             List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> produkty,
@@ -57,9 +65,9 @@ namespace DK24
                                 tabela.Header(naglowek =>
                                 {
                                     naglowek.Cell().Element(StylKomorki).Text("Nazwa").Bold();
-                                    naglowek.Cell().Element(StylKomorki).Text("Ilość").Bold();
-                                    naglowek.Cell().Element(StylKomorki).Text("Cena Brutto").Bold();
+                                    naglowek.Cell().Element(StylKomorki).Text("Ilość").Bold();  
                                     naglowek.Cell().Element(StylKomorki).Text("Cena Netto").Bold();
+                                    naglowek.Cell().Element(StylKomorki).Text("Cena Brutto").Bold();
                                 });
 
                                 foreach (var (item, quantity, priceBrutto, priceNetto) in _produkty)
@@ -109,18 +117,24 @@ namespace DK24
 
         private void InformacjeNabywcy(IContainer container)
         {
+           
+            PobierzDaneDoFaktury(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
+
+
+
             container
-                .Padding(15)
-                .Column(kolumna =>
-                {
-                    kolumna.Item().Text("NABYWCA").FontSize(12).Bold();
-                    kolumna.Item().Text("Nazwa: Jan Kowalski");
-                    kolumna.Item().Text("Adres: ul. Przykładowa 123, 80-244 Gdańsk");
-                    kolumna.Item().Text("Sposób zapłaty: Przelew");
-                    kolumna.Item().Text("Data wystawienia: 08-01-2025");
-                    kolumna.Item().Text("Data sprzedaży: 08-01-2025");
-                    kolumna.Item().Text("NIP: 123-456-78-90");
-                });
+     .Padding(15)
+     .Column(kolumna =>
+     {
+         kolumna.Item().Text("NABYWCA").FontSize(12).Bold();
+         kolumna.Item().Text($"Nazwa: {NazwaNabywcy}");
+         kolumna.Item().Text($"Adres: {PelnyAdresNabywcy}");
+         kolumna.Item().Text($"Sposób zapłaty: {SposobZaplaty}");
+         kolumna.Item().Text($"Data wystawienia: {DataWystawienia:dd-MM-yyyy}");
+         kolumna.Item().Text($"Data sprzedaży: {DataSprzedazy:dd-MM-yyyy}");
+         kolumna.Item().Text($"NIP: {NumerNip}");
+     });
+
         }
 
 
@@ -181,5 +195,90 @@ namespace DK24
 
             return numerFaktury;
         }
+
+
+
+        public void PobierzDaneDoFaktury(int orderId)
+        {
+            using (MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
+            {
+                try
+                {
+                    polaczenie.Open();
+
+                    string pobierzDaneSql = @"
+                SELECT 
+                    o.order_id,
+                    o.created_at,
+                    CASE 
+                       WHEN cd.company_details_id IS NOT NULL 
+                       THEN cd.name 
+                       ELSE CONCAT(u.first_name, ' ', u.last_name)
+                    END AS buyer_name,
+                    CASE 
+                       WHEN cd.company_details_id IS NOT NULL 
+                       THEN cd.nip
+                       ELSE NULL
+                    END AS buyer_nip,
+                    COALESCE(cd.phone_number, u.phone_number) AS buyer_phone,
+                    CASE 
+                        WHEN a.address_id IS NOT NULL THEN 
+                            CONCAT(
+                                CASE 
+                                    WHEN a.apartment_number IS NULL OR a.apartment_number = '' 
+                                         THEN CONCAT(a.street, ' ', a.house_number)
+                                    ELSE CONCAT(a.street, ' ', a.house_number, '/', a.apartment_number)
+                                END,
+                            ', ', a.postal_code, ' ', a.city)
+                        ELSE 'Odbiór osobisty'
+                    END AS full_address
+                FROM orders AS o
+                LEFT JOIN users AS u ON o.user_id = u.user_id
+                LEFT JOIN company_details AS cd ON u.user_id = cd.user_id
+                LEFT JOIN addresses AS a ON o.delivery_address_id = a.address_id
+                WHERE o.order_id = @OrderId;
+            ";
+
+                    using (MySqlCommand cmd = new MySqlCommand(pobierzDaneSql, polaczenie))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderId", orderId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                NazwaNabywcy = reader["buyer_name"] != DBNull.Value ? reader["buyer_name"].ToString() : "";
+                                NumerNip = reader["buyer_nip"] != DBNull.Value ? reader["buyer_nip"].ToString() : "";
+                                SposobZaplaty = "Online";
+                                DataWystawienia = reader["created_at"] != DBNull.Value ? Convert.ToDateTime(reader["created_at"]) : DateTime.MinValue;
+                                PelnyAdresNabywcy = reader["full_address"] != DBNull.Value ? reader["full_address"].ToString() : "";
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd pobierania danych nabywcy: " + ex.Message, "Błąd");
+                }
+                finally
+                {
+                    polaczenie.Close();
+                }
+            }
+        }
+
+
+
+
+       
+
+
+
+
+
+
     }
+
+
+
 }

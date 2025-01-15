@@ -3,11 +3,7 @@ using MySql.Data.MySqlClient;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using static DK24.Klasy.AddressClass;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DK24
 {
@@ -16,7 +12,6 @@ namespace DK24
         ZamowieniaClass.Orders Zamowienia = new ZamowieniaClass.Orders();
         ZamowieniaClass DzialanieNaZamowieniu = new ZamowieniaClass();
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
-
 
         public SzczegolyZamowieniaForm()
         {
@@ -513,6 +508,69 @@ namespace DK24
 
 
 
+
+
+        private List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> PobierzPozycjeZamowienia(int orderId)
+        {
+            var lista = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>();
+
+            string zapytanie = @"
+                   SELECT
+                i.item_id,
+                i.name AS Produkt,
+                GROUP_CONCAT(
+                    CONCAT(og.title, ': ', op.name)
+                    ORDER BY og.option_group_id SEPARATOR ' | '
+                ) AS Opcje,
+                i.quantity AS 'Ilość',
+                i.price AS 'Cena'
+            FROM serwer197774_drukarnia.items AS i
+            LEFT JOIN serwer197774_drukarnia.item_options AS io
+                   ON i.item_id = io.item_id
+            LEFT JOIN serwer197774_drukarnia.options AS op
+                   ON io.option_id = op.option_id
+            LEFT JOIN serwer197774_drukarnia.option_groups AS og
+                   ON op.option_group_id = og.option_group_id
+            WHERE i.order_id = @orderId
+            GROUP BY
+                i.item_id,     
+                i.name,
+                i.quantity,
+                i.price
+            ORDER BY i.name;
+            ";
+
+            using (MySqlConnection con = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
+            {
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand(zapytanie, con))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string nazwa = reader["Produkt"] != DBNull.Value ? reader["Produkt"].ToString() : "";
+                            string opcje = reader["Opcje"] != DBNull.Value ? reader["Opcje"].ToString() : "";
+                            int ilosc = Convert.ToInt32(reader["Ilość"]);
+                            decimal cena = Convert.ToDecimal(reader["Cena"]);
+                            string nazwaZOpcjami = string.IsNullOrWhiteSpace(opcje)
+                                ? nazwa
+                                : $"{nazwa} ({opcje})";
+                            lista.Add((nazwaZOpcjami, ilosc, cena , cena * 1.23m));
+                        }
+                    }
+                }
+            }
+
+            return lista;
+        }
+
+
+
+
+
         private void btnFaktura_Click(object sender, EventArgs e)
         {
             //DokumentForm dokumentForm = new DokumentForm();
@@ -521,13 +579,7 @@ namespace DK24
 
             try
             {
-                // Dane przykładowe
-                var items = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>
-        {
-            ("Produkt A", 2, 49.99m, 19.99m),
-            ("Produkt B", 1, 19.99m, 19.99m),
-            ("Produkt C", 3, 14.99m, 19.99m)
-        };
+                var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
 
                 // Ścieżka do logo
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -563,7 +615,7 @@ namespace DK24
                 if (result == DialogResult.OK)
                 {
                     DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
- 
+
 
                     // Odśwież szczegóły zamówienia
                     WypelnijSzczegolyZamowienia();
@@ -584,7 +636,7 @@ namespace DK24
 
 
         private void dtGridViewZamowienia_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        { 
+        {
             if (e.RowIndex >= 0 && e.ColumnIndex == dtGridViewZamowienia.Columns["PobierzPlik"].Index)
             {
                 object fileIdObj = dtGridViewZamowienia.Rows[e.RowIndex].Cells["file_id"].Value;
@@ -592,7 +644,7 @@ namespace DK24
                 {
                     if (fileId > 0)
                     {
-                       
+
                         PobierzPlikZBazy(fileId, GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     }
                     else
@@ -625,7 +677,7 @@ namespace DK24
                                 string fileName = reader["filename"].ToString();
                                 byte[] fileData = (byte[])reader["file_data"];
 
-                              
+
                                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
                                 string orderFolderName = $"Zamowienie_{orderId}";
@@ -636,11 +688,11 @@ namespace DK24
                                 string filePath = Path.Combine(orderFolderPath, fileName);
                                 File.WriteAllBytes(filePath, fileData);
 
-                                MessageBox.Show($"Plik został pobrany i zapisany w folderze:\n{filePath}","Sukces",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                MessageBox.Show($"Plik został pobrany i zapisany w folderze:\n{filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
-                                MessageBox.Show("Nie znaleziono pliku o podanym ID.","Błąd",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                                MessageBox.Show("Nie znaleziono pliku o podanym ID.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -648,7 +700,7 @@ namespace DK24
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}","Błąd",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
