@@ -485,6 +485,16 @@ namespace DK24
 
             WypelnijSzczegolyZamowienia();
 
+
+            try 
+            {
+
+            }
+            catch 
+            { 
+            
+            }
+
         }
 
         private void btnAnulujZamowienie_Click(object sender, EventArgs e)
@@ -659,6 +669,7 @@ namespace DK24
             {
                 try
                 {
+
                     var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
@@ -670,6 +681,7 @@ namespace DK24
                     string fileName = $"Faktura_Nr{lblNrZamowienia.Text}_{txtBoxNazwaKlienta.Text.Replace(" ", "_").Replace("/", "_")}.pdf";
                     string filePath = Path.Combine(invoicesFolderPath, fileName);
                     invoice.GeneratePdf(filePath);
+                    ZapiszPdfDoBazy(filePath);
                     var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK) WypelnijSzczegolyZamowienia();
                 }
@@ -682,6 +694,70 @@ namespace DK24
                     MessageBox.Show($"Błąd generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+
+
+        private void ZapiszPdfDoBazy(string pdfFilePath)
+        {
+            try
+            {
+                byte[] pdfBytes = File.ReadAllBytes(pdfFilePath);
+                int invoiceId = PobierzInvoiceIdPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
+
+                using (MySqlConnection conn = new MySqlConnection(PolaczenieDB))
+                {
+                    conn.Open();
+                    string sql = @"
+                UPDATE invoices
+                SET pdf_data = @PdfData
+                WHERE invoice_id = @InvoiceId
+                LIMIT 1;";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PdfData", pdfBytes);
+                        cmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisu PDF do bazy: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public int PobierzInvoiceIdPoOrderId(int orderId)
+        {
+            int invoiceId = -1;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(PolaczenieDB))
+                {
+                    conn.Open();
+                    string sql = @"
+                SELECT invoice_id
+                FROM invoices
+                WHERE order_order_id = @OrderId
+                LIMIT 1;";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderId", orderId);
+                        object wynik = cmd.ExecuteScalar();
+                        if (wynik != null && wynik != DBNull.Value)
+                        {
+                            invoiceId = Convert.ToInt32(wynik);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd pobierania invoice_id: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return invoiceId;
         }
 
 

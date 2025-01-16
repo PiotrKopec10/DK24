@@ -48,6 +48,14 @@ namespace DK24.Klasy
         }
 
 
+
+        public static class ListaFakturSesja
+        {
+            public static FakturaClass ZaznaczonaFaktura { get; set; }
+
+        }
+
+
         public static class PracownikSesja
         {
             public static UserClass.User AktualnyUser { get; set; }

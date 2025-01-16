@@ -38,8 +38,6 @@
             btnCofnij = new Button();
             btnEdytuj = new Button();
             btnDodaj = new Button();
-            txtBoxFilter = new TextBox();
-            label2 = new Label();
             numericUpDown1 = new NumericUpDown();
             comboBox1 = new ComboBox();
             chckBoxRok = new CheckBox();
@@ -58,6 +56,7 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             pnlDtGridZamowienia = new Panel();
             dtGridLstFakt = new DataGridView();
+            btnZaznacz = new Button();
             pnlPrzyciski.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panelZalogowania.SuspendLayout();
@@ -70,12 +69,11 @@
             // pnlPrzyciski
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
+            pnlPrzyciski.Controls.Add(btnZaznacz);
             pnlPrzyciski.Controls.Add(btnUsun);
             pnlPrzyciski.Controls.Add(btnCofnij);
             pnlPrzyciski.Controls.Add(btnEdytuj);
             pnlPrzyciski.Controls.Add(btnDodaj);
-            pnlPrzyciski.Controls.Add(txtBoxFilter);
-            pnlPrzyciski.Controls.Add(label2);
             pnlPrzyciski.Controls.Add(numericUpDown1);
             pnlPrzyciski.Controls.Add(comboBox1);
             pnlPrzyciski.Controls.Add(chckBoxRok);
@@ -124,25 +122,6 @@
             btnDodaj.TabIndex = 7;
             btnDodaj.UseVisualStyleBackColor = false;
             btnDodaj.Click += btnDodaj_Click;
-            // 
-            // txtBoxFilter
-            // 
-            txtBoxFilter.Location = new Point(599, 21);
-            txtBoxFilter.Name = "txtBoxFilter";
-            txtBoxFilter.Size = new Size(273, 23);
-            txtBoxFilter.TabIndex = 6;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Verdana", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(542, 23);
-            label2.Name = "label2";
-            label2.Size = new Size(56, 18);
-            label2.TabIndex = 5;
-            label2.Text = "Filtruj:";
             // 
             // numericUpDown1
             // 
@@ -326,7 +305,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(99, 40);
+            towaryToolStripMenuItem.Size = new Size(98, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             towaryToolStripMenuItem.Click += towaryToolStripMenuItem_Click;
@@ -396,6 +375,16 @@
             dtGridLstFakt.Size = new Size(1238, 533);
             dtGridLstFakt.TabIndex = 0;
             // 
+            // btnZaznacz
+            // 
+            btnZaznacz.Image = (Image)resources.GetObject("btnZaznacz.Image");
+            btnZaznacz.Location = new Point(940, 16);
+            btnZaznacz.Name = "btnZaznacz";
+            btnZaznacz.Size = new Size(44, 33);
+            btnZaznacz.TabIndex = 16;
+            btnZaznacz.UseVisualStyleBackColor = true;
+            btnZaznacz.Click += btnZaznacz_Click;
+            // 
             // ListaFakturForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -436,9 +425,7 @@
         private CheckBox chckBoxRok;
         private NumericUpDown numericUpDown1;
         private ComboBox comboBox1;
-        private Label label2;
         private Button btnDodaj;
-        private TextBox txtBoxFilter;
         private Button btnCofnij;
         private Label lblZalogowanoJako;
         private Panel panelZalogowania;
@@ -455,5 +442,6 @@
         private DataGridView dtGridLstFakt;
         private Button btnUsun;
         private Button btnEdytuj;
+        private Button btnZaznacz;
     }
 }
