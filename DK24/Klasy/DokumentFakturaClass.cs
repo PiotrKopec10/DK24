@@ -16,6 +16,7 @@ namespace DK24
         private readonly List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> _produkty;
         private readonly string _sciezkaLogo;
 
+ 
         public string NazwaNabywcy = "";
         public string PelnyAdresNabywcy = "";
         public string SposobZaplaty = "";
@@ -153,7 +154,7 @@ namespace DK24
 
         private void InformacjeFaktury(IContainer container)
         {
-            string numerFaktury = PobierzNumerFaktury();
+            string numerFaktury = GlobalClass.FakturaSesja.AktualnaFaktura.invoice_number;
 
             container.AlignRight().Column(kolumna =>
             {
@@ -168,45 +169,45 @@ namespace DK24
             return container.Padding(5).Background(Colors.Grey.Lighten3);
         }
 
-        private string PobierzNumerFaktury()
-        {
-            string polaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
-            string numerFaktury = "";
+        //private string PobierzNumerFaktury()
+        //{
+        //    string polaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
+        //    string numerFaktury = "";
 
-            using (MySqlConnection polaczenie = new MySqlConnection(polaczenieDB))
-            {
-                try
-                {
-                    polaczenie.Open();
+        //    using (MySqlConnection polaczenie = new MySqlConnection(polaczenieDB))
+        //    {
+        //        try
+        //        {
+        //            polaczenie.Open();
 
-                    string zapytanie = @"
-                    SELECT CONCAT('FV-', YEAR(NOW()), '-', LPAD(COALESCE(MAX(CAST(SUBSTRING_INDEX(invoice_number, '-', -1) AS UNSIGNED)) + 1, 1), 5, '0')) AS next_invoice_number
-                    FROM serwer197774_drukarnia.invoices
-                    WHERE invoice_number LIKE CONCAT('FV-', YEAR(NOW()), '-%');";
+        //            string zapytanie = @"
+        //            SELECT CONCAT('FV-', YEAR(NOW()), '-', LPAD(COALESCE(MAX(CAST(SUBSTRING_INDEX(invoice_number, '-', -1) AS UNSIGNED)) + 1, 1), 5, '0')) AS next_invoice_number
+        //            FROM serwer197774_drukarnia.invoices
+        //            WHERE invoice_number LIKE CONCAT('FV-', YEAR(NOW()), '-%');";
 
-                    using (MySqlCommand komenda = new MySqlCommand(zapytanie, polaczenie))
-                    {
-                        using (MySqlDataReader reader = komenda.ExecuteReader())
-                        {
-                            if (reader.Read() && !reader.IsDBNull(0))
-                            {
-                                numerFaktury = reader.GetString("next_invoice_number");
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Błąd pobierania numeru faktury: " + ex.Message, "Błąd");
-                }
-                finally
-                {
-                    polaczenie.Close();
-                }
-            }
+        //            using (MySqlCommand komenda = new MySqlCommand(zapytanie, polaczenie))
+        //            {
+        //                using (MySqlDataReader reader = komenda.ExecuteReader())
+        //                {
+        //                    if (reader.Read() && !reader.IsDBNull(0))
+        //                    {
+        //                        numerFaktury = reader.GetString("next_invoice_number");
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Błąd pobierania numeru faktury: " + ex.Message, "Błąd");
+        //        }
+        //        finally
+        //        {
+        //            polaczenie.Close();
+        //        }
+        //    }
 
-            return numerFaktury;
-        }
+        //    return numerFaktury;
+        //}
 
 
 

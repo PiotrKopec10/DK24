@@ -625,77 +625,66 @@ namespace DK24
 
         private void btnFaktura_Click(object sender, EventArgs e)
         {
-
-            if (DzialaniaNaFakturze.CzyNipZOrdersJestWBazieCompanyDetails(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id) == false)
+            if (!DzialaniaNaFakturze.CzyNipZOrdersJestWBazieCompanyDetails(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id))
             {
                 string pobranyEmail = PobierzEmailUseraPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
-
-                MessageBox.Show($"Brak kontrahenta w bazie, dodaj go! \n Dodaj go używając numeru NIP:{txtBoxNrNip.Text} oraz wpisując odpowiedni mail przypisany do zamówienia({pobranyEmail}) ", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Brak kontrahenta w bazie, dodaj go!\nDodaj go używając numeru NIP: {txtBoxNrNip.Text} i maila: {pobranyEmail}", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 KontrahentForm kontrahentForm = new KontrahentForm();
                 this.Hide();
                 kontrahentForm.ShowDialog();
-
+                return;
             }
-            else
+            bool bazaOK = false;
+            try
             {
+                FakturaClass DaneDoFaktury = DzialaniaNaFakturze.PobierzPotrzebneDaneWedlugOrderIdDoInsertaBazy(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
+                DzialaniaNaFakturze.DodajFaktureDoBazy(DaneDoFaktury);
+                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
+
+                if (GlobalClass.FakturaSesja.AktualnaFaktura == null)
+                {
+                    GlobalClass.FakturaSesja.AktualnaFaktura = new FakturaClass();
+                }
+
+                GlobalClass.FakturaSesja.AktualnaFaktura.invoice_number = DaneDoFaktury.invoice_number;
 
 
+                bazaOK = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisu faktury w bazie: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (bazaOK)
+            {
                 try
                 {
                     var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
-
                     var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
-
-                    if (!File.Exists(logoPath))
-                    {
-                        throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
-                    }
-
+                    if (!File.Exists(logoPath)) throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
                     var invoice = new DokumentFakturaClass("D&K Centrum Kopiowania", items, logoPath);
-
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                     string invoicesFolderPath = Path.Combine(desktopPath, "D&K_Faktury_zamówień");
-                    if (!Directory.Exists(invoicesFolderPath))
-                    {
-                        Directory.CreateDirectory(invoicesFolderPath);
-                    }
-
-
+                    if (!Directory.Exists(invoicesFolderPath)) Directory.CreateDirectory(invoicesFolderPath);
                     string fileName = $"Faktura_Nr{lblNrZamowienia.Text}_{txtBoxNazwaKlienta.Text.Replace(" ", "_").Replace("/", "_")}.pdf";
                     string filePath = Path.Combine(invoicesFolderPath, fileName);
-
-
                     invoice.GeneratePdf(filePath);
-
-
                     var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    if (result == DialogResult.OK)
-                    {
-                        DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
-
-
-
-
-
-
-                        WypelnijSzczegolyZamowienia();
-                    }
+                    if (result == DialogResult.OK) WypelnijSzczegolyZamowienia();
                 }
                 catch (FileNotFoundException ex)
                 {
-                    MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Błąd pliku: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Wystąpił błąd podczas generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Błąd generowania PDF: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
             }
         }
+
+
 
 
 

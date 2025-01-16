@@ -99,7 +99,8 @@ namespace DK24.Klasy
                             sqlDodajKontrahenta.Parameters.AddWithValue("@issue_date", dodawanaFaktura.issue_date.ToString("yyyy-MM-dd"));
 
                             sqlDodajKontrahenta.Parameters.AddWithValue("@total_amount", dodawanaFaktura.total_amount);
-                         
+
+                            sqlDodajKontrahenta.Parameters.AddWithValue("@created_at", DateTime.Now);
 
                             sqlDodajKontrahenta.ExecuteNonQuery();
                         }
@@ -119,9 +120,9 @@ namespace DK24.Klasy
 
 
 
-        public FakturaClass PobierzPotrzebneDaneWedlugOrderIdDoInsertaBazy(FakturaClass pobieraneDane)
+        public FakturaClass PobierzPotrzebneDaneWedlugOrderIdDoInsertaBazy(int order_id)
         {
-            int orderId = pobieraneDane.order_order_id;
+            FakturaClass pobieraneDane = new FakturaClass();
             using (MySqlConnection polaczenie = new MySqlConnection(PolaczenieDB))
             {
                 try
@@ -140,7 +141,7 @@ namespace DK24.Klasy
                 LIMIT 1;";
                     using (MySqlCommand cmd = new MySqlCommand(sql, polaczenie))
                     {
-                        cmd.Parameters.AddWithValue("@OrderId", orderId);
+                        cmd.Parameters.AddWithValue("@OrderId",order_id);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())

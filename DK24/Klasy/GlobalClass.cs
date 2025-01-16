@@ -41,6 +41,12 @@ namespace DK24.Klasy
 
         }
 
+        public static class FakturaSesja
+        {
+            public static FakturaClass AktualnaFaktura { get; set; }
+
+        }
+
 
         public static class PracownikSesja
         {
