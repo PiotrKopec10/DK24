@@ -70,6 +70,8 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
+            txtBoxNrNip = new TextBox();
+            label2 = new Label();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
@@ -120,6 +122,8 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(label2);
+            pnlGoraDane.Controls.Add(txtBoxNrNip);
             pnlGoraDane.Controls.Add(chckBoxFaktura);
             pnlGoraDane.Controls.Add(btnWygenerujEtykiete);
             pnlGoraDane.Controls.Add(btnFaktura);
@@ -534,6 +538,24 @@
             dtGridViewZamowienia.TabIndex = 1;
             dtGridViewZamowienia.CellContentClick += dtGridViewZamowienia_CellContentClick;
             // 
+            // txtBoxNrNip
+            // 
+            txtBoxNrNip.Location = new Point(806, 40);
+            txtBoxNrNip.Name = "txtBoxNrNip";
+            txtBoxNrNip.Size = new Size(151, 23);
+            txtBoxNrNip.TabIndex = 41;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(729, 43);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 15);
+            label2.TabIndex = 42;
+            label2.Text = "Numer NIP:";
+            // 
             // SzczegolyZamowieniaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -607,5 +629,7 @@
         private Button btnZakonczZamowienie;
         private Button btnFaktura;
         private CheckBox chckBoxFaktura;
+        private Label label2;
+        private TextBox txtBoxNrNip;
     }
 }

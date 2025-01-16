@@ -864,7 +864,7 @@ namespace DK24
             }
             catch (Exception ex)
             {
-               // txtBoxNipKnt.Text = $"Błąd: {ex.Message}";
+                //txtBoxNipKnt.Text = $"Błąd: {ex.Message}";
             }
         }
 

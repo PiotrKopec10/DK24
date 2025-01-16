@@ -22,7 +22,7 @@ namespace DK24
         public DateTime DataWystawienia;
         public DateTime DataSprzedazy = DateTime.Now;
         public string NumerNip = "";
-
+        public string NumerTel = "";
 
         public DokumentFakturaClass(
             string nazwaSprzedawcy,
@@ -51,15 +51,15 @@ namespace DK24
                         .Column(kolumna =>
                         {
                             kolumna.Spacing(20);
-                            kolumna.Item().Element(InformacjeNabywcy); // Sekcja Nabywca
+                            kolumna.Item().Element(InformacjeNabywcy); 
                             kolumna.Item().Table(tabela =>
                             {
                                 tabela.ColumnsDefinition(kolumny =>
                                 {
-                                    kolumny.RelativeColumn(); // Nazwa
-                                    kolumny.ConstantColumn(50); // Ilość
-                                    kolumny.ConstantColumn(90); // Cena Brutto
-                                    kolumny.ConstantColumn(90); // Cena Netto
+                                    kolumny.RelativeColumn();
+                                    kolumny.ConstantColumn(50); 
+                                    kolumny.ConstantColumn(90); 
+                                    kolumny.ConstantColumn(90); 
                                 });
 
                                 tabela.Header(naglowek =>
@@ -86,9 +86,9 @@ namespace DK24
         private void InformacjeSprzedawcy(IContainer container)
         {
             container
-                .Border(1) // Ustawienie obramowania
-                .BorderColor(Colors.Grey.Medium) // Kolor obramowania
-                .Padding(10) // Odstęp między ramką a zawartością
+                .Border(1) 
+                .BorderColor(Colors.Grey.Medium) 
+                .Padding(10) 
                 .Column(kolumna =>
                 {
                     if (File.Exists(_sciezkaLogo))
@@ -132,7 +132,19 @@ namespace DK24
          kolumna.Item().Text($"Sposób zapłaty: {SposobZaplaty}");
          kolumna.Item().Text($"Data wystawienia: {DataWystawienia:dd-MM-yyyy}");
          kolumna.Item().Text($"Data sprzedaży: {DataSprzedazy:dd-MM-yyyy}");
-         kolumna.Item().Text($"NIP: {NumerNip}");
+
+         if (!string.IsNullOrEmpty(NumerNip))
+         {
+
+             kolumna.Item().Text($"NIP: {NumerNip}");
+         }
+         else
+         {
+             kolumna.Item().Text($"Telefon: {NumerTel}");
+         }
+
+
+
      });
 
         }
@@ -252,6 +264,7 @@ namespace DK24
                                 SposobZaplaty = "Online";
                                 DataWystawienia = reader["created_at"] != DBNull.Value ? Convert.ToDateTime(reader["created_at"]) : DateTime.MinValue;
                                 PelnyAdresNabywcy = reader["full_address"] != DBNull.Value ? reader["full_address"].ToString() : "";
+                                NumerTel = reader["buyer_phone"] != DBNull.Value? reader["buyer_phone"].ToString(): "";
                             }
                         }
                     }
