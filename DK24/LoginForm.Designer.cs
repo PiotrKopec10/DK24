@@ -147,11 +147,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ControlBox = false;
+            Controls.Add(txtBoxPassword);
             Controls.Add(imgOdszyfruj);
             Controls.Add(lblZleHaslo);
             Controls.Add(lblWyjdz);
             Controls.Add(imgPassword);
-            Controls.Add(txtBoxPassword);
             Controls.Add(lblPassword);
             Controls.Add(imgLogin);
             Controls.Add(panel1);

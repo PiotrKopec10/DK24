@@ -23,6 +23,8 @@ namespace DK24
             GlobalClass.przesuwanieFormsa(panelGorny, this.Handle);
 
             QuestPDF.Settings.License = LicenseType.Community;
+
+            btnCopy.Click += BtnCopy_Click;
         }
 
         private void SzczegolyZamowieniaForm_Load(object sender, EventArgs e)
@@ -81,8 +83,17 @@ namespace DK24
 
                 btnWygenerujEtykiete.Enabled = true;
                 btnAnulujZamowienie.Enabled = false;
-                btnFaktura.Enabled = false;
-                btnFaktura.Visible = true;
+                //btnFaktura.Enabled = false;
+                // btnFaktura.Visible = true;
+                if (chckBoxFaktura.Checked)
+                {
+                    btnFaktura.Enabled = false;
+                    btnFaktura.Visible = true;
+                }
+                else
+                {
+                    btnFaktura.Visible = false;
+                }
 
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 1) //W przygotwaniu
@@ -90,7 +101,16 @@ namespace DK24
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
                 btnZakonczZamowienie.Enabled = false;
-                //btnWygenerujEtykiete.Enabled = false;              
+                //btnWygenerujEtykiete.Enabled = false;
+                btnFaktura.Enabled = true;
+                if (chckBoxFaktura.Checked)
+                {
+                    btnFaktura.Visible = true;
+                }
+                else
+                {
+                    btnFaktura.Visible = false;
+                }
             }
             else if (cmbBoxStatusZamowienia.SelectedIndex == 0) //Nowe
             {
@@ -101,6 +121,15 @@ namespace DK24
                 btnAnulujZamowienie.Enabled = true;
                 btnZakonczZamowienie.Enabled = false;
                 btnWygenerujEtykiete.Enabled = false;
+                if (chckBoxFaktura.Checked)
+                {
+                    btnFaktura.Enabled = false;
+                    btnFaktura.Visible = true;
+                }
+                else
+                {
+                    btnFaktura.Visible = false;
+                }
 
             }
 
@@ -305,7 +334,7 @@ namespace DK24
                                 if (DzialanieNaZamowieniu.PobierzCzyFakturaPoIdZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id) == true)
                                 {
 
-                                    btnFaktura.Visible = true;
+                                    btnFaktura.Enabled = true;
                                     btnWygenerujEtykiete.Enabled = false;
                                     btnZakceptuj.Enabled = false;
                                     btnAnulujZamowienie.Enabled = false;
@@ -352,7 +381,7 @@ namespace DK24
                                 {
                                     btnZakonczZamowienie.Enabled = false;
 
-                                    btnFaktura.Visible = false;
+                                    btnFaktura.Enabled = false;
                                     btnWygenerujEtykiete.Enabled = true;
                                     btnZakceptuj.Enabled = false;
                                     btnAnulujZamowienie.Enabled = false;
@@ -362,7 +391,7 @@ namespace DK24
                                 {
                                     btnZakonczZamowienie.Enabled = true;
 
-                                    btnFaktura.Visible = false;
+                                    btnFaktura.Enabled = false;
                                     btnZakceptuj.Enabled = false;
                                     btnAnulujZamowienie.Enabled = false;
                                     btnWygenerujEtykiete.Enabled = false;
@@ -639,6 +668,8 @@ namespace DK24
             {
                 string pobranyEmail = PobierzEmailUseraPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                 MessageBox.Show($"Brak kontrahenta w bazie, dodaj go!\nDodaj go używając numeru NIP: {txtBoxNrNip.Text} i maila: {pobranyEmail}", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Clipboard.SetText(txtBoxNrNip.Text);
+                MessageBox.Show("Numer NIP został skopiowany do schowka.", "Kopiowanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 KontrahentForm kontrahentForm = new KontrahentForm();
                 this.Hide();
                 kontrahentForm.ShowDialog();
@@ -836,6 +867,18 @@ namespace DK24
         }
 
 
+        private void BtnCopy_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxNrNip.Text))
+            {
+                Clipboard.SetText(txtBoxNrNip.Text);
+                MessageBox.Show("Numer NIP został skopiowany do schowka.", "Kopiowanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Pole NIP jest puste. Nie można skopiować.", "Błąd kopiowania", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
     }
 }

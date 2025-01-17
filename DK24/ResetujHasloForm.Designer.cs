@@ -67,7 +67,7 @@
             // 
             txtBoxStworzHaslo.Location = new Point(60, 80);
             txtBoxStworzHaslo.Name = "txtBoxStworzHaslo";
-            txtBoxStworzHaslo.PasswordChar = '*';
+            txtBoxStworzHaslo.PasswordChar = '•';
             txtBoxStworzHaslo.Size = new Size(229, 23);
             txtBoxStworzHaslo.TabIndex = 18;
             // 
@@ -75,7 +75,7 @@
             // 
             txtBoxPowtorzHaslo.Location = new Point(60, 143);
             txtBoxPowtorzHaslo.Name = "txtBoxPowtorzHaslo";
-            txtBoxPowtorzHaslo.PasswordChar = '*';
+            txtBoxPowtorzHaslo.PasswordChar = '•';
             txtBoxPowtorzHaslo.Size = new Size(229, 23);
             txtBoxPowtorzHaslo.TabIndex = 19;
             // 

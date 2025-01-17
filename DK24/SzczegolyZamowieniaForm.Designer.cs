@@ -38,6 +38,9 @@
             panelGorny = new Panel();
             pictureBox1 = new PictureBox();
             pnlGoraDane = new Panel();
+            btnCopy = new PictureBox();
+            label2 = new Label();
+            txtBoxNrNip = new TextBox();
             chckBoxFaktura = new CheckBox();
             btnWygenerujEtykiete = new Button();
             btnFaktura = new Button();
@@ -70,11 +73,10 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
-            txtBoxNrNip = new TextBox();
-            label2 = new Label();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnCopy).BeginInit();
             grpBoxWartDok.SuspendLayout();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
@@ -122,6 +124,7 @@
             // pnlGoraDane
             // 
             pnlGoraDane.BackgroundImage = (Image)resources.GetObject("pnlGoraDane.BackgroundImage");
+            pnlGoraDane.Controls.Add(btnCopy);
             pnlGoraDane.Controls.Add(label2);
             pnlGoraDane.Controls.Add(txtBoxNrNip);
             pnlGoraDane.Controls.Add(chckBoxFaktura);
@@ -154,6 +157,38 @@
             pnlGoraDane.Size = new Size(1260, 360);
             pnlGoraDane.TabIndex = 5;
             // 
+            // btnCopy
+            // 
+            btnCopy.BackColor = Color.Transparent;
+            btnCopy.Image = (Image)resources.GetObject("btnCopy.Image");
+            btnCopy.Location = new Point(775, 214);
+            btnCopy.Name = "btnCopy";
+            btnCopy.Size = new Size(32, 26);
+            btnCopy.SizeMode = PictureBoxSizeMode.Zoom;
+            btnCopy.TabIndex = 43;
+            btnCopy.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(639, 196);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 15);
+            label2.TabIndex = 42;
+            label2.Text = "Numer NIP:";
+            // 
+            // txtBoxNrNip
+            // 
+            txtBoxNrNip.Enabled = false;
+            txtBoxNrNip.Location = new Point(640, 215);
+            txtBoxNrNip.Name = "txtBoxNrNip";
+            txtBoxNrNip.ReadOnly = true;
+            txtBoxNrNip.Size = new Size(130, 23);
+            txtBoxNrNip.TabIndex = 41;
+            txtBoxNrNip.TabStop = false;
+            // 
             // chckBoxFaktura
             // 
             chckBoxFaktura.AutoCheck = false;
@@ -161,7 +196,7 @@
             chckBoxFaktura.BackColor = Color.Transparent;
             chckBoxFaktura.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             chckBoxFaktura.ForeColor = Color.White;
-            chckBoxFaktura.Location = new Point(648, 213);
+            chckBoxFaktura.Location = new Point(644, 264);
             chckBoxFaktura.Name = "chckBoxFaktura";
             chckBoxFaktura.Size = new Size(107, 18);
             chckBoxFaktura.TabIndex = 40;
@@ -170,7 +205,7 @@
             // 
             // btnWygenerujEtykiete
             // 
-            btnWygenerujEtykiete.Location = new Point(644, 115);
+            btnWygenerujEtykiete.Location = new Point(639, 112);
             btnWygenerujEtykiete.Name = "btnWygenerujEtykiete";
             btnWygenerujEtykiete.Size = new Size(130, 54);
             btnWygenerujEtykiete.TabIndex = 33;
@@ -180,7 +215,7 @@
             // 
             // btnFaktura
             // 
-            btnFaktura.Location = new Point(644, 237);
+            btnFaktura.Location = new Point(640, 288);
             btnFaktura.Name = "btnFaktura";
             btnFaktura.Size = new Size(130, 37);
             btnFaktura.TabIndex = 39;
@@ -538,24 +573,6 @@
             dtGridViewZamowienia.TabIndex = 1;
             dtGridViewZamowienia.CellContentClick += dtGridViewZamowienia_CellContentClick;
             // 
-            // txtBoxNrNip
-            // 
-            txtBoxNrNip.Location = new Point(806, 40);
-            txtBoxNrNip.Name = "txtBoxNrNip";
-            txtBoxNrNip.Size = new Size(151, 23);
-            txtBoxNrNip.TabIndex = 41;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(729, 43);
-            label2.Name = "label2";
-            label2.Size = new Size(69, 15);
-            label2.TabIndex = 42;
-            label2.Text = "Numer NIP:";
-            // 
             // SzczegolyZamowieniaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -576,6 +593,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlGoraDane.ResumeLayout(false);
             pnlGoraDane.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btnCopy).EndInit();
             grpBoxWartDok.ResumeLayout(false);
             grpBoxWartDok.PerformLayout();
             pnlDtGridZamowienia.ResumeLayout(false);
@@ -631,5 +649,6 @@
         private CheckBox chckBoxFaktura;
         private Label label2;
         private TextBox txtBoxNrNip;
+        private PictureBox btnCopy;
     }
 }
