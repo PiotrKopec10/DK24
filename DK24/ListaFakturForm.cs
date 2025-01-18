@@ -160,7 +160,7 @@ namespace DK24
                     }
 
                     GlobalClass.ListaFakturSesja.ZaznaczonaFaktura.invoice_id = Convert.ToInt32(selectedRow.Cells["invoice_id"].Value);
-                    GlobalClass.ListaFakturSesja.ZaznaczonaFaktura.invoice_number = Convert.ToString(selectedRow.Cells["invoice_number"].Value);
+                    GlobalClass.ListaFakturSesja.ZaznaczonaFaktura.invoice_number = Convert.ToString(selectedRow.Cells["Numer Faktury"].Value);
 
 
                 }
