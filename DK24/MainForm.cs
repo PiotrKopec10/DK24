@@ -20,6 +20,8 @@ namespace DK24
         ZamowieniaClass DzialaniaNaZamowieniach = new ZamowieniaClass();
         AddressClass.Address PobieranyAdres = new AddressClass.Address();
         AddressClass DzialanieNaAdresie = new AddressClass();
+        UserClass DzialaniaNaUserze = new UserClass();
+
 
         private System.Windows.Forms.Timer refreshTimer;
         private int odliczanie = 31;
@@ -54,6 +56,17 @@ namespace DK24
 
             dtGridViewZamowienia.DataSource = zamowieniaZDetalami;
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+
+
+            if(DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik)==false)
+            {
+
+                ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
+
+
+            }else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
+
+
 
 
 

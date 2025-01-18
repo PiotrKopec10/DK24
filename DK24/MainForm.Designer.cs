@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtGridViewZamowienia = new DataGridView();
             pnlDtGridZamowienia = new Panel();
@@ -50,7 +50,7 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             zamówieniaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip = new MenuStrip();
-            ądzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
+            ZarzadzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
@@ -68,30 +68,30 @@
             // 
             dtGridViewZamowienia.AllowUserToAddRows = false;
             dtGridViewZamowienia.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.NullValue = "Brak Danych";
-            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.NullValue = "Brak Danych";
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.NullValue = "Brak Danych";
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle7;
             dtGridViewZamowienia.Dock = DockStyle.Fill;
             dtGridViewZamowienia.EnableHeadersVisualStyles = false;
             dtGridViewZamowienia.GridColor = Color.Gray;
@@ -100,14 +100,14 @@
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
             dtGridViewZamowienia.ReadOnly = true;
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -281,7 +281,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(99, 40);
+            towaryToolStripMenuItem.Size = new Size(98, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             towaryToolStripMenuItem.Click += towaryToolStripMenuItem_Click;
@@ -305,7 +305,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem, ądzajPracownikamiToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem, ZarzadzajPracownikamiToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -316,15 +316,15 @@
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip1";
             // 
-            // ądzajPracownikamiToolStripMenuItem
+            // ZarzadzajPracownikamiToolStripMenuItem
             // 
-            ądzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
-            ądzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ądzajPracownikamiToolStripMenuItem.Image");
-            ądzajPracownikamiToolStripMenuItem.Name = "ądzajPracownikamiToolStripMenuItem";
-            ądzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
-            ądzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
-            ądzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
-            ądzajPracownikamiToolStripMenuItem.Click += ądzajPracownikamiToolStripMenuItem_Click;
+            ZarzadzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
+            ZarzadzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ZarzadzajPracownikamiToolStripMenuItem.Image");
+            ZarzadzajPracownikamiToolStripMenuItem.Name = "ZarzadzajPracownikamiToolStripMenuItem";
+            ZarzadzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
+            ZarzadzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
+            ZarzadzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            ZarzadzajPracownikamiToolStripMenuItem.Click += ądzajPracownikamiToolStripMenuItem_Click;
             // 
             // panel2
             // 
@@ -432,7 +432,7 @@
         private Panel panel4;
         private PictureBox pictureBox1;
         private LinkLabel linkLabel1;
-        private ToolStripMenuItem ądzajPracownikamiToolStripMenuItem;
+        private ToolStripMenuItem ZarzadzajPracownikamiToolStripMenuItem;
         private Label lblRefreshTimeLeft;
         private CheckBox cbxNowe;
         private CheckBox cbxWrealizacji;

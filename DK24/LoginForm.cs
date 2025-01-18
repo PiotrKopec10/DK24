@@ -49,31 +49,27 @@ namespace DK24
 
 
 
-            //DZIALA ZAKOMENTOWANE, BY NIE MUSIEC LOGOWAC SIE PONOWNIE
+            if (DzialaniaNaUserze.PobierzHasloDlaUsera(AktualnyUser) == true)
+            {
+                GlobalClass.KtoZalogowany.ZalogowanyUzytkownik = txtBoxLogin.Text;
+                this.Hide();
+                mainForm.ShowDialog();
+            }
+            else if (txtBoxLogin.Text.Length == 0 || txtBoxPassword.Text.Length == 0)
+            {
+                lblZleHaslo.Location = new Point(415, 283);
+                lblZleHaslo.Text = "Uzupe³nij pola aby siê zalogowaæ";
+
+            }
+            else
+            {
+                lblZleHaslo.Location = new Point(432, 283);
+                lblZleHaslo.Text = "NIEPRAWID£OWE DANE!";
 
 
-            //if (DzialaniaNaUserze.PobierzHasloDlaUsera(AktualnyUser) == true)
-            //{
-            //    GlobalClass.KtoZalogowany.ZalogowanyUzytkownik = txtBoxLogin.Text;
-            //    this.Hide();
-            //    mainForm.ShowDialog();
-            //}
-            //else if (txtBoxLogin.Text.Length == 0 || txtBoxPassword.Text.Length == 0)
-            //{
-            //    lblZleHaslo.Location = new Point(415, 283);
-            //    lblZleHaslo.Text = "Uzupe³nij pola aby siê zalogowaæ";
+            }
 
-            //}
-            //else
-            //{
-            //    lblZleHaslo.Location = new Point(432, 283);
-            //    lblZleHaslo.Text = "NIEPRAWID£OWE DANE!";
-
-
-            //}
-
-            this.Hide();
-            mainForm.ShowDialog();
+           
 
 
         }

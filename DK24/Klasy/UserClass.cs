@@ -287,5 +287,45 @@ namespace DK24.Klasy
             }
         }
 
+
+
+
+
+        public bool SprawdzCzyAdmin(string LoginUsera)
+        {
+            bool CzyAdmin = false;
+            MySqlConnection polaczenie = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie);
+
+            try
+            {
+                polaczenie.Open();
+
+                string pobierzInformacje = "SELECT COUNT(*) FROM users WHERE worker_login = @login AND role = 'admin'";
+
+                using (MySqlCommand sqlPobierzInfo = new MySqlCommand(pobierzInformacje, polaczenie))
+                {
+                    sqlPobierzInfo.Parameters.AddWithValue("@login", LoginUsera);
+
+                    int liczbaRekordow = Convert.ToInt32(sqlPobierzInfo.ExecuteScalar());
+
+                    CzyAdmin = liczbaRekordow > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd połączenia do bazy danych: " + ex.Message, "Błąd");
+            }
+            finally
+            {
+                polaczenie.Close();
+            }
+
+            return CzyAdmin;
+        }
+
+
+
+
+
     }
 }
