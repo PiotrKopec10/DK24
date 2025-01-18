@@ -62,6 +62,18 @@ namespace DK24.Klasy
 
         }
 
+        public static class EmailSesja
+        {
+            public static UserClass.User AktualnyEmail { get; set; }
+
+        }
+
+        public static class KontrahentNIP
+        {
+            public static KontrahentClass.Kontrahent AktualnyNIP { get; set; }
+
+        }
+
 
         public static class StanFormyPracownika
         {

@@ -218,9 +218,9 @@ namespace DK24
 
         private void btnAnuluj_Click(object sender, EventArgs e)
         {
-  //          MainForm mainForm = new MainForm();
+            SzczegolyZamowieniaForm szczegolyZamowieniaForm = new SzczegolyZamowieniaForm();
             this.Hide();
-  //          mainForm.ShowDialog();
+            szczegolyZamowieniaForm.ShowDialog();
         }
     }
 

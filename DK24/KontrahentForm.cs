@@ -735,6 +735,12 @@ namespace DK24
                 btnPobierzPoNip.Visible = true;
 
             }
+            else if(GlobalClass.StanFormyKontrahenta.StanFormy == 4)
+            {
+                txtBoxNIP.Text = GlobalClass.KontrahentNIP.AktualnyNIP.nip;
+                txtBoxEmail.Text = GlobalClass.EmailSesja.AktualnyEmail.email;
+                GlobalClass.StanFormyKontrahenta.StanFormy = 3;
+            }
 
 
 
