@@ -34,15 +34,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
-            btnUsun = new Button();
+            btnZaznacz = new Button();
             btnCofnij = new Button();
-            btnEdytuj = new Button();
-            btnDodaj = new Button();
-            numericUpDown1 = new NumericUpDown();
-            comboBox1 = new ComboBox();
-            chckBoxRok = new CheckBox();
-            chckBoxMiesiac = new CheckBox();
-            label1 = new Label();
             lblZalogowanoJako = new Label();
             panelZalogowania = new Panel();
             linkLabel1 = new LinkLabel();
@@ -56,9 +49,7 @@
             towaryToolStripMenuItem = new ToolStripMenuItem();
             pnlDtGridZamowienia = new Panel();
             dtGridLstFakt = new DataGridView();
-            btnZaznacz = new Button();
             pnlPrzyciski.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panelZalogowania.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip.SuspendLayout();
@@ -70,28 +61,21 @@
             // 
             pnlPrzyciski.BackgroundImage = (Image)resources.GetObject("pnlPrzyciski.BackgroundImage");
             pnlPrzyciski.Controls.Add(btnZaznacz);
-            pnlPrzyciski.Controls.Add(btnUsun);
             pnlPrzyciski.Controls.Add(btnCofnij);
-            pnlPrzyciski.Controls.Add(btnEdytuj);
-            pnlPrzyciski.Controls.Add(btnDodaj);
-            pnlPrzyciski.Controls.Add(numericUpDown1);
-            pnlPrzyciski.Controls.Add(comboBox1);
-            pnlPrzyciski.Controls.Add(chckBoxRok);
-            pnlPrzyciski.Controls.Add(chckBoxMiesiac);
-            pnlPrzyciski.Controls.Add(label1);
             pnlPrzyciski.Location = new Point(0, 615);
             pnlPrzyciski.Name = "pnlPrzyciski";
             pnlPrzyciski.Size = new Size(1260, 65);
             pnlPrzyciski.TabIndex = 2;
             // 
-            // btnUsun
+            // btnZaznacz
             // 
-            btnUsun.Image = (Image)resources.GetObject("btnUsun.Image");
-            btnUsun.Location = new Point(1129, 16);
-            btnUsun.Name = "btnUsun";
-            btnUsun.Size = new Size(44, 33);
-            btnUsun.TabIndex = 15;
-            btnUsun.UseVisualStyleBackColor = true;
+            btnZaznacz.Image = (Image)resources.GetObject("btnZaznacz.Image");
+            btnZaznacz.Location = new Point(1128, 16);
+            btnZaznacz.Name = "btnZaznacz";
+            btnZaznacz.Size = new Size(44, 33);
+            btnZaznacz.TabIndex = 16;
+            btnZaznacz.UseVisualStyleBackColor = true;
+            btnZaznacz.Click += btnZaznacz_Click;
             // 
             // btnCofnij
             // 
@@ -102,85 +86,6 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 10;
             btnCofnij.UseVisualStyleBackColor = false;
-            // 
-            // btnEdytuj
-            // 
-            btnEdytuj.Image = (Image)resources.GetObject("btnEdytuj.Image");
-            btnEdytuj.Location = new Point(1066, 16);
-            btnEdytuj.Name = "btnEdytuj";
-            btnEdytuj.Size = new Size(44, 33);
-            btnEdytuj.TabIndex = 14;
-            btnEdytuj.UseVisualStyleBackColor = true;
-            // 
-            // btnDodaj
-            // 
-            btnDodaj.BackColor = Color.Transparent;
-            btnDodaj.Image = (Image)resources.GetObject("btnDodaj.Image");
-            btnDodaj.Location = new Point(1002, 16);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(44, 33);
-            btnDodaj.TabIndex = 7;
-            btnDodaj.UseVisualStyleBackColor = false;
-            btnDodaj.Click += btnDodaj_Click;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(388, 23);
-            numericUpDown1.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1980, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(66, 23);
-            numericUpDown1.TabIndex = 4;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
-            numericUpDown1.Value = new decimal(new int[] { 2024, 0, 0, 0 });
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(183, 22);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(130, 23);
-            comboBox1.TabIndex = 3;
-            // 
-            // chckBoxRok
-            // 
-            chckBoxRok.AutoSize = true;
-            chckBoxRok.BackColor = Color.Transparent;
-            chckBoxRok.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxRok.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            chckBoxRok.ForeColor = Color.White;
-            chckBoxRok.Location = new Point(330, 24);
-            chckBoxRok.Name = "chckBoxRok";
-            chckBoxRok.Size = new Size(49, 20);
-            chckBoxRok.TabIndex = 2;
-            chckBoxRok.Text = "Rok";
-            chckBoxRok.UseVisualStyleBackColor = false;
-            // 
-            // chckBoxMiesiac
-            // 
-            chckBoxMiesiac.AutoSize = true;
-            chckBoxMiesiac.BackColor = Color.Transparent;
-            chckBoxMiesiac.CheckAlign = ContentAlignment.MiddleRight;
-            chckBoxMiesiac.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            chckBoxMiesiac.ForeColor = Color.White;
-            chckBoxMiesiac.Location = new Point(105, 24);
-            chckBoxMiesiac.Name = "chckBoxMiesiac";
-            chckBoxMiesiac.Size = new Size(74, 20);
-            chckBoxMiesiac.TabIndex = 1;
-            chckBoxMiesiac.Text = "Miesiąc";
-            chckBoxMiesiac.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.ForeColor = Color.FromArgb(255, 128, 0);
-            label1.Location = new Point(19, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 18);
-            label1.TabIndex = 0;
-            label1.Text = "Lista za:";
             // 
             // lblZalogowanoJako
             // 
@@ -375,16 +280,6 @@
             dtGridLstFakt.Size = new Size(1238, 533);
             dtGridLstFakt.TabIndex = 0;
             // 
-            // btnZaznacz
-            // 
-            btnZaznacz.Image = (Image)resources.GetObject("btnZaznacz.Image");
-            btnZaznacz.Location = new Point(940, 16);
-            btnZaznacz.Name = "btnZaznacz";
-            btnZaznacz.Size = new Size(44, 33);
-            btnZaznacz.TabIndex = 16;
-            btnZaznacz.UseVisualStyleBackColor = true;
-            btnZaznacz.Click += btnZaznacz_Click;
-            // 
             // ListaFakturForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -406,8 +301,6 @@
             Text = "D&K - Lista Faktur";
             Load += ListaFakturForm_Load;
             pnlPrzyciski.ResumeLayout(false);
-            pnlPrzyciski.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             panelZalogowania.ResumeLayout(false);
             panelZalogowania.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -420,12 +313,6 @@
 
         #endregion
         private Panel pnlPrzyciski;
-        private CheckBox chckBoxMiesiac;
-        private Label label1;
-        private CheckBox chckBoxRok;
-        private NumericUpDown numericUpDown1;
-        private ComboBox comboBox1;
-        private Button btnDodaj;
         private Button btnCofnij;
         private Label lblZalogowanoJako;
         private Panel panelZalogowania;
@@ -440,8 +327,6 @@
         private ToolStripMenuItem towaryToolStripMenuItem;
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridLstFakt;
-        private Button btnUsun;
-        private Button btnEdytuj;
         private Button btnZaznacz;
     }
 }
