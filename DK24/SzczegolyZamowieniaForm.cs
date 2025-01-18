@@ -549,6 +549,7 @@ namespace DK24
         private void btnWygenerujEtykiete_Click_1(object sender, EventArgs e)
         {
             KurierForm dHLForm = new KurierForm();
+            this.Hide();
             dHLForm.ShowDialog();
         }
 
