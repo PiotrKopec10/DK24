@@ -669,12 +669,23 @@ namespace DK24
             {
                 string pobranyEmail = PobierzEmailUseraPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                 MessageBox.Show($"Brak kontrahenta w bazie, dodaj go!\nDodaj go używając numeru NIP: {txtBoxNrNip.Text} i maila: {pobranyEmail}", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Clipboard.SetText(txtBoxNrNip.Text);
-                MessageBox.Show("Numer NIP został skopiowany do schowka.", "Kopiowanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                KontrahentForm kontrahentForm = new KontrahentForm();
-                this.Hide();
-                kontrahentForm.ShowDialog();
-                return;
+                if (txtBoxNrNip.Text.Length != 0)
+                {
+                    Clipboard.SetText(txtBoxNrNip.Text);
+
+                    MessageBox.Show("Numer NIP został skopiowany do schowka.", "Kopiowanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    KontrahentForm kontrahentForm = new KontrahentForm();
+                    this.Hide();
+                    kontrahentForm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    KontrahentForm kontrahentForm = new KontrahentForm();
+                    this.Hide();
+                    kontrahentForm.ShowDialog();
+                    return;
+                }
             }
             bool bazaOK = false;
             try
