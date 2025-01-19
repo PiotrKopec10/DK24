@@ -101,6 +101,7 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 14;
             btnCofnij.UseVisualStyleBackColor = true;
+            btnCofnij.Click += btnCofnij_Click;
             // 
             // btnUsun
             // 

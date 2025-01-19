@@ -82,9 +82,9 @@ namespace DK24
             dtGridLstFakt.Columns["Numer Faktury"].DisplayIndex = 0;
             dtGridLstFakt.Columns["Nazwa Kontrahenta"].DisplayIndex = 1;
             dtGridLstFakt.Columns["Adres"].DisplayIndex = 2;
-            dtGridLstFakt.Columns["Data Wystawienia"].DisplayIndex = 3; 
+            dtGridLstFakt.Columns["Data Wystawienia"].DisplayIndex = 3;
             dtGridLstFakt.Columns["Cena Końcowa"].DisplayIndex = 4;
-           
+
 
 
             dtGridLstFakt.Columns["Numer Faktury"].Width = 150;
@@ -144,7 +144,7 @@ namespace DK24
 
 
 
-        public void PobierzNumerFaktury() 
+        public void PobierzNumerFaktury()
         {
 
             if (dtGridLstFakt.RowCount != 0)
@@ -223,9 +223,11 @@ namespace DK24
             }
         }
 
-
-
-
-
+        private void btnCofnij_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+        }
     }
 }

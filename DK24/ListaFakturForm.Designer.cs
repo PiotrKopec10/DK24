@@ -86,6 +86,7 @@
             btnCofnij.Size = new Size(44, 33);
             btnCofnij.TabIndex = 10;
             btnCofnij.UseVisualStyleBackColor = false;
+            btnCofnij.Click += btnCofnij_Click;
             // 
             // lblZalogowanoJako
             // 
@@ -210,7 +211,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 40);
+            towaryToolStripMenuItem.Size = new Size(99, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             towaryToolStripMenuItem.Click += towaryToolStripMenuItem_Click;

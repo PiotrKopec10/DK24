@@ -85,7 +85,7 @@ namespace DK24
         private void ListaKontrahentowForm_Load(object sender, EventArgs e)
         {
             WyswietlListeKontrahentow();
-           
+
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
 
@@ -158,16 +158,16 @@ namespace DK24
                     warunkiFiltra.Add($"[Akronim] LIKE '%{tekstFiltra}%'");
                 }
 
-              
+
                 filtr = string.Join(" OR ", warunkiFiltra);
             }
             else
             {
-                
+
                 filtr = "";
             }
 
-   
+
             (dtGridLstKnt.DataSource as DataView).RowFilter = filtr;
         }
 
@@ -272,6 +272,13 @@ namespace DK24
         private void chckBoxNazwa_CheckedChanged(object sender, EventArgs e)
         {
             FiltrujKontrahentow();
+        }
+
+        private void btnCofnij_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
         }
     }
 }

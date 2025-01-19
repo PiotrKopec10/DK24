@@ -346,7 +346,7 @@
             cmbBoxIBAN.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxIBAN.FormattingEnabled = true;
             cmbBoxIBAN.Items.AddRange(new object[] { "PL", "DE", "CZ", "US", "SK", "BI ", "DI" });
-            cmbBoxIBAN.Location = new Point(135, 461);
+            cmbBoxIBAN.Location = new Point(135, 456);
             cmbBoxIBAN.Name = "cmbBoxIBAN";
             cmbBoxIBAN.Size = new Size(63, 23);
             cmbBoxIBAN.TabIndex = 21;
@@ -368,7 +368,7 @@
             cmbBoxPrefixNrTel.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxPrefixNrTel.FormattingEnabled = true;
             cmbBoxPrefixNrTel.Items.AddRange(new object[] { "+48", "+420", "+44", "+39", "+49", "+46" });
-            cmbBoxPrefixNrTel.Location = new Point(135, 291);
+            cmbBoxPrefixNrTel.Location = new Point(135, 286);
             cmbBoxPrefixNrTel.Name = "cmbBoxPrefixNrTel";
             cmbBoxPrefixNrTel.Size = new Size(64, 23);
             cmbBoxPrefixNrTel.TabIndex = 20;
@@ -387,9 +387,9 @@
             // 
             // txtBoxNrRachunku
             // 
-            txtBoxNrRachunku.Location = new Point(204, 461);
+            txtBoxNrRachunku.Location = new Point(215, 456);
             txtBoxNrRachunku.Name = "txtBoxNrRachunku";
-            txtBoxNrRachunku.Size = new Size(240, 23);
+            txtBoxNrRachunku.Size = new Size(229, 23);
             txtBoxNrRachunku.TabIndex = 19;
             txtBoxNrRachunku.Enter += txtBoxNrRachunku_Enter;
             // 
@@ -425,7 +425,7 @@
             // 
             // txtBoxUrl
             // 
-            txtBoxUrl.Location = new Point(135, 374);
+            txtBoxUrl.Location = new Point(135, 370);
             txtBoxUrl.Name = "txtBoxUrl";
             txtBoxUrl.Size = new Size(309, 23);
             txtBoxUrl.TabIndex = 17;
@@ -444,7 +444,7 @@
             // 
             // txtBoxEmail
             // 
-            txtBoxEmail.Location = new Point(135, 334);
+            txtBoxEmail.Location = new Point(135, 329);
             txtBoxEmail.Name = "txtBoxEmail";
             txtBoxEmail.Size = new Size(309, 23);
             txtBoxEmail.TabIndex = 16;
@@ -460,7 +460,7 @@
             // 
             // txtBoxNrTel
             // 
-            txtBoxNrTel.Location = new Point(215, 291);
+            txtBoxNrTel.Location = new Point(215, 286);
             txtBoxNrTel.Name = "txtBoxNrTel";
             txtBoxNrTel.Size = new Size(229, 23);
             txtBoxNrTel.TabIndex = 15;
