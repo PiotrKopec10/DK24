@@ -43,11 +43,6 @@ namespace DK24
             txtBoxNrTel.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
 
 
-
-            // Obsługa Banku
-            txtBoxBank.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoLitery);
-            txtBoxBank.TextChanged += new EventHandler(GlobalneDzialania.ZmienPierwszaLitereNaWielka);
-
             // Obsługa Nr Bankowego
             txtBoxNrRachunku.MaxLength = 30;
             txtBoxNrRachunku.KeyPress += new KeyPressEventHandler(GlobalneDzialania.TylkoCyfry);
@@ -164,30 +159,6 @@ namespace DK24
                 txtBoxEmail.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBoxBank.Text))
-            {
-                txtBoxBank.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxBank, "Pole Bank nie może być puste!");
-                pustePola.Add("Bank");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxBank.BackColor = SystemColors.Window;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtBoxNrRachunku.Text))
-            {
-                txtBoxNrRachunku.BackColor = Color.Pink;
-                toolTip.SetToolTip(txtBoxNrRachunku, "Pole Nr Rachunku nie może być puste!");
-                pustePola.Add("Nr Rachunku");
-                isValid = false;
-            }
-            else
-            {
-                txtBoxNrRachunku.BackColor = SystemColors.Window;
-            }
-
             if (string.IsNullOrWhiteSpace(txtBoxUlica.Text))
             {
                 txtBoxUlica.BackColor = Color.Pink;
@@ -249,30 +220,6 @@ namespace DK24
                 cmbBoxPrefixNrTel.BackColor = SystemColors.Window;
             }
 
-            if (string.IsNullOrWhiteSpace(cmbBoxZnizka.Text))
-            {
-                cmbBoxZnizka.BackColor = Color.Pink;
-                toolTip.SetToolTip(cmbBoxZnizka, "Pole Zniżka nie może być puste!");
-                pustePola.Add("Zniżka");
-                isValid = false;
-            }
-            else
-            {
-                cmbBoxZnizka.BackColor = SystemColors.Window;
-            }
-
-            if (string.IsNullOrWhiteSpace(cmbBoxIBAN.Text))
-            {
-                cmbBoxIBAN.BackColor = Color.Pink;
-                toolTip.SetToolTip(cmbBoxIBAN, "Pole Nr Rachunku nie może być puste!");
-                pustePola.Add("IBAN");
-                isValid = false;
-            }
-            else
-            {
-                cmbBoxIBAN.BackColor = SystemColors.Window;
-            }
-
             if (string.IsNullOrWhiteSpace(cmbBoxKraj.Text))
             {
                 cmbBoxKraj.BackColor = Color.Pink;
@@ -322,14 +269,6 @@ namespace DK24
                     {
                         pustePoleControl = txtBoxEmail;
                     }
-                    else if (pustePole == "Bank")
-                    {
-                        pustePoleControl = txtBoxBank;
-                    }
-                    else if (pustePole == "Nr Rachunku")
-                    {
-                        pustePoleControl = txtBoxNrRachunku;
-                    }
                     else if (pustePole == "Ulica")
                     {
                         pustePoleControl = txtBoxUlica;
@@ -349,14 +288,6 @@ namespace DK24
                     else if (pustePole == "Numer Kierunkowy")
                     {
                         pustePoleControl = cmbBoxPrefixNrTel;
-                    }
-                    else if (pustePole == "Zniżka")
-                    {
-                        pustePoleControl = cmbBoxZnizka;
-                    }
-                    else if (pustePole == "IBAN")
-                    {
-                        pustePoleControl = cmbBoxIBAN;
                     }
                     else if (pustePole == "Kraj")
                     {

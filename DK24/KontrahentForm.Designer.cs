@@ -233,7 +233,7 @@
             // 
             cmbBoxZnizka.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxZnizka.FormattingEnabled = true;
-            cmbBoxZnizka.Items.AddRange(new object[] { "0", "10" });
+            cmbBoxZnizka.Items.AddRange(new object[] { "10" });
             cmbBoxZnizka.Location = new Point(580, 258);
             cmbBoxZnizka.Name = "cmbBoxZnizka";
             cmbBoxZnizka.Size = new Size(98, 23);
@@ -367,7 +367,7 @@
             // 
             cmbBoxPrefixNrTel.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxPrefixNrTel.FormattingEnabled = true;
-            cmbBoxPrefixNrTel.Items.AddRange(new object[] { "+48", "+22" });
+            cmbBoxPrefixNrTel.Items.AddRange(new object[] { "+48", "+420", "+44", "+39", "+49", "+46" });
             cmbBoxPrefixNrTel.Location = new Point(135, 291);
             cmbBoxPrefixNrTel.Name = "cmbBoxPrefixNrTel";
             cmbBoxPrefixNrTel.Size = new Size(64, 23);
@@ -525,7 +525,7 @@
             // 
             cmbBoxKraj.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxKraj.FormattingEnabled = true;
-            cmbBoxKraj.Items.AddRange(new object[] { "SKIBIDI POLAND", "KIRKIDI OSOWA", "Polska", "GB" });
+            cmbBoxKraj.Items.AddRange(new object[] { "Polska", "Czechy", "Wielka Brytania", "Włochy", "Niemcy", "Szwecja" });
             cmbBoxKraj.Location = new Point(101, 212);
             cmbBoxKraj.Name = "cmbBoxKraj";
             cmbBoxKraj.Size = new Size(212, 23);
