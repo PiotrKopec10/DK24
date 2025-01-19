@@ -692,9 +692,6 @@ namespace DK24
                 MessageBox.Show($"Brak kontrahenta w bazie, dodaj go!\nDodaj go używając numeru NIP: {txtBoxNrNip.Text} i maila: {GlobalClass.EmailSesja.AktualnyEmail.email}", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (txtBoxNrNip.Text.Length != 0)
                 {
-                    Clipboard.SetText(txtBoxNrNip.Text);
-
-                    MessageBox.Show("Numer NIP został skopiowany do schowka.", "Kopiowanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     KontrahentForm kontrahentForm = new KontrahentForm();
 
                     GlobalClass.StanFormyKontrahenta.StanFormy = 4;

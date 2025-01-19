@@ -451,7 +451,7 @@ namespace DK24
                 }
 
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
-                this.Close();
+                this.Hide();
                 listaKontrahentowForm.ShowDialog();
 
 
@@ -519,7 +519,7 @@ namespace DK24
 
 
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
-                this.Close();
+                this.Hide();
                 listaKontrahentowForm.ShowDialog();
 
 

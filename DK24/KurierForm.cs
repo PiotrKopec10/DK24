@@ -70,8 +70,7 @@ namespace DK24
                     phone = "58 770 34 30"
                 },
                 receiver = new
-                {
-                    //Tutaj jeszcze zweryfikowac co konkretnie dodajemy 
+                { 
                     name = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
                     company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,                 
                     street = nazwaUlicy,
