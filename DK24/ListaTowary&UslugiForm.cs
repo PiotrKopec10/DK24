@@ -107,7 +107,7 @@ namespace DK24
                     {
                         var opcjeProduktow = PobierzKombinacjeOpcji(productGroup.ToList(), 2);
 
-                 
+
                         if (!opcjeProduktow.Any())
                         {
                             opcjeProduktow.Add(new List<SzczegolyOpcji>());
@@ -121,7 +121,7 @@ namespace DK24
 
                             decimal lacznaKwota = productGroup.Key.Cena;
 
-                         
+
                             for (int i = 0; i < 2; i++)
                             {
                                 string kolumna = i == 0 ? "Typ" : "Rodzaj";
@@ -144,7 +144,7 @@ namespace DK24
                                 }
                                 else
                                 {
-                                  
+
                                     newRow[kolumna] = "Usługa";
                                 }
                             }
@@ -241,6 +241,11 @@ namespace DK24
             {
                 WyswietlTowaryIUslugi();
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
