@@ -162,7 +162,6 @@
             Controls.Add(lblWitaj);
             FormBorderStyle = FormBorderStyle.None;
             Name = "LoginForm";
-            ShowIcon = false;
             FormClosing += LoginForm_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
