@@ -735,22 +735,36 @@ namespace DK24
             {
                 try
                 {
-                    //Dodać:
-                    // Zmienić nazwę pliku zapisywanego na krótszą oraz ścieżkę by było w podfolderze Zamówienia o konretnym numerze
                     var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
                     if (!File.Exists(logoPath)) throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
                     var invoice = new DokumentFakturaClass("D&K Centrum Kopiowania", items, logoPath);
+
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    string invoicesFolderPath = Path.Combine(desktopPath, "D&K_Faktury_zamówień");
-                    if (!Directory.Exists(invoicesFolderPath)) Directory.CreateDirectory(invoicesFolderPath);
-                    string fileName = $"Faktura_Nr{lblNrZamowienia.Text}_{txtBoxNazwaKlienta.Text.Replace(" ", "_").Replace("/", "_")}.pdf";
-                    string filePath = Path.Combine(invoicesFolderPath, fileName);
+                    string ordersFolderPath = Path.Combine(desktopPath, "D&K_Zamówienia");
+                    if (!Directory.Exists(ordersFolderPath)) Directory.CreateDirectory(ordersFolderPath);
+
+                    string orderFolderName = $"Zamowienie_{GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id}";
+                    string orderFolderPath = Path.Combine(ordersFolderPath, orderFolderName);
+                    if (!Directory.Exists(orderFolderPath)) Directory.CreateDirectory(orderFolderPath);
+
+                    string nrFaktury = lblNrZamowienia.Text;
+                    string nazwaKlienta = txtBoxNazwaKlienta.Text.Trim();
+                    if (string.IsNullOrEmpty(nazwaKlienta)) throw new ArgumentException("Nazwa klienta nie może być pusta.");
+                    string skroconaNazwaKlienta = nazwaKlienta.Length > 30 ? nazwaKlienta.Substring(0, 30) : nazwaKlienta;
+                    string fileName = $"Faktura_Nr{nrFaktury}_{skroconaNazwaKlienta.Replace(" ", "_").Replace("/", "_").Replace("X", "")}.pdf";
+
+                    string filePath = Path.Combine(orderFolderPath, fileName);
+
                     invoice.GeneratePdf(filePath);
+
                     ZapiszPdfDoBazy(filePath);
+
                     var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK) WypelnijSzczegolyZamowienia();
+
+
                 }
                 catch (FileNotFoundException ex)
                 {
@@ -854,9 +868,6 @@ namespace DK24
         }
 
 
-        // Dodać:
-        // Stworzenie foldru "D&K_Zamówienia" w którym zapisywane będą foldery Zamówień 
-
         private void PobierzPlikZBazy(int fileId, int orderId)
         {
             try
@@ -879,11 +890,13 @@ namespace DK24
 
 
                                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                                string ordersFolderPath = Path.Combine(desktopPath, "D&K_Zamówienia");
+                                if (!Directory.Exists(ordersFolderPath)) Directory.CreateDirectory(ordersFolderPath);
 
                                 string orderFolderName = $"Zamowienie_{orderId}";
-                                string orderFolderPath = Path.Combine(desktopPath, orderFolderName);
+                                string orderFolderPath = Path.Combine(ordersFolderPath, orderFolderName);
 
-                                Directory.CreateDirectory(orderFolderPath);
+                                if (!Directory.Exists(orderFolderPath)) Directory.CreateDirectory(orderFolderPath);
 
                                 string filePath = Path.Combine(orderFolderPath, fileName);
                                 File.WriteAllBytes(filePath, fileData);
