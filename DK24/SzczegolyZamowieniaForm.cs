@@ -32,7 +32,9 @@ namespace DK24
             WypelnijSzczegolyZamowienia();
             DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, dtGridViewZamowienia);
 
-
+            //OPCJONALNIE
+            // Dodać moduł do blokowania guzików przed Pobraniem plików jeśli są
+            // Dodać textboxa o informacji dlaczego anulowano zamówienie
 
             if (cmbBoxStatusZamowienia.SelectedIndex == 5) //Anulowano
             {
@@ -252,7 +254,7 @@ namespace DK24
 
 
 
-                            lblCenaNetto.Text = reader.IsDBNull(reader.GetOrdinal("total_price"))
+                            lblCenaBrutto.Text = reader.IsDBNull(reader.GetOrdinal("total_price"))
                                                 ? "0.00"
                                                 : reader["total_price"].ToString();
 
@@ -430,10 +432,10 @@ namespace DK24
                                 btnZakceptuj.Enabled = false;
                             }
 
-                            if (!string.IsNullOrWhiteSpace(lblCenaNetto.Text))
+                            if (!string.IsNullOrWhiteSpace(lblCenaBrutto.Text))
                             {
 
-                                lblCenaBrutto.Text = ObliczBrutto(Convert.ToDecimal(lblCenaNetto.Text)).ToString("F2");
+                                lblCenaNetto.Text = ObliczNetto(Convert.ToDecimal(lblCenaBrutto.Text)).ToString("F2");
 
                             }
 
@@ -459,10 +461,10 @@ namespace DK24
         }
 
 
-        public decimal ObliczBrutto(decimal kwotaNetto)
+        public decimal ObliczNetto(decimal kwotaNetto)
         {
             decimal stawkaVAT = 0.23m;
-            decimal kwotaBrutto = kwotaNetto * (1 + stawkaVAT);
+            decimal kwotaBrutto = kwotaNetto * (1 - stawkaVAT);
             return kwotaBrutto;
         }
 
@@ -733,7 +735,8 @@ namespace DK24
             {
                 try
                 {
-
+                    //Dodać:
+                    // Zmienić nazwę pliku zapisywanego na krótszą oraz ścieżkę by było w podfolderze Zamówienia o konretnym numerze
                     var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
@@ -851,6 +854,8 @@ namespace DK24
         }
 
 
+        // Dodać:
+        // Stworzenie foldru "D&K_Zamówienia" w którym zapisywane będą foldery Zamówień 
 
         private void PobierzPlikZBazy(int fileId, int orderId)
         {

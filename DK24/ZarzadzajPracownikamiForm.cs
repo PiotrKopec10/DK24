@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace DK24
 {
+    //ZMIENIĆ
+    // Nie można usunąć zalogowanego admina podczas aktualnej sesji
     public partial class ZarzadzajPracownikamiForm : Form
     {
         DataTable dt = new DataTable();
