@@ -60,7 +60,7 @@ namespace DK24
 
             if(DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik)==false)
             {
-
+                
                 ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
 
 
@@ -147,29 +147,29 @@ namespace DK24
         public DataTable PobierzZamowieniaZDetalami(string[] statuses = null)
         {
             string query = @"SELECT 
-        o.order_id AS 'Numer Zamówienia',
-        o.total_price AS 'Cena',
-        o.status AS 'Status',
-        o.created_at AS 'Data Utworzenia',
-        COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS 'Klient',
-        COALESCE(cd.email, u.email) AS 'Email',
-        COALESCE(cd.phone_number, u.phone_number) AS 'Numer Telefonu',
-        COALESCE(
-            CONCAT(a.street, ' ', a.house_number, 
-                   IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
-                   ', ', a.city, ', ', a.country), 
-            'Odbiór osobisty'
-        ) AS 'Sposób odbioru'
-    FROM 
-        orders o
-    INNER JOIN 
-        users u ON o.user_id = u.user_id
-    LEFT JOIN 
-        company_details cd ON u.user_id = cd.user_id
-    LEFT JOIN 
-        addresses a ON o.delivery_address_id = a.address_id";
-
-
+             o.order_id AS 'Numer Zamówienia', 
+             CONCAT(u.first_name, ' ', u.last_name) AS 'Klient', 
+             u.phone_number AS 'Numer Telefonu', 
+             u.email AS 'Email', 
+             cd.name AS 'Firma', 
+             o.number_nip AS 'NIP', 
+             o.status AS 'Status',
+             o.created_at AS 'Data Utworzenia',
+             o.total_price AS 'Cena',
+             COALESCE(
+                 CONCAT(a.street, ' ', a.house_number, 
+                        IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', CONCAT('/', a.apartment_number), ''), 
+                        ', ', a.city, ', ', a.country), 
+                 'Odbiór osobisty'
+             ) AS 'Sposób odbioru'
+         FROM 
+             orders o
+         INNER JOIN 
+             users u ON o.user_id = u.user_id
+         LEFT JOIN 
+             company_details cd ON o.number_nip = cd.nip 
+         LEFT JOIN 
+             addresses a ON o.delivery_address_id = a.address_id";
 
             if (statuses != null && statuses.Length > 0)
             {
@@ -196,6 +196,9 @@ namespace DK24
                 return dt;
             }
         }
+
+
+
 
 
         public void PobierzZamowienie()
@@ -321,18 +324,7 @@ namespace DK24
             dHLForm.ShowDialog();
         }
 
-        //private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    if (e.RowIndex >= 0 && dtGridViewZamowienia.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
-        //    {
-        //        string status = rowView["status"]?.ToString();
-        //        if (status == "canceled")
-        //        {
-        //            dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-        //        }
-
-        //    }
-        //}
+      
         private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && dtGridViewZamowienia.Columns[e.ColumnIndex].Name == "Status")
@@ -363,8 +355,7 @@ namespace DK24
                 {
                     e.Value = "Ukończone";
                 }
-
-                // Możesz dodać różne kolory w zależności od statusu, jeśli tego chcesz
+             
                 if (status == "canceled")
                 {
                     dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;

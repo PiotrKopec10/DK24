@@ -32,27 +32,27 @@ namespace DK24
 
         private void WypelnijListeFaktur()
         {
-            string query = @"
-        SELECT 
-            i.invoice_id,
-            i.invoice_number AS 'Numer Faktury',
-            i.issue_date AS 'Data Wystawienia',
-            i.total_amount AS 'Cena Końcowa',
-            i.created_at,
-            cd.name AS 'Nazwa Kontrahenta',
-            CASE 
-               WHEN ad.address_id IS NOT NULL THEN 
-                   CONCAT(ad.street, ' ', ad.house_number, 
-                          IF(ad.apartment_number IS NOT NULL AND ad.apartment_number != '', 
-                             CONCAT('/', ad.apartment_number), ''), 
-                          ', ', ad.postal_code, ' ', ad.city)
-               ELSE 'Brak adresu'
-            END AS 'Adres'
-        FROM invoices AS i
-        LEFT JOIN company_details AS cd ON i.company_details_id = cd.company_details_id
-        LEFT JOIN addresses AS ad ON i.billing_address_id = ad.address_id
-        ORDER BY i.created_at DESC;
-    ";
+            string query = @"SELECT 
+                            i.invoice_id,
+                            i.invoice_number AS 'Numer Faktury',
+                            i.issue_date AS 'Data Wystawienia',
+                            i.total_amount AS 'Cena Końcowa',
+                            i.created_at,
+                            cd.name AS 'Nazwa Kontrahenta',
+                            CASE 
+                               WHEN ad.address_id IS NOT NULL THEN 
+                                   CONCAT(ad.street, ' ', ad.house_number, 
+                                          IF(ad.apartment_number IS NOT NULL AND ad.apartment_number != '', 
+                                             CONCAT('/', ad.apartment_number), ''), 
+                                          ', ', ad.postal_code, ' ', ad.city)
+                               ELSE 'Brak adresu'
+                            END AS 'Adres'
+                        FROM invoices AS i
+                        LEFT JOIN orders AS o ON i.order_order_id = o.order_id
+                        LEFT JOIN company_details AS cd ON o.number_nip = cd.nip
+                        LEFT JOIN addresses AS ad ON i.billing_address_id = ad.address_id
+                        ORDER BY i.created_at DESC;
+                            ";
 
             DataTable dt = new DataTable();
             using (MySqlConnection conn = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))

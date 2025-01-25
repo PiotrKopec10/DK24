@@ -61,8 +61,8 @@ namespace DK24
                 {
                     name = "Centrum Kopiowania",
                     company = "D&K",
-                    street = "Ulica Grunwaldzka 82",
-                    postcode = "80-244",
+                    street = "Ulica Jana Kilińskiego 4",
+                    postcode = "80-452",
                     city = "Gdańsk",
                     country_code = "PL",
                     county = "",
@@ -169,7 +169,7 @@ namespace DK24
 
 
 
-                            
+
                             this.Hide();
                             szczegolyZamowieniaForm.ShowDialog();
 
@@ -204,7 +204,8 @@ namespace DK24
             }
             else
             {
-                MessageBox.Show("Paczka nie przeszła walidacji. Sprawdź szczegóły błędów w konsoli.");
+                MessageBox.Show(GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka + "\n  Zamówienie zostanie anulowane automatycznie.", "Paczka nie przeszła walidacji.",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane", "");
                 MainForm mainForm = new MainForm();
                 this.Hide();
                 mainForm.ShowDialog();

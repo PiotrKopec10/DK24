@@ -322,9 +322,6 @@ namespace DK24
                 AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
 
 
-
-                if (DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres) == -1)
-                {
                     DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
                     AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
@@ -334,52 +331,24 @@ namespace DK24
                     AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
                     AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
                     AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
-                    AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString();
+                    AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString() ?? string.Empty;
                     AktualnyKontrahent.email = txtBoxEmail.Text;
                     AktualnyKontrahent.url = txtBoxUrl.Text;
                     AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
                     AktualnyKontrahent.bank_name = txtBoxBank.Text;
-                    AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
-                    AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
-                    AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
-
-
-
-
-
-                    if(DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1 )
+                    if (cmbBoxIBAN.SelectedItem != null)
                     {
-                        AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
-
-                        if (DzialanieNaKontrahencie.CzyUserJestPrzypisanyDoKontrahenta(AktualnyKontrahent.user_id) == false) 
-                        {
-                            DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Podany Adres email jest przypisany do danego konta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-
-                        
-
-
-                       
+                        AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
                     }
                     else
                     {
-                        MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        AktualnyKontrahent.bank_iban_prefix = ""; 
                     }
 
-
-                   
-
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Podany Adres jest już przypisany do Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
+                    AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
+                    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+                    DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
 
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
                 this.Hide();
@@ -430,18 +399,6 @@ namespace DK24
                 AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
                 AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
                 AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
-
-
-
-                //if (DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email) != -1)
-                //{
-                //    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
-                    
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Nieznaleziono maila przypisanego do danego Kontrahenta!", "Uwaga!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //}
 
 
 

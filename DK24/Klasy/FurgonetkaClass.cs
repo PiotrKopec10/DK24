@@ -158,6 +158,36 @@ namespace DK24.Klasy
       
                 Console.WriteLine($"Błąd walidacji: {response.StatusCode} - {response.ErrorMessage}");
                 Console.WriteLine("Szczegóły błędu: " + response.Content);
+
+                try
+                {
+                    if (!string.IsNullOrEmpty(response.Content))
+                    {
+                      
+                        var jsonDocument = System.Text.Json.JsonDocument.Parse(response.Content);                    
+                        var errors = jsonDocument.RootElement.GetProperty("errors");
+                        if (errors.GetArrayLength() > 0)
+                        {
+                            string message = errors[0].GetProperty("message").GetString();
+                            GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka = message;
+                        }
+                        else
+                        {
+                            GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka = "Nieznany błąd walidacji.";
+                        }
+                    }
+                    else
+                    {
+                        GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka = "Brak szczegółów błędu.";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Błąd podczas parsowania odpowiedzi JSON: " + ex.Message);
+                    GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka = "Błąd podczas parsowania odpowiedzi.";
+                }
+
+
                 return false;
             }
 

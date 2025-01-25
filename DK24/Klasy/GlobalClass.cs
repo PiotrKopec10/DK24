@@ -82,6 +82,12 @@ namespace DK24.Klasy
 
 
 
+        public static class BladFurgonetkaWalidacja
+        {
+            public static string WalidacjaPaczkiFurgonetka { get; set; }
+        }
+
+
 
         public static class AdressGlobalne
         {

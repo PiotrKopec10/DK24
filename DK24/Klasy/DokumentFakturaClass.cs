@@ -220,37 +220,37 @@ namespace DK24
                     polaczenie.Open();
 
                     string pobierzDaneSql = @"
-                SELECT 
-                    o.order_id,
-                    o.created_at,
-                    CASE 
-                       WHEN cd.company_details_id IS NOT NULL 
-                       THEN cd.name 
-                       ELSE CONCAT(u.first_name, ' ', u.last_name)
-                    END AS buyer_name,
-                    CASE 
-                       WHEN cd.company_details_id IS NOT NULL 
-                       THEN cd.nip
-                       ELSE NULL
-                    END AS buyer_nip,
-                    COALESCE(cd.phone_number, u.phone_number) AS buyer_phone,
-                    CASE 
-                        WHEN a.address_id IS NOT NULL THEN 
-                            CONCAT(
-                                CASE 
-                                    WHEN a.apartment_number IS NULL OR a.apartment_number = '' 
-                                         THEN CONCAT(a.street, ' ', a.house_number)
-                                    ELSE CONCAT(a.street, ' ', a.house_number, '/', a.apartment_number)
-                                END,
-                            ', ', a.postal_code, ' ', a.city)
-                        ELSE 'Odbiór osobisty'
-                    END AS full_address
-                FROM orders AS o
-                LEFT JOIN users AS u ON o.user_id = u.user_id
-                LEFT JOIN company_details AS cd ON u.user_id = cd.user_id
-                LEFT JOIN addresses AS a ON o.delivery_address_id = a.address_id
-                WHERE o.order_id = @OrderId;
-            ";
+                                    SELECT 
+                        o.order_id,
+                        o.created_at,
+                        -- Pobieranie nazwy klienta z priorytetem na dane firmy
+                        CASE 
+                            WHEN cd.nip = o.number_nip THEN cd.name
+                            ELSE CONCAT(u.first_name, ' ', u.last_name)
+                        END AS buyer_name,
+                        -- Pobieranie NIP na podstawie number_nip
+                        o.number_nip AS buyer_nip,
+                        -- Numer telefonu z priorytetem na company_details
+                        COALESCE(cd.phone_number, u.phone_number) AS buyer_phone,
+                        -- Pełny adres lub ""Odbiór osobisty""
+                        CASE 
+                            WHEN a.address_id IS NOT NULL THEN 
+                                CONCAT(
+                                    CASE 
+                                        WHEN a.apartment_number IS NULL OR a.apartment_number = '' 
+                                        THEN CONCAT(a.street, ' ', a.house_number)
+                                        ELSE CONCAT(a.street, ' ', a.house_number, '/', a.apartment_number)
+                                    END,
+                                    ', ', a.postal_code, ' ', a.city
+                                )
+                            ELSE 'Odbiór osobisty'
+                        END AS full_address
+                    FROM orders AS o
+                    LEFT JOIN users AS u ON o.user_id = u.user_id
+                    LEFT JOIN company_details AS cd ON cd.nip = o.number_nip
+                    LEFT JOIN addresses AS a ON o.delivery_address_id = a.address_id
+                    WHERE o.order_id = @OrderId;
+                         ";
 
                     using (MySqlCommand cmd = new MySqlCommand(pobierzDaneSql, polaczenie))
                     {

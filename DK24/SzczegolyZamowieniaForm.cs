@@ -32,9 +32,6 @@ namespace DK24
             WypelnijSzczegolyZamowienia();
             DzialanieNaZamowieniu.WyswietlSzczegolyZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, dtGridViewZamowienia);
 
-            //OPCJONALNIE
-            // Dodać moduł do blokowania guzików przed Pobraniem plików jeśli są
-            // Dodać textboxa o informacji dlaczego anulowano zamówienie
 
             if (cmbBoxStatusZamowienia.SelectedIndex == 5) //Anulowano
             {
@@ -85,8 +82,6 @@ namespace DK24
 
                 btnWygenerujEtykiete.Enabled = true;
                 btnAnulujZamowienie.Enabled = false;
-                //btnFaktura.Enabled = false;
-                // btnFaktura.Visible = true;
                 if (chckBoxFaktura.Checked)
                 {
                     btnFaktura.Enabled = false;
@@ -102,8 +97,7 @@ namespace DK24
             {
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
-                btnZakonczZamowienie.Enabled = false;
-                //btnWygenerujEtykiete.Enabled = false;
+                btnZakonczZamowienie.Enabled = false;              
                 btnFaktura.Enabled = true;
                 if (chckBoxFaktura.Checked)
                 {
@@ -142,37 +136,39 @@ namespace DK24
         private void WypelnijSzczegolyZamowienia()
         {
             string query = @"
-        SELECT 
-            o.order_id,
-            o.total_price,
-            o.status,
-            o.created_at,
-            o.modified_at,
-            o.shipping_method,
-            o.user_id,          
-            o.is_invoice,
-            o.delivery_address_id,
-            o.number_nip,
-            COALESCE(cd.name, CONCAT(u.first_name, ' ', u.last_name)) AS customer_name,
-            COALESCE(cd.email, u.email) AS email,
-            COALESCE(cd.phone_number, u.phone_number) AS phone_number,
-            CASE 
-                WHEN o.delivery_address_id IS NULL THEN 'Odbiór osobisty'
-                ELSE CONCAT(a.street, ' ', a.house_number, 
-                            IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', 
-                               CONCAT('/', a.apartment_number), ''), 
-                            ', ', a.city, ', ', a.country)
-            END AS full_address
-        FROM 
-            orders o
-        INNER JOIN 
-            users u ON o.user_id = u.user_id
-        LEFT JOIN 
-            company_details cd ON u.user_id = cd.user_id
-        LEFT JOIN 
-            addresses a ON o.delivery_address_id = a.address_id
-        WHERE 
-            o.order_id = @OrderId";
+                    SELECT 
+                o.order_id,
+                o.total_price,
+                o.status,
+                o.created_at,
+                o.modified_at,
+                o.shipping_method,
+                o.user_id,          
+                o.is_invoice,
+                o.delivery_address_id,
+                o.number_nip,
+                -- Priorytet na users.first_name i users.last_name
+                COALESCE(CONCAT(u.first_name, ' ', u.last_name), cd.name) AS customer_name,
+                COALESCE(u.email, cd.email) AS email,
+                COALESCE(u.phone_number, cd.phone_number) AS phone_number,
+                CASE 
+                    WHEN o.delivery_address_id IS NULL THEN 'Odbiór osobisty'
+                    ELSE CONCAT(a.street, ' ', a.house_number, 
+                                IF(a.apartment_number IS NOT NULL AND a.apartment_number != '', 
+                                   CONCAT('/', a.apartment_number), ''), 
+                                ', ', a.city, ', ', a.country)
+                END AS full_address
+            FROM 
+                orders o
+            INNER JOIN 
+                users u ON o.user_id = u.user_id
+            LEFT JOIN 
+                company_details cd ON u.user_id = cd.user_id
+            LEFT JOIN 
+                addresses a ON o.delivery_address_id = a.address_id
+            WHERE 
+                o.order_id = @OrderId;
+            ";
 
             using (MySqlConnection conn = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
             {
@@ -209,20 +205,12 @@ namespace DK24
 
 
 
-                            //tutaj musimy to podzielic na customer name do paczki ale w name przytrymowac znaki na dole przyklad jak to zrobic w KurierForm
-                            //TAK JAK MAMY TUTAJ TYLKO ZE NAME NIE MOZE BYC ZE ZNAKAMI SPECJALNYMI
-                            //name = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
-                            // company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,  
-
-                            //if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
-                            //    GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = reader.GetString(reader.GetOrdinal("customer_name"));
-                            //else
-                            //    GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = "Nie Znaleziono";
+                      
 
                             if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
                             {
                                 string rawCustomerName = reader.GetString(reader.GetOrdinal("customer_name"));
-                                // Usunięcie znaków specjalnych
+                            
                                 string filteredCustomerName = Regex.Replace(rawCustomerName, @"[^a-zA-Z0-9\s]", "");
                                 GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = filteredCustomerName;
                             }
@@ -270,7 +258,7 @@ namespace DK24
 
 
 
-                            //                            GlobalClass.AdressGlobalne.AktualnyAddress.fullAddres = txtBoxAdres.Text;
+                         
 
 
 
@@ -373,9 +361,6 @@ namespace DK24
                             {
 
                                 cmbBoxStatusZamowienia.SelectedIndex = 2;
-                                //btnZakceptuj.Enabled = false;
-                                //btnZakonczZamowienie.Enabled = true;
-                                //btnAnulujZamowienie.Enabled = false;
 
 
 
@@ -715,8 +700,7 @@ namespace DK24
             {
                 FakturaClass DaneDoFaktury = DzialaniaNaFakturze.PobierzPotrzebneDaneWedlugOrderIdDoInsertaBazy(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                 DzialaniaNaFakturze.DodajFaktureDoBazy(DaneDoFaktury);
-                DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
-
+               
                 if (GlobalClass.FakturaSesja.AktualnaFaktura == null)
                 {
                     GlobalClass.FakturaSesja.AktualnaFaktura = new FakturaClass();
@@ -761,9 +745,13 @@ namespace DK24
 
                     ZapiszPdfDoBazy(filePath);
 
+                    DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "invoice_ready", "Faktura Gotowa", "");
+
+
                     var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK) WypelnijSzczegolyZamowienia();
 
+                   
 
                 }
                 catch (FileNotFoundException ex)
