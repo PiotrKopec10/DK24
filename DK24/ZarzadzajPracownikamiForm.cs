@@ -6,8 +6,6 @@ using System.Windows.Forms;
 
 namespace DK24
 {
-    //ZMIENIĆ
-    // Nie można usunąć zalogowanego admina podczas aktualnej sesji
     public partial class ZarzadzajPracownikamiForm : Form
     {
         DataTable dt = new DataTable();
@@ -448,6 +446,17 @@ namespace DK24
         {
             PobierzPracownika();
             lblNaglowek.Visible = false;
+
+
+            DataGridViewRow selectedRow = dtGridLstPracownikow.SelectedRows[0];
+            string selectedUserLogin = selectedRow.Cells["Login Pracownika"].Value.ToString();
+
+
+            if (selectedUserLogin == GlobalClass.KtoZalogowany.ZalogowanyUzytkownik)
+            {
+                MessageBox.Show("Nie można usunąć aktualnie zalogowanego użytkownika!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             DialogResult result = MessageBox.Show("Czy na pewno chcesz usunąć użytkownika?", "Potwierdzenie usunięcia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

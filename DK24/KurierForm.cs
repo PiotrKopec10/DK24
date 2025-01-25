@@ -149,13 +149,22 @@ namespace DK24
                         if (labelData != null && labelData.Length > 0)
                         {
                             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                            string folderPath = Path.Combine(desktopPath, "D&K_Etykiety_zamówień");
+                            string ordersFolderPath = Path.Combine(desktopPath, "D&K_Zamówienia");
 
-                            if (!Directory.Exists(folderPath))
+                            if (!Directory.Exists(ordersFolderPath))
                             {
-                                Directory.CreateDirectory(folderPath);
+                                Directory.CreateDirectory(ordersFolderPath);
                             }
-                            string labelPath = Path.Combine(folderPath, $"label_{packageId}.pdf");
+
+                            string orderFolderName = $"Zamowienie_{GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id}";
+                            string orderFolderPath = Path.Combine(ordersFolderPath, orderFolderName);
+
+                            if (!Directory.Exists(orderFolderPath))
+                            {
+                                Directory.CreateDirectory(orderFolderPath);
+                            }
+
+                            string labelPath = Path.Combine(orderFolderPath, $"Etykieta_Przewozowa_Nr{packageId}.pdf");
 
                             File.WriteAllBytes(labelPath, labelData);
 
