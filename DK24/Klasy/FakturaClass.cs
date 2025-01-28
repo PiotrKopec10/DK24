@@ -129,16 +129,16 @@ namespace DK24.Klasy
                 {
                     polaczenie.Open();
                     string sql = @"
-                SELECT 
+                               SELECT 
                     o.order_id,
                     o.total_price,
                     o.created_at, 
                     cd.company_details_id,
-                    cd.address_id AS cd_billing_address_id 
+                    ad.address_id AS billing_address
                 FROM orders o
-                LEFT JOIN company_details cd ON o.user_id = cd.user_id
-                WHERE o.order_id = @OrderId
-                LIMIT 1;";
+                LEFT JOIN company_details cd ON o.number_nip = cd.nip  
+                LEFT JOIN addresses ad ON o.delivery_address_id = ad.address_id
+                WHERE o.order_id = @OrderId;";
                     using (MySqlCommand cmd = new MySqlCommand(sql, polaczenie))
                     {
                         cmd.Parameters.AddWithValue("@OrderId",order_id);
@@ -148,7 +148,7 @@ namespace DK24.Klasy
                             {
                                 pobieraneDane.order_order_id = reader["order_id"] != DBNull.Value ? Convert.ToInt32(reader["order_id"]) : 0;
                                 pobieraneDane.company_details_id = reader["company_details_id"] != DBNull.Value ? Convert.ToInt32(reader["company_details_id"]) : 0;
-                                pobieraneDane.billing_address_id = reader["cd_billing_address_id"] != DBNull.Value ? Convert.ToInt32(reader["cd_billing_address_id"]) : 0;
+                                pobieraneDane.billing_address_id = reader["billing_address"] != DBNull.Value ? Convert.ToInt32(reader["billing_address"]) : 0;
                                 pobieraneDane.total_amount = reader["total_price"] != DBNull.Value ? Convert.ToDecimal(reader["total_price"]) : 0m;
                                 pobieraneDane.invoice_number = pobieraneDane.PobierzNumerFaktury();
                                 pobieraneDane.issue_date = DateOnly.FromDateTime(DateTime.Now);

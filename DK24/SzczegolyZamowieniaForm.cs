@@ -446,11 +446,11 @@ namespace DK24
         }
 
 
-        public decimal ObliczNetto(decimal kwotaNetto)
+        public decimal ObliczNetto(decimal kwotaBrutto)
         {
             decimal stawkaVAT = 0.23m;
-            decimal kwotaBrutto = kwotaNetto * (1 - stawkaVAT);
-            return kwotaBrutto;
+            decimal kwotaNetto = kwotaBrutto / (1 + stawkaVAT);
+            return kwotaNetto;
         }
 
 
