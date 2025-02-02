@@ -13,7 +13,7 @@ namespace DK24
     public class DokumentFakturaClass : IDocument
     {
         private readonly string _nazwaSprzedawcy;
-        private readonly List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> _produkty;
+        private readonly List<(string Item, int Quantity, decimal PriceNetto, decimal PriceBrutto)> _produkty;
         private readonly string _sciezkaLogo;
 
  
@@ -27,7 +27,7 @@ namespace DK24
 
         public DokumentFakturaClass(
             string nazwaSprzedawcy,
-            List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> produkty,
+            List<(string Item, int Quantity, decimal PriceNetto, decimal PriceBrutto)> produkty,
             string sciezkaLogo)
         {
             _nazwaSprzedawcy = nazwaSprzedawcy;
@@ -84,10 +84,11 @@ namespace DK24
 
                                 tabela.Cell().Element(StylKomorki).Text(item).AlignCenter();
                                 tabela.Cell().Element(StylKomorki).Text(quantity.ToString()).AlignCenter();
-                                tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceNetto)).AlignCenter();
                                 tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceBrutto)).AlignCenter();
+                                tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceNetto)).AlignCenter();
 
-                                lacznaCenaBrutto += priceBrutto; 
+
+                                lacznaCenaBrutto += priceNetto; 
                             }
                         });
 
