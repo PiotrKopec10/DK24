@@ -52,10 +52,10 @@ namespace DK24.Klasy
                 {
 
                     string DodajKontrahenta = @"INSERT INTO `serwer197774_drukarnia`.`company_details`
-                         (`user_id`, `address_id`, `name`, `acronym`, `bank_iban_prefix`, `bank_name`, `bank_account_number`, 
+                         ( `address_id`, `name`, `acronym`, `bank_iban_prefix`, `bank_name`, `bank_account_number`, 
                           `nip`, `regon`, `phone_prefix`, `phone_number`, `email`,`url` ,`discount_percentage`, `is_archived`, `created_at`, `modified_at`, 
                           `company_description`)
-                         VALUES (@user_id, @address_id, @name, @acronym, @bank_iban_prefix, @bank_name, @bank_account_number, 
+                         VALUES ( @address_id, @name, @acronym, @bank_iban_prefix, @bank_name, @bank_account_number, 
                                  @nip, @regon, @phone_prefix, @phone_number, @email, @url ,@discount_percentage, @is_archived, current_timestamp(), 
                                  current_timestamp(), @company_description);";
 
@@ -65,7 +65,7 @@ namespace DK24.Klasy
                     {
 
 
-                        sqlDodajKontrahenta.Parameters.AddWithValue("@user_id", DodawanyKontrahent.user_id);
+                        //sqlDodajKontrahenta.Parameters.AddWithValue("@user_id", DodawanyKontrahent.user_id);
                         sqlDodajKontrahenta.Parameters.AddWithValue("@name", DodawanyKontrahent.name);
                         sqlDodajKontrahenta.Parameters.AddWithValue("@acronym", DodawanyKontrahent.acronym);
                         sqlDodajKontrahenta.Parameters.AddWithValue("@address_id", DodawanyKontrahent.address_id);

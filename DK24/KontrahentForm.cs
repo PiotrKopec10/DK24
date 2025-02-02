@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ToolTip = System.Windows.Forms.ToolTip;
 using System.Xml;
+using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
 namespace DK24
 {
@@ -325,8 +327,8 @@ namespace DK24
                     DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
                     AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
-                    AktualnyKontrahent.acronym = txtBoxAkronim.Text;
-                    AktualnyKontrahent.name = txtBoxNazwa.Text;
+                    AktualnyKontrahent.acronym = GlobalneDzialania.WyczyscTekst(txtBoxAkronim.Text);
+                    AktualnyKontrahent.name = GlobalneDzialania.WyczyscTekst(txtBoxNazwa.Text);
                     AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
                     AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
                     AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
@@ -348,7 +350,21 @@ namespace DK24
                     AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
                     AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
                     AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+
+
+                if (CzyNipIstnieje(txtBoxNIP.Text) == false)
+                {
                     DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
+                }
+                else 
+                {
+                    MessageBox.Show("Podany NIP istnieje już w bazie danych!", "NIP już jest w bazie danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                    
+
+                   
+
+
 
                 ListaKontrahentowForm listaKontrahentowForm = new ListaKontrahentowForm();
                 this.Hide();
@@ -385,21 +401,28 @@ namespace DK24
 
 
                 AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
-                AktualnyKontrahent.acronym = txtBoxAkronim.Text;
-                AktualnyKontrahent.name = txtBoxNazwa.Text;
+                AktualnyKontrahent.acronym = GlobalneDzialania.WyczyscTekst(txtBoxAkronim.Text);
+                AktualnyKontrahent.name = GlobalneDzialania.WyczyscTekst(txtBoxNazwa.Text);
                 AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
                 AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
                 AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
                 AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
-                AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString();
+                AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString() ?? string.Empty;
                 AktualnyKontrahent.email = txtBoxEmail.Text;
                 AktualnyKontrahent.url = txtBoxUrl.Text;
                 AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
                 AktualnyKontrahent.bank_name = txtBoxBank.Text;
-                AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
                 AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
                 AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
 
+                if (cmbBoxIBAN.SelectedItem != null)
+                {
+                    AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
+                }
+                else
+                {
+                    AktualnyKontrahent.bank_iban_prefix = "";
+                }
 
 
 
@@ -603,6 +626,7 @@ namespace DK24
             {
                 lblNaglowek.Text = "EDYTUJ KONTRAHENTA";
                 txtBoxEmail.Enabled = false;
+                txtBoxNIP.Enabled = false;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -619,6 +643,7 @@ namespace DK24
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 3)
             {
                 txtBoxEmail.Enabled = true;
+                txtBoxNIP.Enabled = true;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;
 
@@ -812,6 +837,8 @@ namespace DK24
                     txtBoxNrDomu.Text = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
                     txtBoxNrLokalu.Text = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
 
+                   
+
                 }
 
 
@@ -821,6 +848,36 @@ namespace DK24
             }
             
         }
+
+
+
+        public bool CzyNipIstnieje(string nip)
+        {
+            bool exists = false;
+            string query = "SELECT COUNT(*) FROM serwer197774_drukarnia.company_details WHERE nip = @nip";
+
+            using (MySqlConnection connection = new MySqlConnection(GlobalClass.GlobalnaZmienna.DBPolaczenie))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nip", nip);
+                    try
+                    {
+                        connection.Open();
+                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        exists = count > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Błąd: " + ex.Message);
+                    }
+                }
+            }
+            return exists;
+        }
+
+
+
 
     }
 }

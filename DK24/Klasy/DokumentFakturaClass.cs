@@ -108,8 +108,8 @@ namespace DK24
 
                     // Dane sprzedawcy
                     kolumna.Item().Text(_nazwaSprzedawcy).Bold();
-                    kolumna.Item().Text("aleja Grunwaldzka 82, Gdańsk Wrzeszcz, 80-244");
-                    kolumna.Item().Text("C.H. Manhattan");
+                    kolumna.Item().Text("Jana Kilińskiego 4, 80-452 Gdańsk");
+                    kolumna.Item().Text("C.H. Metropolia");
                     kolumna.Item().Text("Telefon: 58 770 34 30");
                     kolumna.Item().Text("Email: kserogdansk@wp.pl");
                 });

@@ -141,7 +141,7 @@ namespace DK24.Klasy
         public string WyczyscTekst(string TekstDoWyczyszczenia)
         {
             TekstDoWyczyszczenia = TekstDoWyczyszczenia.Trim();
-            return Regex.Replace(TekstDoWyczyszczenia, @"[,;:/|=+*^%$#\\]", string.Empty);
+            return Regex.Replace(TekstDoWyczyszczenia, @"[,;:/|=+*^%$#\\""']", string.Empty);
 
         }
 

@@ -543,11 +543,11 @@ namespace DK24
 
 
 
-
-
-        private List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)> PobierzPozycjeZamowienia(int orderId)
+        private (List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>, decimal TotalBrutto, decimal TotalNetto) PobierzPozycjeZamowienia(int orderId)
         {
             var lista = new List<(string Item, int Quantity, decimal PriceBrutto, decimal PriceNetto)>();
+            decimal totalBrutto = 0m;
+            decimal totalNetto = 0m;
 
             string zapytanie = @"
                    SELECT
@@ -590,16 +590,25 @@ namespace DK24
                             string opcje = reader["Opcje"] != DBNull.Value ? reader["Opcje"].ToString() : "";
                             int ilosc = Convert.ToInt32(reader["Ilość"]);
                             decimal cena = Convert.ToDecimal(reader["Cena"]);
+
+                            decimal cenaNetto = cena / 1.23m;
+                            decimal wartoscBrutto = cena;
+                            decimal wartoscNetto = cenaNetto;
+
+                            totalBrutto += wartoscBrutto;
+                            totalNetto += wartoscNetto;
+
+
                             string nazwaZOpcjami = string.IsNullOrWhiteSpace(opcje)
                                 ? nazwa
                                 : $"{nazwa} ({opcje})";
-                            lista.Add((nazwaZOpcjami, ilosc, cena , cena * 1.23m));
+                            lista.Add((nazwaZOpcjami, ilosc, cena , cena / 1.23m));
                         }
                     }
                 }
             }
 
-            return lista;
+            return (lista, totalBrutto, totalNetto);
         }
 
 
@@ -719,7 +728,7 @@ namespace DK24
             {
                 try
                 {
-                    var items = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
+                    var (items, sumaBrutto, sumaNetto) = PobierzPozycjeZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                     var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     var logoPath = Path.Combine(baseDirectory, "Resources", "logo.png");
                     if (!File.Exists(logoPath)) throw new FileNotFoundException($"Logo nie zostało znalezione pod ścieżką: {logoPath}");
