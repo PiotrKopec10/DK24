@@ -42,44 +42,62 @@ namespace DK24
                 {
                     strona.Margin(50);
 
+                    
                     strona.Header().Row(wiersz =>
                     {
                         wiersz.RelativeColumn().Element(InformacjeSprzedawcy);
                         wiersz.ConstantColumn(200).Element(InformacjeFaktury);
                     });
 
-                    strona.Content()
-                        .Column(kolumna =>
+                    
+                    strona.Content().Column(kolumna =>
+                    {
+                        kolumna.Spacing(20);
+                        kolumna.Item().Element(InformacjeNabywcy);
+
+                        decimal lacznaCenaBrutto = 0; 
+
+                        
+                        kolumna.Item().Table(tabela =>
                         {
-                            kolumna.Spacing(20);
-                            kolumna.Item().Element(InformacjeNabywcy); 
-                            kolumna.Item().Table(tabela =>
+                            tabela.ColumnsDefinition(kolumny =>
                             {
-                                tabela.ColumnsDefinition(kolumny =>
-                                {
-                                    kolumny.RelativeColumn();
-                                    kolumny.ConstantColumn(50); 
-                                    kolumny.ConstantColumn(90); 
-                                    kolumny.ConstantColumn(90); 
-                                });
-
-                                tabela.Header(naglowek =>
-                                {
-                                    naglowek.Cell().Element(StylKomorki).Text("Nazwa").Bold();
-                                    naglowek.Cell().Element(StylKomorki).Text("Ilość").Bold();  
-                                    naglowek.Cell().Element(StylKomorki).Text("Cena Netto").Bold();
-                                    naglowek.Cell().Element(StylKomorki).Text("Cena Brutto").Bold();
-                                });
-
-                                foreach (var (item, quantity, priceBrutto, priceNetto) in _produkty)
-                                {
-                                    tabela.Cell().Element(StylKomorki).Text(item);
-                                    tabela.Cell().Element(StylKomorki).Text(quantity.ToString());
-                                    tabela.Cell().Element(StylKomorki).Text($"{priceBrutto:C}");
-                                    tabela.Cell().Element(StylKomorki).Text($"{priceNetto:C}");
-                                }
+                                kolumny.RelativeColumn(); 
+                                kolumny.ConstantColumn(50); 
+                                kolumny.ConstantColumn(90); 
+                                kolumny.ConstantColumn(90);
                             });
+
+                            
+                            tabela.Header(naglowek =>
+                            {
+                                naglowek.Cell().Element(StylKomorki).Text("Nazwa").Bold();
+                                naglowek.Cell().Element(StylKomorki).Text("Ilość").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki).Text("Cena Netto").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki).Text("Cena Brutto").Bold().AlignCenter();
+                            });
+
+
+                            foreach (var produkt in _produkty)
+                            {
+                                var (item, quantity, priceNetto, priceBrutto) = produkt;
+
+                                tabela.Cell().Element(StylKomorki).Text(item).AlignCenter();
+                                tabela.Cell().Element(StylKomorki).Text(quantity.ToString()).AlignCenter();
+                                tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceNetto)).AlignCenter();
+                                tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceBrutto)).AlignCenter();
+
+                                lacznaCenaBrutto += priceBrutto; 
+                            }
                         });
+
+                        
+                        kolumna.Item().PaddingTop(10).Column(poleKwoty =>
+                        {
+                            poleKwoty.Item().AlignRight().Element(StylKomorki2).Text("  ŁĄCZNA CENA:").Bold();
+                            poleKwoty.Item().Text($"{lacznaCenaBrutto:C}").FontSize(15).Bold().AlignRight();
+                        });
+                    });
                 });
         }
 
@@ -106,7 +124,7 @@ namespace DK24
                         kolumna.Item().Text("Brak logo").Italic().FontSize(10);
                     }
 
-                    // Dane sprzedawcy
+                    
                     kolumna.Item().Text(_nazwaSprzedawcy).Bold();
                     kolumna.Item().Text("Jana Kilińskiego 4, 80-452 Gdańsk");
                     kolumna.Item().Text("C.H. Metropolia");
@@ -167,6 +185,11 @@ namespace DK24
         private IContainer StylKomorki(IContainer container)
         {
             return container.Padding(5).Background(Colors.Grey.Lighten3);
+        }
+
+        private IContainer StylKomorki2(IContainer container)
+        {
+            return container.Padding(5).Background(Colors.Grey.Lighten2);
         }
 
         //private string PobierzNumerFaktury()
