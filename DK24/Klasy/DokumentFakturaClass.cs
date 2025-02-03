@@ -52,7 +52,7 @@ namespace DK24
                     
                     strona.Content().Column(kolumna =>
                     {
-                        kolumna.Spacing(20);
+                        kolumna.Spacing(15);
                         kolumna.Item().Element(InformacjeNabywcy);
 
                         decimal lacznaCenaBrutto = 0; 
@@ -64,17 +64,19 @@ namespace DK24
                             {
                                 kolumny.RelativeColumn(); 
                                 kolumny.ConstantColumn(50); 
-                                kolumny.ConstantColumn(90); 
+                                kolumny.ConstantColumn(90);
+                                kolumny.ConstantColumn(50);
                                 kolumny.ConstantColumn(90);
                             });
 
                             
                             tabela.Header(naglowek =>
                             {
-                                naglowek.Cell().Element(StylKomorki).Text("Nazwa").Bold();
-                                naglowek.Cell().Element(StylKomorki).Text("Ilość").Bold().AlignCenter();
-                                naglowek.Cell().Element(StylKomorki).Text("Cena Netto").Bold().AlignCenter();
-                                naglowek.Cell().Element(StylKomorki).Text("Cena Brutto").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki2).Text("Nazwa").Bold();
+                                naglowek.Cell().Element(StylKomorki2).Text("Ilość").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki2).Text("Cena Netto").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki2).Text("Stawka VAT").Bold().AlignCenter();
+                                naglowek.Cell().Element(StylKomorki2).Text("Cena Brutto").Bold().AlignCenter();
                             });
 
 
@@ -85,6 +87,7 @@ namespace DK24
                                 tabela.Cell().Element(StylKomorki).Text(item).AlignCenter();
                                 tabela.Cell().Element(StylKomorki).Text(quantity.ToString()).AlignCenter();
                                 tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceBrutto)).AlignCenter();
+                                tabela.Cell().Element(StylKomorki).Text("23%").AlignCenter();
                                 tabela.Cell().Element(StylKomorki).Text(string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:C}", priceNetto)).AlignCenter();
 
 
@@ -95,7 +98,7 @@ namespace DK24
                         
                         kolumna.Item().PaddingTop(10).Column(poleKwoty =>
                         {
-                            poleKwoty.Item().AlignRight().Element(StylKomorki2).Text("  ŁĄCZNA CENA:").Bold();
+                            poleKwoty.Item().AlignRight().Element(StylKomorki2).Text("  ŁĄCZNA CENA :").Bold();
                             poleKwoty.Item().Text($"{lacznaCenaBrutto:C}").FontSize(15).Bold().AlignRight();
                         });
                     });
@@ -190,7 +193,7 @@ namespace DK24
 
         private IContainer StylKomorki2(IContainer container)
         {
-            return container.Padding(5).Background(Colors.Grey.Lighten2);
+            return container.Padding(5).Background(Colors.Grey.Lighten1);
         }
 
         //private string PobierzNumerFaktury()
@@ -286,7 +289,7 @@ namespace DK24
                             {
                                 NazwaNabywcy = reader["buyer_name"] != DBNull.Value ? reader["buyer_name"].ToString() : "";
                                 NumerNip = reader["buyer_nip"] != DBNull.Value ? reader["buyer_nip"].ToString() : "";
-                                SposobZaplaty = "Online";
+                                SposobZaplaty = "Przelew";
                                 DataWystawienia = reader["created_at"] != DBNull.Value ? Convert.ToDateTime(reader["created_at"]) : DateTime.MinValue;
                                 PelnyAdresNabywcy = reader["full_address"] != DBNull.Value ? reader["full_address"].ToString() : "";
                                 NumerTel = reader["buyer_phone"] != DBNull.Value? reader["buyer_phone"].ToString(): "";

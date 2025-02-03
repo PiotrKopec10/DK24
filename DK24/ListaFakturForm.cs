@@ -210,14 +210,14 @@ namespace DK24
                         byte[] pdfBytes = (byte[])result;
 
                         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                        string folderPath = Path.Combine(desktopPath, "wystawione_faktury");
+                        string folderPath = Path.Combine(desktopPath, "Wystawione_faktury");
 
                         if (!Directory.Exists(folderPath))
                         {
                             Directory.CreateDirectory(folderPath);
                         }
 
-                        string fileName = $"gotowa_faktura_{invoiceNumber}.pdf";
+                        string fileName = $"Wystawiona_faktura_NR{invoiceNumber}.pdf";
                         string finalPath = Path.Combine(folderPath, fileName);
 
                         File.WriteAllBytes(finalPath, pdfBytes);

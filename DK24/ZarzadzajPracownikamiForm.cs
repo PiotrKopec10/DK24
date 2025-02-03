@@ -129,6 +129,8 @@ namespace DK24
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
+            AktualnyUser = new UserClass.User();
+
             EnableFields();
             btnZapisz.Visible = true;
             PobierzPracownika();
@@ -512,6 +514,8 @@ namespace DK24
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
+            AktualnyUser = new UserClass.User();
+
             WyczyscPola();
             EnableFields();
             btnResetujHaslo.Visible = false;
@@ -521,6 +525,7 @@ namespace DK24
             cmbBoxNrTelPrefix.SelectedItem = "+48";
             lblWymaganiaHasla.Visible = true;
 
+            GlobalClass.StanFormyPracownika.StanFormy = 1;
         }
 
         private void EnableFields()
