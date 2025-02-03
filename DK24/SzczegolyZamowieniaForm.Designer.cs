@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SzczegolyZamowieniaForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnAnuluj = new Button();
             panelGorny = new Panel();
@@ -73,6 +73,7 @@
             panel3 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridViewZamowienia = new DataGridView();
+            imgMinimalize = new PictureBox();
             panelGorny.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlGoraDane.SuspendLayout();
@@ -80,6 +81,7 @@
             grpBoxWartDok.SuspendLayout();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             SuspendLayout();
             // 
             // pnlPrzyciski
@@ -103,6 +105,7 @@
             // panelGorny
             // 
             panelGorny.BackgroundImage = (Image)resources.GetObject("panelGorny.BackgroundImage");
+            panelGorny.Controls.Add(imgMinimalize);
             panelGorny.Controls.Add(pictureBox1);
             panelGorny.Location = new Point(0, 0);
             panelGorny.Name = "panelGorny";
@@ -526,30 +529,30 @@
             // 
             dtGridViewZamowienia.AllowUserToAddRows = false;
             dtGridViewZamowienia.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.NullValue = "Brak Danych";
-            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = Color.LightGray;
+            dataGridViewCellStyle13.ForeColor = Color.Black;
+            dataGridViewCellStyle13.NullValue = "Brak Danych";
+            dtGridViewZamowienia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             dtGridViewZamowienia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridViewZamowienia.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle14.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dtGridViewZamowienia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.NullValue = "Brak Danych";
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle15.ForeColor = Color.Black;
+            dataGridViewCellStyle15.NullValue = "Brak Danych";
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
+            dtGridViewZamowienia.DefaultCellStyle = dataGridViewCellStyle15;
             dtGridViewZamowienia.Dock = DockStyle.Fill;
             dtGridViewZamowienia.EnableHeadersVisualStyles = false;
             dtGridViewZamowienia.GridColor = Color.Gray;
@@ -558,20 +561,32 @@
             dtGridViewZamowienia.Name = "dtGridViewZamowienia";
             dtGridViewZamowienia.ReadOnly = true;
             dtGridViewZamowienia.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle16.ForeColor = Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dtGridViewZamowienia.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dtGridViewZamowienia.RowHeadersVisible = false;
             dtGridViewZamowienia.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridViewZamowienia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtGridViewZamowienia.Size = new Size(1238, 256);
             dtGridViewZamowienia.TabIndex = 1;
             dtGridViewZamowienia.CellContentClick += dtGridViewZamowienia_CellContentClick;
+            // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
+            imgMinimalize.Location = new Point(1234, 3);
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.Size = new Size(23, 20);
+            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
+            imgMinimalize.TabIndex = 16;
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
             // 
             // SzczegolyZamowieniaForm
             // 
@@ -598,6 +613,7 @@
             grpBoxWartDok.PerformLayout();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridViewZamowienia).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ResumeLayout(false);
         }
 
@@ -650,5 +666,6 @@
         private Label label2;
         private TextBox txtBoxNrNip;
         private PictureBox btnCopy;
+        private PictureBox imgMinimalize;
     }
 }

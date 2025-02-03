@@ -42,10 +42,12 @@
             lblWyjdz = new LinkLabel();
             lblZleHaslo = new Label();
             imgOdszyfruj = new PictureBox();
+            imgMinimalize = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             SuspendLayout();
             // 
             // lblWitaj
@@ -141,12 +143,21 @@
             imgOdszyfruj.Name = "imgOdszyfruj";
             imgOdszyfruj.TabStop = false;
             // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            resources.ApplyResources(imgMinimalize, "imgMinimalize");
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
+            // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ControlBox = false;
+            Controls.Add(imgMinimalize);
             Controls.Add(txtBoxPassword);
             Controls.Add(imgOdszyfruj);
             Controls.Add(lblZleHaslo);
@@ -168,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)imgLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgOdszyfruj).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -186,5 +198,6 @@
         private LinkLabel lblWyjdz;
         private Label lblZleHaslo;
         private PictureBox imgOdszyfruj;
+        private PictureBox imgMinimalize;
     }
 }

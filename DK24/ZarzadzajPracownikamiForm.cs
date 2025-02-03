@@ -573,5 +573,10 @@ namespace DK24
                 }
             }
         }
+
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

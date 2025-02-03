@@ -248,5 +248,10 @@ namespace DK24
         {
             Application.Exit();
         }
+
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

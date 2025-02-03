@@ -52,17 +52,20 @@
             panel4 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridLsTowary = new DataGridView();
+            imgMinimalize = new PictureBox();
             panelZalogowania.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip.SuspendLayout();
             pnlPrzyciski.SuspendLayout();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridLsTowary).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             SuspendLayout();
             // 
             // panelZalogowania
             // 
             panelZalogowania.BackgroundImage = (Image)resources.GetObject("panelZalogowania.BackgroundImage");
+            panelZalogowania.Controls.Add(imgMinimalize);
             panelZalogowania.Controls.Add(linkLabel1);
             panelZalogowania.Controls.Add(pictureBox1);
             panelZalogowania.Controls.Add(lblZalogowanoJako);
@@ -168,7 +171,7 @@
             towaryToolStripMenuItem.ForeColor = Color.Silver;
             towaryToolStripMenuItem.Image = (Image)resources.GetObject("towaryToolStripMenuItem.Image");
             towaryToolStripMenuItem.Name = "towaryToolStripMenuItem";
-            towaryToolStripMenuItem.Size = new Size(98, 40);
+            towaryToolStripMenuItem.Size = new Size(99, 40);
             towaryToolStripMenuItem.Text = "Towary i Usługi";
             towaryToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
@@ -200,7 +203,7 @@
             radioButtonTowary.ForeColor = Color.White;
             radioButtonTowary.Location = new Point(225, 25);
             radioButtonTowary.Name = "radioButtonTowary";
-            radioButtonTowary.Size = new Size(72, 19);
+            radioButtonTowary.Size = new Size(73, 19);
             radioButtonTowary.TabIndex = 17;
             radioButtonTowary.Text = "TOWARY";
             radioButtonTowary.UseVisualStyleBackColor = false;
@@ -227,7 +230,7 @@
             radioButtonWszystko.ForeColor = Color.White;
             radioButtonWszystko.Location = new Point(132, 25);
             radioButtonWszystko.Name = "radioButtonWszystko";
-            radioButtonWszystko.Size = new Size(83, 19);
+            radioButtonWszystko.Size = new Size(84, 19);
             radioButtonWszystko.TabIndex = 15;
             radioButtonWszystko.TabStop = true;
             radioButtonWszystko.Text = "WSZYSTKO";
@@ -329,6 +332,18 @@
             dtGridLsTowary.Size = new Size(1238, 533);
             dtGridLsTowary.TabIndex = 0;
             // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
+            imgMinimalize.Location = new Point(234, 3);
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.Size = new Size(23, 20);
+            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
+            imgMinimalize.TabIndex = 16;
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
+            // 
             // ListaTowary_UslugiForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -356,6 +371,7 @@
             pnlPrzyciski.PerformLayout();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridLsTowary).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ResumeLayout(false);
         }
 
@@ -380,5 +396,6 @@
         private RadioButton radioButtonTowary;
         private RadioButton radioButtonUslugi;
         private RadioButton radioButtonWszystko;
+        private PictureBox imgMinimalize;
     }
 }

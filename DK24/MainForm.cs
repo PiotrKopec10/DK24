@@ -58,13 +58,14 @@ namespace DK24
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
 
 
-            if(DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik)==false)
+            if (DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik) == false)
             {
-                
+
                 ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
 
 
-            }else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
+            }
+            else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
 
 
 
@@ -324,7 +325,7 @@ namespace DK24
             dHLForm.ShowDialog();
         }
 
-      
+
         private void dtGridViewZamowienia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && dtGridViewZamowienia.Columns[e.ColumnIndex].Name == "Status")
@@ -355,7 +356,7 @@ namespace DK24
                 {
                     e.Value = "Ukończone";
                 }
-             
+
                 if (status == "canceled")
                 {
                     dtGridViewZamowienia.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
@@ -371,6 +372,9 @@ namespace DK24
             }
         }
 
-
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

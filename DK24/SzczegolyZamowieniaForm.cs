@@ -97,7 +97,7 @@ namespace DK24
             {
                 dtPickSprzed.Visible = false;
                 btnDataSprzed.Visible = false;
-                btnZakonczZamowienie.Enabled = false;              
+                btnZakonczZamowienie.Enabled = false;
                 btnFaktura.Enabled = true;
                 if (chckBoxFaktura.Checked)
                 {
@@ -205,12 +205,12 @@ namespace DK24
 
 
 
-                      
+
 
                             if (!reader.IsDBNull(reader.GetOrdinal("customer_name")))
                             {
                                 string rawCustomerName = reader.GetString(reader.GetOrdinal("customer_name"));
-                            
+
                                 string filteredCustomerName = Regex.Replace(rawCustomerName, @"[^a-zA-Z0-9\s]", "");
                                 GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki = filteredCustomerName;
                             }
@@ -258,7 +258,7 @@ namespace DK24
 
 
 
-                         
+
 
 
 
@@ -502,13 +502,13 @@ namespace DK24
             WypelnijSzczegolyZamowienia();
 
 
-            try 
+            try
             {
 
             }
-            catch 
-            { 
-            
+            catch
+            {
+
             }
 
         }
@@ -602,7 +602,7 @@ namespace DK24
                             string nazwaZOpcjami = string.IsNullOrWhiteSpace(opcje)
                                 ? nazwa
                                 : $"{nazwa} ({opcje})";
-                            lista.Add((nazwaZOpcjami, ilosc, cena , cena / 1.23m));
+                            lista.Add((nazwaZOpcjami, ilosc, cena, cena / 1.23m));
                         }
                     }
                 }
@@ -675,15 +675,15 @@ namespace DK24
                 }
 
 
-                GlobalClass.EmailSesja.AktualnyEmail.email = PobierzEmailUseraPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id); 
+                GlobalClass.EmailSesja.AktualnyEmail.email = PobierzEmailUseraPoOrderId(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
 
-                if(txtBoxNrNip.Text.Length != 0) 
+                if (txtBoxNrNip.Text.Length != 0)
                 {
                     GlobalClass.KontrahentNIP.AktualnyNIP.nip = txtBoxNrNip.Text;
 
                 }
 
-                
+
 
                 MessageBox.Show($"Brak kontrahenta w bazie, dodaj go!\nDodaj go używając numeru NIP: {txtBoxNrNip.Text} i maila: {GlobalClass.EmailSesja.AktualnyEmail.email}", "Dodaj Kontrahenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (txtBoxNrNip.Text.Length != 0)
@@ -709,7 +709,7 @@ namespace DK24
             {
                 FakturaClass DaneDoFaktury = DzialaniaNaFakturze.PobierzPotrzebneDaneWedlugOrderIdDoInsertaBazy(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id);
                 DzialaniaNaFakturze.DodajFaktureDoBazy(DaneDoFaktury);
-               
+
                 if (GlobalClass.FakturaSesja.AktualnaFaktura == null)
                 {
                     GlobalClass.FakturaSesja.AktualnaFaktura = new FakturaClass();
@@ -760,7 +760,7 @@ namespace DK24
                     var result = MessageBox.Show($"PDF został zapisany w lokalizacji: {filePath}", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK) WypelnijSzczegolyZamowienia();
 
-                   
+
 
                 }
                 catch (FileNotFoundException ex)
@@ -928,5 +928,9 @@ namespace DK24
             }
         }
 
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace DK24
 
         private void txtBoxLogin_Enter(object sender, EventArgs e)
         {
-           
+
             lblZleHaslo.Text = "";
 
         }
@@ -89,7 +89,7 @@ namespace DK24
 
         private void txtBoxPassword_Enter(object sender, EventArgs e)
         {
-            
+
             lblZleHaslo.Text = "";
 
         }
@@ -107,6 +107,11 @@ namespace DK24
         private void ImgOdszyfruj_MouseUp(object sender, MouseEventArgs e)
         {
             txtBoxPassword.PasswordChar = '•';
+        }
+
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

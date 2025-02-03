@@ -34,6 +34,7 @@
             panel3 = new Panel();
             panel2 = new Panel();
             panelGorny = new Panel();
+            imgMinimalize = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblNaglowek = new Label();
@@ -91,6 +92,7 @@
             toolTip1 = new ToolTip(components);
             pnlDane.SuspendLayout();
             panelGorny.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
@@ -129,11 +131,24 @@
             // panelGorny
             // 
             panelGorny.BackgroundImage = (Image)resources.GetObject("panelGorny.BackgroundImage");
+            panelGorny.Controls.Add(imgMinimalize);
             panelGorny.Controls.Add(pictureBox1);
             panelGorny.Location = new Point(0, 0);
             panelGorny.Name = "panelGorny";
             panelGorny.Size = new Size(1260, 50);
             panelGorny.TabIndex = 4;
+            // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
+            imgMinimalize.Location = new Point(1234, 3);
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.Size = new Size(23, 20);
+            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
+            imgMinimalize.TabIndex = 16;
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
             // 
             // pictureBox1
             // 
@@ -740,6 +755,7 @@
             Load += KontrahentForm_Load;
             pnlDane.ResumeLayout(false);
             panelGorny.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -810,5 +826,6 @@
         private Label label14;
         private Label label22;
         private Label lblNaglowek;
+        private PictureBox imgMinimalize;
     }
 }

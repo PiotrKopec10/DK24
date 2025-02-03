@@ -43,6 +43,7 @@
             btnUsun = new Button();
             btnEdytuj = new Button();
             panelZalogowania = new Panel();
+            imgMinimalize = new PictureBox();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             lblZalogowanoJako = new Label();
@@ -84,6 +85,7 @@
             dtGridLstPracownikow = new DataGridView();
             pnlPrzyciski.SuspendLayout();
             panelZalogowania.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip.SuspendLayout();
             pnlZarzadzaniaPracownikami.SuspendLayout();
@@ -202,6 +204,7 @@
             // panelZalogowania
             // 
             panelZalogowania.BackgroundImage = (Image)resources.GetObject("panelZalogowania.BackgroundImage");
+            panelZalogowania.Controls.Add(imgMinimalize);
             panelZalogowania.Controls.Add(linkLabel1);
             panelZalogowania.Controls.Add(pictureBox1);
             panelZalogowania.Controls.Add(lblZalogowanoJako);
@@ -209,6 +212,18 @@
             panelZalogowania.Name = "panelZalogowania";
             panelZalogowania.Size = new Size(260, 80);
             panelZalogowania.TabIndex = 10;
+            // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
+            imgMinimalize.Location = new Point(234, 3);
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.Size = new Size(23, 20);
+            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
+            imgMinimalize.TabIndex = 43;
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
             // 
             // linkLabel1
             // 
@@ -725,6 +740,7 @@
             pnlPrzyciski.PerformLayout();
             panelZalogowania.ResumeLayout(false);
             panelZalogowania.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
@@ -788,5 +804,6 @@
         private Label lblNaglowek;
         private LinkLabel lblWymaganiaHasla;
         private PictureBox imgOdszyfruj;
+        private PictureBox imgMinimalize;
     }
 }

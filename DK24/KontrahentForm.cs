@@ -324,45 +324,45 @@ namespace DK24
                 AktualnyAdres.gmina = GlobalneDzialania.WyczyscTekst(txtBoxGmina.Text);
 
 
-                    DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
+                DzialaniaNaAdresie.DodajAdres(AktualnyAdres);
 
-                    AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
-                    AktualnyKontrahent.acronym = GlobalneDzialania.WyczyscTekst(txtBoxAkronim.Text);
-                    AktualnyKontrahent.name = GlobalneDzialania.WyczyscTekst(txtBoxNazwa.Text);
-                    AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
-                    AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
-                    AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
-                    AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
-                    AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString() ?? string.Empty;
-                    AktualnyKontrahent.email = txtBoxEmail.Text;
-                    AktualnyKontrahent.url = txtBoxUrl.Text;
-                    AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
-                    AktualnyKontrahent.bank_name = txtBoxBank.Text;
-                    if (cmbBoxIBAN.SelectedItem != null)
-                    {
-                        AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
-                    }
-                    else
-                    {
-                        AktualnyKontrahent.bank_iban_prefix = ""; 
-                    }
+                AktualnyKontrahent.address_id = DzialaniaNaAdresie.PobierzIdAdresu(AktualnyAdres);
+                AktualnyKontrahent.acronym = GlobalneDzialania.WyczyscTekst(txtBoxAkronim.Text);
+                AktualnyKontrahent.name = GlobalneDzialania.WyczyscTekst(txtBoxNazwa.Text);
+                AktualnyKontrahent.nip = GlobalneDzialania.WyczyscTekst(txtBoxNIP.Text);
+                AktualnyKontrahent.discount_percentage = Convert.ToInt32(cmbBoxZnizka.SelectedItem);
+                AktualnyKontrahent.regon = GlobalneDzialania.WyczyscTekst(txtBoxRegon.Text);
+                AktualnyKontrahent.phone_number = GlobalneDzialania.WyczyscTekst(txtBoxNrTel.Text);
+                AktualnyKontrahent.phone_prefix = cmbBoxPrefixNrTel.SelectedItem.ToString() ?? string.Empty;
+                AktualnyKontrahent.email = txtBoxEmail.Text;
+                AktualnyKontrahent.url = txtBoxUrl.Text;
+                AktualnyKontrahent.bank_account_number = GlobalneDzialania.WyczyscTekst(txtBoxNrRachunku.Text);
+                AktualnyKontrahent.bank_name = txtBoxBank.Text;
+                if (cmbBoxIBAN.SelectedItem != null)
+                {
+                    AktualnyKontrahent.bank_iban_prefix = cmbBoxIBAN.SelectedItem.ToString();
+                }
+                else
+                {
+                    AktualnyKontrahent.bank_iban_prefix = "";
+                }
 
-                    AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
-                    AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
-                    AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
+                AktualnyKontrahent.is_archived = Convert.ToInt32(chckBoxArchiwalny.Checked);
+                AktualnyKontrahent.company_description = rchTxtBoxOpis.Text;
+                AktualnyKontrahent.user_id = DzialanieNaKontrahencie.PobierzIdUseraPoEmail(AktualnyKontrahent.email);
 
 
                 if (CzyNipIstnieje(txtBoxNIP.Text) == false)
                 {
                     DzialanieNaKontrahencie.DodajKontrahenta(AktualnyKontrahent);
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Podany NIP istnieje już w bazie danych!", "NIP już jest w bazie danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                    
 
-                   
+
+
 
 
 
@@ -376,7 +376,7 @@ namespace DK24
             {
 
 
-                
+
 
 
                 AktualnyKontrahent = DzialanieNaKontrahencie.PobierzKontrahentaWgId(GlobalClass.KontrahentSesja.AktualnyKontrahent.company_details_id);
@@ -619,7 +619,7 @@ namespace DK24
                 txtBoxWoj.Enabled = false;
                 txtBoxPowiat.Enabled = false;
                 txtBoxGmina.Enabled = false;
-               
+
 
             }
             else if (GlobalClass.StanFormyKontrahenta.StanFormy == 2)
@@ -648,7 +648,7 @@ namespace DK24
                 btnPobierzPoNip.Visible = true;
                 cmbBoxZnizka.SelectedItem = "0";
             }
-            else if(GlobalClass.StanFormyKontrahenta.StanFormy == 4)
+            else if (GlobalClass.StanFormyKontrahenta.StanFormy == 4)
             {
                 txtBoxNIP.Text = GlobalClass.KontrahentNIP.AktualnyNIP.nip;
                 txtBoxEmail.Text = GlobalClass.EmailSesja.AktualnyEmail.email;
@@ -723,10 +723,10 @@ namespace DK24
             }
 
 
-            DialogResult result = MessageBox.Show("Czy na pewno chcesz szukać po NIP-ie kontrahenta?","Potwierdzenie",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz szukać po NIP-ie kontrahenta?", "Potwierdzenie", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
-            {            
+            {
                 SzukajPoNIP(txtBoxNIP.Text);
             }
 
@@ -790,23 +790,23 @@ namespace DK24
 
         public void WypelnijDaneZXml(string xmlContent)
         {
-            
+
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlContent);
 
 
             XmlNode daneNode = doc.SelectSingleNode("/root/dane");
 
-            
+
 
             if (daneNode != null)
             {
-                
-                string czyBlad = daneNode.SelectSingleNode("ErrorCode")?.InnerText ??"";
 
-                if (czyBlad == "4") 
+                string czyBlad = daneNode.SelectSingleNode("ErrorCode")?.InnerText ?? "";
+
+                if (czyBlad == "4")
                 {
-                   
+
 
                     txtBoxRegon.Text = "";
                     txtBoxNazwa.Text = "";
@@ -843,11 +843,11 @@ namespace DK24
                 }
 
 
-                
+
 
 
             }
-            
+
         }
 
 
@@ -877,8 +877,9 @@ namespace DK24
             return exists;
         }
 
-
-
-
+        private void imgMinimalize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

@@ -116,5 +116,6 @@ namespace DK24
         {
             txtBoxPowtorzHaslo.PasswordChar = '•';
         }
+
     }
 }
