@@ -233,7 +233,7 @@
             // 
             cmbBoxZnizka.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxZnizka.FormattingEnabled = true;
-            cmbBoxZnizka.Items.AddRange(new object[] { "10" });
+            cmbBoxZnizka.Items.AddRange(new object[] { "0", "10" });
             cmbBoxZnizka.Location = new Point(580, 258);
             cmbBoxZnizka.Name = "cmbBoxZnizka";
             cmbBoxZnizka.Size = new Size(98, 23);

@@ -555,5 +555,23 @@ namespace DK24
         {
             txtBoxHaslo.PasswordChar = '•';
         }
+
+
+        private void dtGridLstPracownikow_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dtGridLstPracownikow.Columns[e.ColumnIndex].Name == "Rola")
+            {
+                string rola = e.Value?.ToString();
+
+                if (rola == "admin")
+                {
+                    e.Value = "Administrator";
+                }
+                else if (rola == "worker")
+                {
+                    e.Value = "Pracownik";
+                }
+            }
+        }
     }
 }

@@ -24,6 +24,11 @@ namespace DK24
         {
             InitializeComponent();
 
+            imgOdszyfruj1.MouseDown += ImgOdszyfruj1_MouseDown;
+            imgOdszyfruj1.MouseUp += ImgOdszyfruj1_MouseUp;
+
+            imgOdszyfruj2.MouseDown += ImgOdszyfruj2_MouseDown;
+            imgOdszyfruj2.MouseUp += ImgOdszyfruj2_MouseUp;
 
             _user = user;
             _userClass = new UserClass();
@@ -90,6 +95,26 @@ namespace DK24
         private void btnCofnij_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void ImgOdszyfruj1_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtBoxStworzHaslo.PasswordChar = '\0';
+        }
+
+        private void ImgOdszyfruj1_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtBoxStworzHaslo.PasswordChar = '•';
+        }
+
+        private void ImgOdszyfruj2_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtBoxPowtorzHaslo.PasswordChar = '\0';
+        }
+
+        private void ImgOdszyfruj2_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtBoxPowtorzHaslo.PasswordChar = '•';
         }
     }
 }

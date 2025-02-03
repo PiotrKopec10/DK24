@@ -646,7 +646,7 @@ namespace DK24
                 txtBoxNIP.Enabled = true;
                 btnZapisz.Visible = true;
                 btnPobierzPoNip.Visible = true;
-
+                cmbBoxZnizka.SelectedItem = "0";
             }
             else if(GlobalClass.StanFormyKontrahenta.StanFormy == 4)
             {
@@ -836,8 +836,9 @@ namespace DK24
                     txtBoxUlica.Text = daneNode.SelectSingleNode("Ulica")?.InnerText ?? "";
                     txtBoxNrDomu.Text = daneNode.SelectSingleNode("NrNieruchomosci")?.InnerText ?? "";
                     txtBoxNrLokalu.Text = daneNode.SelectSingleNode("NrLokalu")?.InnerText ?? "";
+                    cmbBoxPrefixNrTel.SelectedItem = "+48";
+                    cmbBoxKraj.SelectedItem = "Polska";
 
-                   
 
                 }
 

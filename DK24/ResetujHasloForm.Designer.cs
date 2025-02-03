@@ -40,9 +40,13 @@
             lblWymaganiaHasla = new LinkLabel();
             pictureBox2 = new PictureBox();
             imgPassword = new PictureBox();
+            imgOdszyfruj1 = new PictureBox();
+            imgOdszyfruj2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj2).BeginInit();
             SuspendLayout();
             // 
             // panel3
@@ -163,6 +167,28 @@
             imgPassword.TabIndex = 25;
             imgPassword.TabStop = false;
             // 
+            // imgOdszyfruj1
+            // 
+            imgOdszyfruj1.BackColor = Color.Transparent;
+            imgOdszyfruj1.Image = (Image)resources.GetObject("imgOdszyfruj1.Image");
+            imgOdszyfruj1.Location = new Point(295, 81);
+            imgOdszyfruj1.Name = "imgOdszyfruj1";
+            imgOdszyfruj1.Size = new Size(33, 22);
+            imgOdszyfruj1.SizeMode = PictureBoxSizeMode.Zoom;
+            imgOdszyfruj1.TabIndex = 43;
+            imgOdszyfruj1.TabStop = false;
+            // 
+            // imgOdszyfruj2
+            // 
+            imgOdszyfruj2.BackColor = Color.Transparent;
+            imgOdszyfruj2.Image = (Image)resources.GetObject("imgOdszyfruj2.Image");
+            imgOdszyfruj2.Location = new Point(295, 143);
+            imgOdszyfruj2.Name = "imgOdszyfruj2";
+            imgOdszyfruj2.Size = new Size(33, 22);
+            imgOdszyfruj2.SizeMode = PictureBoxSizeMode.Zoom;
+            imgOdszyfruj2.TabIndex = 44;
+            imgOdszyfruj2.TabStop = false;
+            // 
             // ResetujHasloForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -170,6 +196,8 @@
             BackColor = SystemColors.ControlDarkDark;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(355, 289);
+            Controls.Add(imgOdszyfruj2);
+            Controls.Add(imgOdszyfruj1);
             Controls.Add(pictureBox2);
             Controls.Add(imgPassword);
             Controls.Add(lblWymaganiaHasla);
@@ -189,6 +217,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgPassword).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgOdszyfruj2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -206,5 +236,7 @@
         private LinkLabel lblWymaganiaHasla;
         private PictureBox pictureBox2;
         private PictureBox imgPassword;
+        private PictureBox imgOdszyfruj1;
+        private PictureBox imgOdszyfruj2;
     }
 }
