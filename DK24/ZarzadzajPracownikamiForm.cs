@@ -32,7 +32,7 @@ namespace DK24
 
             aktualneHaslo = string.Empty;
 
-            
+
             txtBoxHaslo.TextChanged += TxtBoxHaslo_TextChanged;
             imgOdszyfruj.MouseDown += ImgOdszyfruj_MouseDown;
             imgOdszyfruj.MouseUp += ImgOdszyfruj_MouseUp;
@@ -181,61 +181,61 @@ namespace DK24
         }
 
 
-            private void btnZapisz_Click(object sender, EventArgs e)
+        private void btnZapisz_Click(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip
             {
-                ToolTip toolTip = new ToolTip
-                {
-                    IsBalloon = true,
-                    InitialDelay = 0,
-                    ShowAlways = true
-                };
+                IsBalloon = true,
+                InitialDelay = 0,
+                ShowAlways = true
+            };
 
-                bool isValid = true;
+            bool isValid = true;
 
-                
-                if (string.IsNullOrWhiteSpace(txtBoxImie.Text) || txtBoxImie.TextLength < 3)
-                {
-                    txtBoxImie.BackColor = Color.Pink;
-                    toolTip.SetToolTip(txtBoxImie, "Pole Imię nie może być puste!");
-                    isValid = false;
-                }
-                else
-                {
-                    txtBoxImie.BackColor = SystemColors.Window;
-                }
 
-                if (string.IsNullOrWhiteSpace(txtBoxNazwisko.Text) || txtBoxNazwisko.TextLength < 5)
-                {
-                    txtBoxNazwisko.BackColor = Color.Pink;
-                    toolTip.SetToolTip(txtBoxNazwisko, "Pole Nazwisko nie może być puste!");
-                    isValid = false;
-                }
-                else
-                {
-                    txtBoxNazwisko.BackColor = SystemColors.Window;
-                }
+            if (string.IsNullOrWhiteSpace(txtBoxImie.Text) || txtBoxImie.TextLength < 3)
+            {
+                txtBoxImie.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxImie, "Pole Imię nie może być puste!");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxImie.BackColor = SystemColors.Window;
+            }
 
-                if (string.IsNullOrWhiteSpace(txtBoxEmail.Text) || !txtBoxEmail.Text.Contains("@"))
-                {
-                    txtBoxEmail.BackColor = Color.Pink;
-                    toolTip.SetToolTip(txtBoxEmail, "Pole Email nie może być puste i musi zawierać '@'!");
-                    isValid = false;
-                }
-                else
-                {
-                    txtBoxEmail.BackColor = SystemColors.Window;
-                }
+            if (string.IsNullOrWhiteSpace(txtBoxNazwisko.Text) || txtBoxNazwisko.TextLength < 5)
+            {
+                txtBoxNazwisko.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxNazwisko, "Pole Nazwisko nie może być puste!");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxNazwisko.BackColor = SystemColors.Window;
+            }
 
-                if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text) || txtBoxNrTel.Text.Length < 9)
-                {
-                    txtBoxNrTel.BackColor = Color.Pink;
-                    toolTip.SetToolTip(txtBoxNrTel, "Pole Numer Telefonu musi mieć równo 9 znaków!");
-                    isValid = false;
-                }
-                else
-                {
-                    txtBoxNrTel.BackColor = SystemColors.Window;
-                }
+            if (string.IsNullOrWhiteSpace(txtBoxEmail.Text) || !txtBoxEmail.Text.Contains("@"))
+            {
+                txtBoxEmail.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxEmail, "Pole Email nie może być puste i musi zawierać '@'!");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxEmail.BackColor = SystemColors.Window;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxNrTel.Text) || txtBoxNrTel.Text.Length < 9)
+            {
+                txtBoxNrTel.BackColor = Color.Pink;
+                toolTip.SetToolTip(txtBoxNrTel, "Pole Numer Telefonu musi mieć równo 9 znaków!");
+                isValid = false;
+            }
+            else
+            {
+                txtBoxNrTel.BackColor = SystemColors.Window;
+            }
 
             if (GlobalClass.StanFormyPracownika.StanFormy == 1 &&
             (string.IsNullOrWhiteSpace(txtBoxHaslo.Text) ||
@@ -253,48 +253,48 @@ namespace DK24
             }
 
             if (!isValid)
-                {
-                    MessageBox.Show("Upewnij się, że wszystkie wymagane pola są poprawnie wypełnione!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (GlobalClass.StanFormyPracownika.StanFormy == 1)
-                {
-                    DodajPracownika();
-                    WyczyscPola();
-                    txtBoxImie.Enabled = false;
-                    txtBoxNazwisko.Enabled = false;
-                    txtBoxEmail.Enabled = false;
-                    txtBoxNrTel.Enabled = false;
-                    txtBoxLogin.Enabled = false;
-                    cmbBoxRola.Enabled = false;
-                    txtBoxHaslo.Enabled = false;
-                    cmbBoxNrTelPrefix.Enabled = false;
-                    btnResetujHaslo.Visible = false;
-                    btnZapisz.Visible = false;
-                lblWymaganiaHasla.Visible = false;
-            }
-                else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
-                {
-                    EdytujPracownika();
-                    GlobalClass.StanFormyPracownika.StanFormy = 1;
-                    WyczyscPola();
-                    txtBoxImie.Enabled = false;
-                    txtBoxNazwisko.Enabled = false;
-                    txtBoxEmail.Enabled = false;
-                    txtBoxNrTel.Enabled = false;
-                    txtBoxLogin.Enabled = false;
-                    cmbBoxRola.Enabled = false;
-                    txtBoxHaslo.Enabled = false;
-                    cmbBoxNrTelPrefix.Enabled = false;
-                    btnResetujHaslo.Visible = false;
-                    btnZapisz.Visible = false;
-                lblWymaganiaHasla.Visible = false;
-                }
+            {
+                MessageBox.Show("Upewnij się, że wszystkie wymagane pola są poprawnie wypełnione!", "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            if (GlobalClass.StanFormyPracownika.StanFormy == 1)
+            {
+                DodajPracownika();
+                WyczyscPola();
+                txtBoxImie.Enabled = false;
+                txtBoxNazwisko.Enabled = false;
+                txtBoxEmail.Enabled = false;
+                txtBoxNrTel.Enabled = false;
+                txtBoxLogin.Enabled = false;
+                cmbBoxRola.Enabled = false;
+                txtBoxHaslo.Enabled = false;
+                cmbBoxNrTelPrefix.Enabled = false;
+                btnResetujHaslo.Visible = false;
+                btnZapisz.Visible = false;
+                lblWymaganiaHasla.Visible = false;
+            }
+            else if (GlobalClass.StanFormyPracownika.StanFormy == 2)
+            {
+                EdytujPracownika();
+                GlobalClass.StanFormyPracownika.StanFormy = 1;
+                WyczyscPola();
+                txtBoxImie.Enabled = false;
+                txtBoxNazwisko.Enabled = false;
+                txtBoxEmail.Enabled = false;
+                txtBoxNrTel.Enabled = false;
+                txtBoxLogin.Enabled = false;
+                cmbBoxRola.Enabled = false;
+                txtBoxHaslo.Enabled = false;
+                cmbBoxNrTelPrefix.Enabled = false;
+                btnResetujHaslo.Visible = false;
+                btnZapisz.Visible = false;
+                lblWymaganiaHasla.Visible = false;
+            }
+        }
 
-            private void DodajPracownika()
+
+        private void DodajPracownika()
         {
             AktualnyUser = new UserClass.User
             {

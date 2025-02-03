@@ -178,7 +178,7 @@ namespace DK24.Klasy
                 {
 
                     string EdytujKontrahenta = @"UPDATE `serwer197774_drukarnia`.`company_details`
-                             SET `user_id` = @user_id, 
+                             SET  
                                  `address_id` = @address_id, 
                                  `name` = @name, 
                                  `acronym` = @acronym, 

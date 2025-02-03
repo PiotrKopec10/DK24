@@ -46,6 +46,7 @@ namespace DK24
         private void ListaTowary_UslugiForm_Load(object sender, EventArgs e)
         {
             WyswietlTowaryIUslugi();
+            lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
         }
 
 
