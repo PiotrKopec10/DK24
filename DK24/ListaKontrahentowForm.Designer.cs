@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaKontrahentowForm));
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlPrzyciski = new Panel();
             btnZaznacz = new Button();
             btnCofnij = new Button();
@@ -50,6 +50,7 @@
             kontrahenciToolStripMenuItem = new ToolStripMenuItem();
             towaryToolStripMenuItem = new ToolStripMenuItem();
             panelZalogowania = new Panel();
+            imgMinimalize = new PictureBox();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             lblZalogowanoJako = new Label();
@@ -57,14 +58,14 @@
             panel2 = new Panel();
             pnlDtGridZamowienia = new Panel();
             dtGridLstKnt = new DataGridView();
-            imgMinimalize = new PictureBox();
+            ZarzadzajPracownikamiToolStripMenuItem = new ToolStripMenuItem();
             pnlPrzyciski.SuspendLayout();
             menuStrip.SuspendLayout();
             panelZalogowania.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlDtGridZamowienia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgMinimalize).BeginInit();
             SuspendLayout();
             // 
             // pnlPrzyciski
@@ -203,7 +204,7 @@
             menuStrip.BackgroundImageLayout = ImageLayout.None;
             menuStrip.Dock = DockStyle.None;
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { zamówieniaToolStripMenuItem, fakturyToolStripMenuItem, kontrahenciToolStripMenuItem, towaryToolStripMenuItem, ZarzadzajPracownikamiToolStripMenuItem });
             menuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
@@ -270,6 +271,18 @@
             panelZalogowania.Name = "panelZalogowania";
             panelZalogowania.Size = new Size(260, 80);
             panelZalogowania.TabIndex = 6;
+            // 
+            // imgMinimalize
+            // 
+            imgMinimalize.BackColor = Color.Transparent;
+            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
+            imgMinimalize.Location = new Point(234, 3);
+            imgMinimalize.Name = "imgMinimalize";
+            imgMinimalize.Size = new Size(23, 20);
+            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
+            imgMinimalize.TabIndex = 16;
+            imgMinimalize.TabStop = false;
+            imgMinimalize.Click += imgMinimalize_Click;
             // 
             // linkLabel1
             // 
@@ -341,30 +354,30 @@
             dtGridLstKnt.AccessibleRole = AccessibleRole.Caret;
             dtGridLstKnt.AllowUserToAddRows = false;
             dtGridLstKnt.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = Color.LightGray;
-            dataGridViewCellStyle9.ForeColor = Color.Black;
-            dataGridViewCellStyle9.NullValue = "Brak Danych";
-            dtGridLstKnt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.NullValue = "Brak Danych";
+            dtGridLstKnt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dtGridLstKnt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGridLstKnt.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            dtGridLstKnt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtGridLstKnt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dtGridLstKnt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle11.ForeColor = Color.Black;
-            dataGridViewCellStyle11.NullValue = "Brak Danych";
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            dtGridLstKnt.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.NullValue = "Brak Danych";
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dtGridLstKnt.DefaultCellStyle = dataGridViewCellStyle7;
             dtGridLstKnt.Dock = DockStyle.Fill;
             dtGridLstKnt.GridColor = Color.Gray;
             dtGridLstKnt.Location = new Point(0, 0);
@@ -372,14 +385,14 @@
             dtGridLstKnt.Name = "dtGridLstKnt";
             dtGridLstKnt.ReadOnly = true;
             dtGridLstKnt.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dtGridLstKnt.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtGridLstKnt.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtGridLstKnt.RowHeadersVisible = false;
             dtGridLstKnt.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtGridLstKnt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -390,17 +403,15 @@
             dtGridLstKnt.Size = new Size(1238, 533);
             dtGridLstKnt.TabIndex = 0;
             // 
-            // imgMinimalize
+            // ZarzadzajPracownikamiToolStripMenuItem
             // 
-            imgMinimalize.BackColor = Color.Transparent;
-            imgMinimalize.Image = (Image)resources.GetObject("imgMinimalize.Image");
-            imgMinimalize.Location = new Point(234, 3);
-            imgMinimalize.Name = "imgMinimalize";
-            imgMinimalize.Size = new Size(23, 20);
-            imgMinimalize.SizeMode = PictureBoxSizeMode.Zoom;
-            imgMinimalize.TabIndex = 16;
-            imgMinimalize.TabStop = false;
-            imgMinimalize.Click += imgMinimalize_Click;
+            ZarzadzajPracownikamiToolStripMenuItem.ForeColor = Color.Silver;
+            ZarzadzajPracownikamiToolStripMenuItem.Image = (Image)resources.GetObject("ZarzadzajPracownikamiToolStripMenuItem.Image");
+            ZarzadzajPracownikamiToolStripMenuItem.Name = "ZarzadzajPracownikamiToolStripMenuItem";
+            ZarzadzajPracownikamiToolStripMenuItem.Size = new Size(146, 40);
+            ZarzadzajPracownikamiToolStripMenuItem.Text = "Zarządzaj Pracownikami";
+            ZarzadzajPracownikamiToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            ZarzadzajPracownikamiToolStripMenuItem.Click += ZarzadzajPracownikamiToolStripMenuItem_Click;
             // 
             // ListaKontrahentowForm
             // 
@@ -428,10 +439,10 @@
             menuStrip.PerformLayout();
             panelZalogowania.ResumeLayout(false);
             panelZalogowania.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlDtGridZamowienia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtGridLstKnt).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgMinimalize).EndInit();
             ResumeLayout(false);
         }
 
@@ -461,5 +472,6 @@
         private Panel pnlDtGridZamowienia;
         private DataGridView dtGridLstKnt;
         private PictureBox imgMinimalize;
+        private ToolStripMenuItem ZarzadzajPracownikamiToolStripMenuItem;
     }
 }

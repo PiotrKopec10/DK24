@@ -15,6 +15,7 @@ namespace DK24
 {
     public partial class ListaFakturForm : Form
     {
+        UserClass DzialaniaNaUserze = new UserClass();
         public ListaFakturForm()
         {
             InitializeComponent();
@@ -100,6 +101,15 @@ namespace DK24
         {
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
             WypelnijListeFaktur();
+
+            if (DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik) == false)
+            {
+
+                ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
+
+
+            }
+            else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
         }
 
         private void zamówieniaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,6 +243,13 @@ namespace DK24
         private void imgMinimalize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ZarzadzajPracownikamiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ZarzadzajPracownikamiForm zarzadzajPracownikami = new ZarzadzajPracownikamiForm();
+            this.Hide();
+            zarzadzajPracownikami.ShowDialog();
         }
     }
 }

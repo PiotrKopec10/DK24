@@ -19,7 +19,7 @@ namespace DK24
 
         KontrahentClass.Kontrahent pobieranyKontrahent = new KontrahentClass.Kontrahent();
         KontrahentClass dzialaniaNaKontrahencie = new KontrahentClass();
-
+        UserClass DzialaniaNaUserze = new UserClass();
 
         public ListaKontrahentowForm()
         {
@@ -87,6 +87,15 @@ namespace DK24
             WyswietlListeKontrahentow();
 
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+
+            if (DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik) == false)
+            {
+
+                ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
+
+
+            }
+            else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
         }
 
 
@@ -284,6 +293,13 @@ namespace DK24
         private void imgMinimalize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ZarzadzajPracownikamiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ZarzadzajPracownikamiForm zarzadzajPracownikami = new ZarzadzajPracownikamiForm();
+            this.Hide();
+            zarzadzajPracownikami.ShowDialog();
         }
     }
 }

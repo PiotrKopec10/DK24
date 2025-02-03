@@ -7,6 +7,7 @@ namespace DK24
     public partial class ListaTowary_UslugiForm : Form
     {
         string PolaczenieDB = GlobalClass.GlobalnaZmienna.DBPolaczenie;
+        UserClass DzialaniaNaUserze = new UserClass();
         public ListaTowary_UslugiForm()
         {
             InitializeComponent();
@@ -47,6 +48,15 @@ namespace DK24
         {
             WyswietlTowaryIUslugi();
             lblZalogowanoJako.Text = "Zalogowano jako: " + GlobalClass.KtoZalogowany.ZalogowanyUzytkownik;
+
+            if (DzialaniaNaUserze.SprawdzCzyAdmin(GlobalClass.KtoZalogowany.ZalogowanyUzytkownik) == false)
+            {
+
+                ZarzadzajPracownikamiToolStripMenuItem.Visible = false;
+
+
+            }
+            else ZarzadzajPracownikamiToolStripMenuItem.Visible = true;
         }
 
 
@@ -252,6 +262,13 @@ namespace DK24
         private void imgMinimalize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ZarzadzajPracownikamiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ZarzadzajPracownikamiForm zarzadzajPracownikami = new ZarzadzajPracownikamiForm();
+            this.Hide();
+            zarzadzajPracownikami.ShowDialog();
         }
     }
 }
