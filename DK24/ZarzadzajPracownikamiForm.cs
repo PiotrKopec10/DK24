@@ -341,6 +341,8 @@ namespace DK24
             AktualnyUser.modified_at = DateTime.Now;
 
 
+            GlobalClass.KtoZalogowany.ZalogowanyUzytkownik = AktualnyUser.worker_login;
+
             DialogResult result = MessageBox.Show("Czy na pewno chcesz edytować użytkownika?", "Potwierdzenie edycji", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -452,6 +454,8 @@ namespace DK24
 
             DataGridViewRow selectedRow = dtGridLstPracownikow.SelectedRows[0];
             string selectedUserLogin = selectedRow.Cells["Login Pracownika"].Value.ToString();
+
+
 
 
             if (selectedUserLogin == GlobalClass.KtoZalogowany.ZalogowanyUzytkownik)

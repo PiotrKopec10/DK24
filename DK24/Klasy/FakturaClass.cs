@@ -93,8 +93,21 @@ namespace DK24.Klasy
 
                             sqlDodajKontrahenta.Parameters.AddWithValue("@order_order_id", dodawanaFaktura.order_order_id);
                             sqlDodajKontrahenta.Parameters.AddWithValue("@company_details_id", dodawanaFaktura.company_details_id);
-                            sqlDodajKontrahenta.Parameters.AddWithValue("@billing_address_id", dodawanaFaktura.billing_address_id);
+
+
+                            //sqlDodajKontrahenta.Parameters.AddWithValue("@billing_address_id", dodawanaFaktura.billing_address_id);
+                            var billingAddressParam = (dodawanaFaktura.billing_address_id == 0 || dodawanaFaktura.billing_address_id == null)
+                               ? (object)DBNull.Value
+                               : dodawanaFaktura.billing_address_id;
+                            sqlDodajKontrahenta.Parameters.AddWithValue("@billing_address_id", billingAddressParam);
+
+
+
                             sqlDodajKontrahenta.Parameters.AddWithValue("@invoice_number", dodawanaFaktura.invoice_number);
+
+
+
+
 
                             sqlDodajKontrahenta.Parameters.AddWithValue("@issue_date", dodawanaFaktura.issue_date.ToString("yyyy-MM-dd"));
 
