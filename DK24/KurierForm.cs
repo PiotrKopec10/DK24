@@ -31,7 +31,13 @@ namespace DK24
 
             var furgonetkaService = new FurgonetkaClass.FurgonetkaService();
 
-            bool authenticated = await furgonetkaService.Authenticate("jakub.szufrajda02@gmail.com", "PioKu2002$");
+            //bool authenticated = await furgonetkaService.Authenticate("", "");
+            string email = Environment.GetEnvironmentVariable("FURGONETKA_EMAIL");
+            string password = Environment.GetEnvironmentVariable("FURGONETKA_PASSWORD");
+
+            bool authenticated = await furgonetkaService.Authenticate(email, password);
+
+            
             if (!authenticated)
             {
                 MessageBox.Show("Autoryzacja nie powiodła się.");
