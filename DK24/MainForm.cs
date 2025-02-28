@@ -272,7 +272,7 @@ namespace DK24
             this.Hide();
             listaTowary_Uslugi.ShowDialog();
         }
-
+        //TO DO
         private void btnDodaj_Click(object sender, EventArgs e)
         {
             //WyborKlient_KontrahentZamowienieForm wyborKlient_KontrahentZamowienieForm = new WyborKlient_KontrahentZamowienieForm();

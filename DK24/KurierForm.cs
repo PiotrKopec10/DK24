@@ -1,6 +1,4 @@
 ﻿using DK24.Klasy;
-using Newtonsoft.Json;
-using RestSharp;
 
 
 namespace DK24
@@ -28,7 +26,6 @@ namespace DK24
             btnStworzZamowienie.Enabled = false;
 
             rchBoxLogi.Text = "Próba wygenerowania etykiety... \n Proszę czekać! \n";
-
             var furgonetkaService = new FurgonetkaClass.FurgonetkaService();
 
             //bool authenticated = await furgonetkaService.Authenticate("", "");
@@ -37,7 +34,7 @@ namespace DK24
 
             bool authenticated = await furgonetkaService.Authenticate(email, password);
 
-            
+
             if (!authenticated)
             {
                 MessageBox.Show("Autoryzacja nie powiodła się.");
@@ -51,15 +48,15 @@ namespace DK24
 
             string nazwaUlicy = "";
 
-            if(Address.apartment_number == null)
+            if (Address.apartment_number == null)
             {
-                 nazwaUlicy = Address.street + " " + Address.house_number;
+                nazwaUlicy = Address.street + " " + Address.house_number;
             }
-            else 
+            else
             {
                 nazwaUlicy = Address.street + " " + Address.house_number + "/" + Address.apartment_number;
             }
-            
+
 
             var packageData = new
             {
@@ -76,9 +73,9 @@ namespace DK24
                     phone = "58 770 34 30"
                 },
                 receiver = new
-                { 
+                {
                     name = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
-                    company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,                 
+                    company = GlobalClass.OdbiorcaPaczki.NazwaKlientaDoWysylki,
                     street = nazwaUlicy,
                     postcode = Address.postal_code,
                     city = Address.city,
@@ -107,7 +104,7 @@ namespace DK24
 
 
 
-
+            //Sprawdzanie Listy Przewoznikow
 
             //string carriers = await furgonetkaService.GetCarriers();
             //if (!string.IsNullOrEmpty(carriers))
@@ -219,7 +216,7 @@ namespace DK24
             }
             else
             {
-                MessageBox.Show(GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka + "\n  Zamówienie zostanie anulowane automatycznie.", "Paczka nie przeszła walidacji.",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(GlobalClass.BladFurgonetkaWalidacja.WalidacjaPaczkiFurgonetka + "\n  Zamówienie zostanie anulowane automatycznie.", "Paczka nie przeszła walidacji.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DzialanieNaZamowieniu.EdytujStatusZamowienia(GlobalClass.ZamowienieSesja.AktualneZamowienie.order_id, "canceled", "Anulowane", "");
                 MainForm mainForm = new MainForm();
                 this.Hide();
@@ -227,7 +224,7 @@ namespace DK24
             }
 
 
-         
+
 
         }
 
@@ -244,5 +241,5 @@ namespace DK24
 
 
 
-  
+
 }

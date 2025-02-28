@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-using Mysqlx.Crud;
+﻿using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace DK24.Klasy
 {
@@ -8,18 +7,16 @@ namespace DK24.Klasy
     {
         public static class GlobalnaZmienna
         {
-           // public static readonly string DBPolaczenie =
-                  //"SERVER=sql98.lh.pl;" +
-              public static readonly string DBPolaczenie = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            // public static readonly string DBPolaczenie =
+            //"SERVER=sql98.lh.pl;" +
+            public static readonly string DBPolaczenie = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 
-
-            
         }
 
         public static class KtoZalogowany
         {
 
-            public static string ZalogowanyUzytkownik { get; set;}
+            public static string ZalogowanyUzytkownik { get; set; }
 
         }
 
@@ -31,12 +28,12 @@ namespace DK24.Klasy
         }
 
 
-       
+
 
 
         public static class ZamowienieSesja
         {
-            public static ZamowieniaClass.Orders  AktualneZamowienie { get; set; }
+            public static ZamowieniaClass.Orders AktualneZamowienie { get; set; }
 
         }
 
@@ -144,7 +141,7 @@ namespace DK24.Klasy
 
         }
 
-      
+
 
         public void BlokujZnakiSpecjalneIspacje(object sender, KeyPressEventArgs e)
         {

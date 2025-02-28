@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DK24.Klasy
 {
@@ -12,22 +7,20 @@ namespace DK24.Klasy
     {
         public class FurgonetkaService
         {
-          //  private const string BaseUrl = "";
-           // private string ClientId = "";
-           // private string ClientSecret = "";
-           // private string AccessToken;
+            //  private const string BaseUrl = "";
+            // private string ClientId = "";
+            // private string ClientSecret = "";
+            // private string AccessToken;
 
-    private const string BaseUrl = "https://api.sandbox.furgonetka.pl";
-    private readonly string ClientId;
-    private readonly string ClientSecret;
-    private string AccessToken;
-
-    public FurgonetkaService()
-    {
-        ClientId = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_ID") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_ID");
-        ClientSecret = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_SECRET") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_SECRET");
-    }
-            
+            private const string BaseUrl = "https://api.sandbox.furgonetka.pl";
+            private readonly string ClientId;
+            private readonly string ClientSecret;
+            private string AccessToken;
+            public FurgonetkaService()
+            {
+                ClientId = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_ID") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_ID");
+                ClientSecret = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_SECRET") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_SECRET");
+            }
 
             public async Task<bool> Authenticate(string email, string password)
             {
@@ -167,7 +160,7 @@ namespace DK24.Klasy
                     return true;
                 }
 
-      
+
                 Console.WriteLine($"Błąd walidacji: {response.StatusCode} - {response.ErrorMessage}");
                 Console.WriteLine("Szczegóły błędu: " + response.Content);
 
@@ -175,8 +168,8 @@ namespace DK24.Klasy
                 {
                     if (!string.IsNullOrEmpty(response.Content))
                     {
-                      
-                        var jsonDocument = System.Text.Json.JsonDocument.Parse(response.Content);                    
+
+                        var jsonDocument = System.Text.Json.JsonDocument.Parse(response.Content);
                         var errors = jsonDocument.RootElement.GetProperty("errors");
                         if (errors.GetArrayLength() > 0)
                         {
