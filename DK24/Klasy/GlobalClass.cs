@@ -8,11 +8,10 @@ namespace DK24.Klasy
     {
         public static class GlobalnaZmienna
         {
-            public static readonly string DBPolaczenie =
-                  "SERVER=sql98.lh.pl;" +
-                "DATABASE=serwer197774_drukarnia;" +
-                "UID=serwer197774_drukarnia;" +
-                "PASSWORD=Zu41Xut!C1;";
+           // public static readonly string DBPolaczenie =
+                  //"SERVER=sql98.lh.pl;" +
+              public static readonly string DBPolaczenie = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
 
             
         }
