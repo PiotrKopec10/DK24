@@ -12,10 +12,22 @@ namespace DK24.Klasy
     {
         public class FurgonetkaService
         {
-            private const string BaseUrl = "https://api.sandbox.furgonetka.pl";
-            private string ClientId = "dktest-c2c8a461a7ec3572f4d4427be03a12c1";
-            private string ClientSecret = "ff7f8cefc88803239cc9370977509316967b1484a23233addefda58f132bf13a";
-            private string AccessToken;
+          //  private const string BaseUrl = "";
+           // private string ClientId = "";
+           // private string ClientSecret = "";
+           // private string AccessToken;
+
+    private const string BaseUrl = "https://api.sandbox.furgonetka.pl";
+    private readonly string ClientId;
+    private readonly string ClientSecret;
+    private string AccessToken;
+
+    public FurgonetkaService()
+    {
+        ClientId = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_ID") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_ID");
+        ClientSecret = Environment.GetEnvironmentVariable("FURGONETKA_CLIENT_SECRET") ?? throw new InvalidOperationException("Brak zmiennej FURGONETKA_CLIENT_SECRET");
+    }
+            
 
             public async Task<bool> Authenticate(string email, string password)
             {
